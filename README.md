@@ -1,4 +1,4 @@
-# myprojectmanager-DEV
+# myprojectmanager-PROD
 A system that facilitate the management of projects using the agile process framework SCRUM  
 
 Backlog
@@ -26,13 +26,12 @@ Backlog
 | US19 | Project contributor | to create a test list of an issue in the sprint by giving (title, description, type, date, link, status | I can specify the required test for the issue | Medium | 2 | TODO |
 | US20 | Project contributor | to edit a test an issue in the sprint by chainging (title, description, type, date, link, status | I can update this test | Medium | 2 | TODO |
 | US21 | Project contributor | to delete a test of an issue in the sprint | I can update the test list | High | 2 | TODO |
-| US22 | Project contributor | to create a documentation list for my project by giving (title, description, link)  | I can answer users most FAQ | Medium | 3 | TODO |
-| US23 | Project contributor | to create a release by giving (title, description, version, date, sprint number, link | I can add it to releases list | Medium | 3 | TODO |
-| US24 | Project contributor | to edit a release an issue in the sprint by changing (title, description, version, date, sprint number, link | I can update it | Medium | 3 | TODO |
-| US25 | Project contributor | to delete a release | I can update the releases list | Medium | 3 | TODO |
+| US22 | Project contributor | to create a release by giving (title, description, version, date, sprint number, link | I can add it to releases list | Medium | 3 | TODO |
+| US23 | Project contributor | to edit a release an issue in the sprint by changing (title, description, version, date, sprint number, link | I can update it | Medium | 3 | TODO |
+| US24 | Project contributor | to delete a release | I can update the releases list | Medium | 3 | TODO |
+| US25 | Project contributor | to create a documentation list for my project by giving (title, description, link)  | I can answer users most FAQ | Medium | 3 | TODO |
 | US26 | Project contributor | to edit a documentation by changing (title, description, link)  | I can update it | Medium | 3 | TODO |
 | US27 | Project contributor | to delete a documentation | I can update the documentation list of my project | Medium | 3 | TODO |
-| US28 | Project contributor | to delete a documentation | I can update the documentation list of my project | Medium | 3 | TODO |
-| US29 | Project contributor | to stop working on a project | I take it off of my dahsboard | Low | 3 | TODO |
+| US28 | Project contributor | to stop working on a project | I take it off of my dahsboard | Low | 3 | TODO |
 
 

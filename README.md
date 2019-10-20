@@ -1,8 +1,8 @@
 # myprojectmanager-DEV
-Myprojectmanager : un système qui permet de faciliter la conduite des projets en utilisant l'agilité (SCRUM) 
+Myprojectmanager : a system that facilitate the management of projects using the agile process framework SCRUM  
 
 Backlog
 
-| ID | Descriptif | Priorité | Coût | État |
-| :-: | -- | :-: | :-: | :-: |
-| US01 | En tant que devloppeur je souhaite pouvoir crée un compte en donnant une adresse mail, un nom d'utilisateur et un mot de passe. | faible | 3 | TODO |
+| ID | As a.. | I want to be able to | So that | Priority | Sprint | Status |
+| :-: | -- | :-: | :-: | :-: | :-: | :-: |
+| US01 | User | To sign-up by providing my name, email and password  | I will have my own dashboard | High | 1 | TODO |

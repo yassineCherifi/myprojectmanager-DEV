@@ -1,2 +1,2 @@
 # myprojectmanager-DEV
-cdp2019-grp2-eq3
+MyProjectManager : un système de conduite de projet SCRUM

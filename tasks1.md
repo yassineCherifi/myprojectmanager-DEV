@@ -1,1 +1,35 @@
+# Sprint 1
 
+Taks list :
+
+| ID_issue | task_description |
+| :-: | :-: |
+| US01 | initialize a nodejs project and install dependencies (expressjs, mongoose, body-parser, passeport, passeport-local,jsonwebtoken)|
+| US01 | Create the server expressjs and configure it |
+| US01 | Create mongoose schema that represents the user  |
+| US01 | Create database.js file to connect to mongo database  |
+| US01 | Create the route register that receives a post request from the form to create the user |
+| US01 | Create the function "register" in user.controller.js that receives a post request from the register route ,validate the fields then inserting the user in the database |
+| US01 | initialize an angular 8 project |
+| US01 | create a user.service.ts which contain the method postUser that receive a user and post it to route "register" |
+| US01 | Create the componenent register |
+| US01 | Create the registration form in the register-component view |
+| US01 | Create the submit function in register-component controller that checks the validity of fields and calls the function postUser from the user service |
+
+----------------------------------------------------------------------------------------------------------------------
+
+| ID_issue | task_description |
+| :-: | :-: |
+| US02 | Create the route login that receives a post request from the login form |
+| US02 | Create the function "authenticate" in user.controller.js that receives a post request from the login route and checks if the user exists then genrating and returning a web token |
+| US02 | add the method login to user.service.ts that receives informations and post them to route "login" |
+| US02 | Create the componenent login |
+| US02 | Create the login form in the login-component view |
+| US02 | Create the submit function in login-component controller that checks the validity of fields and calls the function login from the user service then saving the token in local storage and redirecting to the dashboard page |
+
+----------------------------------------------------------------------------------------------------------------------
+
+| ID_issue | task_description |
+| :-: | :-: |
+| US02 | add the button logout in the dahsboard-component view that calls the method logout of the dahsboard controller which will call the method removeToken in the user.service.js and redirecting to the login page |
+| US02 | add the method removeToken to user.service.ts that removes the token from the local storage |

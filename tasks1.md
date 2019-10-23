@@ -33,3 +33,21 @@ Taks list :
 | :-: | :-: |
 | US03 | add the button logout in the dahsboard-component view that calls the method logout of the dahsboard controller which will call the method removeToken in the user.service.js and redirecting to the login page |
 | US03 | add the method removeToken to user.service.ts that removes the token from the local storage |
+
+----------------------------------------------------------------------------------------------------------------------
+
+| ID_issue | task_description |
+| :-: | :-: |
+| US05 | Create the project routes that receives a get/post/put/delete request from the project-component controller|
+| US05 | Create mongoose schema that represents the project(id,title,description,manager,members) |
+| US05 | Create the functions "getProjects,addProject,editProject,removeProject" in project.controller.js that receives a get/post/put/delete request from the project routes ,validate the fields for(inserting,updating) then get projects from the database or delete/put a project|
+| US05 | In agular project create project-components (list-project-component,add-project-component,update-project-component,delete-project-component) then creates the views of each components
+| US05 | Create the functions "getProjects,addProject,editProject,removeProject" in the project corresponding components which will call the functions of project.services.ts
+| US05 | In agular project add project.service.ts which contains the methods "getProjects,addProject,editProject,removeProject" that receives informations from project-component-controllers and fetch the project routes |
+
+
+
+
+
+
+

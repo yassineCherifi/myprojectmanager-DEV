@@ -1,4 +1,6 @@
-# Issues list : Sprint 1
+# Sprint 1
+
+Issues list :
 
 | ID | As a.. | I want to be able | So that | Priority | Difficulty | Sprint | Status |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |

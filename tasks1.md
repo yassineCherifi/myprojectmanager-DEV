@@ -31,5 +31,5 @@ Taks list :
 
 | ID_issue | task_description |
 | :-: | :-: |
-| US02 | add the button logout in the dahsboard-component view that calls the method logout of the dahsboard controller which will call the method removeToken in the user.service.js and redirecting to the login page |
-| US02 | add the method removeToken to user.service.ts that removes the token from the local storage |
+| US03 | add the button logout in the dahsboard-component view that calls the method logout of the dahsboard controller which will call the method removeToken in the user.service.js and redirecting to the login page |
+| US03 | add the method removeToken to user.service.ts that removes the token from the local storage |

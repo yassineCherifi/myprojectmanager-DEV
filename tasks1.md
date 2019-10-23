@@ -46,6 +46,16 @@ Taks list :
 | US05 | In agular project add project.service.ts which contains the methods "getProjects,addProject,editProject,removeProject" that receives informations from project-component-controllers and fetch the project routes |
 
 
+----------------------------------------------------------------------------------------------------------------------
+
+| ID_issue | task_description |
+| :-: | :-: |
+| US05 | Create the issues routes that receives a get/post/put/delete request from the detail-project-component controller|
+| US05 | Create mongoose schema that represents the issue(id,description,priority,sprintNumber,status) |
+| US05 | Create the functions "getIssues,addIssue,editIssue,removeIssue" in project-detail.controller.js that receives a get/post/put/delete request from the issues routes ,validate the fields for(inserting,updating) then get issues from the database or delete/put an issue|
+| US05 | In agular project create detail-project-components then create a tab fo issues in the view
+| US05 | Create the functions "getIssues,addIssue,editIssue,removeIssue" in the project-detail components controller which will call the functions of issue.services.ts
+| US05 | In agular project add issue.service.ts which contains the methods "getIssues,addIssue,editIssue,removeIssue" that receives informations from detail-project-component controller and fetch the issues routes |
 
 
 

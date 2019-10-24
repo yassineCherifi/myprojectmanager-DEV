@@ -57,7 +57,11 @@ Taks list :
 | US09 | Create the functions "getIssues,addIssue,editIssue,removeIssue" in the project-detail components controller which will call the functions of issue.services.ts
 | US09 | In agular project add issue.service.ts which contains the methods "getIssues,addIssue,editIssue,removeIssue" that receives informations from detail-project-component controller and fetch the issues routes |
 
+| ID_issue | Deleting issues, tasks, documentation...
+| :-: | :-: |
+| US09 - US16 - US18 - US19 - US20 |Create a delete button for all tabs (issues, tasks, sprints, release, documentation), on the same line of the item. When the user click on it, a confirmation pop-up shows on the screen with the message "Etes-vous sûr de vouloir supprimer "Item_Name". If the user clicks on "OK", the item is deleted from the project, if he clicks on "Cancel" the pop-up disappears.
 
 
-
-
+| ID_issue | Updating issues, tasks, documentation...
+| :-: | :-: |
+| US09 - US16 - US18 - US19 - US20 |Create an update button for all tabs (issues, tasks, sprints, release, documentation), on the same line of the item. When the user click on it, a form with all the informations needed for the items shows on the screen, and the user can write the new values he wants for the item. He can then confirm the changes by clicking on "OK", or revert it by clicking on "Cancel".

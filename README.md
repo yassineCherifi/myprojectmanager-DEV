@@ -26,5 +26,5 @@ Backlog
 | US19 | Project contributor | to create a release (title(20 chars max), description(100 chars max), version(10chars max), date(dd/mm/yyyy), sprint number, link) or to edit it or delete it by clicking on the corresponding buttons then confirming or cancelling  | I can update the releases list | LOW | 1 | 3 | TODO |
 | US20 | Project contributor | to create a documentation list for my project (title(chars 10 max), description(chars 100 max), link) or to edit it or delete it by clicking on the corresponding buttons in the documentations tab then confirming or cancelling | I can answer users most FAQ by creating, editing or deleting a documentation | LOW | 1 | 3 | TODO |
 | US21 | Project contributor | to stop working on a project by clicking on the button "Quit project" in my projects lists then confirming or cancelling| I take it off of my dahsboard | LOW | 2 | 3 | TODO |
-
+| US22 | Project contributor | to classify issues by key words, sprint number | I can find the good one faster | LOW | 2 | 3 | TODO |
 

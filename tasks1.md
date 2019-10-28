@@ -4,7 +4,7 @@ Taks list :
 
 | ID_issue | task_description |
 | :-: | :-: |
-| US01 | initialize a nodejs project and install dependencies (expressjs, mongoose, body-parser, passeport, passeport-local,jsonwebtoken)|
+| US01 | Initialize a nodejs project and install dependencies (expressjs, mongoose, body-parser, passeport, passeport-local,jsonwebtoken)|
 | US01 | Create the server expressjs and configure it |
 | US01 | Create mongoose schema that represents the user  |
 | US01 | Create database.js file to connect to mongo database  |
@@ -53,19 +53,52 @@ Taks list :
 | US09 | Create the issues routes that receives a get/post/put/delete request from the detail-project-component controller|
 | US09 | Create mongoose schema that represents the issue(id,description,priority,sprintNumber,status) |
 | US09 | Create the functions "getIssues,addIssue,editIssue,removeIssue" in project-detail.controller.js that receives a get/post/put/delete request from the issues routes ,validate the fields for(inserting,updating) then get issues from the database or delete/put an issue|
-| US09 | In agular project create detail-project-components then create a tab fo issues in the view
+| US09 | In agular project create detail-project-components then create a tab for issues in the view
 | US09 | Create the functions "getIssues,addIssue,editIssue,removeIssue" in the project-detail components controller which will call the functions of issue.services.ts
 | US09 | In agular project add issue.service.ts which contains the methods "getIssues,addIssue,editIssue,removeIssue" that receives informations from detail-project-component controller and fetch the issues routes |
+
+----------------------------------------------------------------------------------------------------------------------
 
 | ID_issue | task_description |
 | :-: | :-: |
 | US10 | Create the sprint routes that receives a get/post/put/delete request from the detail-project-component controller|
 | US10 | Create mongoose schema that represents the sprint(id,duration,tasks,status) |
 
+----------------------------------------------------------------------------------------------------------------------
+| ID_issue | task_description |
+| :-: | :-: |
+| US11 | Create the button "Add issue to the sprint" on the sprint component view |
+| US11 | Create the form which lists the issues to add on the sprint component view |
+| US11 | Create the function "addIssueToSprint" on the sprint component controller |
+
+----------------------------------------------------------------------------------------------------------------------
+| ID_issue | task_description |
+| :-: | :-: |
+| US12 | Create a search input on the sprint component view |
+| US12 | Create the function "searchIssue" on the sprint component controller |
+
+----------------------------------------------------------------------------------------------------------------------
 
 | ID_issue | task_description |
 | :-: | :-: |
-| US09 - US16 - US18 - US19 - US20 |Create a delete button for all tabs (issues, tasks, sprints, release, documentation), on the same line of the item. When the user click on it, a confirmation pop-up shows on the screen with the message "Etes-vous sûr de vouloir supprimer "Item_Name". If the user clicks on "OK", the item is deleted from the project, if he clicks on "Cancel" the pop-up disappears.
+| US13 | Create a dropdown button with a "Priority" item and a "Difficulty" item on the sprint component controller |
+| US13 | Create the functions "orderByPriority, orderByDifficulty" on the sprint component controller |
+
+----------------------------------------------------------------------------------------------------------------------
+| ID_issue | task_description |
+| :-: | :-: |
+| US15 | Create a button "Tasks" on the issues component view |
+| US15 | Create the functions "addTaskToIssue" on the issues component controller |
+
+----------------------------------------------------------------------------------------------------------------------
+| ID_issue | task_description |
+| :-: | :-: |
+| US17 | Create a button "Assign to contributor" on the sprint component view |
+
+----------------------------------------------------------------------------------------------------------------------
+| ID_issue | task_description |
+| :-: | :-: |
+| US09 - US14 - US16 - US18 - US19 - US20 |Create a delete button for all tabs (issues, tasks, sprints, release, documentation), on the same line of the item. When the user click on it, a confirmation pop-up shows on the screen with the message "Etes-vous sûr de vouloir supprimer "Item_Name". If the user clicks on "OK", the item is deleted from the project, if he clicks on "Cancel" the pop-up disappears.
 
 
 | ID_issue | task_description |

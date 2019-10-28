@@ -15,9 +15,9 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer |
 | :-: | :-: | :-: | :-: |
-| US02 | add the route "/login" in the middleware"./routes/index.router.js" that receives a post request from the login form |
-| US02 | Create the function "authenticate" in "./controllers/user.controller.js" that receives a post request from the "/login" route and checks if the user exists then genrating and returning a web token, then Add the method login to user.service.ts that receives informations and post them to route "/login"  |
-| US02 | Create the componenent login, Create the login form in the login-component view,Create the submit function in login-component controller that checks the validity of fields and calls the function login from the user service then saving the token in local storage and redirecting to the dashboard page |
+| US02 | add the route "/login" in the middleware"./routes/index.router.js" that receives a post request from the login form | 0.5 | CHERIFI |
+| US02 | Create the function "authenticate" in "./controllers/user.controller.js" that receives a post request from the "/login" route and checks if the user exists then genrating and returning a web token, then Add the method login to user.service.ts that receives informations and post them to route "/login" | 0.5 | CHERIFI |
+| US02 | Create the componenent login, Create the login form in the login-component view,Create the submit function in login-component controller that checks the validity of fields and calls the function login from the user service then saving the token in local storage and redirecting to the dashboard page | 0.5 | CHERIFI |
 
 ----------------------------------------------------------------------------------------------------------------------
 

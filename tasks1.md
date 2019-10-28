@@ -3,7 +3,7 @@
 Taks list :
 
 | ID_issue | task_description | | cost (day) | Developer |
-| :-: | :-: |
+| :-: | :-: | :-: | :-: |
 | US01 | Initialize a nodejs project and install dependencies (expressjs, mongoose, body-parser, passeport, passeport-local,jsonwebtoken) and run the server on the URI "localhost:3002" | 0.5 | CHERIFI |
 | US01 | Create the folder "models" and create inside this folder mongoose schema "user.js" that represents the user and Create database.js file to connect to mongo database on the URI "mongodb://localhost:27017" | 0.5 | CHERIFI |
 | US01 | Create a folder called "routes" and create inside this folder a middleware "index.js" and put the route "/register" that receives a post request from the form in the view to create the user | 0.5 | CHERIFI |

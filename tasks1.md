@@ -63,40 +63,15 @@ Taks list :
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description |
 | :-: | :-: |
-| US11 | Create the button "Add issue to the sprint" on the sprint component view |
-| US11 | Create the form which lists the issues to add on the sprint component view |
-| US11 | Create the function "addIssueToSprint" on the sprint component controller |
-
-----------------------------------------------------------------------------------------------------------------------
-| ID_issue | task_description |
-| :-: | :-: |
-| US12 | Create a search input on the sprint component view |
-| US12 | Create the function "searchIssue" on the sprint component controller |
-
-----------------------------------------------------------------------------------------------------------------------
-
-| ID_issue | task_description |
-| :-: | :-: |
-| US13 | Create a dropdown button with a "Priority" item and a "Difficulty" item on the sprint component controller |
-| US13 | Create the functions "orderByPriority, orderByDifficulty" on the sprint component controller |
-
-----------------------------------------------------------------------------------------------------------------------
-| ID_issue | task_description |
-| :-: | :-: |
 | US15 | Create a button "Tasks" on the issues component view |
 | US15 | Create the functions "addTaskToIssue" on the issues component controller |
 
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description |
 | :-: | :-: |
-| US17 | Create a button "Assign to contributor" on the sprint component view |
-
-----------------------------------------------------------------------------------------------------------------------
-| ID_issue | task_description |
-| :-: | :-: |
-| US09 - US14 - US16 - US18 - US19 - US20 |Create a delete button for all tabs (issues, tasks, sprints, release, documentation), on the same line of the item. When the user click on it, a confirmation pop-up shows on the screen with the message "Etes-vous sûr de vouloir supprimer "Item_Name". If the user clicks on "OK", the item is deleted from the project, if he clicks on "Cancel" the pop-up disappears.
+| US09 - US16 |Create a delete button for all tabs (issues, tasks, sprints, release, documentation), on the same line of the item. When the user click on it, a confirmation pop-up shows on the screen with the message "Etes-vous sûr de vouloir supprimer "Item_Name". If the user clicks on "OK", the item is deleted from the project, if he clicks on "Cancel" the pop-up disappears.
 
 
 | ID_issue | task_description |
 | :-: | :-: |
-| US09 - US16 - US18 - US19 - US20 |Create an update button for all tabs (issues, tasks, sprints, release, documentation), on the same line of the item. When the user click on it, a form with all the informations needed for the items shows on the screen, and the user can write the new values he wants for the item. He can then confirm the changes by clicking on "OK", or revert it by clicking on "Cancel".
+| US09 - US16 |Create an update button for all tabs (issues, tasks, sprints, release, documentation), on the same line of the item. When the user click on it, a form with all the informations needed for the items shows on the screen, and the user can write the new values he wants for the item. He can then confirm the changes by clicking on "OK", or revert it by clicking on "Cancel".

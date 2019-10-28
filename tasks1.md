@@ -4,7 +4,7 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer |
 | :-: | :-: | :-: | :-: |
-| US01 | Initialize a nodejs project and install dependencies (expressjs, mongoose, body-parser, passeport, passeport-local,jsonwebtoken) and run the server (app.js) on the URI "localhost:3002" | 0.5 | CHERIFI |
+| US01 | In a folder called "app/back",initialize a nodejs project and install dependencies (expressjs, mongoose, body-parser, passeport, passeport-local,jsonwebtoken), create config file in "./config/config.js" that contains server ports and database ports for both developement and production mode and run the server (app.js) on the URI "localhost:3002" for developement and "localhost:80" for production then create a "dockerfile" in "./app/back" to make the server in a docker container, create "docker-compose.yml" in "./app" then specify the service "back" on the port "3000:80" and the image of mongo database on the port "27017:27017" | 0.5 | CHERIFI |
 | US01 | Create the folder "models" and create inside this folder mongoose schema "user.js" that represents the user(id,name,email,password,saltSecret) and Create database.js file to connect to mongo database on the URI "mongodb://localhost:27017" | 0.5 | CHERIFI |
 | US01 | Create a folder called "routes" and create inside this folder a middleware "index.js" and put the route "/register" that receives a post request from the form in the view to create the user, use this middleware in "app.js" | 0.5 | CHERIFI |
 | US01 | Create the folder "controllers" then put the function "register" in a file "user.controller.js" inside the controllers folder that receives a post request from the "/register" route ,validate the fields then inserting the user in the database | 0.5 | CHERIFI |

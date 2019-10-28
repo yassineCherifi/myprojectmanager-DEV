@@ -5,7 +5,7 @@ Taks list :
 | ID_issue | task_description | cost (day) | Developer |
 | :-: | :-: | :-: | :-: |
 | US01 | Initialize a nodejs project and install dependencies (expressjs, mongoose, body-parser, passeport, passeport-local,jsonwebtoken) and run the server (app.js) on the URI "localhost:3002" | 0.5 | CHERIFI |
-| US01 | Create the folder "models" and create inside this folder mongoose schema "user.js" that represents the user and Create database.js file to connect to mongo database on the URI "mongodb://localhost:27017" | 0.5 | CHERIFI |
+| US01 | Create the folder "models" and create inside this folder mongoose schema "user.js" that represents the user(id,name,email,password,saltSecret) and Create database.js file to connect to mongo database on the URI "mongodb://localhost:27017" | 0.5 | CHERIFI |
 | US01 | Create a folder called "routes" and create inside this folder a middleware "index.js" and put the route "/register" that receives a post request from the form in the view to create the user, use this middleware in "app.js" | 0.5 | CHERIFI |
 | US01 | Create the folder "controllers" then put the function "register" in a file "user.controller.js" inside the controllers folder that receives a post request from the "/register" route ,validate the fields then inserting the user in the database | 0.5 | CHERIFI |
 | US01 | Initialize an angular 8 project,create the componenent register inside the folder "components" then create the form for registering | 0.5 | CHERIFI |
@@ -29,7 +29,7 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer |
 | :-: | :-: | :-: | :-: |
-| US05 | Create mongoose schema that represents the project(id,title,description,manager,members), Create a middleware "./routes/projects.router.js" and use it in "app.js" by specifing the route "/project" to that middleware, add the routes ( post: "/" to create ),( edit: "/:id" to update ),( delete: "/:id" to delte ),( get: "/" to get all projects )| 0.5 |  |
+| US05 | Create mongoose schema that represents the project(id,title,description,creator,contributors,status,issues), Create a middleware "./routes/projects.router.js" and use it in "app.js" by specifing the route "/project" to that middleware, add the routes ( post: "/" to create ),( edit: "/:id" to update ),( delete: "/:id" to delte ),( get: "/" to get all projects )| 0.5 |  |
 | US05 | Create the functions "getProjects,addProject,editProject,removeProject" in project.controller.js that receives a get/post/put/delete request from the project routes ,validate the fields for(inserting,updating) then get projects from the database or delete/put a project| 0.5 |  |
 | US05 | In agular project create project-components in "./components",Create the functions "getProjects,addProject,editProject,removeProject" in the project controller which will call the functions of project.services.ts | 0.5 |  |
 | US05 | in agular project add "./services/project.service.ts" which contains the methods "getProjects,addProject,editProject,removeProject" that receives informations from project-component-controllers and fetch the project routes | 0.5 |  |
@@ -37,14 +37,12 @@ Taks list :
 
 ----------------------------------------------------------------------------------------------------------------------
 
-| ID_issue | task_description |
-| :-: | :-: |
-| US09 | Create the issues routes that receives a get/post/put/delete request from the detail-project-component controller|
-| US09 | Create mongoose schema that represents the issue(id,description,priority,sprintNumber,status) |
-| US09 | Create the functions "getIssues,addIssue,editIssue,removeIssue" in project-detail.controller.js that receives a get/post/put/delete request from the issues routes ,validate the fields for(inserting,updating) then get issues from the database or delete/put an issue|
-| US09 | In agular project create detail-project-components then create a tab for issues in the view
-| US09 | Create the functions "getIssues,addIssue,editIssue,removeIssue" in the project-detail components controller which will call the functions of issue.services.ts
-| US09 | In agular project add issue.service.ts which contains the methods "getIssues,addIssue,editIssue,removeIssue" that receives informations from detail-project-component controller and fetch the issues routes |
+| ID_issue | task_description | cost (day) | Developer |
+| :-: | :-: | :-: | :-: |
+| US09 | Create mongoose schema that represents the issue(id,description,priorite,difficulte,status),add the routes ( post: "/:id/issues" to create ),( edit: "/:id/issues/:idIssue" to update ),( delete: "/:id/issues/:idIssues" to delete ) | 0.5 | |  
+| US09 | Create the functions "getIssues,addIssue,editIssue,removeIssue" in project-detail.controller.js that receives a get/post/put/delete request from the issues routes ,validate the fields for(inserting,updating) then get issues from the database or delete/put an issue | 0.5 | |  
+| US09 | In agular project create detail-project-components then create a tab for issues in the view,Create the functions "getIssues,addIssue,editIssue,removeIssue" in the project-detail components controller which will call the functions of issue.services.ts | 0.5 | |  
+| US09 | In agular project add "./services/issue.service.ts" which contains the methods "getIssues,addIssue,editIssue,removeIssue" that receives informations from detail-project-component controller and fetch the issues routes | 0.5 | | 
 
 ----------------------------------------------------------------------------------------------------------------------
 

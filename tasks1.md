@@ -39,9 +39,9 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer |
 | :-: | :-: | :-: | :-: |
-| US09 | Create mongoose schema that represents the issue(id,description,priorite,difficulte,status),add the routes ( post: "/:id/issues" to create ),( edit: "/:id/issues/:idIssue" to update ),( delete: "/:id/issues/:idIssues" to delete ) | 0.5 | |  
+| US09 | Create mongoose schema that represents the issue(id,description,priorite,difficulte,status,tasks),add the routes ( post: "/:id/issues" to create ),( edit: "/:id/issues/:idIssue" to update ),( delete: "/:id/issues/:idIssues" to delete ) | 0.5 | |  
 | US09 | Create the functions "getIssues,addIssue,editIssue,removeIssue" in project-detail.controller.js that receives a get/post/put/delete request from the issues routes ,validate the fields for(inserting,updating) then get issues from the database or delete/put an issue | 0.5 | |  
-| US09 | In agular project create detail-project-components then create a tab for issues in the view,Create the functions "getIssues,addIssue,editIssue,removeIssue" in the project-detail components controller which will call the functions of issue.services.ts | 0.5 | |  
+| US09 | In agular project create detail-project-components then create a tab for issues in the view,Create the functions "getIssues,addIssue,editIssue,removeIssue" in the project-detail components controller which will call the functions of issues.services.ts | 0.5 | |  
 | US09 | In agular project add "./services/issue.service.ts" which contains the methods "getIssues,addIssue,editIssue,removeIssue" that receives informations from detail-project-component controller and fetch the issues routes | 0.5 | | 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -50,15 +50,17 @@ Taks list :
 | :-: | :-: | :-: | :-: |
 | US10 | Create mongoose schema that represents the sprint(title, start date, end date, status),add the routes ( post: "/:id/sprint" to create ),( edit: "/:id/sprint/:idSprint" to update ),( delete: "/:id/sprint/:idSprint" to delete ) | 0.5 | |  
 | US10 | Create the functions "getSprints,addSprint,editSprint,removeSprint" in project-detail.controller.js that receives a get/post/put/delete request from the sprints routes ,validate the fields for(inserting,updating) then get sprints from the database or delete/put a sprint | 0.5 | |  
-| US10 | In agular project in detail-project-components ,create a tab for sprints in the view,Create the functions "getSprints,addSprint,editSprint,removeSprint" in the project-detail components controller which will call the functions of sprint.services.ts | 0.5 | |  
+| US10 | In agular project in detail-project-components ,create a tab for sprints in the view,Create the functions "getSprints,addSprint,editSprint,removeSprint" in the project-detail components controller which will call the functions of sprints.services.ts | 0.5 | |  
 | US10 | In agular project add "./services/sprint.service.ts" which contains the methods "getSprints,addSprint,editSprint,removeSprint" that receives informations from detail-project-component controller and fetch the sprints routes | 0.5 | | 
 
 ----------------------------------------------------------------------------------------------------------------------
 
-| ID_issue | task_description |
-| :-: | :-: |
-| US15 | Create a button "Tasks" on the issues component view |
-| US15 | Create the functions "addTaskToIssue" on the issues component controller |
+| ID_issue | task_description | cost (day) | Developer |
+| :-: | :-: | :-: | :-: |
+| US09 | Create mongoose schema that represents the tasks(id,idIssue,description,cost,developer),add the routes ( post: "/:id/issues/:idIssue/tasks" to create ),( edit: "/:id/issues/:idIssue/tasks/:idTask" to update ),( delete: "/:id/issues/:idIssue/tasks/:idTask" to delete ) | 0.5 | |  
+| US09 | Create the functions "getTasks,addITask,editTask,removeTask" in project-detail.controller.js that receives a get/post/put/delete request from the tasks routes ,validate the fields for(inserting,updating) then get issues from the database or delete/put an issue | 0.5 | |  
+| US09 | In agular project in detail-project-component, create a tab for tasks in the view,Create the functions "getTasks,addITask,editTask,removeTask" in the project-detail components controller which will call the functions of tasks.service.ts | 0.5 | |  
+| US09 | In agular project add "./services/tasks.service.ts" which contains the methods "getTasks,addITask,editTask,removeTask" that receives informations from detail-project-component controller and fetch the tasks routes | 0.5 | | 
 
 ----------------------------------------------------------------------------------------------------------------------
 

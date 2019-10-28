@@ -8,7 +8,7 @@ Taks list :
 | US01 | Create the folder "models" and create inside this folder mongoose schema "user.js" that represents the user(id,name,email,password,saltSecret) and Create database.js file to connect to mongo database on the URI "mongodb://localhost:27017" | 0.5 | CHERIFI |
 | US01 | Create a folder called "routes" and create inside this folder a middleware "index.js" and put the route "/register" that receives a post request from the form in the view to create the user, use this middleware in "app.js" | 0.5 | CHERIFI |
 | US01 | Create the folder "controllers" then put the function "register" in a file "user.controller.js" inside the controllers folder that receives a post request from the "/register" route ,validate the fields then inserting the user in the database | 0.5 | CHERIFI |
-| US01 | Initialize an angular 8 project,create the componenent register inside the folder "components" then create the form for registering | 0.5 | CHERIFI |
+| US01 | Initialize an angular 8 project in the folder "./app/front",create the componenent register inside the folder "components" then create the form for registering | 0.5 | CHERIFI |
 | US01 |Create the submit function "onSubmit() in register-component controller that checks the validity of fields and calls the function postUser() from the user service, create a "user.service.ts" in the folder "services" which contain the method postUser that receive a user and post it to route "/register" then getting the response from the route, inject this service to the register controller | 0.5 | CHERIFI |
 
 ----------------------------------------------------------------------------------------------------------------------

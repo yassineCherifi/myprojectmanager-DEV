@@ -2,19 +2,15 @@
 
 Taks list :
 
-| ID_issue | task_description |
+| ID_issue | task_description | | cost (day) | Developer |
 | :-: | :-: |
-| US01 | Initialize a nodejs project and install dependencies (expressjs, mongoose, body-parser, passeport, passeport-local,jsonwebtoken)|
-| US01 | Create the server expressjs and configure it |
-| US01 | Create mongoose schema that represents the user  |
-| US01 | Create database.js file to connect to mongo database  |
-| US01 | Create the route register that receives a post request from the form to create the user |
-| US01 | Create the function "register" in user.controller.js that receives a post request from the register route ,validate the fields then inserting the user in the database |
-| US01 | Initialize an angular 8 project |
-| US01 | Create a user.service.ts which contain the method postUser that receive a user and post it to route "register" |
-| US01 | Create the componenent register |
-| US01 | Create the registration form in the register-component view |
-| US01 | Create the submit function in register-component controller that checks the validity of fields and calls the function postUser from the user service |
+| US01 | Initialize a nodejs project and install dependencies (expressjs, mongoose, body-parser, passeport, passeport-local,jsonwebtoken) and run the server on the URI "localhost:3002" | 0.5 | CHERIFI |
+| US01 | Create the folder "models" and create inside this folder mongoose schema "user.js" that represents the user and Create database.js file to connect to mongo database on the URI "mongodb://localhost:27017" | 0.5 | CHERIFI |
+| US01 | Create a folder called "routes" and create inside this folder a middleware "index.js" and put the route "/register" that receives a post request from the form in the view to create the user | 0.5 | CHERIFI |
+| US01 | Create the folder "controllers" then put the function "register" in a file "user.controller.js" inside the controllers folder that receives a post request from the "/register" route ,validate the fields then inserting the user in the database | 0.5 | CHERIFI |
+| US01 | Initialize an angular 8 project,create the componenent register inside the folder "components" then create the form for registering | 0.5 | CHERIFI |
+| US01 | Create a user.service.ts which contain the method postUser that receive a user and post it to route "/register" then getting the response from the route | 0.5 | CHERIFI |
+| US01 | Create the submit function "onSubmit() in register-component controller that checks the validity of fields and calls the function postUser() of the user service | 0.5 | CHERIFI |
 
 ----------------------------------------------------------------------------------------------------------------------
 

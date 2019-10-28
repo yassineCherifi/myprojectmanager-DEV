@@ -29,7 +29,7 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer |
 | :-: | :-: | :-: | :-: |
-| US05 | Create mongoose schema that represents the project(id,title,description,creator,contributors,status,issues), Create a middleware "./routes/projects.router.js" and use it in "app.js" by specifing the route "/project" to that middleware, add the routes ( post: "/" to create ),( edit: "/:id" to update ),( delete: "/:id" to delte ),( get: "/" to get all projects )| 0.5 |  |
+| US05 | Create mongoose schema that represents the project(id,title,description,creator,contributors,status,issues,tasks,sprints), Create a middleware "./routes/projects.router.js" and use it in "app.js" by specifing the route "/project" to that middleware, add the routes ( post: "/" to create ),( edit: "/:id" to update ),( delete: "/:id" to delte ),( get: "/" to get all projects )| 0.5 |  |
 | US05 | Create the functions "getProjects,addProject,editProject,removeProject" in project.controller.js that receives a get/post/put/delete request from the project routes ,validate the fields for(inserting,updating) then get projects from the database or delete/put a project| 0.5 |  |
 | US05 | In agular project create project-components in "./components",Create the functions "getProjects,addProject,editProject,removeProject" in the project controller which will call the functions of project.services.ts | 0.5 |  |
 | US05 | in agular project add "./services/project.service.ts" which contains the methods "getProjects,addProject,editProject,removeProject" that receives informations from project-component-controllers and fetch the project routes | 0.5 |  |
@@ -46,10 +46,12 @@ Taks list :
 
 ----------------------------------------------------------------------------------------------------------------------
 
-| ID_issue | task_description |
-| :-: | :-: |
-| US10 | Create the sprint routes that receives a get/post/put/delete request from the detail-project-component controller|
-| US10 | Create mongoose schema that represents the sprint(id,duration,tasks,status) |
+| ID_issue | task_description | cost (day) | Developer |
+| :-: | :-: | :-: | :-: |
+| US09 | Create mongoose schema that represents the sprint(title, start date, end date, status),add the routes ( post: "/:id/sprint" to create ),( edit: "/:id/sprint/:idSprint" to update ),( delete: "/:id/sprint/:idSprint" to delete ) | 0.5 | |  
+| US09 | Create the functions "getSprints,addSprint,editSprint,removeSprint" in project-detail.controller.js that receives a get/post/put/delete request from the sprints routes ,validate the fields for(inserting,updating) then get sprints from the database or delete/put a sprint | 0.5 | |  
+| US09 | In agular project in detail-project-components ,create a tab for sprints in the view,Create the functions "getSprints,addSprint,editSprint,removeSprint" in the project-detail components controller which will call the functions of sprint.services.ts | 0.5 | |  
+| US09 | In agular project add "./services/sprint.service.ts" which contains the methods "getSprints,addSprint,editSprint,removeSprint" that receives informations from detail-project-component controller and fetch the sprints routes | 0.5 | | 
 
 ----------------------------------------------------------------------------------------------------------------------
 

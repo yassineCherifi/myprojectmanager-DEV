@@ -5,8 +5,8 @@ The project is by default in developement:
 
 to use it in developement mode :
   `docker-compose up -d mongodb` to run the database
-  `node backoffice/app.js` to run the server on the URI http://localhost:3002
-  `cd frontoffice && ng serve --open` to run the angular application on the URI http://localhost:4200
+  `cd backoffice && npm install` && `node app.js` to run the server on the URI http://localhost:3002
+   `cd frontoffice && npm install` && `ng serve --open` to run the angular application on the URI       http://localhost:4200
   
 Backlog
 

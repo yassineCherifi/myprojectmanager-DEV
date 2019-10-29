@@ -1,0 +1,20 @@
+<form #loginForm="ngForm" (ngSubmit)="loginForm.valid && onSubmit(loginForm)">
+    <input type="text" #email="ngModel" [(ngModel)]="model.email" [pattern]="emailRegex"
+        [ngClass]="{'invalid-textbox' :loginForm.submitted && !email.valid}" name="email"
+        placeholder="Entrez votre email" required>
+    <div *ngIf="loginForm.submitted && email.errors?.pattern">
+        <label class="validation-message">L'adresse mail n'est pas valide</label>
+    </div>
+    <input type="password" minlength="8" #password="ngModel"
+        [ngClass]="{'invalid-textbox' :loginForm.submitted && !password.valid}" [(ngModel)]="model.password"
+        name="password" placeholder="Entrez votre mot de passe" required>
+    <div *ngIf="loginForm.submitted && password.errors?.minlength">
+        <label class="validation-message">Le mot de passe doit contenir au moins 8 caractères</label>
+    </div>
+    <input type="submit" value="Se conencter">
+</form>
+
+<div class="alert" *ngIf="errormessage">
+    {{ errormessage }}
+</div>
+

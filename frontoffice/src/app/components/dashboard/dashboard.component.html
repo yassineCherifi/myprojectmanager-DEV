@@ -1,0 +1,38 @@
+<div id="viewport">
+  <!-- Sidebar -->
+  <div *ngIf="userInfos" id="sidebar">
+    <header>
+        <p style="text-align: center"><span class="badge badge-secondary"> Bienvenue {{ userInfos.name}}</span></p>
+
+      </header>
+
+    <ul class="nav">
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-view-dashboard"></i> Mes projets
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-view-dashboard"></i> Mes collaborateurs
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-view-dashboard"></i> Paramètres
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" (click)="logout()">
+          <i class="zmdi zmdi-view-dashboard"></i> Déconnexion
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- Content -->
+  <div id="content">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

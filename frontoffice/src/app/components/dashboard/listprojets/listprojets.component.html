@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Mes projets</h3>
+        <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample1" role="button"
+            aria-expanded="false" aria-controls="multiCollapseExample1">Nouveau projet</a>
+    </div>
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div class="card card-body">
+            <div class="col-md-5">
+                <fieldset>
+                    <form #newProject="ngForm" (ngSubmit)="newProject.valid && onSubmit(newProject)">
+                        <div class="form-group">
+                            <label for="title">Titre</label>
+                            <input type="email" class="form-control" name="title" id="title" [(ngModel)]="model.title">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Déscription</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" [(ngModel)]="model.description"></textarea>
+                        </div>
+                        <button type="submit" click class="btn btn-success">Ajouter</button>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Déscription</th>
+            <th scope="col">Manager</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let project of projects.result">
+            <td><a routerLink="1">{{project.title}}</a></td>
+            <td>{{project.description}}</td>
+            <td>{{project.creator.name}}</td>
+            <td>{{project.status}}</td>
+            <td *ngIf="project.creator._id === idLogged">
+                <button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button> &nbsp;
+                <button type="button" (click)="removeProject(project._id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

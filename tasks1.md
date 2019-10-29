@@ -20,14 +20,16 @@ Taks list :
 | US02 | Create the componenent login, Create the login form in the login-component view,Create the submit function in login-component controller that checks the validity of fields and calls the function login from the user service then saving the token in local storage and redirecting to the dashboard page | 0.5 | CHERIFI | DONE |
 
 ----------------------------------------------------------------------------------------------------------------------
+
 | ID_issue | task_description | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: |
 | US03 | Add the button logout in the dahsboard-component view that calls the method logout of the dahsboard controller which will call the method removeToken in the user.service.js and redirecting to the login page,Add the method removeToken to "./services/user.service.ts" that removes the token from the local storage | 0.5 | CHERIFI | DONE |
 
 ----------------------------------------------------------------------------------------------------------------------
+
 | ID_issue | task_description | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: |
-| US05 | Create mongoose schema that represents the project(id,title,description,creator,contributors[],status,issues[],tasks[],sprints[]), Create a middleware "./routes/projects.router.js" and use it in "app.js" by specifing the route "/project" to that middleware, add the routes ( post: "/" to create ),( edit: "/:id" to update ),( delete: "/:id" to delte ),( get: "/" to get all projects )| 0.5 | CHERIFI | DONE |
+| US05 | Create mongoose schema that represents the project(id,title,description,creator,contributors[],status,issues[],tasks[],sprints[]), Create a middleware "./routes/projects.router.js" and use it in "app.js" by specifing the route "/project" to that middleware, add the routes ( post: "/" to create ),( edit: "/:id" to update ),( delete: "/:id" to delte ),( get: "/" to get all projects ) | 0.5 | CHERIFI | DONE |
 | US05 | Create the functions "getProjects,addProject,editProject,removeProject" in project.controller.js that receives a get/post/put/delete request from the project routes ,validate the fields for(inserting,updating) then get projects from the database or delete/put a project| 0.5 | CHERIFI | DONE |
 | US05 | In agular project create project-components in "./components",Create the functions "getProjects,addProject,editProject,removeProject" in the project controller which will call the functions of project.services.ts | 0.5 | CHERIFI | 90% |
 | US05 | in agular project add "./services/project.service.ts" which contains the methods "getProjects,addProject,editProject,removeProject" that receives informations from project-component-controllers and fetch the project routes | 0.5 | CHERIFI | 90% |

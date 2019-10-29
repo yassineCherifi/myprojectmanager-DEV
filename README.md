@@ -1,6 +1,13 @@
 # myprojectmanager-DEV
 A system that facilitates the management of projects using the agile process framework SCRUM  
 
+The project is by default in developement: 
+
+to use it in developement mode :
+  'docker-compose up -d mongodb' to run the database
+  'node back/app.js' to run the server on the URI http://localhost:3002
+  'cd frontoffice && ng serve --open' to run the angular application on the URI http://localhost:4200
+  
 Backlog
 
 | ID | As a.. | I want to be able | So that | Priority | Difficulty | Sprint | Status |

@@ -3,9 +3,9 @@ A system that facilitates the management of projects using the agile process fra
 
 The project is by default in developement: 
 
-to use it in developement mode :
-  `docker-compose up -d mongodb` to run the database
-  `cd backoffice && npm install` && `node app.js` to run the server on the URI http://localhost:3002
+to use it in developement mode :<br>
+  `docker-compose up -d mongodb` to run the database<br>
+  `cd backoffice && npm install` && `node app.js` to run the server on the URI http://localhost:3002<br>
    `cd frontoffice && npm install` && `ng serve --open` to run the angular application on the URI       http://localhost:4200
   
 Backlog

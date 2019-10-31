@@ -65,7 +65,7 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: |
-| US20 | Create mongoose schema that represents the documentation(title(chars 10 max), description(chars 100 max), link),in the middleware "./routes/projects.router.js" add the routes ( post: "/:projectId/documenation" to create ),( edit: "/:projectId/documenation/:idTask" to update ),( delete: "/:projectId/documenation/:idDoc" to delete ) | 0.5 | | TODO |  
+| US20 | Create mongoose schema that represents the documentation(title(chars 10 max), description(chars 100 max), link),in the middleware "./routes/projects.router.js" add the routes ( post: "/:projectId/documentation" to create ),( edit: "/:projectId/documentation/:idDoc" to update ),( delete: "/:projectId/documenation/:idDoc" to delete ) | 0.5 | | TODO |  
 | US20 | Create the functions "getDoc,addDoc,editDoc,removeDoc" in project-detail.controller.js that receives a get/post/put/delete request from the documentation routes ,validate the fields for(inserting,updating) then get documentation from the database or delete/put a documentation | 0.5 | | TODO |  
 | US20 | In agular project in detail-project-component, create a tab for documentation in the view,Create the functions "getDoc,addDoc,editDoc,removeDoc" in the project-detail components controller which will call the functions of documentation.service.ts | 0.5 | | TODO |  
 | US20 | In agular project add "./services/documentation.service.ts" which contains the methods "getDoc,addDoc,editDoc,removeDoc" that receives informations from detail-project-component controller and fetch the documentation routes | 0.5 | | TODO | 

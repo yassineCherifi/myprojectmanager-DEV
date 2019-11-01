@@ -60,33 +60,3 @@ Taks list :
 | US09/US16 | Create the functions "getTasks,addITask,editTask,removeTask" in project-detail.controller.js that receives a get/post/put/delete request from the tasks routes ,validate the fields for(inserting,updating) then get tasks from the database or delete/put a task | 0.5 | | TODO |  
 | US09/US16 | In agular project in detail-project-component, create a tab for tasks in the view,Create the functions "getTasks,addITask,editTask,removeTask" in the project-detail components controller which will call the functions of tasks.service.ts | 0.5 | | TODO |  
 | US09/US16 | In agular project add "./services/tasks.service.ts" which contains the methods "getTasks,addITask,editTask,removeTask" that receives informations from detail-project-component controller and fetch the tasks routes | 0.5 | | TODO | 
-
-----------------------------------------------------------------------------------------------------------------------
-
-| ID_issue | task_description | cost (day) | Developer | Status |
-| :-: | :-: | :-: | :-: | :-: |
-| US18 | Create mongoose schema that represents the test (title(50 chars max), description(100 chars max), type(unit,validation), date(dd/mm/aaaa), link, status(todo,done)),in the middleware "./routes/projects.router.js" add the routes ( post: "/:projectId/test" to create ),( edit: "/:projectId/test/:idTest" to update ),( delete: "/:projectId/test/:idTest" to delete ) | 0.5 | | TODO | 
-| US18 | Create the functions "getTest,addTest,editTest,removeTest" in project-detail.controller.js that receives a get/post/put/delete request from the test routes ,validate the fields for(inserting,updating) then get test from the database or delete/put a test | 0.5 | | TODO |  
-| US18 | In angular project in detail-project-component, create a tab for test in the view,Create the functions "getTest,addTest,editTest,removeTest" in the project-detail components controller which will call the functions of test.service.ts | 0.5 | | TODO |  
-| US18 | In angular project add "./services/test.service.ts" which contains the methods "getTest,addTest,editTest,removeTest" that receives informations from detail-project-component controller and fetch the test routes | 0.5 | | TODO | 
-
-----------------------------------------------------------------------------------------------------------------------
-
-| ID_issue | task_description | cost (day) | Developer | Status |
-| :-: | :-: | :-: | :-: | :-: |
-| US19 | Create mongoose schema that represents the release (title(20 chars max), description(100 chars max), version(10chars max), date(dd/mm/yyyy), sprint number, link),in the middleware "./routes/projects.router.js" add the routes ( post: "/:projectId/release" to create ),( edit: "/:projectId/release/:idRelease" to update ),( delete: "/:projectId/release/:idRelease" to delete ) | 0.5 | | TODO |  
-| US19 | Create the functions "getRelease,addRelease,editRelease,removeRelease" in project-detail.controller.js that receives a get/post/put/delete request from the release routes ,validate the fields for(inserting,updating) then get release from the database or delete/put a release | 0.5 | | TODO |  
-| US19 | In angular project in detail-project-component, create a tab for release in the view,Create the functions "getRelease,addRelease,editRelease,removeRelease" in the project-detail components controller which will call the functions of release.service.ts | 0.5 | | TODO |  
-| US19 | In angular project add "./services/release.service.ts" which contains the methods "getRelease,addRelease,editRelease,removeRelease" that receives informations from detail-project-component controller and fetch the release routes | 0.5 | | TODO | 
-
-----------------------------------------------------------------------------------------------------------------------
-
-| ID_issue | task_description | cost (day) | Developer | Status |
-| :-: | :-: | :-: | :-: | :-: |
-| US20 | Create mongoose schema that represents the documentation(title(chars 10 max), description(chars 100 max), link),in the middleware "./routes/projects.router.js" add the routes ( post: "/:projectId/documentation" to create ),( edit: "/:projectId/documentation/:idDoc" to update ),( delete: "/:projectId/documentation/:idDoc" to delete ) | 0.5 | | TODO |  
-| US20 | Create the functions "getDoc,addDoc,editDoc,removeDoc" in project-detail.controller.js that receives a get/post/put/delete request from the documentation routes ,validate the fields for(inserting,updating) then get documentation from the database or delete/put a documentation | 0.5 | | TODO |  
-| US20 | In angular project in detail-project-component, create a tab for documentation in the view,Create the functions "getDoc,addDoc,editDoc,removeDoc" in the project-detail components controller which will call the functions of documentation.service.ts | 0.5 | | TODO |  
-| US20 | In angular project add "./services/documentation.service.ts" which contains the methods "getDoc,addDoc,editDoc,removeDoc" that receives informations from detail-project-component controller and fetch the documentation routes | 0.5 | | TODO | 
-
-----------------------------------------------------------------------------------------------------------------------
-

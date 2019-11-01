@@ -9,9 +9,15 @@ const issueSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    priorite: { type: String},
-    difficulte: { type: String},
-    status: { type: String},
+    priorite: { 
+        type: String
+    },
+    difficulte: { 
+        type: String
+    },
+    status: { 
+        type: String
+    },
 
 });
 

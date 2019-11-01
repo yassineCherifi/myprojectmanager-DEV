@@ -15,6 +15,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { ListprojetsComponent } from './components/dashboard/listprojets/listprojets.component';
 import { DetailprojetComponent } from './components/dashboard/detailprojet/detailprojet.component';
 import { ProjetService } from './services/projet.service';
+import { IssuesService } from './services/issues.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { ProjetService } from './services/projet.service';
     HttpClientModule
     
   ],
-  providers: [UserService,ProjetService,AuthGuard,
+  providers: [UserService,ProjetService,IssuesService,AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

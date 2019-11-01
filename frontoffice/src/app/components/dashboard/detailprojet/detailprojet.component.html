@@ -1,18 +1,65 @@
 <h2>Projet 1</h2>
 <p>To make the tabs toggleable, add the data-toggle="pill" attribute to each link. Then add a .tab-pane class with a
     unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
-<ul class="nav nav-pills">
-    <li class="active"><a data-toggle="pill" href="#home">Backlog</a></li>
-    <li><a data-toggle="pill" href="#menu1">Tâches</a></li>
-    <li><a data-toggle="pill" href="#menu2">Tests</a></li>
-    <li><a data-toggle="pill" href="#menu3">Sprints</a></li>
-    <li><a data-toggle="pill" href="#menu3">Releases</a></li>
-    <li><a data-toggle="pill" href="#menu3">Documentations</a></li>
+   
+
+
+
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a data-toggle="tab" href="#home">Backlog</a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#tasks">Tâches</a>
+    </li>
+    <li >
+        <a data-toggle="tab" href="#tests">Tests</a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#sprints">Sprints</a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#releases">Releases</a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#documentations">Documentations</a></li>
 </ul>
 
 <div class="tab-content">
-    <h4>Liste des issues</h4>
+    
     <div id="home" class="tab-pane fade in active">
+            <h4>Liste des issues</h4>
+            <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample1" role="button"
+            aria-expanded="false" aria-controls="multiCollapseExample1">Nouvelle Issue</a>
+        
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card card-body">
+                <div class="col-md-5">
+                    <fieldset>
+                        <form #newIssue="ngForm" (ngSubmit)="newIssue.valid && onSubmit(newIssue)">
+                            <div class="form-group">
+                                <label for="title">Description</label>
+                                <input type="email" class="form-control" name="description" id="description" rows="3" [(ngModel)]="model.description">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Priorité</label>
+                                <textarea class="form-control" id="priorite" name="priorite" [(ngModel)]="model.priorite"></textarea>
+                            </div>
+                            <div class="form-group">
+                                    <label for="description">Difficulté</label>
+                                    <textarea class="form-control" id="difficulte" name="difficulte" [(ngModel)]="model.difficulte"></textarea>
+                            </div>
+                            <div class="form-group">
+                                    <label for="description">Statut</label>
+                                    <textarea class="form-control" id="statut" name="statut" [(ngModel)]="model.statut"></textarea>
+                            </div>
+                            <button type="submit" click class="btn btn-success">Ajouter</button>
+                        </form>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
         <table class="table table-striped">
             <thead class="thead">
                 <tr>
@@ -49,18 +96,27 @@
             </tbody>
         </table>
     </div>
-    <div id="menu1" class="tab-pane fade">
-        <h3>Menu 1</h3>
+    <div id="tasks" class="tab-pane fade">
+        <h3>Liste des tâches</h3>
         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
     </div>
-    <div id="menu2" class="tab-pane fade">
-        <h3>Menu 2</h3>
+    <div id="tests" class="tab-pane fade">
+        <h3>Liste des tests</h3>
         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
             aperiam.</p>
     </div>
-    <div id="menu3" class="tab-pane fade">
-        <h3>Menu 3</h3>
+    <div id="sprints" class="tab-pane fade">
+        <h3>Liste des sprints</h3>
         <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
     </div>
+    <div id="releases" class="tab-pane fade">
+            <h3>Liste des releases</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+    <div id="documentations" class="tab-pane fade">
+            <h3>Liste des documentations</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+
 </div>

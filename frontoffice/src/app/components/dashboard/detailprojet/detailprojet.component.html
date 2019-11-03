@@ -1,4 +1,5 @@
-<h2>Projet 1</h2>
+<h2>{{ project.title }}</h2>
+<p>{{ project.description }}</p>
 <p>To make the tabs toggleable, add the data-toggle="pill" attribute to each link. Then add a .tab-pane class with a
     unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
    
@@ -51,7 +52,7 @@
                             </div>
                             <div class="form-group">
                                     <label for="description">Statut</label>
-                                    <textarea class="form-control" id="statut" name="statut" [(ngModel)]="model.statut"></textarea>
+                                    <textarea class="form-control" id="status" name="status" [(ngModel)]="model.statut"></textarea>
                             </div>
                             <button type="submit" click class="btn btn-success">Ajouter</button>
                         </form>
@@ -70,6 +71,25 @@
                     <th></th>
                 </tr>
             </thead>
+
+            <tbody>
+                <tr *ngFor="let issues of project.issues">
+                    <td>Issue 1</td>
+                    <td>{{issues.description}}</td>
+                    <td>{{issues.priorite}}</td>
+                    <td>{{issues.cout}}</td>
+
+                    <td>
+                        <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
+                        <button type="button" (click)="removeIssue(issues)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                    </td>
+                </tr>
+
+                
+            </tbody>
+
+
+            <!--PLACEHOLDER-->
             <tbody>
                 <tr>
                     <td>Issue 1</td>
@@ -94,7 +114,14 @@
                     </td>
                 </tr>
             </tbody>
+
+            <!--PLACEHOLDER-->
+
+
+
+
         </table>
+
     </div>
     <div id="tasks" class="tab-pane fade">
         <h3>Liste des tâches</h3>

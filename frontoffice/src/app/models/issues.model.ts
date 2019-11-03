@@ -1,6 +1,6 @@
 export class Issues {
     description: string;
-    priorite: number;
-    difficulte: number;
-    statut: string;
+    priorite: string;
+    difficulte: string;
+    status: string;
 }

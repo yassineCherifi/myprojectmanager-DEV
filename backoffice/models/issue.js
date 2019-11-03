@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const issueSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        unique: true
-    },
     description: {
         type: String,
         required: true,

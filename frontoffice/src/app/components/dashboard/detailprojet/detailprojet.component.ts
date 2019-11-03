@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IssuesService } from 'src/app/services/issues.service';
+import { NgForm } from '@angular/forms';
+import { ProjetService } from 'src/app/services/projet.service';
 
 @Component({
   selector: 'app-detailprojet',
@@ -7,9 +10,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailprojetComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  public issues = [];
+
+  public project;
+  
+
+  constructor(private issuesService : IssuesService, private projetService : ProjetService) { }
+
+  
+  model = {
+    description: '',
+    priorite: '',
+    difficulte: '',
+    status: ''
   }
+
+
+  ngOnInit() {   
+    this.project = this.projetService.getSelectedProject();
+  }
+
+  removeIssue(id){
+    this.issuesService.removeIssue(this.project['_id'],id).subscribe(data => console.log(data));
+  }
+
+
+
+  onSubmit(form: NgForm) {
+    this.issuesService.addIssue(this.project['_id'],form.value).subscribe(
+      res => {
+        form.resetForm();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    console.log(this.project)
+  }
+
+
 
 }

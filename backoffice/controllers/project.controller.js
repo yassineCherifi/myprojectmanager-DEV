@@ -9,7 +9,7 @@ const User = mongoose.model('User');
 
 module.exports.getAllProjects = (req, res, next) => {
     Project.find({})
-        .populate('issues')
+        //.populate('issues')
         .populate('creator')
         .then((result) => {
             res.send({result :result,creator: result.creator});
@@ -21,7 +21,6 @@ module.exports.getAllProjects = (req, res, next) => {
 
 module.exports.getProjectDetails = (req, res, next) => {
     Project.findOne({ _id: req.params.id })
-        .populate('issues')
         .populate('creator')
         .then((result) => {
             res.send({result :result,creator: result.creator});
@@ -72,20 +71,29 @@ module.exports.deleteProject = (req, res, next) => {
 
 module.exports.createIssue = (req, res, next) => {
     const issue = new Issue();
+    console.log("issue create");
+    
     issue.description = req.body.description;
     issue.priorite = req.body.priorite;
     issue.difficulte = req.body.difficulte;
     issue.status = req.body.status;
-    Project.findOne({ _id: req.params.id }, function (err, project) {
+
+    console.log(issue);
+
+    Project.findOne({ _id: req.params.id }, 
+        function (err, project) {  
         if (err) res.json({ error: "no project found" })
         else {
             project.issues.push(issue);
+            
             project.save(function (err) {
                 if (err) res.json({ error: "no project found" })
                 res.json(project);
             });
+            console.log(project.issues); //bug : ne garde que les ids au deuxieme ajout 
         }
     });
+    
 }
 
 module.exports.deleteIssue = (req, res, next) => {

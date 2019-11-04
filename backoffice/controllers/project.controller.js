@@ -9,7 +9,6 @@ const User = mongoose.model('User');
 
 module.exports.getAllProjects = (req, res, next) => {
     Project.find({})
-        //.populate('issues')
         .populate('creator')
         .then((result) => {
             res.send({result :result,creator: result.creator});
@@ -20,10 +19,12 @@ module.exports.getAllProjects = (req, res, next) => {
 }
 
 module.exports.getProjectDetails = (req, res, next) => {
+    
     Project.findOne({ _id: req.params.id })
         .populate('creator')
+        .populate('issues')
         .then((result) => {
-            res.send({result :result,creator: result.creator});
+            res.send({result :result});
         })
         .catch((error) => {
             res.status(500).json({ error });
@@ -39,6 +40,7 @@ module.exports.insertProject = (req, res, next) => {
             project.description = req.body.description;
             project.status = req.body.status;
             project.creator = user;
+            console.log(project)
             project.save(function (err) {
                 if (!err)
                     res.send(project);
@@ -93,6 +95,7 @@ module.exports.createIssue = (req, res, next) => {
             console.log(project.issues); //bug : ne garde que les ids au deuxieme ajout 
         }
     });
+
     
 }
 

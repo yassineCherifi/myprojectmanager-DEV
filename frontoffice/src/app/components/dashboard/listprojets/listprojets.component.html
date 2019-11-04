@@ -36,11 +36,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let project of projects.result">
-            <td ><a (click)="setSelectedProject(project)" routerLink={{project._id}}>{{project.title}}</a></td>
-            <td>{{project.description}}</td>
-            <td>{{project.creator.name}}</td>
-            <td>{{project.status}}</td>
-            <td *ngIf="project.creator._id === idLogged">
+            <td><a routerLink={{project?._id}}>{{project?.title}}</a></td>
+            <td>{{project?.description}}</td>
+            <td>{{project?.creator?.name}}</td>
+            <td>{{project?.status}}</td>
+            <td *ngIf="project?.creator?._id === idLogged">
                 <button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button> &nbsp;
                 <button type="button" (click)="removeProject(project._id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
             </td>

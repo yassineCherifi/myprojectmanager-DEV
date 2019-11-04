@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IssuesService } from 'src/app/services/issues.service';
 import { NgForm } from '@angular/forms';
 import { ProjetService } from 'src/app/services/projet.service';
+import { ActivatedRoute } from '@angular/router';
+import { Projet } from 'src/app/models/projet.model';
 
 @Component({
   selector: 'app-detailprojet',
@@ -11,12 +13,13 @@ import { ProjetService } from 'src/app/services/projet.service';
 export class DetailprojetComponent implements OnInit {
 
 
+  public project_id;
   public issues = [];
 
-  public project;
+  public project : Projet;
   
 
-  constructor(private issuesService : IssuesService, private projetService : ProjetService) { }
+  constructor(private issuesService : IssuesService, private projetService : ProjetService, private route: ActivatedRoute) { }
 
   
   model = {
@@ -28,7 +31,13 @@ export class DetailprojetComponent implements OnInit {
 
 
   ngOnInit() {   
-    this.project = this.projetService.getSelectedProject();
+    this.project_id = this.route.snapshot.paramMap.get('id');
+    this.getProject();
+  }
+
+
+  getProject(){
+    this.projetService.getProject(this.project_id).subscribe(data => this.project = data['result']);
   }
 
   removeIssue(id){

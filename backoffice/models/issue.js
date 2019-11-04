@@ -13,7 +13,7 @@ const issueSchema = new mongoose.Schema({
     },
     status: { 
         type: String
-    },
+    }
 
 });
 

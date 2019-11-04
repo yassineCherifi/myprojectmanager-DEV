@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ProjetService } from 'src/app/services/projet.service';
 import { UserService } from 'src/app/services/user.service';
 import { NgForm } from '@angular/forms';
@@ -12,9 +12,7 @@ export class ListprojetsComponent implements OnInit {
   
   public projects = []; 
 
-  constructor(private projectsService : ProjetService, private userService : UserService) { 
-    
-  }
+  constructor(private projectsService : ProjetService, private userService : UserService) { }
 
 
   idLogged;
@@ -28,14 +26,9 @@ export class ListprojetsComponent implements OnInit {
     this.idLogged = this.userService.getIDOflogged();
   }
 
-  setSelectedProject(selected_project){
-    this.projectsService.selectProject(selected_project);
-  }
 
   getProjects(){
-    this.projectsService.getProjects().subscribe(data => (this.projects = data));
-    console.log(this.projects)
-    
+    this.projectsService.getProjects().subscribe(data => this.projects = data);
   }
   removeProject(id) {
     this.projectsService.deleteProject(id).subscribe(data => console.log( data));

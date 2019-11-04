@@ -8,6 +8,7 @@ const cors = require('cors');
 const passport = require('passport');
 const indexRoutes = require('./routes/index.router');
 const projectRoutes = require('./routes/projects.router');
+const jwtVerify = require('./config/jwt.verify') 
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.use(cors());
 app.use(passport.initialize());
 
 app.use('/api', indexRoutes);
-app.use('/api/projects', projectRoutes);
+app.use('/api/projects', jwtVerify.verifyJwtToken, projectRoutes);
 
 
 app.use((err, req, res, next) => {

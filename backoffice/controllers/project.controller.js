@@ -11,11 +11,9 @@ module.exports.getAllProjects = (req, res, next) => {
     Project.find({})
         .populate('issues')
         .populate('creator')
-        .then((result) => {
-            res.send({result :result,creator: result.creator});
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
+        .exec(function (err, projects) {
+            if (err) res.json({ error: "error" })
+            res.json({ projects: projects })
         });
 }
 
@@ -23,16 +21,15 @@ module.exports.getProjectDetails = (req, res, next) => {
     Project.findOne({ _id: req.params.id })
         .populate('issues')
         .populate('creator')
-        .then((result) => {
-            res.send({result :result,creator: result.creator});
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
+        .exec(function (err, project) {
+            if (err) res.json({ error: "error" })
+            res.json({ project: project })
         });
+
 };
 
 module.exports.insertProject = (req, res, next) => {
-    User.findOne({ _id: req.headers['creator']}, (err, user) => {
+    User.findOne({ _id: req._id }, (err, user) => {
         if (!user) return res.status(404).json({ status: false, message: "Utilisateur non trouvé" })
         else {
             const project = new Project();
@@ -76,28 +73,34 @@ module.exports.createIssue = (req, res, next) => {
     issue.priorite = req.body.priorite;
     issue.difficulte = req.body.difficulte;
     issue.status = req.body.status;
-    Project.findOne({ _id: req.params.id }, function (err, project) {
-        if (err) res.json({ error: "no project found" })
-        else {
-            project.issues.push(issue);
-            project.save(function (err) {
-                if (err) res.json({ error: "no project found" })
-                res.json(project);
+    issue.save()
+        .then((result) => {
+            Project.findOne({ _id: req.params.id }, (err, project) => {
+                if (project) {
+                    project.issues.push(issue);
+                    project.save();
+                    res.json({ message: 'Issue created!' });
+                }
             });
-        }
-    });
+        })
+        .catch((error) => {
+            res.status(500).json({ error });
+        });
+
 }
 
 module.exports.deleteIssue = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: "no project found" })
-        else {
-            project.issues.pull({ _id: req.params.idIssue });
+        Issue.remove({ _id: req.params.idIssue }, function (err, removed) {
+            if (err) res.json({ error: "issue not removed" });
+            project.issues.remove({ _id: req.params.idIssue });
             project.save(function (err) {
                 if (err) res.json({ error: "error" });
                 res.json({ success: "issue remove" })
             });
-        }
+        });
+
     });
 }
 
@@ -116,7 +119,7 @@ module.exports.editIssue = (req, res, next) => {
                 if (err) res.json({ error: "error" });
                 res.json({ success: "issue edited" })
             });
- })
+        })
         .catch((error) => {
             res.status(500).json({ error });
         });

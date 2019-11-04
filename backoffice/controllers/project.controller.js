@@ -74,41 +74,41 @@ module.exports.deleteProject = (req, res, next) => {
 module.exports.createIssue = (req, res, next) => {
     const issue = new Issue();
     console.log("issue create");
-    
+
     issue.description = req.body.description;
     issue.priorite = req.body.priorite;
     issue.difficulte = req.body.difficulte;
     issue.status = req.body.status;
+    issue.save()
+        .then((result) => {
 
-    console.log(issue);
-
-    Project.findOne({ _id: req.params.id }, 
-        function (err, project) {  
-        if (err) res.json({ error: "no project found" })
-        else {
-            project.issues.push(issue);
-            
-            project.save(function (err) {
-                if (err) res.json({ error: "no project found" })
-                res.json(project);
+            Project.findOne({ _id: req.params.id }, (err, project) => {
+                if (project) {
+                    project.issues.push(issue);
+                    project.save();
+                    res.json({ message: 'Issue created!' });
+                }
             });
-            console.log(project.issues); //bug : ne garde que les ids au deuxieme ajout 
-        }
-    });
 
-    
+        })
+        .catch((error) => {
+            res.status(500).json({ error });
+        });
+
 }
 
 module.exports.deleteIssue = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: "no project found" })
-        else {
-            project.issues.pull({ _id: req.params.idIssue });
+        Issue.remove({ _id: req.params.idIssue }, function (err, removed) {
+            if (err) res.json({ error: "issue not removed" });
+            project.issues.remove({ _id: req.params.idIssue });
             project.save(function (err) {
                 if (err) res.json({ error: "error" });
                 res.json({ success: "issue remove" })
             });
-        }
+        });
+
     });
 }
 

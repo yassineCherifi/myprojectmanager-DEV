@@ -74,10 +74,10 @@
 
             <tbody>
                 <tr *ngFor="let issues of project?.issues">
-                    <td>Issue 1</td>
+                    <td>Issue <i>{{issues?._id}}</i></td>
                     <td>{{issues?.description}}</td>
                     <td>{{issues?.priorite}}</td>
-                    <td>{{issues?.cout}}</td>
+                    <td>{{issues?.difficulte}}</td>
 
                     <td>
                         <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
@@ -87,38 +87,6 @@
 
                 
             </tbody>
-
-
-            <!--PLACEHOLDER-->
-            <tbody>
-                <tr>
-                    <td>Issue 1</td>
-                    <td>Desc 1</td>
-                    <td>Elevée</td>
-                    <td>2</td>
-
-                    <td>
-                        <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Issue 2</td>
-                    <td>Desc 2</td>
-                    <td>Moyenne</td>
-                    <td>1</td>
-
-                    <td>
-                        <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-
-            <!--PLACEHOLDER-->
-
-
-
 
         </table>
 

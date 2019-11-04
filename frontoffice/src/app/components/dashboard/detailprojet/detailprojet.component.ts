@@ -50,6 +50,7 @@ export class DetailprojetComponent implements OnInit {
     this.issuesService.addIssue(this.project['_id'],form.value).subscribe(
       res => {
         form.resetForm();
+        this.getProject()
       },
       err => {
         console.log(err);

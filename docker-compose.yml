@@ -1,7 +1,7 @@
 version: "2"
 services:
   back:
-    build: "./back"
+    build: "./backoffice"
     restart: always
     ports:
       - "3000:80"

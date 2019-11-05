@@ -12,8 +12,13 @@ export class ProjetService {
 
   constructor(private httpClient: HttpClient, private userervice: UserService) { }
 
+
   getProjects(): Observable<Projet[]> {
     return this.httpClient.get<Projet[]>(environment.API_URL + '/projects');
+  }
+
+  getProject(id): Observable<Projet> {
+    return this.httpClient.get<Projet>(environment.API_URL + '/projects/' + id);
   }
 
   deleteProject(id) {
@@ -22,6 +27,7 @@ export class ProjetService {
 
   addProject(project) {
     const loggedId = this.userervice.getIDOflogged();
+
     return this.httpClient.post(environment.API_URL + '/projects', project, { headers: new HttpHeaders({ 'creator': loggedId }) });
   }
 

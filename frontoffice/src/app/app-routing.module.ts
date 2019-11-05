@@ -24,8 +24,8 @@ const routes: Routes = [
   {
     path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard],
     children: [
-     { path: 'projects', component: ListprojetsComponent,pathMatch: 'full'},{path: 'projects/:id', component: DetailprojetComponent,pathMatch: 'full'}
-    
+     { path: 'projects', component: ListprojetsComponent,pathMatch: 'full'},
+     { path: 'projects/:id', component: DetailprojetComponent,pathMatch: 'full'}
     ]
      
   },

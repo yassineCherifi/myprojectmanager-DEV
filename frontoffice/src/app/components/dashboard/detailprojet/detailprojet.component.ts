@@ -41,8 +41,8 @@ export class DetailprojetComponent implements OnInit {
   }
 
   removeIssue(id){
-    this.issuesService.removeIssue(this.project['_id'],id).subscribe(data => console.log(data));
-    this.getProject();
+    this.issuesService.removeIssue(this.project['_id'],id).subscribe(data => this.getProject());
+    
  }
 
 

@@ -9,30 +9,27 @@ const User = mongoose.model('User');
 
 module.exports.getAllProjects = (req, res, next) => {
     Project.find({})
+        .populate('issues')
         .populate('creator')
-        .then((result) => {
-            res.send({result :result,creator: result.creator});
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
+        .exec(function (err, projects) {
+            if (err) res.json({ error: "error" })
+            res.json({ projects: projects })
         });
 }
 
 module.exports.getProjectDetails = (req, res, next) => {
-    
     Project.findOne({ _id: req.params.id })
-        .populate('creator')
         .populate('issues')
-        .then((result) => {
-            res.send({result :result});
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
+        .populate('creator')
+        .exec(function (err, project) {
+            if (err) res.json({ error: "error" })
+            res.json({ project: project })
         });
+
 };
 
 module.exports.insertProject = (req, res, next) => {
-    User.findOne({ _id: req.headers['creator']}, (err, user) => {
+    User.findOne({ _id: req._id }, (err, user) => {
         if (!user) return res.status(404).json({ status: false, message: "Utilisateur non trouvé" })
         else {
             const project = new Project();
@@ -40,7 +37,6 @@ module.exports.insertProject = (req, res, next) => {
             project.description = req.body.description;
             project.status = req.body.status;
             project.creator = user;
-            console.log(project)
             project.save(function (err) {
                 if (!err)
                     res.send(project);
@@ -73,15 +69,12 @@ module.exports.deleteProject = (req, res, next) => {
 
 module.exports.createIssue = (req, res, next) => {
     const issue = new Issue();
-    console.log("issue create");
-
     issue.description = req.body.description;
     issue.priorite = req.body.priorite;
     issue.difficulte = req.body.difficulte;
     issue.status = req.body.status;
     issue.save()
         .then((result) => {
-
             Project.findOne({ _id: req.params.id }, (err, project) => {
                 if (project) {
                     project.issues.push(issue);
@@ -89,7 +82,6 @@ module.exports.createIssue = (req, res, next) => {
                     res.json({ message: 'Issue created!' });
                 }
             });
-
         })
         .catch((error) => {
             res.status(500).json({ error });
@@ -127,7 +119,7 @@ module.exports.editIssue = (req, res, next) => {
                 if (err) res.json({ error: "error" });
                 res.json({ success: "issue edited" })
             });
- })
+        })
         .catch((error) => {
             res.status(500).json({ error });
         });

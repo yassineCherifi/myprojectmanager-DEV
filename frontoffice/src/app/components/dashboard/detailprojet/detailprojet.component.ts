@@ -37,12 +37,13 @@ export class DetailprojetComponent implements OnInit {
 
 
   getProject(){
-    this.projetService.getProject(this.project_id).subscribe(data => this.project = data['result']);
+    this.projetService.getProject(this.project_id).subscribe(data => this.project = data['project']);
   }
 
   removeIssue(id){
     this.issuesService.removeIssue(this.project['_id'],id).subscribe(data => console.log(data));
-  }
+    this.getProject();
+ }
 
 
 

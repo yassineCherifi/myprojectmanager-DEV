@@ -20,8 +20,7 @@ export class IssuesService {
     }
 
     addIssue(idProject, issue){
-      console.log(issue);
-      return this.httpClient.post(environment.API_URL +  '/projects/' + idProject + '/issues', issue);
+        return this.httpClient.post(environment.API_URL +  '/projects/' + idProject + '/issues', issue);
     }
 
     editIssue(id){
@@ -29,7 +28,7 @@ export class IssuesService {
     }
 
     removeIssue(idProject, id){
-      console.log(idProject + " " + id);
+      console.log(idProject + " hhhh" + id);
       return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/issues/' + id);
     }
 

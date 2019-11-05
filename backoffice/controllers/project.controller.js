@@ -13,7 +13,7 @@ module.exports.getAllProjects = (req, res, next) => {
         .populate('creator')
         .exec(function (err, projects) {
             if (err) res.json({ error: "error" })
-            res.json({ projects: projects })
+            res.json({ result: projects })
         });
 }
 

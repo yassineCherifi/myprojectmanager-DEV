@@ -4,7 +4,7 @@
   "description": "A system that facilitates the management of projects using the agile process framework SCRUM",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1" 
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/yassineCherifi/myprojectmanager-DEV/issues"
   },
-  "homepage": "https://github.com/yassineCherifi/myprojectmanager-DEV#readme"
+  "homepage": "https://github.com/yassineCherifi/myprojectmanager-DEV#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.4"
+  }
 }

@@ -13,15 +13,22 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getDashboard().subscribe(
-      res =>{
+      res => {
+        this.userService.setToken(res['user']);
         this.userInfos = res['user'];
       },
-      err => {}
+      err => { }
     )
   }
 
   logout() {
-    this.userService.removeToken();
-    this.router.navigate(['/login']);
+    this.userService.logout().subscribe(
+      res => {
+        localStorage.removeItem('userinfos');
+        this.router.navigate(['login']);
+      },
+      err => { }
+    )
   }
 }
+

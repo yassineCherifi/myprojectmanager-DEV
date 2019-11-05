@@ -14,14 +14,10 @@ export class AuthInterceptor implements HttpInterceptor  {
     constructor(private userService: UserService, private router: Router) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
-
-        if (req.headers.get('noauth'))
-            return next.handle(req.clone());
-        else {
-            const reqCloned = req.clone({
-                headers: req.headers.set("Authorization", "CHECK " + this.userService.getToken())
-            });
-            return next.handle(reqCloned).pipe(tap(
+        req = req.clone({
+            withCredentials: true
+          });
+        return  next.handle(req).pipe(tap(
                 event => { },
                 err => {
                     if (err.error.auth == false) {
@@ -32,4 +28,3 @@ export class AuthInterceptor implements HttpInterceptor  {
             );
         }
     }
-}

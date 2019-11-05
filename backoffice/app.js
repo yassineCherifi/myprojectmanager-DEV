@@ -9,12 +9,15 @@ const passport = require('passport');
 const indexRoutes = require('./routes/index.router');
 const projectRoutes = require('./routes/projects.router');
 const jwtVerify = require('./config/jwt.verify') 
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
 app.use(bodyParse.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(cors({origin:true,credentials: true}));
 app.use(passport.initialize());
+
 
 app.use('/api', indexRoutes);
 app.use('/api/projects', jwtVerify.verifyJwtToken, projectRoutes);

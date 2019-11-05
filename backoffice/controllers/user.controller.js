@@ -23,9 +23,18 @@ module.exports.authenticate = (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) return res.status(400).json(err);
         else
-            if (user) return res.status(200).json({ "token": user.generateJwt() });
+            if (user) {
+                const token = user.generateJwt();
+                res.cookie('token', token, { maxAge: 3600 * 60 * 1000,httpOnly: true});
+                res.status(200).json({ "token": token });
+            }
             else return res.status(404).json(info);
     })(req, res);
+}
+
+module.exports.logout = (req, res, next) => {
+    res.clearCookie("token");
+    res.status(200).json({success: "Logout with success !" });
 }
 
 module.exports.userDashboard = (req, res, next) => {

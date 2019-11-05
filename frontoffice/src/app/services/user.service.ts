@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { environment } from '../../environments/environment'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { JsonPipe } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,56 +12,43 @@ export class UserService {
     email: '',
     password: ''
   }
-  noAuthorized = { headers: new HttpHeaders({ 'NoAuth': 'true' }) };
+  //noAuthorized = { headers: new HttpHeaders({ 'NoAuth': 'true' }) };
 
   constructor(private httpClient: HttpClient) { }
 
   postUser(user: User) {
-    return this.httpClient.post(environment.API_URL + '/register', user, this.noAuthorized);
+    return this.httpClient.post(environment.API_URL + '/register', user);
   }
 
   login(infos) {
-    return this.httpClient.post(environment.API_URL + '/login', infos, this.noAuthorized);
+    return this.httpClient.post(environment.API_URL + '/login', infos);
   }
 
-  setToken(token: string) {
-    localStorage.setItem('token', token);
+  logout() {
+    return this.httpClient.get(environment.API_URL + '/logout');
+  }
+
+  setToken(infos) {
+    localStorage.setItem("userinfos", JSON.stringify({ infos }));
   }
 
   removeToken() {
-    localStorage.removeItem('token');
+
   }
 
-  getToken() {
-    return localStorage.getItem('token');
-  }
 
   getUserInfos() {
-    const token = this.getToken();
-    if (token) {
-      const infos = atob(token.split('.')[1]);
-      return JSON.parse(infos);
-    }
+
   }
 
   getDashboard() {
     return this.httpClient.get(environment.API_URL + '/dashboard');
   }
 
-  isLoggedIn() {
-    const userInfos = this.getUserInfos();
-    if (userInfos)
-      return userInfos.exp > Date.now() / 1000;
-    else
-      return false;
 
-  }
 
   getIDOflogged() {
-    if (this.isLoggedIn()) {
-      const userInfos = this.getUserInfos();
-      return userInfos._id;
-    }
-    return null;
+    const user = localStorage.getItem('userinfos');
+    return JSON.parse(user).infos._id;
   }
 }

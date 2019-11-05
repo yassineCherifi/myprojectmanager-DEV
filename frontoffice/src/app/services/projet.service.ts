@@ -28,7 +28,7 @@ export class ProjetService {
   addProject(project) {
     const loggedId = this.userervice.getIDOflogged();
 
-    return this.httpClient.post(environment.API_URL + '/projects', project, { headers: new HttpHeaders({ 'creator': loggedId }) });
+    return this.httpClient.post(environment.API_URL + '/projects', project);
   }
 
 }

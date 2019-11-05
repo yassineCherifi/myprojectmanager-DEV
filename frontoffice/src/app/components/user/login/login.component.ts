@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.userService.login(form.value).subscribe(
       res => {
-        this.userService.setToken(res['token']);
         this.router.navigateByUrl('/dashboard/projects');
       },
 

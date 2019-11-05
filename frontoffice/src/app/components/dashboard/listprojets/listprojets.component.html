@@ -40,7 +40,7 @@
             <td>{{project?.description}}</td>
             <td>{{project?.creator?.name}}</td>
             <td>{{project?.status}}</td>
-            <td *ngIf="project?.creator?._id === idLogged">
+            <td *ngIf="project?.creator?._id === projects?.idlogged">
                 <button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button> &nbsp;
                 <button type="button" (click)="removeProject(project._id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
             </td>

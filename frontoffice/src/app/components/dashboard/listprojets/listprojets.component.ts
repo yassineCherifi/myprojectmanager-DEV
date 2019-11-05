@@ -22,8 +22,8 @@ export class ListprojetsComponent implements OnInit {
   }
   
   ngOnInit() {
+    //this.idLogged = this.userService.getIDOflogged();
     this.getProjects();
-    this.idLogged = this.userService.getIDOflogged();
   }
 
 
@@ -31,9 +31,7 @@ export class ListprojetsComponent implements OnInit {
     this.projectsService.getProjects().subscribe(data => this.projects = data);
   }
   removeProject(id) {
-    this.projectsService.deleteProject(id).subscribe(data => console.log( data));
-    this.getProjects();
-
+    this.projectsService.deleteProject(id).subscribe(data => this.getProjects());
   }
  
 

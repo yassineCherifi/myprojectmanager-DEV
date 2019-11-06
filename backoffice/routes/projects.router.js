@@ -11,5 +11,8 @@ router.put('/:id',projContr.editProject);
 router.post('/:id/issues',projContr.createIssue);
 router.delete('/:id/issues/:idIssue',projContr.deleteIssue);
 router.put('/:id/issues/:idIssue',projContr.editIssue);
+router.post('/:id/tasks',projContr.createTask);
+router.put('/:id/tasks/:idTask',projContr.editTask);
+router.delete('/:id/tasks/:idTask',projContr.deleteTask);
 
 module.exports = router;

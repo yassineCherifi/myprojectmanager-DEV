@@ -22,7 +22,10 @@ const projectSchema = new mongoose.Schema({
         default: 'En cours' },
     issues: [{ 
         type: Schema.Types.ObjectId, 
-        ref: 'Issue' }]
+        ref: 'Issue' }],
+    tasks: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: 'Task' }]
 });
 
 

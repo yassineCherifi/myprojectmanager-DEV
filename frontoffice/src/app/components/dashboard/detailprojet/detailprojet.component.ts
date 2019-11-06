@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ProjetService } from 'src/app/services/projet.service';
 import { ActivatedRoute } from '@angular/router';
 import { Projet } from 'src/app/models/projet.model';
+import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
   selector: 'app-detailprojet',
@@ -19,14 +20,23 @@ export class DetailprojetComponent implements OnInit {
   public project : Projet;
   
 
-  constructor(private issuesService : IssuesService, private projetService : ProjetService, private route: ActivatedRoute) { }
+  constructor(private issuesService : IssuesService, 
+              private projetService : ProjetService, 
+              private tasksService : TasksService,
+              private route: ActivatedRoute) { }
 
   
-  model = {
+  modelIssue = {
     description: '',
     priorite: '',
     difficulte: '',
     status: ''
+  }
+
+  modelTask = {
+    description: '',
+    cout: '',
+    developer: ''
   }
 
 
@@ -47,7 +57,7 @@ export class DetailprojetComponent implements OnInit {
 
 
 
-  onSubmit(form: NgForm) {
+  onSubmitIssue(form: NgForm) {
     this.issuesService.addIssue(this.project['_id'],form.value).subscribe(
       res => {
         form.resetForm();
@@ -60,6 +70,17 @@ export class DetailprojetComponent implements OnInit {
     console.log(this.project)
   }
 
-
+  onSubmitTask(form: NgForm) {
+    this.tasksService.addTask(this.project['_id'],form.value).subscribe(
+      res => {
+        form.resetForm();
+        this.getProject()
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    console.log(this.project)
+  }
 
 }

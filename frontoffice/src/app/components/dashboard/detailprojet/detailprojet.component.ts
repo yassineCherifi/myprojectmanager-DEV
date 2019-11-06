@@ -29,6 +29,10 @@ export class DetailprojetComponent implements OnInit {
     status: ''
   }
 
+  modelproject = {
+    title: '',
+    description: ''
+  }
 
   ngOnInit() {   
     this.project_id = this.route.snapshot.paramMap.get('id');
@@ -37,7 +41,11 @@ export class DetailprojetComponent implements OnInit {
 
 
   getProject(){
-    this.projetService.getProject(this.project_id).subscribe(data => this.project = data['project']);
+    this.projetService.getProject(this.project_id).subscribe(data => {
+      this.project = data['project']
+      this.modelproject.title = this.project.title;
+      this.modelproject.description = this.project.description;
+    });
   }
 
   removeIssue(id){
@@ -57,9 +65,24 @@ export class DetailprojetComponent implements OnInit {
         console.log(err);
       }
     );
-    console.log(this.project)
   }
 
+  editProject(form: NgForm) {
+    console.log(form.value)
+    if(form.value.title === "" || form.value.description === ""){
+      this.getProject();
+      return;
+    }
+    this.projetService.editProject(this.project['_id'],form.value).subscribe(
+      res => {
+       this.getProject()
+  
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
 
 }

@@ -1,9 +1,32 @@
 <div class="card w-100">
     <div class="card-body">
-      <h4 class="card-title">{{ project?.title }}</h4>
-      <p class="card-text" style="color: gray;">{{ project?.description }}</p>
+        <h4 class="card-title">{{ project?.title }}</h4>
+        <p class="card-text" style="color: gray;">{{ project?.description }}</p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#editproject" role="button" aria-expanded="false"
+            aria-controls="editproject">Editer <i class="fa fa-pencil"></i></a>
     </div>
-  </div><br>
+
+    <div class="collapse multi-collapse" id="editproject">
+        <div class="card card-body">
+            <div class="col-md-5">
+                <fieldset>
+                    <form #editproject="ngForm" (ngSubmit)="editProject(editproject)">
+                        <div class="form-group">
+                            <input style="width: 100%;" required type="email" [(ngModel)]="modelproject.title"
+                                class="form-control" name="title" id="title" ng-init="myText='Hello World!'">
+                        </div>
+                        <div class="form-group">
+                            <textarea required style="width: 100%;resize: none;" [(ngModel)]="modelproject.description"
+                                id="description" name="description" rows="4">{{project?.description}}</textarea>
+                        </div>
+                        <a class="btn btn-success" data-toggle="collapse" href="#editproject" role="button"
+                            (click)="editProject(editproject)" aria-expanded="false" aria-controls="editproject">Confirmer <i class="fa fa-pencil"></i></a>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div><br>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Issues</a>
@@ -23,36 +46,47 @@
     <li class="nav-item">
         <a class="nav-link" id="documentations-tab" data-toggle="tab" href="#documentations" role="tab" aria-controls="documentations" aria-selected="false">Documentations</a>
     </li>
-  </ul>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+            aria-selected="false">Releases</a>
+    </li>
+</ul>
 
 <div class="tab-content">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <h2>Liste des issues</h2><br>
+        <div class="card-body">
+            <h5 class="card-title">Liste des issues</h5>
             <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample1" role="button"
-            aria-expanded="false" aria-controls="multiCollapseExample1">Nouvelle Issue</a>
-        
+                aria-expanded="false" aria-controls="multiCollapseExample1">Ajouter <i class="fa fa-plus"></i></a>
+        </div>
+
         <div class="collapse multi-collapse" id="multiCollapseExample1">
             <div class="card card-body">
                 <div class="col-md-5">
                     <fieldset>
                         <form #newIssue="ngForm" (ngSubmit)="newIssue.valid && onSubmitIssue(newIssue)">
-                            <div class="form-group">
-                                <label for="title">Description</label>
-                                <input type="email" class="form-control" name="description" id="description" rows="3" [(ngModel)]="modelIssue.description">
+                            <div class="from row">
+                                <div class="form-group col-md-12">
+                                    <textarea placeholder="Décrire votre issue" style="width: 100%;resize: none;"
+                                        id="description" name="description" [(ngModel)]="modelIssue.description"
+                                        rows="4"></textarea>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="description">Priorité</label>
-                                <textarea class="form-control" id="priorite" name="priorite" [(ngModel)]="modelIssue.priorite"></textarea>
+                            <div class="from row">
+                                <div class="form-group col">
+                                    <input type="text" class="form-control" placeholder="Priorité" name="priorite"
+                                        id="priorite" rows="3" [(ngModel)]="modelIssue.priorite">
+                                </div>
+                                <div class="form-group col">
+                                    <input type="text" class="form-control" placeholder="Difficulté" name="difficulte"
+                                        id="difficulte" rows="3" [(ngModel)]="modelIssue.difficulte">
+                                </div>
+                                <div class="form-group col">
+                                    <input type="text" class="form-control" placeholder="status" name="status"
+                                        id="status" rows="3" [(ngModel)]="modelIssue.status">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                    <label for="description">Difficulté</label>
-                                    <textarea class="form-control" id="difficulte" name="difficulte" [(ngModel)]="modelIssue.difficulte"></textarea>
-                            </div>
-                            <div class="form-group">
-                                    <label for="description">Statut</label>
-                                    <textarea class="form-control" id="status" name="status" [(ngModel)]="modelIssue.status"></textarea>
-                            </div>
-                            <button type="submit" click class="btn btn-success">Ajouter</button>
+                            <button type="submit" class="btn btn-success">Confirmer</button>
                         </form>
                     </fieldset>
                 </div>
@@ -62,24 +96,25 @@
         <table class="table table-striped">
             <thead class="thead">
                 <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">Description</th>
                     <th scope="col">Priorité </th>
-                    <th scope="col">Coût </th>
+                    <th scope="col">Difficulté </th>
+                    <th scope="col">Status </th>
                     <th></th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr *ngFor="let issue of project?.issues">
-                    <td>Issue <i>{{issue?._id}}</i></td>
                     <td>{{issue?.description}}</td>
                     <td>{{issue?.priorite}}</td>
                     <td>{{issue?.difficulte}}</td>
+                    <td>{{issue?.status}}</td>
 
                     <td>
                         <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
-                        <button type="button" (click)="removeIssue(issue._id)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                        <button type="button" (click)="removeIssue(issue._id)" class="btn btn-danger"><i
+                                class="fa fa-trash-o"></i></button>
                     </td>
                 </tr>           
             </tbody>
@@ -88,18 +123,23 @@
 
 
     <div id="taches" class="tab-pane fade">
-        <h2>Liste des tâches</h2><br>
-            <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample2" role="button"
-            aria-expanded="false" aria-controls="multiCollapseExample2">Nouvelle tâche</a>
-        
+
+        <div class="card-body">
+                <h5 class="card-title">Liste des tâches</h5>
+                <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample2" role="button"
+                    aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter <i class="fa fa-plus"></i></a>
+        </div>
         <div class="collapse multi-collapse" id="multiCollapseExample2">
             <div class="card card-body">
                 <div class="col-md-5">
                     <fieldset>
                         <form #newTask="ngForm" (ngSubmit)="newTask.valid && onSubmitTask(newTask)">
-                            <div class="form-group">
-                                <label for="title">Description</label>
-                                <input type="email" class="form-control" name="description" id="description" rows="3" [(ngModel)]="modelTask.description">
+                            <div class="from row">
+                                <div class="form-group col-md-12">
+                                    <textarea placeholder="Décrire votre tâche" style="width: 100%;resize: none;"
+                                        id="description" name="description" [(ngModel)]="modelTask.description"
+                                        rows="4"></textarea>
+                                </div>
                             </div>
                             <div class="form-group">
                                     <label for="description">Coût</label>
@@ -144,20 +184,24 @@
     </div>
     <div id="tests" class="tab-pane fade">
         <h3>Liste des tests</h3>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+            totam rem
             aperiam.</p>
     </div>
     <div id="sprints" class="tab-pane fade">
         <h3>Liste des sprints</h3>
-        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo.</p>
     </div>
     <div id="releases" class="tab-pane fade">
-            <h3>Liste des releases</h3>
-            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <h3>Liste des releases</h3>
+        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo.</p>
     </div>
     <div id="documentations" class="tab-pane fade">
-            <h3>Liste des documentations</h3>
-            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <h3>Liste des documentations</h3>
+        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo.</p>
     </div>
 
 </div>

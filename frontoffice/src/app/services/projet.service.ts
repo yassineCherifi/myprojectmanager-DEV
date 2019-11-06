@@ -26,9 +26,11 @@ export class ProjetService {
   }
 
   addProject(project) {
-    const loggedId = this.userervice.getIDOflogged();
-
     return this.httpClient.post(environment.API_URL + '/projects', project);
+  }
+
+  editProject(idProject, project) {
+    return this.httpClient.put(environment.API_URL + '/projects/' + idProject, project);
   }
 
 }

@@ -12,11 +12,11 @@ Backlog
 
 | ID | As a.. | I want to be able | So that | Priority | Difficulty | Sprint | Status |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| US01 | User | to sign-up by providing my name (20 chars max), email and password (min length 8) and clicking on the button "sign-up" | I will have my own dashboard | LOW | 1 | 1 | TODO |
-| US02 | User | to sign-in by providing my email and password and clicking on the button "sign-in" | I can access to my dashboard | LOW | 3 | 1 | TODO |
-| US03 | User | to logout by clicking on the button "logout" in the dashboard|  can get out of my dashboard | LOW | 1 | 1 | TODO |
+| US01 | User | to sign-up by providing my name (20 chars max), email and password (min length 8) and clicking on the button "sign-up" | I will have my own dashboard | LOW | 1 | 1 | DONE |
+| US02 | User | to sign-in by providing my email and password and clicking on the button "sign-in" | I can access to my dashboard | LOW | 3 | 1 | DONE |
+| US03 | User | to logout by clicking on the button "logout" in the dashboard|  can get out of my dashboard | LOW | 1 | 1 | DONE |
 | US04 | User | to edit my profile (name, email, password) by clicking on the button "edit profile" in the dashboard and modifying the fields (name(20 chars max), email, password (min length 8) and confirm or cancel the changes by clicking on the corresponding buttons | I can update my informations | LOW | 1 | 1 | TODO |
-| US05 | Project manager | to create a new project (name(20 chars max) , description(100 chars max), status(En cours,  terminé)) and edit it or delete it by clicking on the corresponding buttons in the dashboard, then confirming or cancelling | I can update the projects list | HIGH | 1 | 1 | TODO |
+| US05 | Project manager | to create a new project (name(20 chars max) , description(100 chars max), status(En cours,  terminé)) and edit it or delete it by clicking on the corresponding buttons in the dashboard, then confirming or cancelling | I can update the projects list | HIGH | 1 | 1 | DONE |
 | US06 | Project manager | to add new contributors to my project by clicking on the button "Add contributor" and giving their emails then confirming or cancelling | They can start working with me | LOW | 3 | 1 | TODO |
 | US07 | Project manager | to remove contributors to my project by selecting the contributor to delete and clicking on the button "Remove contributor" then confirming or cancelling | I can update the list of contributors | LOW | 2 | 1 | TODO |
 | US08 | Project contributor | to receive an invitation of contribution in project then accepting or rejecting the invitation | I can update the backlog | LOW | 2 | 1 | TODO |

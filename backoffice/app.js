@@ -8,8 +8,9 @@ const cors = require('cors');
 const passport = require('passport');
 const indexRoutes = require('./routes/index.router');
 const projectRoutes = require('./routes/projects.router');
-const jwtVerify = require('./config/jwt.verify') 
-const cookieParser = require('cookie-parser')
+const jwtVerify = require('./config/jwt.verify') ;
+const cookieParser = require('cookie-parser');
+const path = require('path');
 
 const app = express();
 
@@ -21,6 +22,9 @@ app.use(passport.initialize());
 
 app.use('/api', indexRoutes);
 app.use('/api/projects', jwtVerify.verifyJwtToken, projectRoutes);
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/*', (req, res) => res.sendFile(path.join(__dirname, 'public','index.html')));
 
 
 app.use((err, req, res, next) => {

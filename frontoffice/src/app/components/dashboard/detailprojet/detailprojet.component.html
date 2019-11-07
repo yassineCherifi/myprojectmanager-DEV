@@ -46,10 +46,6 @@
     <li class="nav-item">
         <a class="nav-link" id="documentations-tab" data-toggle="tab" href="#documentations" role="tab" aria-controls="documentations" aria-selected="false">Documentations</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-            aria-selected="false">Releases</a>
-    </li>
 </ul>
 
 <div class="tab-content">
@@ -78,12 +74,17 @@
                                         id="priorite" rows="3" [(ngModel)]="modelIssue.priorite">
                                 </div>
                                 <div class="form-group col">
-                                    <input type="text" class="form-control" placeholder="Difficulté" name="difficulte"
-                                        id="difficulte" rows="3" [(ngModel)]="modelIssue.difficulte">
+                                        <select class="custom-select" id="difficulte" name="difficulte" [(ngModel)]="modelIssue.difficulte">
+                                                <option selected>Basse</option>
+                                                <option>Moyenne</option>
+                                                <option>Elevée</option>
+                                        </select>
                                 </div>
                                 <div class="form-group col">
-                                    <input type="text" class="form-control" placeholder="status" name="status"
-                                        id="status" rows="3" [(ngModel)]="modelIssue.status">
+                                    <select class="custom-select" id="status" name="status" [(ngModel)]="modelIssue.status">
+                                        <option selected>En cours</option>
+                                        <option>Terminé</option>
+                                    </select>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success">Confirmer</button>

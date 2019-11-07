@@ -73,6 +73,7 @@ module.exports.deleteProject = (req, res, next) => {
 
 module.exports.createIssue = (req, res, next) => {
     const issue = new Issue();
+    issue.issueID = req.body.issueID;
     issue.description = req.body.description;
     issue.priorite = req.body.priorite;
     issue.difficulte = req.body.difficulte;
@@ -115,6 +116,7 @@ module.exports.editIssue = (req, res, next) => {
             match: { _id: req.params.idIssue }
         })
         .then((result) => {
+            result.issues[0].issueID = req.body.issueID;
             result.issues[0].description = req.body.description;
             result.issues[0].priorite = req.body.priorite;
             result.issues[0].difficulte = req.body.difficulte;

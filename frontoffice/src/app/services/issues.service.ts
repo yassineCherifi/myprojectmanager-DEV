@@ -23,8 +23,8 @@ export class IssuesService {
         return this.httpClient.post(environment.API_URL +  '/projects/' + idProject + '/issues', issue);
     }
 
-    editIssue(id){
-
+    editIssue(idProject, issueId,issue){
+      return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/issues/' + issueId,issue);
     }
 
     removeIssue(idProject, id){

@@ -1,14 +1,14 @@
 <div class="card">
     <div class="card-body">
         <h3 class="card-title">Mes projets</h3>
-        <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample1" role="button"
-            aria-expanded="false" aria-controls="multiCollapseExample1">Nouveau projet</a>
+        <a class="btn btn-success" data-toggle="collapse" href="#addproject" role="button"
+            aria-expanded="false" aria-controls="addproject">Nouveau projet  <i class="fa fa-plus"></i></a>
     </div>
-    <div class="collapse multi-collapse" id="multiCollapseExample1">
+    <div class="collapse multi-collapse" id="addproject">
         <div class="card card-body">
             <div class="col-md-5">
                 <fieldset>
-                    <form #newProject="ngForm" (ngSubmit)="newProject.valid && onSubmit(newProject)">
+                    <form #newProject="ngForm" (ngSubmit)="newProject.valid">
                         <div class="form-group">
                             <label for="title">Titre</label>
                             <input type="email" class="form-control" name="title" id="title" [(ngModel)]="model.title">
@@ -17,7 +17,9 @@
                             <label for="description">Description</label>
                             <textarea class="form-control" id="description" name="description" rows="3" [(ngModel)]="model.description"></textarea>
                         </div>
-                        <button type="submit" click class="btn btn-success">Ajouter</button>
+                        <a class="btn btn-success" data-toggle="collapse" href="#addproject" role="button"
+                            (click)="onSubmit(newProject)" aria-expanded="false"
+                            aria-controls="editproject">Confirmer</a>
                     </form>
                 </fieldset>
             </div>

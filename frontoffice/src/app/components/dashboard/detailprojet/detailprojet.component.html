@@ -16,11 +16,13 @@
                                 class="form-control" name="title" id="title" ng-init="myText='Hello World!'">
                         </div>
                         <div class="form-group">
-                            <textarea required style="width: 100%;resize: none;" [(ngModel)]="modelproject.description"
-                                id="description" name="description" rows="4">{{project?.description}}</textarea>
+                            <textarea class="form-control" required style="width: 100%;resize: none;"
+                                [(ngModel)]="modelproject.description" id="description" name="description"
+                                rows="4">{{project?.description}}</textarea>
                         </div>
                         <a class="btn btn-success" data-toggle="collapse" href="#editproject" role="button"
-                            (click)="editProject(editproject)" aria-expanded="false" aria-controls="editproject">Confirmer <i class="fa fa-pencil"></i></a>
+                            (click)="editProject(editproject)" aria-expanded="false"
+                            aria-controls="editproject">Confirmer</a>
                     </form>
                 </fieldset>
             </div>
@@ -29,22 +31,28 @@
 </div><br>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Issues</a>
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Issues</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="taches-tab" data-toggle="tab" href="#taches" role="tab" aria-controls="taches" aria-selected="false">Tâches</a>
-      </li>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tests" role="tab" aria-controls="profile" aria-selected="false">Tests</a>
+        <a class="nav-link" id="taches-tab" data-toggle="tab" href="#taches" role="tab" aria-controls="taches"
+            aria-selected="false">Tâches</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="sprints-tab" data-toggle="tab" href="#sprints" role="tab" aria-controls="sprints" aria-selected="false">Sprints</a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tests" role="tab" aria-controls="profile"
+            aria-selected="false">Tests</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="releases-tab" data-toggle="tab" href="#releases" role="tab" aria-controls="releases" aria-selected="false">Releases</a>
+        <a class="nav-link" id="sprints-tab" data-toggle="tab" href="#sprints" role="tab" aria-controls="sprints"
+            aria-selected="false">Sprints</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="documentations-tab" data-toggle="tab" href="#documentations" role="tab" aria-controls="documentations" aria-selected="false">Documentations</a>
+        <a class="nav-link" id="releases-tab" data-toggle="tab" href="#releases" role="tab" aria-controls="releases"
+            aria-selected="false">Releases</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="documentations-tab" data-toggle="tab" href="#documentations" role="tab"
+            aria-controls="documentations" aria-selected="false">Documentations</a>
     </li>
 </ul>
 
@@ -52,42 +60,52 @@
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <div class="card-body">
             <h5 class="card-title">Liste des issues</h5>
-            <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample1" role="button"
-                aria-expanded="false" aria-controls="multiCollapseExample1">Ajouter <i class="fa fa-plus"></i></a>
+            <a class="btn btn-success" data-toggle="collapse" href="#addIssue" role="button"
+                aria-expanded="false" aria-controls="addIssue">Ajouter <i class="fa fa-plus"></i></a>
         </div>
 
-        <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div class="collapse multi-collapse" id="addIssue">
             <div class="card card-body">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <fieldset>
-                        <form #newIssue="ngForm" (ngSubmit)="newIssue.valid && onSubmitIssue(newIssue)">
+                        <form #newIssue="ngForm" (ngSubmit)="newIssue.valid">
                             <div class="from row">
                                 <div class="form-group col-md-12">
-                                    <textarea placeholder="Décrire votre issue" style="width: 100%;resize: none;"
-                                        id="description" name="description" [(ngModel)]="modelIssue.description"
-                                        rows="4"></textarea>
+                                    <textarea class="form-control" placeholder="Décrire votre issue"
+                                        style="width: 100%;resize: none;" id="description" name="description"
+                                        [(ngModel)]="modelIssue.description" rows="4"></textarea>
                                 </div>
                             </div>
                             <div class="from row">
                                 <div class="form-group col">
-                                    <input type="text" class="form-control" placeholder="Priorité" name="priorite"
+                                    <input type="email" class="form-control" placeholder="ID" name="issueID"
+                                        id="issueID" rows="3" [(ngModel)]="modelIssue.issueID">
+                                </div>
+                                <div class="form-group col">
+                                    <input type="email" class="form-control" placeholder="Priorité" name="priorite"
                                         id="priorite" rows="3" [(ngModel)]="modelIssue.priorite">
                                 </div>
                                 <div class="form-group col">
-                                        <select class="custom-select" id="difficulte" name="difficulte" [(ngModel)]="modelIssue.difficulte">
-                                                <option selected>Basse</option>
-                                                <option>Moyenne</option>
-                                                <option>Elevée</option>
-                                        </select>
-                                </div>
-                                <div class="form-group col">
-                                    <select class="custom-select" id="status" name="status" [(ngModel)]="modelIssue.status">
-                                        <option selected>En cours</option>
-                                        <option>Terminé</option>
+                                    <select class="custom-select" id="difficulte" name="difficulte"
+                                        [(ngModel)]="modelIssue.difficulte">
+                                        <option disabled value='0'>Difficulté</option>
+                                        <option >Basse</option>
+                                        <option>Moyenne</option>
+                                        <option>Elevée</option>
                                     </select>
                                 </div>
+                                <div class="form-group col">
+                                    <select (change)="ChangingValue($event)"class="custom-select" id="status" name="status"
+                                        [(ngModel)]="modelIssue.status" [value]='0'>
+                                        <option disabled value='0'>Status</option>
+                                        <option>En cours</option>
+                                        <option>Terminé</option>
+                                    </select>
+
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Confirmer</button>
+                            <a class="btn btn-success" (click)="onSubmitIssue(newIssue)" data-toggle="collapse" href="#addIssue" role="button"
+                            aria-expanded="false" aria-controls="addIssue">Ajouter</a>
                         </form>
                     </fieldset>
                 </div>
@@ -97,6 +115,7 @@
         <table class="table table-striped">
             <thead class="thead">
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Description</th>
                     <th scope="col">Priorité </th>
                     <th scope="col">Difficulté </th>
@@ -107,28 +126,83 @@
 
             <tbody>
                 <tr *ngFor="let issue of project?.issues">
+                    <td>{{issue?.issueID}}</td>
                     <td>{{issue?.description}}</td>
                     <td>{{issue?.priorite}}</td>
                     <td>{{issue?.difficulte}}</td>
                     <td>{{issue?.status}}</td>
 
                     <td>
-                        <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
+                        <button type="button" (click)="updateModalEdit(issue)" data-toggle="modal" data-target="#exampleModal" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
                         <button type="button" (click)="removeIssue(issue._id)" class="btn btn-danger"><i
                                 class="fa fa-trash-o"></i></button>
                     </td>
-                </tr>           
+                </tr>
             </tbody>
         </table>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Editer issue</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form #editIssue="ngForm" (ngSubmit)="editIssue.valid">
+                    <div class="from row">
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" placeholder="Décrire votre issue"
+                                style="width: 100%;resize: none;" id="description" name="description"
+                                [(ngModel)]="modelIssueEdit.description" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="from row">
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="ID" name="issueID"
+                                id="issueID" rows="3" [(ngModel)]="modelIssueEdit.issueID">
+                        </div>
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Priorité" name="priorite"
+                                id="priorite" rows="3" [(ngModel)]="modelIssueEdit.priorite">
+                        </div>
+                        <div class="form-group col">
+                            <select class="custom-select" id="difficulte" name="difficulte"
+                                [(ngModel)]="modelIssueEdit.difficulte">
+                                <option disabled value='0'>Difficulté</option>
+                                <option >Basse</option>
+                                <option>Moyenne</option>
+                                <option>Elevée</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <select (change)="ChangingValue($event)"class="custom-select" id="status" name="status"
+                                [(ngModel)]="modelIssueEdit.status" [value]='0'>
+                                <option disabled value='0'>Status</option>
+                                <option>En cours</option>
+                                <option>Terminé</option>
+                            </select>
 
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+              <button type="button" (click)="onSubmitEditIssue(editIssue)" data-dismiss="modal" class="btn btn-primary">Confirmer</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <div id="taches" class="tab-pane fade">
 
         <div class="card-body">
-                <h5 class="card-title">Liste des tâches</h5>
-                <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample2" role="button"
-                    aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter <i class="fa fa-plus"></i></a>
+            <h5 class="card-title">Liste des tâches</h5>
+            <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample2" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter <i class="fa fa-plus"></i></a>
         </div>
         <div class="collapse multi-collapse" id="multiCollapseExample2">
             <div class="card card-body">
@@ -143,12 +217,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                    <label for="description">Coût</label>
-                                    <textarea class="form-control" id="cout" name="cout" [(ngModel)]="modelTask.cout"></textarea>
+                                <label for="description">Coût</label>
+                                <textarea class="form-control" id="cout" name="cout"
+                                    [(ngModel)]="modelTask.cout"></textarea>
                             </div>
                             <div class="form-group">
-                                    <label for="description">Développeur</label>
-                                    <textarea class="form-control" id="developer" name="developer" [(ngModel)]="modelTask.developer"></textarea>
+                                <label for="description">Développeur</label>
+                                <textarea class="form-control" id="developer" name="developer"
+                                    [(ngModel)]="modelTask.developer"></textarea>
                             </div>
                             <button type="submit" click class="btn btn-success">Ajouter</button>
                         </form>
@@ -177,9 +253,10 @@
 
                     <td>
                         <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
-                        <button type="button" (click)="removeTask(task._id)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                        <button type="button" (click)="removeTask(task._id)" class="btn btn-danger"><i
+                                class="fa fa-trash-o"></i></button>
                     </td>
-                </tr>           
+                </tr>
             </tbody>
         </table>
     </div>

@@ -27,10 +27,20 @@ export class DetailprojetComponent implements OnInit {
 
   
   modelIssue = {
+    issueID: '',
     description: '',
     priorite: '',
-    difficulte: '',
-    status: ''
+    difficulte: '0',
+    status: '0'
+  }
+
+  modelIssueEdit = {
+    _id:'',
+    issueID: '',
+    description: '',
+    priorite: '',
+    difficulte: '0',
+    status: '0'
   }
 
   modelTask = {
@@ -69,6 +79,8 @@ export class DetailprojetComponent implements OnInit {
     this.issuesService.addIssue(this.project['_id'],form.value).subscribe(
       res => {
         form.resetForm();
+        this.modelIssue.status = '0';
+        this.modelIssue.difficulte = '0';
         this.getProject()
       },
       err => {
@@ -109,6 +121,29 @@ export class DetailprojetComponent implements OnInit {
       }
     );
     console.log(this.project)
+  }
+  updateModalEdit(issue){
+    this.modelIssueEdit._id = issue._id;
+    this.modelIssueEdit.issueID = issue.issueID;
+    this.modelIssueEdit.description = issue.description;
+    this.modelIssueEdit.priorite = issue.priorite;
+    this.modelIssueEdit.difficulte = issue.difficulte;
+    this.modelIssueEdit.status = issue.status;
+    console.log(this.modelIssueEdit._id);
+  }
+
+  onSubmitEditIssue(form: NgForm) {
+    this.issuesService.editIssue(this.project['_id'],this.modelIssueEdit._id,form.value).subscribe(
+      res => {
+        form.resetForm();
+        this.modelIssue.status = '0';
+        this.modelIssue.difficulte = '0';
+        this.getProject()
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }

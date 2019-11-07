@@ -23,8 +23,8 @@ export class TasksService {
         return this.httpClient.post(environment.API_URL +  '/projects/' + idProject + '/tasks', task);
     }
 
-    editTask(idProject, id){
-        
+    editTask(idProject, taskId,task){
+      return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/tasks/' + taskId,task);
     }
 
     removeTask(idProject, id){

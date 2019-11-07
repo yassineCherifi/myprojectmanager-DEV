@@ -44,3 +44,10 @@ module.exports.userDashboard = (req, res, next) => {
     });
 }
 
+module.exports.getUsers = (req, res, next) => {
+    User.find({},'name email',(err, users) => {
+        if (!users) return res.status(404).json({status: false, message: "Utilisateur non trouvé"})
+        else return res.status(200).json({users:users});
+    });
+}
+

@@ -3,6 +3,7 @@ import { User } from '../models/user.model';
 import { environment } from '../../environments/environment'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +23,10 @@ export class UserService {
 
   login(infos) {
     return this.httpClient.post(environment.API_URL + '/login', infos);
+  }
+  
+  getUsers() : Observable<User[]>{
+    return this.httpClient.get<User[]>(environment.API_URL + '/users');
   }
 
   logout() {

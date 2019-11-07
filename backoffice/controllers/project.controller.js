@@ -16,7 +16,7 @@ module.exports.getAllProjects = (req, res, next) => {
         .populate('tasks')
         .exec(function (err, projects) {
             if (err) res.json({ error: "error" })
-            res.json({ result: projects,idlogged : req._id })
+            res.json({ result: projects, idlogged: req._id })
         });
 };
 

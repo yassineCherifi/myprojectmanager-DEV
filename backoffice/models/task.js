@@ -14,7 +14,6 @@ const taskSchema = new mongoose.Schema({
     developer: { 
         type: String
     }
-    
 
 });
 

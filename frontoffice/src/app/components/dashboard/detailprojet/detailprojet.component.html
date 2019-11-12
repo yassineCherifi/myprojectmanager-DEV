@@ -39,12 +39,12 @@
             aria-selected="false">Tâches</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tests" role="tab" aria-controls="profile"
-            aria-selected="false">Tests</a>
+            <a class="nav-link" id="sprints-tab" data-toggle="tab" href="#sprints" role="tab" aria-controls="sprints"
+                aria-selected="false">Sprints</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="sprints-tab" data-toggle="tab" href="#sprints" role="tab" aria-controls="sprints"
-            aria-selected="false">Sprints</a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tests" role="tab" aria-controls="profile"
+            aria-selected="false">Tests</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="releases-tab" data-toggle="tab" href="#releases" role="tab" aria-controls="releases"
@@ -78,21 +78,22 @@
                             </div>
                             <div class="from row">
                                 <div class="form-group col">
-                                    <input type="email" class="form-control" placeholder="ID" name="issueID"
+                                    <input type="number" class="form-control" placeholder="ID" name="issueID"
                                         id="issueID" rows="3" [(ngModel)]="modelIssue.issueID">
                                 </div>
+                                
                                 <div class="form-group col">
-                                    <input type="email" class="form-control" placeholder="Priorité" name="priorite"
-                                        id="priorite" rows="3" [(ngModel)]="modelIssue.priorite">
-                                </div>
-                                <div class="form-group col">
-                                    <select class="custom-select" id="difficulte" name="difficulte"
-                                        [(ngModel)]="modelIssue.difficulte">
-                                        <option disabled value='0'>Difficulté</option>
+                                    <select class="custom-select" id="priorite" name="priorite"
+                                        [(ngModel)]="modelIssue.priorite">
+                                        <option disabled value="">Priorité</option>
                                         <option>Basse</option>
                                         <option>Moyenne</option>
                                         <option>Elevée</option>
                                     </select>
+                                </div>
+                                <div class="form-group col">
+                                        <input type="number" class="form-control" placeholder="Difficulté" name="difficulte"
+                                            id="difficulte" rows="3" [(ngModel)]="modelIssue.difficulte">
                                 </div>
                                 <div class="form-group col">
                                     <select (change)="ChangingValue($event)" class="custom-select" id="status"
@@ -127,7 +128,7 @@
 
             <tbody>
                 <tr *ngFor="let issue of project?.issues">
-                    <td>{{issue?.issueID}}</td>
+                    <td>US {{issue?.issueID}}</td>
                     <td style="width: 40%;">{{issue?.description}}</td>
                     <td>{{issue?.priorite}}</td>
                     <td>{{issue?.difficulte}}</td>
@@ -167,18 +168,20 @@
                                 <input type="email" class="form-control" placeholder="ID" name="issueID" id="issueID"
                                     rows="3" [(ngModel)]="modelIssueEdit.issueID">
                             </div>
+
                             <div class="form-group col">
-                                <input type="email" class="form-control" placeholder="Priorité" name="priorite"
-                                    id="priorite" rows="3" [(ngModel)]="modelIssueEdit.priorite">
-                            </div>
+                                    <select class="custom-select" id="priorite" name="priorite"
+                                        [(ngModel)]="modelIssueEdit.priorite">
+                                        <option disabled value='0'>Priorité</option>
+                                        <option>Basse</option>
+                                        <option>Moyenne</option>
+                                        <option>Elevée</option>
+                                    </select>
+                                </div>
+                            
                             <div class="form-group col">
-                                <select class="custom-select" id="difficulte" name="difficulte"
-                                    [(ngModel)]="modelIssueEdit.difficulte">
-                                    <option disabled value='0'>Difficulté</option>
-                                    <option>Basse</option>
-                                    <option>Moyenne</option>
-                                    <option>Elevée</option>
-                                </select>
+                                <input type="email" class="form-control" placeholder="Difficulté" name="difficulte"
+                                    id="difficulte" rows="3" [(ngModel)]="modelIssueEdit.difficulte">
                             </div>
                             <div class="form-group col">
                                 <select (change)="ChangingValue($event)" class="custom-select" id="status" name="status"
@@ -269,7 +272,7 @@
             <tbody>
                 <tr *ngFor="let task of project?.tasks">
                     <td>
-                        <p *ngFor="let issue of task?.idIssues">[ {{issue}} ]</p>
+                        <p *ngFor="let issue of task?.idIssues"><span class="badge badge-pill badge-primary">US {{issue}}</span></p>
                     </td>
                     <td style="width: 40%;">{{task?.description}}</td>
                     <td>{{task?.cout}}</td>
@@ -342,16 +345,133 @@
         </div>
     </div>
 
+    <div id="sprints" class="tab-pane fade">
+        <div class="card-body">
+            <h5 class="card-title">Liste des sprints</h5>
+                <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample3" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample3">Ajouter <i class="fa fa-plus"></i></a>
+        </div>
+        <div class="collapse multi-collapse" id="multiCollapseExample3">
+                <div class="card card-body">
+                    <div class="col-md-5">
+                        <fieldset>
+                            <form #newSprint="ngForm" (ngSubmit)="newSprint.valid">
+                                <div class="from row">
+                                    <div class="form-group col">
+                                        <input type="email" class="form-control" placeholder="Titre" name="title" id="title"
+                                            rows="1" [(ngModel)]="modelSprint.title">
+                                    </div>
+                                    <div class="form-group col">
+                                            <input type="email" class="form-control" placeholder="Début" name="startDate" id="startDate"
+                                                rows="3" [(ngModel)]="modelSprint.startDate">
+                                    </div>
+                                    <div class="form-group col">
+                                            <input type="email" class="form-control" placeholder="Fin" name="endDate" id="endDate"
+                                                rows="3" [(ngModel)]="modelSprint.endDate">
+                                    </div>
+                                </div>
+                                <div class="from row">
+                                    <select class="custom-select" id="status" name="status"
+                                        [(ngModel)]="modelSprint.status" [value]='0'>
+                                        <option disabled value=''>Statut</option>
+                                        <option>En cours</option>
+                                        <option>Terminé</option>
+                                    </select>
+                                </div>
+                                
+                                <a class="btn btn-success" (click)="onSubmitSprint(newSprint)" data-toggle="collapse"
+                                    href="#multiCollapseExample3" role="button" aria-expanded="false"
+                                    aria-controls="multiCollapseExample3">Confirmer</a>
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+        </div>
+
+        <table class="table table-striped">
+                <thead class="thead">
+                    <tr>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Période</th>
+                        <th scope="col">Statut</th>
+                        <th scope="col">Issues</th>
+                        <th></th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr *ngFor="let sprint of project?.sprints">
+
+                        <td>{{sprint?.title}}</td>
+                        <td>{{sprint?.startDate}} - {{sprint?.endDate}}</td>
+                        <td>{{sprint?.status}}</td>
+                        <td>{{sprint?.issues}}</td>
+                        <td>
+                            <button type="button" (click)="updateModalEditSprint(sprint)" data-toggle="modal"
+                                data-target="#editSprintModal" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
+                            <button type="button" (click)="removeSprint(sprint._id)" class="btn btn-danger"><i
+                                    class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+    </div> 
+    <div class="modal fade" id="editSprintModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editer sprint</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #editSprint="ngForm" (ngSubmit)="newSprint.valid">
+                        <div class="from row">
+                            <div class="form-group col">
+                                <input type="email" class="form-control" placeholder="Titre" name="title" id="title"
+                                rows="1" [(ngModel)]="modelSprintEdit.title">
+                            </div>
+
+                            <div class="form-group col">
+                                <input type="email" class="form-control" placeholder="Début" name="startDate" id="startDate"
+                                rows="3" [(ngModel)]="modelSprintEdit.startDate">
+                            </div>
+
+                            <div class="form-group col">
+                                <input type="email" class="form-control" placeholder="Fin" name="endDate" id="endDate"
+                                rows="3" [(ngModel)]="modelSprintEdit.endDate">
+                            </div>
+
+                        </div>
+                        <div class="from row">
+                            <div class="form-group col">
+                                <select class="custom-select" id="status" name="status"
+                                    [(ngModel)]="modelSprintEdit.status" [value]='0'>
+                                    <option disabled value=''>Statut</option>
+                                    <option>En cours</option>
+                                    <option>Terminé</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" (click)="onSubmitEditSprint(editSprint)" data-dismiss="modal"
+                        class="btn btn-primary">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="tests" class="tab-pane fade">
         <h3>Liste des tests</h3>
         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
             totam rem
             aperiam.</p>
-    </div>
-    <div id="sprints" class="tab-pane fade">
-        <h3>Liste des sprints</h3>
-        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-            explicabo.</p>
     </div>
     <div id="releases" class="tab-pane fade">
         <h3>Liste des releases</h3>

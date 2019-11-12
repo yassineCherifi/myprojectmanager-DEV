@@ -8,6 +8,7 @@ import { Issues } from 'src/app/models/issues.model';
 
 import { TasksService } from 'src/app/services/tasks.service';
 import { UserService } from 'src/app/services/user.service';
+import { SprintService } from 'src/app/services/sprint.service';
 
 @Component({
   selector: 'app-detailprojet',
@@ -18,7 +19,6 @@ export class DetailprojetComponent implements OnInit {
 
 
   public project_id;
-  public issues = [];
   public users = [];
 
   public project: Projet;
@@ -28,14 +28,15 @@ export class DetailprojetComponent implements OnInit {
     private projetService: ProjetService,
     private tasksService: TasksService,
     private userService: UserService,
+    private sprintService : SprintService,
     private route: ActivatedRoute) { }
 
 
   modelIssue : Issues = {
-    issueId: '',
+    issueID: '',
     description: '',
     priorite: '',
-    difficulte: '0',
+    difficulte: '',
     status: '0'
   }
 
@@ -62,10 +63,31 @@ export class DetailprojetComponent implements OnInit {
     developer: '0'
   }
 
+  
+  modelSprint = {
+    title: '',
+    startDate: '',
+    endDate: '',
+    status: '',
+    issues:''
+  }
+  modelSprintEdit = {
+    _id: '',
+    title: '',
+    startDate: '',
+    endDate: '',
+    status: '',
+    issues:''
+  }
+
   modelproject = {
     title: '',
     description: ''
   }
+
+
+
+
   idLogged;
   isCreator : boolean = false;
   ngOnInit() {
@@ -79,6 +101,7 @@ export class DetailprojetComponent implements OnInit {
   getProject() {
     this.projetService.getProject(this.project_id).subscribe(data => {
       this.project = data['project']
+      console.log(this.project)
       this.idLogged = this.userService.getIDOflogged();
       if (this.project.creator['_id'] == this.idLogged) {
         this.isCreator = true;
@@ -93,12 +116,14 @@ export class DetailprojetComponent implements OnInit {
 
   removeIssue(id) {
     this.issuesService.removeIssue(this.project['_id'], id).subscribe(data => this.getProject());
-
   }
 
   removeTask(id) {
     this.tasksService.removeTask(this.project['_id'], id).subscribe(data => this.getProject());
+  }
 
+  removeSprint(id) {
+    this.sprintService.removeSprint(this.project['_id'], id).subscribe(data => this.getProject());
   }
 
   onSubmitIssue(form: NgForm) {
@@ -122,6 +147,20 @@ export class DetailprojetComponent implements OnInit {
         form.resetForm();
         this.modelTask.developer = '0';
         this.modelTask.issue = '0';
+        this.getProject()
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    console.log(this.project)
+  }
+  
+
+  onSubmitSprint(form: NgForm) {
+    this.sprintService.addSprint(this.project['_id'], form.value).subscribe(
+      res => {
+        form.resetForm();
         this.getProject()
       },
       err => {
@@ -169,6 +208,16 @@ export class DetailprojetComponent implements OnInit {
     this.modelTaskEdit.issue = task.idIssues[0];
   }
 
+  updateModalEditSprint(sprint) {
+    console.log(sprint);
+    this.modelSprintEdit._id = sprint._id;
+    this.modelSprintEdit.title = sprint.title;
+    this.modelSprintEdit.startDate = sprint.startDate;
+    this.modelSprintEdit.endDate = sprint.endDate;
+    this.modelSprintEdit.status = sprint.status;
+    //this.modelSprintEdit.issues = sprint.issues[0];
+  }
+
   onSubmitEditIssue(form: NgForm) {
     this.issuesService.editIssue(this.project['_id'], this.modelIssueEdit._id, form.value).subscribe(
       res => {
@@ -192,5 +241,18 @@ export class DetailprojetComponent implements OnInit {
       }
     );
   }
+
+  onSubmitEditSprint(form: NgForm) {
+    this.sprintService.editSprint(this.project['_id'], this.modelSprintEdit._id, form.value).subscribe(
+      res => {
+        form.resetForm();
+        this.getProject()
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  
 
 }

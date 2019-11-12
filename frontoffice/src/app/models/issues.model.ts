@@ -1,5 +1,5 @@
 export class Issues {
-    issueId: string;
+    issueID: string;
     description: string;
     priorite: string;
     difficulte: string;

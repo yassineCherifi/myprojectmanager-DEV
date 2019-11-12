@@ -3,17 +3,20 @@ require('../models/project');
 require('../models/issue');
 require('../models/user');
 require('../models/task');
+require('../models/sprint');
 
 const Project = mongoose.model('Project');
 const Issue = mongoose.model('Issue');
 const User = mongoose.model('User');
 const Task = mongoose.model('Task');
+const Sprint = mongoose.model('Sprint');
 
 module.exports.getAllProjects = (req, res, next) => {
     Project.find({})
         .populate('issues')
         .populate('creator')
         .populate('tasks')
+        .populate('sprints')
         .exec(function (err, projects) {
             if (err) res.json({ error: "error" })
             res.json({ result: projects, idlogged: req._id })
@@ -25,6 +28,7 @@ module.exports.getProjectDetails = (req, res, next) => {
         .populate('issues')
         .populate('creator')
         .populate('tasks')
+        .populate('sprints')
         .exec(function (err, project) {
             if (err) res.json({ error: "error" })
             res.json({ project: project })
@@ -102,7 +106,7 @@ module.exports.deleteIssue = (req, res, next) => {
             project.issues.remove({ _id: req.params.idIssue });
             project.save(function (err) {
                 if (err) res.json({ error: "error" });
-                res.json({ success: "issue remove" })
+                res.json({ success: "issue removed" })
             });
         });
 
@@ -163,7 +167,7 @@ module.exports.deleteTask = (req, res, next) => {
             project.tasks.remove({ _id: req.params.idTask });
             project.save(function (err) {
                 if (err) res.json({ error: "error" });
-                res.json({ success: "task remove" })
+                res.json({ success: "task removed" })
             });
         });
 
@@ -184,6 +188,66 @@ module.exports.editTask = (req, res, next) => {
             result.tasks[0].save(function (err) {
                 if (err) res.json({ error: "error" });
                 res.json({ success: "task edited" })
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({ error });
+        });
+};
+
+
+module.exports.createSprint = (req, res, next) => {
+    const sprint = new Sprint();   
+    sprint.title = req.body.title;
+    sprint.startDate = req.body.startDate;
+    sprint.endDate = req.body.endDate;
+    sprint.status = req.body.status;
+    sprint.issues = req.body.issues;
+    sprint.save()
+        .then((result) => {
+            Project.findOne({ _id: req.params.id }, (err, project) => {
+                if (project) {
+                    project.sprints.push(sprint);
+                    project.save();
+                    res.json({ message: 'Sprint created!' });
+                }
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({ error });
+        });
+};
+
+module.exports.deleteSprint = (req, res, next) => {
+    Project.findOne({ _id: req.params.id }, function (err, project) {
+        if (err) res.json({ error: "no project found" })
+        Sprint.deleteOne({ _id: req.params.idSprint }, function (err, removed) {
+            if (err) res.json({ error: "Sprint not removed" });
+            project.sprints.remove({ _id: req.params.idSprint });
+            project.save(function (err) {
+                if (err) res.json({ error: "error" });
+                res.json({ success: "Sprint removed" })
+            });
+        });
+
+    });
+};
+
+module.exports.editSprint = (req, res, next) => {
+    Project.findOne({ _id: req.params.id })
+        .populate({
+            path: 'sprints',
+            match: { _id: req.params.idSprint }
+        })
+        .then((result) => {
+            result.sprints[0].title = req.body.title;
+            result.sprints[0].startDate = req.body.startDate;
+            result.sprints[0].endDate = req.body.endDate;
+            result.sprints[0].status = req.body.status;
+            result.sprints[0].issues = req.body.issues;
+            result.sprints[0].save(function (err) {
+                if (err) res.json({ error: "error" });
+                res.json({ success: "sprint edited" })
             });
         })
         .catch((error) => {

@@ -12,8 +12,8 @@ module.exports.register = (req, res, next) => {
             res.send(doc);
         else {
             if (err.code === 11000)
-                res.status(442).send(['L\'émail déja existe !']);
-            else
+            res.status(442).send(['L\'email existe déjà !']);
+                else
                 return next(err);
         }
     })
@@ -49,5 +49,25 @@ module.exports.getUsers = (req, res, next) => {
         if (!users) return res.status(404).json({status: false, message: "Utilisateur non trouvé"})
         else return res.status(200).json({users:users});
     });
+}
+
+module.exports.modifyUser = (req, res, next) => {
+    User.findOne({_id : req._id},(err, user) => {
+        if (!user) return res.status(404).json({status: false, message: "Utilisateur non trouvé"})
+        user.name = req.body.name;
+        user.email = req.body.email;
+        user.password = req.body.password;  
+        
+        user.save((err, doc) => {
+            if (!err)
+                res.send(doc);
+            else {
+                if (err.code === 11000)
+                    res.status(442).send(['L\'email existe déjà !']);
+                else
+                    return next(err);
+            }
+        })
+    })
 }
 

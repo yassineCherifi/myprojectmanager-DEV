@@ -56,4 +56,16 @@ export class UserService {
     const user = localStorage.getItem('userinfos');
     return JSON.parse(user).infos._id;
   }
+
+  /**
+   * Get a single user
+   */
+  getUser(id: number): Observable<User> {
+    return this.httpClient.get<User>(environment.API_URL + '/users');
+  }
+
+  editUser(user: User) {
+    return this.httpClient.put(environment.API_URL + '/users' + user.email, user);
+}
+
 }

@@ -4,10 +4,10 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: |
-| US04 | Add the route (edit : "/users/:id") to update a user, in the middleware index.router.js. | 0.5 | | TODO |
-| US04 | Create the functions "getUser, modifyUser" in user.controller.js which receives a get/put request from the index routes ,validate the fields for (inserting,updating) then put/get a user in/from the database. | 0.5 | | TODO |
-| US04 | In angular, create the component "detailUser". Create the functions "getuser,editUser" in detailuser.component.ts which calls the functions of user.service.ts| 0.5 | | TODO |
-| US04 | In angular, add the methods "getuser,editUser" to user.service.ts| 0.5 | | TODO |
+| US04 | Add the route (edit : "/users/:id") to update a user, in the middleware index.router.js. | 0.5 |BOUYSSOU | TODO |
+| US04 | Create the functions "getUser, modifyUser" in user.controller.js which receives a get/put request from the index routes ,validate the fields for (inserting,updating) then put/get a user in/from the database. | 0.5 | BOUYSSOU | TODO |
+| US04 | In angular, create the component "detailUser". Create the functions "getuser,editUser" in detailuser.component.ts which calls the functions of user.service.ts| 0.5 | BOUYSSOU | TODO |
+| US04 | In angular, add the methods "getuser,editUser" to user.service.ts| 0.5 | BOUYSSOU | TODO |
 
 ----------------------------------------------------------------------------------------------------------------------
 

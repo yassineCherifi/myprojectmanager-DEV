@@ -1,15 +1,9 @@
 const mongoose = require('mongoose');
 require('../models/project');
-require('../models/issue');
 require('../models/user');
-require('../models/task');
-require('../models/sprint');
 
 const Project = mongoose.model('Project');
-const Issue = mongoose.model('Issue');
 const User = mongoose.model('User');
-const Task = mongoose.model('Task');
-const Sprint = mongoose.model('Sprint');
 
 module.exports.getAllProjects = (req, res, next) => {
     Project.find({})
@@ -25,10 +19,7 @@ module.exports.getAllProjects = (req, res, next) => {
 
 module.exports.getProjectDetails = (req, res, next) => {
     Project.findOne({ _id: req.params.id })
-        .populate('issues')
         .populate('creator')
-        .populate('tasks')
-        .populate('sprints')
         .exec(function (err, project) {
             if (err) res.json({ error: "error" })
             res.json({ project: project })
@@ -52,7 +43,6 @@ module.exports.insertProject = (req, res, next) => {
         }
     });
 };
-
 module.exports.editProject = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, (err, project) => {
         if (!project) return res.status(404).json({ status: false, message: "Projet non trouvé" })
@@ -73,184 +63,4 @@ module.exports.deleteProject = (req, res, next) => {
         if (err) return handleError(err);
         res.json({ success: "deleted with success" })
     });
-};
-
-module.exports.createIssue = (req, res, next) => {
-    const issue = new Issue();
-    issue.issueID = req.body.issueID;
-    issue.description = req.body.description;
-    issue.priorite = req.body.priorite;
-    issue.difficulte = req.body.difficulte;
-    issue.status = req.body.status;
-    issue.save()
-        .then((result) => {
-            Project.findOne({ _id: req.params.id }, (err, project) => {
-                if (project) {
-                    project.issues.push(issue);
-                    project.save();
-                    res.json({ message: 'Issue created!' });
-                }
-            });
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
-        });
-
-};
-
-module.exports.deleteIssue = (req, res, next) => {
-    Project.findOne({ _id: req.params.id }, function (err, project) {
-        if (err) res.json({ error: "no project found" })
-        Issue.deleteOne({ _id: req.params.idIssue }, function (err, removed) {
-            if (err) res.json({ error: "issue not removed" });
-            project.issues.remove({ _id: req.params.idIssue });
-            project.save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "issue removed" })
-            });
-        });
-
-    });
-};
-
-module.exports.editIssue = (req, res, next) => {
-    Project.findOne({ _id: req.params.id })
-        .populate({
-            path: 'issues',
-            match: { _id: req.params.idIssue }
-        })
-        .then((result) => {
-            result.issues[0].issueID = req.body.issueID;
-            result.issues[0].description = req.body.description;
-            result.issues[0].priorite = req.body.priorite;
-            result.issues[0].difficulte = req.body.difficulte;
-            result.issues[0].status = req.body.status;
-            result.issues[0].save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "issue edited" })
-            });
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
-        });
-};
-
-
-module.exports.createTask = (req, res, next) => {
-    const task = new Task();
-    task.idIssues = req.body.idIssues;
-    task.description = req.body.description;
-    task.cout = req.body.cout;
-    task.developer = req.body.developer;
-    task.save()
-        .then((result) => {
-            Project.findOne({ _id: req.params.id }, (err, project) => {
-                if (project) {
-                    project.tasks.push(task);
-                    project.save();
-                    res.json({ message: 'Task created!' });
-                }
-            });
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
-        });
-};
-
-
-
-module.exports.deleteTask = (req, res, next) => {
-    Project.findOne({ _id: req.params.id }, function (err, project) {
-        if (err) res.json({ error: "no project found" })
-        Task.deleteOne({ _id: req.params.idTask }, function (err, removed) {
-            if (err) res.json({ error: "task not removed" });
-            project.tasks.remove({ _id: req.params.idTask });
-            project.save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "task removed" })
-            });
-        });
-
-    });
-};
-
-module.exports.editTask = (req, res, next) => {
-    Project.findOne({ _id: req.params.id })
-        .populate({
-            path: 'tasks',
-            match: { _id: req.params.idTask }
-        })
-        .then((result) => {
-            result.tasks[0].idIssues = req.body.idIssues;
-            result.tasks[0].description = req.body.description;
-            result.tasks[0].cout = req.body.cout;
-            result.tasks[0].developer = req.body.developer;
-            result.tasks[0].save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "task edited" })
-            });
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
-        });
-};
-
-
-module.exports.createSprint = (req, res, next) => {
-    const sprint = new Sprint();   
-    sprint.title = req.body.title;
-    sprint.startDate = req.body.startDate;
-    sprint.endDate = req.body.endDate;
-    sprint.status = req.body.status;
-    sprint.issues = req.body.issues;
-    sprint.save()
-        .then((result) => {
-            Project.findOne({ _id: req.params.id }, (err, project) => {
-                if (project) {
-                    project.sprints.push(sprint);
-                    project.save();
-                    res.json({ message: 'Sprint created!' });
-                }
-            });
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
-        });
-};
-
-module.exports.deleteSprint = (req, res, next) => {
-    Project.findOne({ _id: req.params.id }, function (err, project) {
-        if (err) res.json({ error: "no project found" })
-        Sprint.deleteOne({ _id: req.params.idSprint }, function (err, removed) {
-            if (err) res.json({ error: "Sprint not removed" });
-            project.sprints.remove({ _id: req.params.idSprint });
-            project.save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "Sprint removed" })
-            });
-        });
-
-    });
-};
-
-module.exports.editSprint = (req, res, next) => {
-    Project.findOne({ _id: req.params.id })
-        .populate({
-            path: 'sprints',
-            match: { _id: req.params.idSprint }
-        })
-        .then((result) => {
-            result.sprints[0].title = req.body.title;
-            result.sprints[0].startDate = req.body.startDate;
-            result.sprints[0].endDate = req.body.endDate;
-            result.sprints[0].status = req.body.status;
-            result.sprints[0].issues = req.body.issues;
-            result.sprints[0].save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "sprint edited" })
-            });
-        })
-        .catch((error) => {
-            res.status(500).json({ error });
-        });
 };

@@ -16,6 +16,9 @@ import { ListprojetsComponent } from './components/dashboard/listprojets/listpro
 import { DetailprojetComponent } from './components/dashboard/detailprojet/detailprojet.component';
 import { ProjetService } from './services/projet.service';
 import { IssuesService } from './services/issues.service';
+import { IssueComponent } from './components/dashboard/detailprojet/issue/issue.component';
+import { TaskComponent } from './components/dashboard/detailprojet/task/task.component';
+import { SprintComponent } from './components/dashboard/detailprojet/sprint/sprint.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { IssuesService } from './services/issues.service';
     DashboardComponent,
     LoginComponent,
     ListprojetsComponent,
-    DetailprojetComponent
+    DetailprojetComponent,
+    IssueComponent,
+    TaskComponent,
+    SprintComponent
   ],
   imports: [
     BrowserModule,

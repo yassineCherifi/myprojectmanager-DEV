@@ -7,6 +7,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ListprojetsComponent } from './components/dashboard/listprojets/listprojets.component';
 import { DetailprojetComponent } from './components/dashboard/detailprojet/detailprojet.component';
+import { IssueComponent } from './components/dashboard/detailprojet/issue/issue.component';
+import { TaskComponent } from './components/dashboard/detailprojet/task/task.component';
+import { SprintComponent } from './components/dashboard/detailprojet/sprint/sprint.component';
 
 const routes: Routes = [
   {
@@ -22,12 +25,19 @@ const routes: Routes = [
     }]
   },
   {
-    path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard],
+    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
-     { path: 'projects', component: ListprojetsComponent,pathMatch: 'full'},
-     { path: 'projects/:id', component: DetailprojetComponent,pathMatch: 'full'}
+      { path: 'projects', component: ListprojetsComponent, pathMatch: 'full' },
+      {
+        path: 'projects/:id', component: DetailprojetComponent,children: [
+          {path: '', redirectTo: 'issues',pathMatch: 'full'},
+          {path: 'issues', component: IssueComponent},
+          {path: 'tasks', component: TaskComponent},
+          {path: 'sprints', component: SprintComponent}
+        ]
+      }
     ]
-     
+
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'

@@ -22,10 +22,10 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: |
-| US11, US14 | Create the routes (post : "/:idProject/sprint/:idSprint/issues" to add an issue), (edit: "/:idProject/sprint/:idSprint/issues/:idIssue" to update), ( delete: "/:idProject/sprint/:idSprint/issues/:idIssue" to delete )| 0.5 | | TODO | 
-| US11, US14 | Add a method "addIssuesToSprint, removeIssuesToSprint" to the details-project controller| 0.5 | | TODO | 
-| US11, US14 | In angular, in details-project component view, add the button "Add issues to the sprint". Then, display a list of issues to select and a submit button which calls onSubmit function. If a checkbox is unchecked, the issue is removed from the sprint | 0.5 | | TODO | 
-| US11, US14 | In angular, in "./services/sprint.service.ts", add the methods "addIssues,removeIssues"| 0.5 | | TODO | 
+| US11, US14 | Create the routes (post : "/:idProject/sprint/:idSprint/issues" to add an issue), (edit: "/:idProject/sprint/:idSprint/issues/:idIssue" to update), ( delete: "/:idProject/sprint/:idSprint/issues/:idIssue" to delete )| 0.5 | CHERIFI | TODO | 
+| US11, US14 | Add a method "addIssuesToSprint, removeIssuesToSprint" to the details-project controller| 0.5 | CHERIFI | TODO | 
+| US11, US14 | In angular, in details-project component view, add the button "Add issues to the sprint". Then, display a list of issues to select and a submit button which calls onSubmit function. If a checkbox is unchecked, the issue is removed from the sprint | 0.5 | CHERIFI | TODO | 
+| US11, US14 | In angular, in "./services/sprint.service.ts", add the methods "addIssues,removeIssues"| 0.5 | CHERIFI | TODO | 
 
 ----------------------------------------------------------------------------------------------------------------------
 

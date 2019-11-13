@@ -17,8 +17,8 @@ export class SprintService {
       return this.httpClient.get<Sprints[]>(environment.API_URL + '/projects/' + idProject + '/sprints');
     }
 
-    addSprint(idSprint, sprint){
-        return this.httpClient.post(environment.API_URL +  '/projects/' + idSprint + '/sprints', sprint);
+    addSprint(idProject, sprint){
+        return this.httpClient.post(environment.API_URL +  '/projects/' + idProject + '/sprints', sprint);
     }
 
     editSprint(idProject, idSprint,sprint){

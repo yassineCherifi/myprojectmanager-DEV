@@ -18,7 +18,7 @@ export class SprintComponent implements OnInit {
     title: '',
     startDate: '',
     endDate: '',
-    status: '',
+    status: '0',
     issues: ''
   }
   modelSprintEdit = {
@@ -26,7 +26,7 @@ export class SprintComponent implements OnInit {
     title: '',
     startDate: '',
     endDate: '',
-    status: '',
+    status: '0',
     issues: ''
   }
 
@@ -50,9 +50,15 @@ export class SprintComponent implements OnInit {
   }
 
   onSubmitSprint(form: NgForm) {
+    let startDate = form.value.dp1;
+    let endDate = form.value.dp2;
+    form.value.dp1 = startDate.year+ "/" +startDate.month + "/" + startDate.day;
+    form.value.dp2 = endDate.year+ "/" +endDate.month + "/" + endDate.day;
+    console.log(form.value);
     this.sprintService.addSprint(this.project_id, form.value).subscribe(
       res => {
         form.resetForm();
+        this.modelSprint.status='0';
         this.getSprints()
       },
       err => {
@@ -69,9 +75,14 @@ export class SprintComponent implements OnInit {
     //this.modelSprintEdit.issues = sprint.issues[0];
   }
   onSubmitEditSprint(form: NgForm) {
+    let startDate = form.value.dp1;
+    let endDate = form.value.dp2;
+    form.value.dp1 = startDate.year+ "-" +startDate.month + "-" + startDate.day;
+    form.value.dp2 = endDate.year+ "/" +endDate.month + "/" + endDate.day;
     this.sprintService.editSprint(this.project_id, this.modelSprintEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
+        this.modelSprintEdit.status='0';
         this.getSprints()
       },
       err => {

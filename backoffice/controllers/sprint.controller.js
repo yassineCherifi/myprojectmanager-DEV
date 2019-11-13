@@ -16,8 +16,8 @@ module.exports.getSprints = (req, res, next) => {
 module.exports.createSprint = (req, res, next) => {
     const sprint = new Sprint();   
     sprint.title = req.body.title;
-    sprint.startDate = req.body.startDate;
-    sprint.endDate = req.body.endDate;
+    sprint.startDate = req.body.dp1;
+    sprint.endDate = req.body.dp2;
     sprint.status = req.body.status;
     sprint.issues = req.body.issues;
     sprint.save()
@@ -43,8 +43,8 @@ module.exports.editSprint = (req, res, next) => {
         })
         .then((result) => {
             result.sprints[0].title = req.body.title;
-            result.sprints[0].startDate = req.body.startDate;
-            result.sprints[0].endDate = req.body.endDate;
+            result.sprints[0].startDate = req.body.dp1;
+            result.sprints[0].endDate = req.body.dp2;
             result.sprints[0].status = req.body.status;
             result.sprints[0].issues = req.body.issues;
             result.sprints[0].save(function (err) {

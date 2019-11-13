@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SprintService } from 'src/app/services/sprint.service';
 import { ActivatedRoute } from '@angular/router';
+import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sprint',
   templateUrl: './sprint.component.html',
   styleUrls: ['./sprint.component.scss']
 })
+
+
 export class SprintComponent implements OnInit {
   project_id;
   sprints = [];
@@ -26,7 +29,11 @@ export class SprintComponent implements OnInit {
     status: '',
     issues: ''
   }
-  constructor(private sprintService : SprintService,private route : ActivatedRoute) { }
+
+  modelDate;
+
+
+  constructor(private sprintService : SprintService,private route : ActivatedRoute, private calendar : NgbCalendar) { }
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
@@ -34,6 +41,7 @@ export class SprintComponent implements OnInit {
       console.log(this.project_id)
     })
     this.getSprints();
+    this.modelDate = this.calendar.getToday();
 
   }
 

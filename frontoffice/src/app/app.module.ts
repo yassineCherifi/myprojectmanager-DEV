@@ -19,6 +19,7 @@ import { IssuesService } from './services/issues.service';
 import { IssueComponent } from './components/dashboard/detailprojet/issue/issue.component';
 import { TaskComponent } from './components/dashboard/detailprojet/task/task.component';
 import { SprintComponent } from './components/dashboard/detailprojet/sprint/sprint.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,12 +33,14 @@ import { SprintComponent } from './components/dashboard/detailprojet/sprint/spri
     IssueComponent,
     TaskComponent,
     SprintComponent
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
     
   ],
   providers: [UserService,ProjetService,IssuesService,AuthGuard,
@@ -45,7 +48,8 @@ import { SprintComponent } from './components/dashboard/detailprojet/sprint/spri
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

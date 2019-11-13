@@ -10,6 +10,7 @@ import { DetailprojetComponent } from './components/dashboard/detailprojet/detai
 import { IssueComponent } from './components/dashboard/detailprojet/issue/issue.component';
 import { TaskComponent } from './components/dashboard/detailprojet/task/task.component';
 import { SprintComponent } from './components/dashboard/detailprojet/sprint/sprint.component';
+import { DetailsprintComponent } from './components/dashboard/detailprojet/detailsprint/detailsprint.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,8 @@ const routes: Routes = [
           {path: '', redirectTo: 'issues',pathMatch: 'full'},
           {path: 'issues', component: IssueComponent},
           {path: 'tasks', component: TaskComponent},
-          {path: 'sprints', component: SprintComponent}
+          {path: 'sprints', component: SprintComponent},
+          {path: 'sprints/:idSprint', component: DetailsprintComponent}
         ]
       }
     ]

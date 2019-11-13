@@ -3,12 +3,22 @@ require('../models/project');
 require('../models/sprint');
 const Project = mongoose.model('Project');
 const Sprint = mongoose.model('Sprint');
+
 module.exports.getSprints = (req, res, next) => {
     Project.findOne({ _id: req.params.id })
         .populate('sprints')
         .exec(function (err, project) {
             if (err) res.json({ error: "error" })
             res.json({ sprints: project.sprints })
+        });
+
+};
+
+module.exports.getSprint = (req, res, next) => {
+    Sprint.findOne({ _id: req.params.idSprint })
+        .exec(function (err, sprint) {
+            if (err) res.json({ error: "error" })
+            res.json({ sprint: sprint })
         });
 
 };

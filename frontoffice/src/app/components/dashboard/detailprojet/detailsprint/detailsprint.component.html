@@ -1,0 +1,48 @@
+<br>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">{{sprint?.title}}</h4>
+        <h4 ><span class="badge badge-light">{{sprint?.startDate}} au {{sprint?.endDate}}</span></h4>
+        <h5><span class="badge badge-info">{{sprint?.status}}</span></h5>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Issues</h5>
+        <div class="form-group" >
+            <select class="selectpicker" data-style="btn-success" title="+ Ajouter des issues" data-width="100%" multiple data-actions-box="true" data-live-search="true">
+                <option *ngFor="let issue of issues">{{issue?.issueID}} - {{issue?.description}}</option>
+
+            </select>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Priorité </th>
+                    <th scope="col">Difficulté </th>
+                    <th scope="col">Status </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let issue of issues">
+                    <td>#{{issue?.issueID}}</td>
+                    <td style="width: 40%;">{{issue?.description}}</td>
+                    <td>{{issue?.priorite}}</td>
+                    <td>{{issue?.difficulte}}</td>
+                    <td>{{issue?.status}}</td>
+
+                    <td>
+                        <button type="button" (click)="updateModalEditIssue(issue)" data-toggle="modal"
+                            data-target="#editIssueModal" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
+                        <button type="button" (click)="removeIssue(issue._id)" class="btn btn-danger"><i
+                                class="fa fa-trash-o"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

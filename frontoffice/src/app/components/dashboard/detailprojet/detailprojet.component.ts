@@ -39,7 +39,6 @@ export class DetailprojetComponent implements OnInit {
   getProject() {
     this.projetService.getProject(this.project_id).subscribe(data => {
       this.project = data['project']
-      console.log(this.project)
       this.idLogged = this.userService.getIDOflogged();
       if (this.project.creator['_id'] == this.idLogged) {
         this.isCreator = true;
@@ -54,7 +53,6 @@ export class DetailprojetComponent implements OnInit {
 
 
   editProject(form: NgForm) {
-    console.log(form.value)
     if (form.value.title === "" || form.value.description === "") {
       this.getProject();
       return;
@@ -68,7 +66,6 @@ export class DetailprojetComponent implements OnInit {
         console.log(err);
       }
     );
-    console.log(this.project)
   }
 
 

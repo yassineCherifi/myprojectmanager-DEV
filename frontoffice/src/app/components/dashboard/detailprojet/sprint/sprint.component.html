@@ -67,7 +67,6 @@
             <th scope="col">Titre</th>
             <th scope="col">Période</th>
             <th scope="col">Statut</th>
-            <th scope="col">Issues</th>
             <th></th>
         </tr>
     </thead>
@@ -75,10 +74,9 @@
     <tbody>
         <tr *ngFor="let sprint of sprints">
 
-            <td>{{sprint?.title}}</td>
+            <td><a routerLink={{sprint?._id}}>{{sprint?.title}}</a></td>
             <td>{{sprint?.startDate}} - {{sprint?.endDate}}</td>
             <td>{{sprint?.status}}</td>
-            <td>{{sprint?.issues}}</td>
             <td>
                 <button type="button" (click)="updateModalEditSprint(sprint)" data-toggle="modal"
                     data-target="#editSprintModal" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;

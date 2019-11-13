@@ -5,29 +5,33 @@ import { environment } from 'src/environments/environment';
 import { Sprints } from '../models/sprints.model';
 
 @Injectable({
-    providedIn: 'root'
-  })
+  providedIn: 'root'
+})
 
 
 export class SprintService {
 
-    constructor(private httpClient: HttpClient) { }
-   
-    getSprints(idProject): Observable<Sprints[]>{
-      return this.httpClient.get<Sprints[]>(environment.API_URL + '/projects/' + idProject + '/sprints');
-    }
+  constructor(private httpClient: HttpClient) { }
 
-    addSprint(idProject, sprint){
-        return this.httpClient.post(environment.API_URL +  '/projects/' + idProject + '/sprints', sprint);
-    }
+  getSprints(idProject): Observable<Sprints[]> {
+    return this.httpClient.get<Sprints[]>(environment.API_URL + '/projects/' + idProject + '/sprints');
+  }
 
-    editSprint(idProject, idSprint,sprint){
-      return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/sprints/' + idSprint,sprint);
-    }
+  getSprint(idProject, idSprint) {
+    return this.httpClient.get(environment.API_URL + '/projects/' + idProject + '/sprints/' + idSprint);
+  }
 
-    removeSprint(idProject, id){
-      return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/sprints/' + id);
-    }
+  addSprint(idProject, sprint) {
+    return this.httpClient.post(environment.API_URL + '/projects/' + idProject + '/sprints', sprint);
+  }
+
+  editSprint(idProject, idSprint, sprint) {
+    return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/sprints/' + idSprint, sprint);
+  }
+
+  removeSprint(idProject, id) {
+    return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/sprints/' + id);
+  }
 
 
 }

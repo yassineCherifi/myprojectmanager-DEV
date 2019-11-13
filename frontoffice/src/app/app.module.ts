@@ -20,6 +20,7 @@ import { IssueComponent } from './components/dashboard/detailprojet/issue/issue.
 import { TaskComponent } from './components/dashboard/detailprojet/task/task.component';
 import { SprintComponent } from './components/dashboard/detailprojet/sprint/sprint.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { DetailsprintComponent } from './components/dashboard/detailprojet/detailsprint/detailsprint.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     DetailprojetComponent,
     IssueComponent,
     TaskComponent,
-    SprintComponent
+    SprintComponent,
+    DetailsprintComponent
   
   ],
   imports: [

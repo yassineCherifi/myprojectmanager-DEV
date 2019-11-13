@@ -23,6 +23,7 @@ router.put('/:id/tasks/:idTask',taskContr.editTask);
 router.delete('/:id/tasks/:idTask',taskContr.deleteTask);
 
 router.get('/:id/sprints',sprintContr.getSprints);
+router.get('/:id/sprints/:idSprint',sprintContr.getSprint);
 router.post('/:id/sprints',sprintContr.createSprint);
 router.put('/:id/sprints/:idSprint',sprintContr.editSprint);
 router.delete('/:id/sprints/:idSprint', sprintContr.deleteSprint);

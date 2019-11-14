@@ -22,7 +22,7 @@
                     <th scope="col">Priorité </th>
                     <th scope="col">Difficulté </th>
                     <th scope="col">Status </th>
-                    <th></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
 
@@ -36,9 +36,9 @@
 
                     <td>
                         <button type="button" (click)="updateModalEditIssue(issue)" data-toggle="modal"
-                            data-target="#editIssueModal" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
-                        <button type="button" (click)="removeIssueFromSprint(issue?._id)" class="btn btn-danger"><i
-                                class="fa fa-trash-o"></i></button>
+                            data-target="#editIssueModal" class="btn btn-info"><em class="fa fa-edit"></em></button>&nbsp;
+                        <button type="button" (click)="removeIssueFromSprint(issue?._id)" class="btn btn-danger"><em
+                                class="fa fa-trash-o"></em></button>
                     </td>
                 </tr>
             </tbody>

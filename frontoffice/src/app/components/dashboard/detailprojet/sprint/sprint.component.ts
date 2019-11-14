@@ -6,8 +6,7 @@ import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sprint',
-  templateUrl: './sprint.component.html',
-  styleUrls: ['./sprint.component.scss']
+  templateUrl: './sprint.component.html'
 })
 
 

@@ -6,8 +6,7 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-detailsprint',
-  templateUrl: './detailsprint.component.html',
-  styleUrls: ['./detailsprint.component.scss']
+  templateUrl: './detailsprint.component.html'
 })
 
 
@@ -44,13 +43,14 @@ export class DetailsprintComponent implements OnInit {
 
     this.sprintService.getSprint(this.project_id, this.sprintID).subscribe(data => {
       this.sprint = data['sprint'];
-    })
-    this.issueService.getIssues(this.project_id).subscribe(data => {
+      this.issueService.getIssues(this.project_id).subscribe(data => {
 
-      let res = data['issues'].filter(item1 =>
-        !this.sprint['issues'].some(item2 => (item2._id === item1._id)))
-      this.issues = res;
-    });
+        let res = data['issues'].filter(item1 =>
+          !this.sprint['issues'].some(item2 => (item2._id === item1._id)))
+        this.issues = res;
+      });
+    })
+   
 
   }
 

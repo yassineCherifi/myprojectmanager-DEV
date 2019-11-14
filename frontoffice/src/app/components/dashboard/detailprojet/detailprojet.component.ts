@@ -7,8 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-detailprojet',
-  templateUrl: './detailprojet.component.html',
-  styleUrls: ['./detailprojet.component.scss']
+  templateUrl: './detailprojet.component.html'
 })
 export class DetailprojetComponent implements OnInit {
 

@@ -7,13 +7,12 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-issue',
-  templateUrl: './issue.component.html',
-  styleUrls: ['./issue.component.scss']
+  templateUrl: './issue.component.html'
 })
 export class IssueComponent implements OnInit {
   project_id;
   issues = [];
-  modelIssue : Issues = {
+  modelIssue: Issues = {
     issueID: '',
     description: '',
     priorite: '',
@@ -29,17 +28,17 @@ export class IssueComponent implements OnInit {
     difficulte: '0',
     status: '0'
   }
-  constructor(private issueService : IssuesService,private route : ActivatedRoute) { }
+  constructor(private issueService: IssuesService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
+
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id']; // true
     })
     this.getIssues();
   }
 
-  getIssues(){
+  getIssues() {
     this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
   }
   onSubmitIssue(form: NgForm) {

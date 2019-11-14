@@ -33,5 +33,13 @@ export class SprintService {
     return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/sprints/' + id);
   }
 
+  addIssueSprint(idProject, idSprint, idIssue) {
+    return this.httpClient.post(environment.API_URL + '/projects/' + idProject + '/sprints/' + idSprint + '/issues',idIssue);
+  }
+
+  removeIssue(idProject, idSprint, idIssue) {
+    return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/sprints/' + idSprint + '/issues/' + idIssue);
+  }
 
 }
+

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const sprintSchema = new mongoose.Schema({
 
@@ -6,18 +7,19 @@ const sprintSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    startDate: { 
+    startDate: {
         type: String
     },
-    endDate: { 
+    endDate: {
         type: String
     },
-    status: { 
+    status: {
         type: String
     },
-    issues:[{
-        type: String
-    }]
+    issues: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Issue'
+    }],
 });
 
 

@@ -1,6 +1,17 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
+.ng-select.custom {
+  min-height: 0px;
+  min-height: 10px;
+
+}
+
+.ng-select.custom .ng-select-container  {            
+  height: 10px;
+  border-radius: 2;
+}
 body {
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;

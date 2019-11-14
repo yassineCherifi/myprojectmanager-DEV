@@ -2,18 +2,17 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">{{sprint?.title}}</h4>
-        <h4 ><span class="badge badge-light">{{sprint?.startDate}} au {{sprint?.endDate}}</span></h4>
+        <h4><span class="badge badge-light">{{sprint?.startDate}} au {{sprint?.endDate}}</span></h4>
         <h5><span class="badge badge-info">{{sprint?.status}}</span></h5>
     </div>
 </div>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Issues</h5>
-        <div class="form-group" >
-            <select class="selectpicker" data-style="btn-success" title="+ Ajouter des issues" data-width="100%" multiple data-actions-box="true" data-live-search="true">
-                <option *ngFor="let issue of issues">{{issue?.issueID}} - {{issue?.description}}</option>
-
-            </select>
+        <div class="form-group">
+            <ng-select (add)="onAdd($event)" class="custom" placeholder="+ Ajouter des issues" [(ngModel)]="selectedItems" [multiple]="true">
+                <ng-option *ngFor="let issue of issues" [value]="issue?._id" >{{issue?.issueID}} - {{issue?.description}}</ng-option>
+            </ng-select>
         </div>
         <table class="table table-striped">
             <thead class="thead">
@@ -28,7 +27,7 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let issue of issues">
+                <tr *ngFor="let issue of sprint?.issues">
                     <td>#{{issue?.issueID}}</td>
                     <td style="width: 40%;">{{issue?.description}}</td>
                     <td>{{issue?.priorite}}</td>
@@ -38,11 +37,71 @@
                     <td>
                         <button type="button" (click)="updateModalEditIssue(issue)" data-toggle="modal"
                             data-target="#editIssueModal" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
-                        <button type="button" (click)="removeIssue(issue._id)" class="btn btn-danger"><i
+                        <button type="button" (click)="removeIssueFromSprint(issue?._id)" class="btn btn-danger"><i
                                 class="fa fa-trash-o"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+</div>
+
+<div class="modal fade" id="editIssueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editer issue</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form #editIssue="ngForm" (ngSubmit)="editIssue.valid">
+                <div class="from row">
+                    <div class="form-group col-md-12">
+                        <textarea class="form-control" placeholder="Décrire votre issue"
+                            style="width: 100%;resize: none;" id="description" name="description"
+                            [(ngModel)]="modelIssueEdit.description" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="from row">
+                    <div class="form-group col">
+                        <input type="email" class="form-control" placeholder="ID" name="issueID" id="issueID"
+                            rows="3" [(ngModel)]="modelIssueEdit.issueID">
+                    </div>
+
+                    <div class="form-group col">
+                        <select class="custom-select" id="priorite" name="priorite"
+                            [(ngModel)]="modelIssueEdit.priorite">
+                            <option disabled value='0'>Priorité</option>
+                            <option>Basse</option>
+                            <option>Moyenne</option>
+                            <option>Elevée</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col">
+                        <input type="email" class="form-control" placeholder="Difficulté" name="difficulte"
+                            id="difficulte" rows="3" [(ngModel)]="modelIssueEdit.difficulte">
+                    </div>
+                    <div class="form-group col">
+                        <select (change)="ChangingValue($event)" class="custom-select" id="status" name="status"
+                            [(ngModel)]="modelIssueEdit.status" [value]='0'>
+                            <option disabled value='0'>Status</option>
+                            <option>En cours</option>
+                            <option>Terminé</option>
+                        </select>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <button type="button" (click)="onSubmitEditIssue(editIssue)" data-dismiss="modal"
+                class="btn btn-primary">Confirmer</button>
+        </div>
+    </div>
+</div>
 </div>

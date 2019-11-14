@@ -21,7 +21,7 @@ import { TaskComponent } from './components/dashboard/detailprojet/task/task.com
 import { SprintComponent } from './components/dashboard/detailprojet/sprint/sprint.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DetailsprintComponent } from './components/dashboard/detailprojet/detailsprint/detailsprint.component';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +43,7 @@ import { DetailsprintComponent } from './components/dashboard/detailprojet/detai
     FormsModule,
     HttpClientModule,
     NgbModule,
+    NgSelectModule
     
   ],
   providers: [UserService,ProjetService,IssuesService,AuthGuard,

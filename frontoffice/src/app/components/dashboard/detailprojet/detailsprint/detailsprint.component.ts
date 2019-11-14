@@ -43,23 +43,22 @@ export class DetailsprintComponent implements OnInit {
     this.sprintID = this.route.snapshot.paramMap.get('idSprint');
 
     this.sprintService.getSprint(this.project_id, this.sprintID).subscribe(data => {
-      this.sprint = data['sprint']; 
+      this.sprint = data['sprint'];
     })
     this.issueService.getIssues(this.project_id).subscribe(data => {
-      this.issues = data['issues'];
 
-      let res = this.issues.filter(item1 => 
+      let res = data['issues'].filter(item1 =>
         !this.sprint['issues'].some(item2 => (item2._id === item1._id)))
-        this.issues = res;
+      this.issues = res;
     });
 
   }
 
   onAdd($event) {
-    this.sprintService.addIssueSprint(this.project_id, this.sprintID,{idIssue : $event}).subscribe(
+    this.sprintService.addIssueSprint(this.project_id, this.sprintID, { idIssue: $event }).subscribe(
       res => {
-          this.getSprint();
-          this.selectedItems = null;
+        this.getSprint();
+        this.selectedItems = null;
       },
       err => {
         console.log(err);

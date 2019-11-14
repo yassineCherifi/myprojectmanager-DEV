@@ -51,8 +51,8 @@ export class SprintComponent implements OnInit {
   onSubmitSprint(form: NgForm) {
     let startDate = form.value.dp1;
     let endDate = form.value.dp2;
-    form.value.dp1 = startDate.year+ "/" +startDate.month + "/" + startDate.day;
-    form.value.dp2 = endDate.year+ "/" +endDate.month + "/" + endDate.day;
+    form.value.dp1 = startDate.day+ "/" +startDate.month + "/" + startDate.year;
+    form.value.dp2 = endDate.day+ "/" +endDate.month + "/" + endDate.year;
     console.log(form.value);
     this.sprintService.addSprint(this.project_id, form.value).subscribe(
       res => {
@@ -76,8 +76,8 @@ export class SprintComponent implements OnInit {
   onSubmitEditSprint(form: NgForm) {
     let startDate = form.value.dp1;
     let endDate = form.value.dp2;
-    form.value.dp1 = startDate.year+ "-" +startDate.month + "-" + startDate.day;
-    form.value.dp2 = endDate.year+ "/" +endDate.month + "/" + endDate.day;
+    form.value.dp1 = startDate.day+ "/" +startDate.month + "/" + startDate.year;
+    form.value.dp2 = endDate.day+ "/" +endDate.month + "/" + endDate.year;
     this.sprintService.editSprint(this.project_id, this.modelSprintEdit._id, form.value).subscribe(
       res => {
         form.resetForm();

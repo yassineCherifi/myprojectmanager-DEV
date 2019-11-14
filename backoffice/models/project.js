@@ -10,24 +10,24 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    creator: { 
-        type: Schema.Types.ObjectId, 
-        ref: 'User' 
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
-    contributors: [{ 
-        type: Schema.Types.ObjectId, 
+    contributors: [{
+        type: Schema.Types.ObjectId,
         ref: 'User' }],
-    status: { 
-        type: String, 
+    status: {
+        type: String,
         default: 'En cours' },
-    issues: [{ 
-        type: Schema.Types.ObjectId, 
+    issues: [{
+        type: Schema.Types.ObjectId,
         ref: 'Issue' }],
-    tasks: [{ 
-        type: Schema.Types.ObjectId, 
+    tasks: [{
+        type: Schema.Types.ObjectId,
         ref: 'Task' }],
-    sprints: [{ 
-        type: Schema.Types.ObjectId, 
+    sprints: [{
+        type: Schema.Types.ObjectId,
         ref: 'Sprint' }]
 });
 

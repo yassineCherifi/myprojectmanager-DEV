@@ -5,12 +5,11 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-listprojets',
-  templateUrl: './listprojets.component.html',
-  styleUrls: ['./listprojets.component.scss']
+  templateUrl: './listprojets.component.html'
 })
 export class ListprojetsComponent implements OnInit {
-  
-  public projects = []; 
+
+  public projects = [];
 
   constructor(private projectsService : ProjetService, private userService : UserService) { }
 
@@ -20,7 +19,7 @@ export class ListprojetsComponent implements OnInit {
     title: '',
     description: ''
   }
-  
+
   ngOnInit() {
     //this.idLogged = this.userService.getIDOflogged();
     this.getProjects();
@@ -33,7 +32,7 @@ export class ListprojetsComponent implements OnInit {
   removeProject(id) {
     this.projectsService.deleteProject(id).subscribe(data => this.getProjects());
   }
- 
+
 
   onSubmit(form: NgForm) {
     this.projectsService.addProject(form.value).subscribe(

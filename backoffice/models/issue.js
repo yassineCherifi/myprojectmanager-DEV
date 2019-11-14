@@ -9,13 +9,13 @@ const issueSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    priorite: { 
+    priorite: {
         type: String
     },
-    difficulte: { 
+    difficulte: {
         type: String
     },
-    status: { 
+    status: {
         type: String
     }
 

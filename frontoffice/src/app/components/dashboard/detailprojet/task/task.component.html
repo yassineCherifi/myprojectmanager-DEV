@@ -1,12 +1,13 @@
 <div class="card-body">
     <h5 class="card-title">Liste des tâches</h5>
     <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false"
-        aria-controls="multiCollapseExample2">Ajouter <i class="fa fa-plus"></i></a>
+        aria-controls="multiCollapseExample2">Ajouter <em class="fa fa-plus"></em></a>
 </div>
 <div class="collapse multi-collapse" id="multiCollapseExample2">
     <div class="card card-body">
         <div class="col-md-5">
             <fieldset>
+                <legend>Nouvelle tâche</legend>
                 <form #newTask="ngForm" (ngSubmit)="newTask.valid">
                     <div class="from row">
                         <div class="form-group col">
@@ -56,7 +57,7 @@
             <th scope="col">Description</th>
             <th scope="col">Coût</th>
             <th scope="col">Développeur</th>
-            <th></th>
+            <th scope="col"></th>
         </tr>
     </thead>
 
@@ -72,9 +73,9 @@
 
             <td>
                 <button type="button" (click)="updateModalEditTask(task)" data-toggle="modal"
-                    data-target="#editTaskModal" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
-                <button type="button" (click)="removeTask(task._id)" class="btn btn-danger"><i
-                        class="fa fa-trash-o"></i></button>
+                    data-target="#editTaskModal" class="btn btn-info"><em class="fa fa-edit"></em></button>&nbsp;
+                <button type="button" (click)="removeTask(task._id)" class="btn btn-danger"><em
+                        class="fa fa-trash-o"></em></button>
             </td>
         </tr>
     </tbody>

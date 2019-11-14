@@ -1,13 +1,14 @@
 <div class="card-body">
     <h5 class="card-title">Liste des issues</h5>
     <a class="btn btn-success" data-toggle="collapse" href="#addIssue" role="button" aria-expanded="false"
-        aria-controls="addIssue">Ajouter <i class="fa fa-plus"></i></a>
+        aria-controls="addIssue">Ajouter <em class="fa fa-plus"></em></a>
 </div>
 
 <div class="collapse multi-collapse" id="addIssue">
 <div class="card card-body">
     <div class="col-md-6">
         <fieldset>
+            <legend>Nouvelle issue</legend>
             <form #newIssue="ngForm" (ngSubmit)="newIssue.valid">
                 <div class="from row">
                     <div class="form-group col-md-12">
@@ -62,7 +63,7 @@
         <th scope="col">Priorité </th>
         <th scope="col">Difficulté </th>
         <th scope="col">Status </th>
-        <th></th>
+        <th scope="col"></th>
     </tr>
 </thead>
 
@@ -76,9 +77,9 @@
 
         <td>
             <button type="button" (click)="updateModalEditIssue(issue)" data-toggle="modal"
-                data-target="#editIssueModal" class="btn btn-info"><i class="fa fa-edit"></i></button>&nbsp;
-            <button type="button" (click)="removeIssue(issue._id)" class="btn btn-danger"><i
-                    class="fa fa-trash-o"></i></button>
+                data-target="#editIssueModal" class="btn btn-info"><em class="fa fa-edit"></em></button>&nbsp;
+            <button type="button" (click)="removeIssue(issue._id)" class="btn btn-danger"><em
+                    class="fa fa-trash-o"></em></button>
         </td>
     </tr>
 </tbody>

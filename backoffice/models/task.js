@@ -8,10 +8,10 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    cout: { 
+    cout: {
         type: String
     },
-    developer: { 
+    developer: {
         type: String
     }
 

@@ -7,8 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-task',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss']
+  templateUrl: './task.component.html'
 })
 export class TaskComponent implements OnInit {
   project_id;

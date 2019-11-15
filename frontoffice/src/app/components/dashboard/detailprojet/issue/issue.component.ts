@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class IssueComponent implements OnInit {
   project_id;
   issues = [];
+  selectedItem;
   modelIssue: Issues = {
     issueID: '',
     description: '',
@@ -41,6 +42,8 @@ export class IssueComponent implements OnInit {
   getIssues() {
     this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
   }
+
+
   onSubmitIssue(form: NgForm) {
     this.issueService.addIssue(this.project_id, form.value).subscribe(
       res => {
@@ -78,4 +81,26 @@ export class IssueComponent implements OnInit {
       }
     );
   }
+
+  sort($event) {
+    if ($event !== undefined) {
+      const clicked = $event.$ngOptionLabel;
+      switch (clicked) {
+        case "ID": {
+          this.issues = this.issues.sort((a, b) => a.issueID.localeCompare(b.issueID))
+          break;
+        }
+        case "Priorité": {
+          this.issues = this.issues.sort((a, b) => a.priorite.localeCompare(b.priorite))
+          break;
+        }
+        case "Difficulté": {
+          this.issues = this.issues.sort((b, a) => a.difficulte.localeCompare(b.difficulte))
+          console.log(this.issues);
+          break;
+        }
+      }
+    }
+  }
+
 }

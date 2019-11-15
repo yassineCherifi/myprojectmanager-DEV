@@ -34,8 +34,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     IssueComponent,
     TaskComponent,
     SprintComponent,
-    DetailsprintComponent
-  
+    DetailsprintComponent  
   ],
   imports: [
     BrowserModule,

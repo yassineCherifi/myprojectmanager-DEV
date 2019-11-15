@@ -31,7 +31,7 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: |
-| US13 | |  | | TODO | 
+| US13 | add select input in issue-component.html with 3 option ("ID,Priorité,Difficulté) above the issue list table,add click event to this input to call the function sort(option) in controller, add the function sort(option) in issue-component-controller that take the option and sort the list in term of this option | 0.5  | CHERIFI | DONE | 
 
 ----------------------------------------------------------------------------------------------------------------------
 

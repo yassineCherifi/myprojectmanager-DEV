@@ -3,13 +3,14 @@
         <h4 class="card-title">{{ project?.title }}</h4>
         <p class="card-text" style="color: gray;">{{ project?.description }}</p>
         <a *ngIf="isCreator" class="btn btn-primary" data-toggle="collapse" href="#editproject" role="button"
-            aria-expanded="false" aria-controls="editproject">Editer <i class="fa fa-pencil"></i></a>
+            aria-expanded="false" aria-controls="editproject">Editer <em class="fa fa-pencil"></em></a>
     </div>
 
     <div class="collapse multi-collapse" id="editproject">
         <div class="card card-body">
             <div class="col-md-5">
                 <fieldset>
+                    <legend>Modifier le projet</legend>
                     <form #editproject="ngForm" (ngSubmit)="editProject(editproject)">
                         <div class="form-group">
                             <input style="width: 100%;" required type="email" [(ngModel)]="modelproject.title"

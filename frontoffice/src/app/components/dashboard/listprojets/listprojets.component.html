@@ -2,13 +2,14 @@
     <div class="card-body">
         <h3 class="card-title">Mes projets</h3>
         <a class="btn btn-success" data-toggle="collapse" href="#addproject" role="button"
-            aria-expanded="false" aria-controls="addproject">Nouveau projet  <i class="fa fa-plus"></i></a>
+            aria-expanded="false" aria-controls="addproject">Nouveau projet  <em class="fa fa-plus"></em></a>
     </div>
     <div class="collapse multi-collapse" id="addproject">
         <div class="card card-body">
             <div class="col-md-5">
                 <fieldset>
                     <form #newProject="ngForm" (ngSubmit)="newProject.valid">
+                        <legend>Nouveau projet</legend>
                         <div class="form-group">
                             <label for="title">Titre</label>
                             <input type="email" class="form-control" name="title" id="title" [(ngModel)]="model.title">
@@ -43,7 +44,7 @@
             <td>{{project?.creator?.name}}</td>
             <td>{{project?.status}}</td>
             <td *ngIf="project?.creator?._id === projects?.idlogged">
-                <button type="button" (click)="removeProject(project._id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <button type="button" (click)="removeProject(project._id)" class="btn btn-danger"><em class="fa fa-trash"></em></button>
             </td>
         </tr>
     </tbody>

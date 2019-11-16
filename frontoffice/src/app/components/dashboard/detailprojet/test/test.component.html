@@ -1,0 +1,173 @@
+<div class="card-body">
+    <h5 class="card-title">Liste des tests</h5>
+    <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false"
+        aria-controls="multiCollapseExample4">Ajouter <em class="fa fa-plus"></em></a>
+</div>
+<div class="collapse multi-collapse" id="multiCollapseExample4">
+    <div class="card card-body">
+        <div class="col-md-5">
+            <fieldset>
+                <legend>Nouveau test</legend>
+                <form #newTest="ngForm" (ngSubmit)="newTest.valid">
+                    <div class="from row">
+
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Titre" name="title" id="title"
+                                rows="1" [(ngModel)]="modelTest.title">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" placeholder="Décrire votre test"
+                                style="width: 100%;resize: none;" id="description" name="description"
+                                [(ngModel)]="modelTest.description" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="from row">
+                        <div class="form-group col">
+                            <select class="custom-select" id="type" name="type" [(ngModel)]="modelTest.type"
+                                [value]='0'>
+                                <option disabled value='0'>Type</option>
+                                <option>Test unitaire</option>
+                                <option>Test de validation</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Date" name="dp" [(ngModel)]="modelTest.date"
+                                    ngbDatepicker #d="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar fa fa-calendar"
+                                        (click)="d.toggle()" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="from row">
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Lien" name="Lien" id="lien" rows="3"
+                                [(ngModel)]="modelTest.link">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <select class="custom-select" id="status" name="status" [(ngModel)]="modelTest.status"
+                                [value]='0'>
+                                <option disabled value='0'>Statut</option>
+                                <option>En cours</option>
+                                <option>Terminé</option>
+                            </select>
+                        </div>
+                    </div>
+                    <a class="btn btn-success" (click)="onSubmitTest(newTest)" data-toggle="collapse"
+                        href="#multiCollapseExample4" role="button" aria-expanded="false"
+                        aria-controls="multiCollapseExample4">Confirmer</a>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="thead">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Type</th>
+            <th scope="col">Date</th>
+            <th scope="col">Lien</th>
+            <th scope="col">Statut</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let test of tests">
+            <td> </td>
+            <td>{{test?.title}}</td>
+            <td style="width: 40%;">{{test?.description}}</td>
+            <td>{{test?.type}}</td>
+            <td>{{test?.date}}</td>
+            <td>{{test?.link}}</td>
+            <td>{{test?.status}}</td>
+
+            <td>
+                <button type="button" (click)="updateModalEditTest(test)" data-toggle="modal"
+                    data-target="#editTestModal" class="btn btn-info"><em class="fa fa-edit"></em></button>&nbsp;
+                <button type="button" (click)="removeTest(test._id)" class="btn btn-danger"><em
+                        class="fa fa-trash-o"></em></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="editTestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editer test</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #editTest="ngForm" (ngSubmit)="editTest.valid">
+                    <div class="from row">
+
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Titre" name="title" id="title"
+                                rows="1" [(ngModel)]="modelTestEdit.title">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" placeholder="Décrire votre test"
+                                style="width: 100%;resize: none;" id="description" name="description"
+                                [(ngModel)]="modelTestEdit.description" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="from row">
+
+                        <div class="form-group col">
+                            <select class="custom-select" id="type" name="type" [(ngModel)]="modelTestEdit.type"
+                                [value]='0'>
+                                <option disabled value='0'>Type</option>
+                                <option>Test unitaire</option>
+                                <option>Test de validation</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Date" name="dp"
+                                    [(ngModel)]="modelTestEdit.date" ngbDatepicker #dedit="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar fa fa-calendar"
+                                        (click)="dedit.toggle()" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="from row">
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Lien" name="Lien" id="lien" rows="3"
+                                [(ngModel)]="modelTestEdit.link">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <select class="custom-select" id="status" name="status" [(ngModel)]="modelTestEdit.status"
+                                [value]='0'>
+                                <option disabled value='0'>Statut</option>
+                                <option>En cours</option>
+                                <option>Terminé</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" (click)="onSubmitEditTest(editTest)" data-dismiss="modal"
+                    class="btn btn-primary">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>

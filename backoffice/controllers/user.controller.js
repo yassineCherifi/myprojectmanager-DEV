@@ -17,6 +17,7 @@ module.exports.register = (req, res, next) => {
                 return next(err);
         }
     })
+    return;
 }
 
 module.exports.authenticate = (req, res, next) => {
@@ -30,6 +31,7 @@ module.exports.authenticate = (req, res, next) => {
             }
             else return res.status(404).json(info);
     })(req, res);
+    return;
 }
 
 module.exports.logout = (req, res, next) => {

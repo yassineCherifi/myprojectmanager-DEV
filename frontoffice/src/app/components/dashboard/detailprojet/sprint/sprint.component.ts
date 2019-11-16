@@ -36,8 +36,7 @@ export class SprintComponent implements OnInit {
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
-      this.project_id = params['id']; // true
-      console.log(this.project_id)
+      this.project_id = params['id'];
     })
     this.getSprints();
     this.modelDate = this.calendar.getToday();

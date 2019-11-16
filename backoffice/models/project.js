@@ -28,7 +28,10 @@ const projectSchema = new mongoose.Schema({
         ref: 'Task' }],
     sprints: [{
         type: Schema.Types.ObjectId,
-        ref: 'Sprint' }]
+        ref: 'Sprint' }],
+    tests: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Test' }]
 });
 
 

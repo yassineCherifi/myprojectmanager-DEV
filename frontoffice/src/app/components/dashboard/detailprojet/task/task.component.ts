@@ -32,8 +32,7 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
-      this.project_id = params['id']; // true
-      console.log(this.project_id)
+      this.project_id = params['id'];
     })
     this.getTasks();
     this.getIssues();
@@ -42,7 +41,6 @@ export class TaskComponent implements OnInit {
 
   getTasks() {
     this.tasksService.getTasks(this.project_id).subscribe(data => this.tasks = data['tasks']);
-    console.log(this.tasks);
   }
   getIssues() {
     this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
@@ -70,7 +68,6 @@ export class TaskComponent implements OnInit {
   }
 
   updateModalEditTask(task) {
-    console.log(task);
     this.modelTaskEdit._id = task._id;
     this.modelTaskEdit.cout = task.cout;
     this.modelTaskEdit.description = task.description;

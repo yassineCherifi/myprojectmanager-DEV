@@ -42,6 +42,7 @@ module.exports.insertProject = (req, res, next) => {
             });
         }
     });
+    return;
 };
 module.exports.editProject = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, (err, project) => {
@@ -56,6 +57,7 @@ module.exports.editProject = (req, res, next) => {
             });
         }
     });
+    return;
 };
 
 module.exports.deleteProject = (req, res, next) => {
@@ -63,4 +65,5 @@ module.exports.deleteProject = (req, res, next) => {
         if (err) return handleError(err);
         res.json({ success: "deleted with success" })
     });
+    return;
 };

@@ -11,6 +11,7 @@ import { IssueComponent } from './components/dashboard/detailprojet/issue/issue.
 import { TaskComponent } from './components/dashboard/detailprojet/task/task.component';
 import { SprintComponent } from './components/dashboard/detailprojet/sprint/sprint.component';
 import { DetailsprintComponent } from './components/dashboard/detailprojet/detailsprint/detailsprint.component';
+import { TestComponent } from './components/dashboard/detailprojet/test/test.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
           {path: '', redirectTo: 'issues',pathMatch: 'full'},
           {path: 'issues', component: IssueComponent},
           {path: 'tasks', component: TaskComponent},
+          {path: 'tests', component: TestComponent},
           {path: 'sprints', component: SprintComponent},
           {path: 'sprints/:idSprint', component: DetailsprintComponent}
         ]

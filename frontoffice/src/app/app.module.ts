@@ -22,6 +22,7 @@ import { SprintComponent } from './components/dashboard/detailprojet/sprint/spri
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DetailsprintComponent } from './components/dashboard/detailprojet/detailsprint/detailsprint.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TestComponent } from './components/dashboard/detailprojet/test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     IssueComponent,
     TaskComponent,
     SprintComponent,
-    DetailsprintComponent  
+    DetailsprintComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HttpClientModule,
     NgbModule,
     NgSelectModule
-    
   ],
   providers: [UserService,ProjetService,IssuesService,AuthGuard,
     {

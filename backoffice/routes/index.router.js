@@ -9,6 +9,7 @@ router.get('/logout',userContr.logout);
 router.get('/users',jwtVerify.verifyJwtToken,userContr.getUsers);
 
 router.get('/dashboard',jwtVerify.verifyJwtToken ,userContr.userDashboard);
-
+router.put('/edit', userContr.modifyUser);
+    
 
 module.exports = router;

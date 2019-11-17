@@ -41,6 +41,13 @@ export class UserService {
 
   }
 
+  getUser(email: string): Observable<User> {
+    return this.httpClient.get<User>(environment.API_URL + '/users' + email);
+  }
+
+  editUser(user: User) {
+    return this.httpClient.put(environment.API_URL + '/users' + user.email, user);
+}
 
   getUserInfos() {
 

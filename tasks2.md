@@ -3,7 +3,7 @@
 Taks list :
 
 | ID_issue | task_description | cost (day) | Developer | Definition of Done | Status | 
-| :-: | :-: | :-: | :-: | :-: |
+| :-: | :-: | :-: | :-: | :-: | :-: |
 | US04 | Add a route (put) to update user's infos | 0.5 |BOUYSSOU | Add the route (edit : "/users/:id") to update a user, in the middleware index.router.js. | TODO |
 | US04 | Create the function getUser which returns a user and its infos and modifyUser which modify the actual user's infos | 0.5 | BOUYSSOU | Create the functions "getUser, modifyUser" in user.controller.js which receives a get/put request from the index routes ,validate the fields for (inserting,updating) then put/get a user in/from the database. |TODO |
 | US04 | Create the component for the user's details : detailUser.component.html (which contains the fields of the user's infos to update : name, email, password), detailUser.component.ts and detailUser.componen.spec.ts | 0.5 | BOUYSSOU | In angular, create the component "detailUser" in the dashboard. Create the functions "getuser,editUser" in detailuser.component.ts which calls the functions of user.service.ts |  TODO |

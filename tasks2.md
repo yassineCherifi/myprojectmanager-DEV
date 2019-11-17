@@ -37,11 +37,11 @@ Taks list :
 
 | ID_issue | task_description | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: |
-| US18 | Modify the Project schema to add the test[] list as a field | 0.5 | MARTINEAU | TODO | 
-| US18 | Create mongoose schema that represents the test(id,title,description,type,date,link,status), add the routes (post: "/:idProject/tests" to create), (edit: /:idProject/tests/:idTest),(delete: /:idProject/tests/:idTest)| 0.5 | MARTINEAU | TODO | 
-| US18 | Create the functions "getTests,addTest,editTest,removeTest" in project-detail.controller.js that receives a get/post/put/delete request from the tests routes ,validate the fields for(inserting,updating) then get tests from the database or delete/put a test| 0.5 | MARTINEAU | TODO | 
-| US18 | In angular, create the functions "getTests,addTest,editTest,removeTest" in the detailproject components controller which will call the functions of tests.services.ts | 0.5 | MARTINEAU | TODO | 
-| US18 | In angular project add "./services/test.service.ts" which contains the methods "getTests,addTest,editTest,removeTest" that receives informations from detail-project-component controller and fetch the tests routes| 0.5 | MARITNEAU | TODO | 
+| US18 | Modify the Project schema to add the test[] list as a field | 0.5 | MARTINEAU | DONE | 
+| US18 | Create mongoose schema that represents the test(id,title,description,type,date,link,status), add the routes (post: "/:idProject/tests" to create), (edit: /:idProject/tests/:idTest),(delete: /:idProject/tests/:idTest)| 0.5 | MARTINEAU | DONE | 
+| US18 | Create the functions "getTests,addTest,editTest,removeTest" in project-detail.controller.js that receives a get/post/put/delete request from the tests routes ,validate the fields for(inserting,updating) then get tests from the database or delete/put a test| 0.5 | MARTINEAU | DONE | 
+| US18 | In angular, create the functions "getTests,addTest,editTest,removeTest" in the detailproject components controller which will call the functions of tests.services.ts | 0.5 | MARTINEAU | DONE | 
+| US18 | In angular project add "./services/test.service.ts" which contains the methods "getTests,addTest,editTest,removeTest" that receives informations from detail-project-component controller and fetch the tests routes| 0.5 | MARITNEAU | DONE | 
 ----------------------------------------------------------------------------------------------------------------------
 
 | ID_issue | task_description | cost (day) | Developer | Status |

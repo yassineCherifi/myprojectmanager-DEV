@@ -12,11 +12,9 @@ import { Tasks } from '../models/tasks.model';
 export class TasksService {
 
     constructor(private httpClient: HttpClient) { }
-   
-    getTasks(idProject): Observable<Tasks[]>{
-    
-      return this.httpClient.get<Tasks[]>(environment.API_URL + '/projects/' + idProject + '/tasks');
 
+    getTasks(idProject): Observable<Tasks[]>{
+      return this.httpClient.get<Tasks[]>(environment.API_URL + '/projects/' + idProject + '/tasks');
     }
 
     addTask(idProject, task){

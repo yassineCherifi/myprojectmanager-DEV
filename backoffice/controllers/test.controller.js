@@ -19,8 +19,8 @@ module.exports.createTest = (req, res, next) => {
     test.title = req.body.title;
     test.description = req.body.description;
     test.type = req.body.type;
-    test.date = req.body.date;
-    test.link = req.body.link;
+    test.date = req.body.dp;
+    test.link = req.body.Lien;
     test.status = req.body.status;
     test.save()
         .then((result) => {

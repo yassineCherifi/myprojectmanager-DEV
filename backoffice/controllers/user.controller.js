@@ -16,8 +16,8 @@ module.exports.register = (req, res, next) => {
             else
                 return next(err);
         }
+        return;
     })
-    return;
 }
 
 module.exports.authenticate = (req, res, next) => {
@@ -28,10 +28,10 @@ module.exports.authenticate = (req, res, next) => {
                 const token = user.generateJwt();
                 res.cookie('token', token, { maxAge: 3600 * 60 * 1000,httpOnly: true});
                 res.status(200).json({ "token": token });
+                return;
             }
             else return res.status(404).json(info);
     })(req, res);
-    return;
 }
 
 module.exports.logout = (req, res, next) => {

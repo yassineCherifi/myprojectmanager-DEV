@@ -10,19 +10,18 @@ Taks list :
 | US04 | In angular, add the methods "getuser,editUser" to user.service.ts | getUser return a user from a list of User, editUser changes the attributes of the user : name, email and password | 0.5 | BOUYSSOU | TODO |
 
 ----------------------------------------------------------------------------------------------------------------------
-
-| ID_issue | task_description | cost (day) | Developer | Definition of Done |  Status |
+| ID_issue | task_description | Definition of Done | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US10 | Create the mongoose schema that represents the sprint(title, startDate, endDate, status, issues[]), in the middleware "backoffice/routes/projects.router.js" add the routes (post: "/:idProject/sprints" to create),(put: "/:idProject/sprints/:idSprint" to update),(delete: "/:idProject/sprints/:idSprint" to delete ) | 0.5 | MARTINEAU | | DONE |
-| US10 | Create the functions "getSprints, getStrint, createSprint, editSprint, deleteSprint" in sprint.controller.js that receives a get/post/put/delete request from the sprints routes ,validate the fields for (inserting,updating) then get sprints from the database or delete/put a sprint | 0.5 | MARTINEAU | | DONE |  
-| US10 | In /frontoffice, create the component "sprint" and create the functions "getSprints, onSubmitSprint, updateModalEditSprint, onSubmitTEditSprint, removeSprint" in sprint.component.ts which will call the functions of sprint.services.ts | 0.5 | MARTINEAU | | DONE |  
-| US10 | In /frontoffice, add "services/sprint.service.ts" which contains the methods "getSprints, getSprint, addSprint,editSprint,removeSprint" that receives informations from sprint.component.ts and fetch the sprints routes | 0.5 | MARTINEAU | | DONE | 
+| US10 | Create the mongoose schema that represents the sprint. Add the corresponding routes in /backoffice. | The schema Sprint(title, startDate, endDate, status, issues[]) is defined in "backoffice/models/sprint.js". In the middleware "backoffice/routes/projects.router.js" , the routes post("/:idProject/sprints"), put("/:idProject/sprints/:idSprint") and delete("/:idProject/sprints/:idSprint") have been added | 0.5 | MARTINEAU | DONE |
+| US10 | Create the functions in sprint.controller.js that receives a get/post/put/delete request from the sprints routes , validate the fields for inserting/updating then get sprints from the database or delete/put a sprint | The functions "getSprints, getStrint, createSprint, editSprint, deleteSprint" have been added to sprint.controller.js | 0.5 | MARTINEAU | DONE |  
+| US10 | In /frontoffice, create the component "sprint" and create the functions which manage sprints using the sprint service | In /frontoffice, there's a "components/dashboard/detailproject/sprint" directory with the sprint.component.html and sprint.component.ts files. The sprint.component.ts file contains the methods "getSprints, onSubmitSprint, updateModalEditSprint, onSubmitTEditSprint, removeSprint" which call the functions of sprint.services.ts | 0.5 | MARTINEAU | DONE |  
+| US10 | In /frontoffice, create the sprint service | The file "services/sprint.service.ts" has been created and contains the methods "getSprints, getSprint, addSprint,editSprint,removeSprint" which receives information from sprint.component.ts and fetch the sprints routes | 0.5 | MARTINEAU | DONE | 
 
 ----------------------------------------------------------------------------------------------------------------------
 
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US11, US14 | Add the issues routes in the sprint routes to add and remove issues from a sprint | Create the routes (post : "/:idProject/sprints/:idSprint/issues" to add an issue), (put: "/:idProject/sprints/:idSprint/issues/:idIssue" to update), (delete: "/:idProject/sprints/:idSprint/issues/:idIssue" to delete )| 0.5 | CHERIFI | DONE | 
+| US11, US14 | Add the issues routes in the sprint routes to add and remove issues from a sprint | The routes post("/:idProject/sprints/:idSprint/issues"), put("/:idProject/sprints/:idSprint/issues/:idIssue") and delete("/:idProject/sprints/:idSprint/issues/:idIssue") have been added | 0.5 | CHERIFI | DONE | 
 | US11, US14 | Add methods to add issue and remove it from a sprint | Add a method "onAdd, removeIssueFromSprint, onSubmitEditIssue, updateModalEditIssue" to the detailsprint.component.ts | 0.5 | CHERIFI | DONE | 
 | US11, US14, US12 | Add an input to add issues and a table to display them | In /frontoffice, in detailsprint.component.html, add the select input "Add issues to the sprint". Then, display a list of issues to select, the selection event will call the onAdd() function which will call the method addIssueSprint in the sprint service. Add a trash icon which will call the method removeIssue in the sprint service | 0.5 | CHERIFI | DONE | 
 | US11, US14 | Add a method to add/remove an issue in the sprint service | In "./services/sprint.service.ts", add the methods "addIssueSprint,removeIssue"| 0.5 | CHERIFI | DONE | 

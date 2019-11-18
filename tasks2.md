@@ -22,16 +22,16 @@ Taks list :
 
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US11, US14 | add the issues routes in the sprint routes to add and remove issues from a sprint | Create the routes (post : "/:idProject/sprints/:idSprint/issues" to add an issue), (put: "/:idProject/sprints/:idSprint/issues/:idIssue" to update), (delete: "/:idProject/sprints/:idSprint/issues/:idIssue" to delete )| 0.5 | CHERIFI | DONE | 
-| US11, US14 | add methods to add issue and romove it from a sprint | Add a method "addIssuesToSprint, removeIssuesToSprint" to the details-project controller| 0.5 | CHERIFI | DONE | 
-| US11, US14, US12 | add an input to add issues and a table to display them | In angular, in sprint-detail component view, add the select input  "Add issues to the sprint". Then, display a list of issues to select, the selection event will call onSubmit function which will call the method addIssues in the sprint service. add trash icone which will call the method removeIssues in the sprint service | 0.5 | CHERIFI | DONE | 
-| US11, US14 | add method to add/remove issue in the sprint service | In angular, in "./services/sprint.service.ts", add the methods "addIssues,removeIssues"| 0.5 | CHERIFI | DONE | 
+| US11, US14 | Add the issues routes in the sprint routes to add and remove issues from a sprint | Create the routes (post : "/:idProject/sprints/:idSprint/issues" to add an issue), (put: "/:idProject/sprints/:idSprint/issues/:idIssue" to update), (delete: "/:idProject/sprints/:idSprint/issues/:idIssue" to delete )| 0.5 | CHERIFI | DONE | 
+| US11, US14 | Add methods to add issue and remove it from a sprint | Add a method "onAdd, removeIssueFromSprint, onSubmitEditIssue, updateModalEditIssue" to the detailsprint.component.ts | 0.5 | CHERIFI | DONE | 
+| US11, US14, US12 | Add an input to add issues and a table to display them | In /frontoffice, in detailsprint.component.html, add the select input "Add issues to the sprint". Then, display a list of issues to select, the selection event will call the onAdd() function which will call the method addIssueSprint in the sprint service. Add a trash icon which will call the method removeIssue in the sprint service | 0.5 | CHERIFI | DONE | 
+| US11, US14 | Add a method to add/remove an issue in the sprint service | In "./services/sprint.service.ts", add the methods "addIssueSprint,removeIssue"| 0.5 | CHERIFI | DONE | 
 
 ----------------------------------------------------------------------------------------------------------------------
 
 | ID_issue | task_description |  Definition of Done | cost (day) | Developer | Status |
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US13 | add selection input in the view and the sort function in detail sprint controller| add select input in issue-component.html with 3 option ("ID,Priorité,Difficulté) above the issue list table,add click event to this input to call the function sort(option) in controller, add the function sort(option) in issue-component-controller that take the option and sort the list in term of this option | 0.5  | CHERIFI | DONE | 
+| US13 | Add a selection input in the view and the sort function in detail sprint controller| add select input in issue-component.html with 3 option ("ID,Priorité,Difficulté) above the issue list table,add click event to this input to call the function sort(option) in controller, add the function sort(option) in issue-component-controller that take the option and sort the list in term of this option | 0.5  | CHERIFI | DONE | 
 
 ----------------------------------------------------------------------------------------------------------------------
 

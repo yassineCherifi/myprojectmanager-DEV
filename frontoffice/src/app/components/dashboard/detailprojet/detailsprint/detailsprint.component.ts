@@ -31,8 +31,6 @@ export class DetailsprintComponent implements OnInit {
 
   ngOnInit() {
     this.getSprint();
-
-
   }
 
   getSprint() {
@@ -50,8 +48,6 @@ export class DetailsprintComponent implements OnInit {
         this.issues = res;
       });
     })
-   
-
   }
 
   onAdd($event) {

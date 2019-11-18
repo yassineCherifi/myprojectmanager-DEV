@@ -7,8 +7,7 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-userdetail',
-  templateUrl: './userdetail.component.html',
-  styleUrls: ['./userdetail.component.scss']
+  templateUrl: './userdetail.component.html'
 })
 export class UserdetailComponent implements OnInit {
 
@@ -17,7 +16,7 @@ export class UserdetailComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-   
+
   }
 
    onSubmit(form: NgForm) {

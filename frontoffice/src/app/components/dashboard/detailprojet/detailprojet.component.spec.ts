@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailprojetComponent } from './detailprojet.component';
+import { FormsModule } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 describe('DetailprojetComponent', () => {
   let component: DetailprojetComponent;
@@ -8,7 +13,8 @@ describe('DetailprojetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailprojetComponent ]
+      declarations: [ DetailprojetComponent, AppComponent ],
+      imports: [ FormsModule, NgSelectModule ,RouterTestingModule, HttpClientTestingModule ],
     })
     .compileComponents();
   }));

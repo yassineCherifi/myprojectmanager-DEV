@@ -29,7 +29,7 @@ module.exports.getProjectDetails = (req, res, next) => {
 
 module.exports.insertProject = (req, res, next) => {
     User.findOne({ _id: req._id }, (err, user) => {
-        if (!user) return res.status(404).json({ status: false, message: "Utilisateur non trouvé" })
+        if (!user) res.status(404).json({ status: false, message: "Utilisateur non trouvé" })
         else {
             const project = new Project();
             project.title = req.body.title;
@@ -41,12 +41,11 @@ module.exports.insertProject = (req, res, next) => {
                     res.send(project);
             });
         }
-        return;
     });
 };
 module.exports.editProject = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, (err, project) => {
-        if (!project) return res.status(404).json({ status: false, message: "Projet non trouvé" })
+        if (!project) res.status(404).json({ status: false, message: "Projet non trouvé" })
         else {
             project.title = req.body.title;
             project.description = req.body.description;
@@ -56,14 +55,12 @@ module.exports.editProject = (req, res, next) => {
                     res.send({ success: "Updated with success" });
             });
         }
-        return;
     });
 };
 
 module.exports.deleteProject = (req, res, next) => {
     Project.deleteOne({ _id: req.params.id }, function (err) {
-        if (err) return handleError(err);
-        res.json({ success: "deleted with success" })
-        return;
+        if (err) handleError(err);
+        res.json({ success: "deleted with success" });
     });
 };

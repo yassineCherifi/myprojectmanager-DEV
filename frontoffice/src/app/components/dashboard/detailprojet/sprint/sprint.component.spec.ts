@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SprintComponent } from './sprint.component';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SprintComponent', () => {
   let component: SprintComponent;
@@ -8,7 +12,11 @@ describe('SprintComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SprintComponent ]
+      declarations: [ SprintComponent ],
+      imports: [ FormsModule,
+                 NgbModule,
+                 RouterTestingModule,
+                 HttpClientTestingModule ],
     })
     .compileComponents();
   }));

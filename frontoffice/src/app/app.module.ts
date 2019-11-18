@@ -23,6 +23,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DetailsprintComponent } from './components/dashboard/detailprojet/detailsprint/detailsprint.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TestComponent } from './components/dashboard/detailprojet/test/test.component';
+import { UserdetailComponent } from './components/dashboard/userdetail/userdetail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { TestComponent } from './components/dashboard/detailprojet/test/test.com
     TaskComponent,
     SprintComponent,
     DetailsprintComponent,
-    TestComponent
+    TestComponent,
+    UserdetailComponent
   ],
   imports: [
     BrowserModule,

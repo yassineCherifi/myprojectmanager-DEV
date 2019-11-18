@@ -24,7 +24,7 @@ export class UserService {
   login(infos) {
     return this.httpClient.post(environment.API_URL + '/login', infos);
   }
-  
+
   getUsers() : Observable<User[]>{
     return this.httpClient.get<User[]>(environment.API_URL + '/users');
   }
@@ -46,7 +46,8 @@ export class UserService {
   }
 
   editUser(user: User) {
-    return this.httpClient.put(environment.API_URL + '/users' + user.email, user);
+    console.log(user);
+    return this.httpClient.put(environment.API_URL + '/users/' + this.getIDOflogged(), user);
 }
 
   getUserInfos() {

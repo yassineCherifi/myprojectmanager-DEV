@@ -7,8 +7,9 @@ router.post('/register',userContr.register);
 router.post('/login',userContr.authenticate);
 router.get('/logout',userContr.logout);
 router.get('/users',jwtVerify.verifyJwtToken,userContr.getUsers);
+router.put('/users/:idUser', userContr.modifyUser);
 
 router.get('/dashboard',jwtVerify.verifyJwtToken ,userContr.userDashboard);
-router.put('/edit', userContr.modifyUser);
+
 
 module.exports = router;

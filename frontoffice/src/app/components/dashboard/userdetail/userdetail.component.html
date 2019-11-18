@@ -1,14 +1,16 @@
 <div class="col-md-6">
   <h2 class="text-center">Edit User</h2>
-  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <form #editForm="ngForm" (ngSubmit)="editForm.valid">
     <div class="form-group">
       <label for="email">Email address:</label>
-      <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email">
+      <input type="email" placeholder="Email" name="email" class="form-control" id="email"
+      [(ngModel)]="this.userService.user.email">
     </div>
     <div class="form-group">
       <label for="name">First Name:</label>
-      <input formControlName="Name" placeholder="Name" name="Name" class="form-control" id="Name">
+      <input placeholder="Name" name="Name" class="form-control" id="Name"
+      [(ngModel)]="this.userService.user.name">
     </div>
-    <button class="btn btn-success">Update</button>
+    <button class="btn btn-success" (click)="onSubmit(editForm)">Update</button>
   </form>
 </div>

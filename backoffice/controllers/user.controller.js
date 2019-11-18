@@ -53,12 +53,13 @@ module.exports.getUsers = (req, res, next) => {
     });
 }
 module.exports.modifyUser = (req, res, next) => {
-    User.findOne({_id : req._id},(err, user) => {
+    console.log(req.params)
+    User.findOne({_id : req.params.idUser},(err, user) => {
         if (!user) return res.status(404).json({status: false, message: "Utilisateur non trouvé"})
-        user.name = req.body.name;
+        user.name = req.body.Name;
         user.email = req.body.email;
-        user.password = req.body.password;
-
+        //user.password = req.body.password;
+        console.log("user : "+user);
         user.save((err, doc) => {
             if (!err)
                 res.send(doc);

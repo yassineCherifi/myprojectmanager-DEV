@@ -12,6 +12,7 @@ import { TaskComponent } from './components/dashboard/detailprojet/task/task.com
 import { SprintComponent } from './components/dashboard/detailprojet/sprint/sprint.component';
 import { DetailsprintComponent } from './components/dashboard/detailprojet/detailsprint/detailsprint.component';
 import { TestComponent } from './components/dashboard/detailprojet/test/test.component';
+import { UserdetailComponent } from './components/dashboard/userdetail/userdetail.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
       { path: 'projects', component: ListprojetsComponent, pathMatch: 'full' },
+      { path: 'edit', component: UserdetailComponent},
       {
         path: 'projects/:id', component: DetailprojetComponent,children: [
           {path: '', redirectTo: 'issues',pathMatch: 'full'},

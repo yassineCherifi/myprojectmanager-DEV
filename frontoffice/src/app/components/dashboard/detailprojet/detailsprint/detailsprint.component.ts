@@ -13,6 +13,8 @@ import { NgForm } from '@angular/forms';
 export class DetailsprintComponent implements OnInit {
   project_id;
   sprintID;
+  nbrDifficulte : number = 0;
+  nbrDifficulteRes : number = 0;
   sprint = {};
   issues = [];
   selectedItems;
@@ -46,8 +48,18 @@ export class DetailsprintComponent implements OnInit {
         let res = data['issues'].filter(item1 =>
           !this.sprint['issues'].some(item2 => (item2._id === item1._id)))
         this.issues = res;
+        this.nbrDifficulte = 0;
+        this.nbrDifficulteRes = 0;
+        this.sprint['issues'].forEach(e => {
+          this.nbrDifficulte = this.nbrDifficulte + parseInt(e.difficulte)
+          if(e.status === "Terminé")
+          this.nbrDifficulteRes = this.nbrDifficulteRes + parseInt(e.difficulte);
+        });
       });
+  
     })
+
+
   }
 
   onAdd($event) {

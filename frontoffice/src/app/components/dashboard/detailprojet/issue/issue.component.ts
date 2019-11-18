@@ -95,7 +95,7 @@ export class IssueComponent implements OnInit {
           break;
         }
         case "Difficulté": {
-          this.issues = this.issues.sort((b, a) => a.difficulte.localeCompare(b.difficulte))
+          this.issues = this.issues.sort((a, b) => a.difficulte.localeCompare(b.difficulte))
           console.log(this.issues);
           break;
         }

@@ -59,7 +59,7 @@ module.exports.modifyUser = (req, res, next) => {
         user.name = req.body.Name;
         user.email = req.body.email;
         //user.password = req.body.password;
-        console.log("user : "+user);
+        //console.log("user : "+user);
         user.save((err, doc) => {
             if (!err)
                 res.send(doc);

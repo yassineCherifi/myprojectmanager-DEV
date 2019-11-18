@@ -25,7 +25,8 @@ export class DetailprojetComponent implements OnInit {
 
   modelproject = {
     title: '',
-    description: ''
+    description: '',
+    status: ''
   }
   idLogged;
   isCreator: boolean = false;
@@ -47,6 +48,7 @@ export class DetailprojetComponent implements OnInit {
       }
       this.modelproject.title = this.project.title;
       this.modelproject.description = this.project.description;
+      this.modelproject.status = this.project.status;
     });
   }
 

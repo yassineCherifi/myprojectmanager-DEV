@@ -56,8 +56,6 @@ module.exports.modifyUser = (req, res, next) => {
         if (!user) res.status(404).json({status: false, message: "Utilisateur non trouvé"})
         user.name = req.body.Name;
         user.email = req.body.email;
-        //user.password = req.body.password;
-        //console.log("user : "+user);
         user.save((err, doc) => {
             if (!err)
                 res.send(doc);

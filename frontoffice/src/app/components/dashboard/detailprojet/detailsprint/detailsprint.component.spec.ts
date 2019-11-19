@@ -5,6 +5,23 @@ import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, Params, Data, ActivatedRouteSnapshot, convertToParamMap } from '@angular/router';
+import { of } from 'rxjs';
+
+
+class MockActivatedRoute {
+  snapshot = {
+    paramMap: convertToParamMap({
+      id: '1'
+    })
+  }
+  parent = {
+    routeConfig: { children: { filter: () => {} } },
+    params: { subscribe: jasmine.createSpy('subscribe')
+    .and
+    .returnValue(of(<Params>{id: 1}))}
+  };
+}
 
 describe('DetailsprintComponent', () => {
   let component: DetailsprintComponent;
@@ -13,7 +30,12 @@ describe('DetailsprintComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DetailsprintComponent ],
-      imports: [FormsModule, NgSelectModule, HttpClientTestingModule, RouterTestingModule],
+      imports: [FormsModule, NgSelectModule, HttpClientTestingModule,
+                RouterTestingModule.withRoutes([])],
+      providers: [{
+        provide: ActivatedRoute,
+        useClass: MockActivatedRoute
+      }]
     })
     .compileComponents();
   }));

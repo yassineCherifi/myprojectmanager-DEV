@@ -5,6 +5,22 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { convertToParamMap, Params, ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+
+class MockActivatedRoute {
+  snapshot = {
+    paramMap: convertToParamMap({
+      id: '1'
+    })
+  }
+  parent = {
+    routeConfig: { children: { filter: () => {} } },
+    params: { subscribe: jasmine.createSpy('subscribe')
+    .and
+    .returnValue(of(<Params>{id: 1}))}
+  };
+}
 
 describe('SprintComponent', () => {
   let component: SprintComponent;
@@ -17,6 +33,10 @@ describe('SprintComponent', () => {
                  NgbModule,
                  RouterTestingModule,
                  HttpClientTestingModule ],
+      providers: [{
+                 provide: ActivatedRoute,
+                 useClass: MockActivatedRoute
+                }]
     })
     .compileComponents();
   }));

@@ -6,7 +6,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from 'src/app/app.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, convertToParamMap, Params } from '@angular/router';
+import { of } from 'rxjs';
 
+
+class MockActivatedRoute {
+  snapshot = {
+    paramMap: convertToParamMap({
+      id: '1'
+    })
+  }
+  parent = {
+    routeConfig: { children: { filter: () => {} } },
+    params: { subscribe: jasmine.createSpy('subscribe')
+    .and
+    .returnValue(of(<Params>{id: 1}))}
+  };
+}
 describe('TestComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
@@ -18,6 +34,10 @@ describe('TestComponent', () => {
                 NgbModule,
                 RouterTestingModule,
                 HttpClientTestingModule],
+      providers: [{
+                provide: ActivatedRoute,
+                useClass: MockActivatedRoute
+                }]
     })
     .compileComponents();
   }));

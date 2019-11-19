@@ -4,6 +4,23 @@ import { TaskComponent } from './task.component';
 import { FormsModule} from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { convertToParamMap, Params, ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+
+class MockActivatedRoute {
+  snapshot = {
+    paramMap: convertToParamMap({
+      id: '1'
+    })
+  }
+  parent = {
+    routeConfig: { children: { filter: () => {} } },
+    params: { subscribe: jasmine.createSpy('subscribe')
+    .and
+    .returnValue(of(<Params>{id: 1}))}
+  };
+}
+
 
 describe('TaskComponent', () => {
   let component: TaskComponent;
@@ -13,6 +30,10 @@ describe('TaskComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TaskComponent ],
       imports: [HttpClientTestingModule, FormsModule, RouterTestingModule],
+      providers: [{
+        provide: ActivatedRoute,
+        useClass: MockActivatedRoute
+      }]
     })
     .compileComponents();
   }));

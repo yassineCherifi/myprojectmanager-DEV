@@ -26,7 +26,6 @@ export class ReleasesService {
     }
 
     removeRelease(idProject, id){
-      console.log(idProject + " hhhh" + id);
       return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/releases/' + id);
     }
 

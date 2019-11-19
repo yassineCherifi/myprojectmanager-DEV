@@ -12,16 +12,16 @@ module.exports.getReleases = (req, res, next) => {
             res.json({ releases: project.releases })
         });
 
-};
+};  
 
-module.exports.createReleases = (req, res, next) => {
+module.exports.createRelease = (req, res, next) => {
     const release = new Release();
     release.title = req.body.title;
     release.description = req.body.description;
     release.version = req.body.version;
-    release.date = req.body.dp;
-    release.sprintNumber = req.body.sprintNumber;
+    release.date = req.body.date;
     release.link = req.body.link;
+    release.sprintNumber = req.body.sprintNumber;
     release.save()
         .then((result) => {
             Project.findOne({ _id: req.params.id }, (err, project) => {
@@ -37,7 +37,7 @@ module.exports.createReleases = (req, res, next) => {
         });
 };
 
-module.exports.editReleases = (req, res, next) => {
+module.exports.editRelease = (req, res, next) => {
     Project.findOne({ _id: req.params.id })
         .populate({
             path: 'releases',
@@ -61,7 +61,7 @@ module.exports.editReleases = (req, res, next) => {
         });
 };
 
-module.exports.deleteReleases = (req, res, next) => {
+module.exports.deleteRelease = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: "no project found" })
         Release.deleteOne({ _id: req.params.idRelease }, function (err, removed) {

@@ -13,7 +13,7 @@ import { SprintComponent } from './components/dashboard/detailprojet/sprint/spri
 import { DetailsprintComponent } from './components/dashboard/detailprojet/detailsprint/detailsprint.component';
 import { TestComponent } from './components/dashboard/detailprojet/test/test.component';
 import { UserdetailComponent } from './components/dashboard/userdetail/userdetail.component';
-
+import { ReleaseComponent } from './components/dashboard/detailprojet/release/release.component';
 const routes: Routes = [
   {
     path: 'register', component: UserComponent,
@@ -40,7 +40,10 @@ const routes: Routes = [
           {path: 'tasks', component: TaskComponent},
           {path: 'tests', component: TestComponent},
           {path: 'sprints', component: SprintComponent},
-          {path: 'sprints/:idSprint', component: DetailsprintComponent}
+          {path: 'sprints/:idSprint', component: DetailsprintComponent},
+          {path: 'tests', component: TestComponent},
+          {path: 'releases', component: ReleaseComponent}
+
         ] 
         
       }   

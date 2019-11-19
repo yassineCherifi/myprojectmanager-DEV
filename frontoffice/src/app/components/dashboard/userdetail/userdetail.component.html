@@ -7,10 +7,11 @@
       [(ngModel)]="this.userService.user.email">
     </div>
     <div class="form-group">
-      <label for="name">First Name:</label>
+      <label for="name">Name:</label>
       <input placeholder="Name" name="Name" class="form-control" id="Name"
       [(ngModel)]="this.userService.user.name">
     </div>
+
     <button class="btn btn-success" (click)="onSubmit(editForm)">Update</button>
   </form>
 </div>

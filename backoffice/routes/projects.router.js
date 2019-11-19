@@ -16,7 +16,7 @@ router.put('/:id',projContr.editProject);
 
 router.get('/:id/issues',issueContr.getIssues);
 router.post('/:id/issues',issueContr.createIssue);
-router.delete('/:id/issues/:idIssue',issueContr.deleteIssue);
+router.delete('/:id/issues/:    ',issueContr.deleteIssue);
 router.put('/:id/issues/:idIssue',issueContr.editIssue);
 
 router.get('/:id/tasks',taskContr.getTasks);
@@ -39,9 +39,10 @@ router.put('/:id/tests/:idTest',testContr.editTest);
 router.delete('/:id/tests/:idTest',testContr.deleteTest);
 
 router.get('/:id/releases',releaseContr.getReleases);
-router.post('/:id/releases', releaseContr.createReleases);
-router.put('/:id/tests/:releases',releaseContr.editReleases);
-router.delete('/:id/tests/:releases',releaseContr.deleteReleases);
+router.post('/:id/releases', releaseContr.createRelease);
+router.put('/:id/releases/:idRelease',releaseContr.editRelease);
+router.delete('/:id/releases/:idRelease',releaseContr.deleteRelease);
 
 
 module.exports = router;
+        

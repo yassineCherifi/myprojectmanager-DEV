@@ -24,7 +24,7 @@ import { DetailsprintComponent } from './components/dashboard/detailprojet/detai
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TestComponent } from './components/dashboard/detailprojet/test/test.component';
 import { UserdetailComponent } from './components/dashboard/userdetail/userdetail.component';
-//import { ReleaseComponent } from './components/dashboard/detailprojet/release/release';
+import { ReleaseComponent } from './components/dashboard/detailprojet/release/release.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,7 @@ import { UserdetailComponent } from './components/dashboard/userdetail/userdetai
     DetailsprintComponent,
     TestComponent,
     UserdetailComponent,
-    //ReleaseComponent
+    ReleaseComponent
   ],
   imports: [
     BrowserModule,

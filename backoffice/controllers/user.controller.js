@@ -50,6 +50,7 @@ module.exports.getUsers = (req, res, next) => {
         else res.status(200).json({users:users});
     });
 }
+
 module.exports.modifyUser = (req, res, next) => {
     console.log(req.params)
     User.findOne({_id : req.params.idUser},(err, user) => {

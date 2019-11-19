@@ -1,0 +1,168 @@
+<div class="card-body">
+    <h5 class="card-title">Liste des releases</h5>
+    <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false"
+        aria-controls="multiCollapseExample4">Ajouter <em class="fa fa-plus"></em></a>
+</div>
+<div class="collapse multi-collapse" id="multiCollapseExample4">
+    <div class="card card-body">
+        <div class="col-md-5">
+            <fieldset>
+                <legend>Nouvelle release</legend>
+                <form #newRelease="ngForm" (ngSubmit)="newRelease.valid">
+                    <div class="from row">
+
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Titre" name="title" id="title"
+                                rows="1" [(ngModel)]="modelRelease.title">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" placeholder="Décrire votre release"
+                                style="width: 100%;resize: none;" id="description" name="description"
+                                [(ngModel)]="modelRelease.description" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="from row">
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Version" name="version" id="version"
+                                rows="1" [(ngModel)]="modelRelease.version">
+                        </div>
+                        <div class="form-group col">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Date" name="date" [(ngModel)]="modelRelease.date"
+                                    ngbDatepicker #d="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar fa fa-calendar"
+                                        (click)="d.toggle()" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="from row">
+                       
+                            <div class="form-group col">
+                                    <select class="custom-select" id="sprintNumber" name="sprintNumber" [(ngModel)]="modelRelease.sprintNumber">
+                                        <option disabled value='0'>Choisir le sprint</option>
+                                        <option [value]='sprint?.title' *ngFor="let sprint of sprints">
+                                            {{sprint?.title}} 
+                                    </select>
+                                </div>
+
+                        <div class="form-group col">    
+                                <input type="email" class="form-control" placeholder="Link" name="link" id="link" rows="3"
+                                    [(ngModel)]="modelRelease.link">
+                        </div>
+                    </div>
+                    <a class="btn btn-success" (click)="onSubmitRelease(newRelease)" data-toggle="collapse"
+                        href="#multiCollapseExample4" role="button" aria-expanded="false"
+                        aria-controls="multiCollapseExample4">Confirmer</a>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <caption>Liste des Releases</caption>
+    <thead class="thead">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Version</th>
+            <th scope="col">Date</th>
+            <th scope="col">Sprint</th>
+            <th scope="col">Lien</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let release of releases">
+            <td> </td>
+            <td>{{release?.title}}</td>
+            <td style="width: 40%;">{{release?.description}}</td>
+            <td>{{release?.version}}</td>
+            <td>{{release?.date}}</td>
+            <td>{{release?.sprintNumber}}</td>
+            <td>{{release?.link}}</td>
+
+            <td>
+                <button type="button" (click)="updateModalEditRelease(release)" data-toggle="modal"
+                    data-target="#editReleaseModal" class="btn btn-info"><em class="fa fa-edit"></em></button>&nbsp;
+                <button type="button" (click)="removeRelease(release._id)" class="btn btn-danger"><em
+                        class="fa fa-trash-o"></em></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="editReleaseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editer release</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #editRelease="ngForm" (ngSubmit)="editRelease.valid">
+                    <div class="from row">
+
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Titre" name="title" id="title"
+                                rows="1" [(ngModel)]="modelReleaseEdit.title">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" placeholder="Décrire votre release"
+                                style="width: 100%;resize: none;" id="description" name="description"
+                                [(ngModel)]="modelReleaseEdit.description" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="from row">
+
+                            <div class="form-group col">
+                                    <input type="email" class="form-control" placeholder="Version" name="version" id="version"
+                                        rows="1" [(ngModel)]="modelReleaseEdit.version">
+                                </div>
+                        <div class="form-group col">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Date" name="date"
+                                    [(ngModel)]="modelReleaseEdit.date" ngbDatepicker #dedit="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar fa fa-calendar"
+                                        (click)="dedit.toggle()" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="from row">
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Link" name="link" id="link" rows="3"
+                                [(ngModel)]="modelReleaseEdit.link">
+                        </div>
+                            <div class="form-group col">
+                                    <select class="custom-select" id="sprintNumber" name="sprintNumber" [(ngModel)]="modelReleaseEdit.sprintNumber">
+                                        <option disabled value='0'>Choisir le sprint</option>
+                                        <option [value]='sprint?.title' *ngFor="let sprint of sprints">
+                                            {{sprint?.title}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" (click)="onSubmitEditRelease(editRelease)" data-dismiss="modal"
+                    class="btn btn-primary">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>

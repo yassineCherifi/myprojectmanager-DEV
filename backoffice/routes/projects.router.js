@@ -5,6 +5,7 @@ const issueContr = require('../controllers/issue.controller');
 const taskContr = require('../controllers/task.controller');
 const sprintContr = require('../controllers/sprint.controller');
 const testContr = require('../controllers/test.controller');
+const releaseContr = require('../controllers/release.controller');
 
 router.get('',projContr.getAllProjects);
 
@@ -36,5 +37,11 @@ router.get('/:id/tests',testContr.getTests);
 router.post('/:id/tests', testContr.createTest);
 router.put('/:id/tests/:idTest',testContr.editTest);
 router.delete('/:id/tests/:idTest',testContr.deleteTest);
+
+router.get('/:id/releases',releaseContr.getReleases);
+router.post('/:id/releases', releaseContr.createReleases);
+router.put('/:id/tests/:releases',releaseContr.editReleases);
+router.delete('/:id/tests/:releases',releaseContr.deleteReleases);
+
 
 module.exports = router;

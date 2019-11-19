@@ -31,7 +31,8 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
       { path: 'projects', component: ListprojetsComponent, pathMatch: 'full' },
-      { path: 'edit', component: UserdetailComponent},
+      { path: 'userdetail', component: UserdetailComponent},
+
       {
         path: 'projects/:id', component: DetailprojetComponent,children: [
           {path: '', redirectTo: 'issues',pathMatch: 'full'},
@@ -40,8 +41,10 @@ const routes: Routes = [
           {path: 'tests', component: TestComponent},
           {path: 'sprints', component: SprintComponent},
           {path: 'sprints/:idSprint', component: DetailsprintComponent}
-        ]
-      }
+        ] 
+        
+      }   
+
     ]
 
   },

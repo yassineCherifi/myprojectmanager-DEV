@@ -11,12 +11,11 @@
                 <form #newTask="ngForm" (ngSubmit)="newTask.valid">
                     <div class="from row">
                         <div class="form-group col">
-                            <select class="custom-select" id="idIssues" name="idIssues" [(ngModel)]="modelTask.issue">
-                                <option disabled value='0'>Choisir l'issue</option>
-                                <option [value]='issue?.issueID' *ngFor="let issue of issues">
-                                    {{issue?.issueID}} / {{issue?.description}}
-                                </option>
-                            </select>
+                            <ng-select name="issues" placeholder="+ Ajouter des issues" [(ngModel)]="modelTask.issue"
+                                [multiple]="true">
+                                <ng-option *ngFor="let issue of issues" [value]="issue?.issueID">{{issue?.issueID}} -
+                                    {{issue?.description}}</ng-option>
+                            </ng-select>
                         </div>
                     </div>
                     <div class="from row">
@@ -31,14 +30,14 @@
                             <input type="email" class="form-control" placeholder="Côut" name="cout" id="cout" rows="3"
                                 [(ngModel)]="modelTask.cout">
                         </div>
+                    </div>
+                    <div class="from row">
                         <div class="form-group col">
-                            <select class="custom-select" id="developer" name="developer"
-                                [(ngModel)]="modelTask.developer">
-                                <option disabled value='0'>Choisir le développeur</option>
-                                <option *ngFor="let user of users">
-                                    {{user?.name}} / {{user?.email}}
-                                </option>
-                            </select>
+                            <ng-select class="custom" placeholder="Choisir le développeur"
+                                [(ngModel)]="modelTask.developer" name="developer">
+                                <ng-option *ngFor="let user of users" [value]="user?.name">{{user?.name}} /
+                                    {{user?.email}}</ng-option>
+                            </ng-select>
                         </div>
                     </div>
                     <a class="btn btn-success" (click)="onSubmitTask(newTask)" data-toggle="collapse"
@@ -82,57 +81,63 @@
     </tbody>
 </table>
 <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Editer tâche</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form #editTask="ngForm" (ngSubmit)="editTask.valid">
-                <div class="from row">
-                    <div class="form-group col">
-                        <select class="custom-select" id="idIssues" name="idIssues"
-                            [(ngModel)]="modelTaskEdit.issue">
-                            <option disabled value='0'>Choisir l'issue</option>
-                            <option [value]='issue?.issueID' *ngFor="let issue of issues">
-                                {{issue?.issueID}} / {{issue?.description}}
-                            </option>
-                        </select>
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editer tâche</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #editTask="ngForm" (ngSubmit)="editTask.valid">
+                    <div class="from row">
+                        <div class="form-group col">
+                            <!--<select class="custom-select" id="idIssues" name="idIssues"
+                                [(ngModel)]="modelTaskEdit.issue">
+                                <option disabled value='0'>Choisir l'issue</option>
+                                <option [value]='issue?.issueID' *ngFor="let issue of issues">
+                                    {{issue?.issueID}} / {{issue?.description}}
+                                </option>
+                            </select>
+                        -->
+                            <ng-select name="issues" placeholder="+ Ajouter des issues"
+                                [(ngModel)]="modelTaskEdit.issue" bindLabel="idIssue" bindValue="idIssue"  [multiple]="true">
+                                <ng-option *ngFor="let issue of issues" [value]="issue?.issueID">{{issue?.issueID}} -
+                                    {{issue?.description}}</ng-option>
+                            </ng-select>
+                        </div>
                     </div>
-                </div>
-                <div class="from row">
-                    <div class="form-group col-md-12">
-                        <textarea class="form-control" placeholder="Décrire votre tâche"
-                            style="width: 100%;resize: none;" id="description" name="description"
-                            [(ngModel)]="modelTaskEdit.description" rows="4"></textarea>
+                    <div class="from row">
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" placeholder="Décrire votre tâche"
+                                style="width: 100%;resize: none;" id="description" name="description"
+                                [(ngModel)]="modelTaskEdit.description" rows="4"></textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="from row">
-                    <div class="form-group col">
-                        <input type="email" class="form-control" placeholder="Côut" name="cout" id="cout"
-                            rows="3" [(ngModel)]="modelTaskEdit.cout">
+                    <div class="from row">
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Côut" name="cout" id="cout" rows="3"
+                                [(ngModel)]="modelTaskEdit.cout">
+                        </div>
                     </div>
-                    <div class="form-group col">
-                        <select class="custom-select" id="developer" name="developer"
-                            [(ngModel)]="modelTaskEdit.developer">
-                            <option disabled value='0'>Choisir le développeur</option>
-                            <option *ngFor="let user of users">
-                                {{user?.name}} / {{user?.email}}
-                            </option>
-                        </select>
+                    <div class="from row">
+                        <div class="form-group col">
+                            <ng-select class="custom" placeholder="Choisir le développeur"
+                                [(ngModel)]="modelTaskEdit.developer" name="developer">
+                                <ng-option *ngFor="let user of users" [value]="user?.name">{{user?.name}} /
+                                    {{user?.email}}</ng-option>
+                            </ng-select>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-            <button type="button" (click)="onSubmitEditTask(editTask)" data-dismiss="modal"
-                class="btn btn-primary">Confirmer</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" (click)="onSubmitEditTask(editTask)" data-dismiss="modal"
+                    class="btn btn-primary">Confirmer</button>
+            </div>
         </div>
     </div>
-</div>
 </div>

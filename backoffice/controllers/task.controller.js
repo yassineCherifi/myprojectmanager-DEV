@@ -16,7 +16,9 @@ module.exports.getTasks = (req, res, next) => {
 
 module.exports.createTask = (req, res, next) => {
     const task = new Task();
-    task.idIssues = req.body.idIssues;
+    for(let issue of req.body.issues) {
+        task.idIssues.push(issue);
+    }
     task.description = req.body.description;
     task.cout = req.body.cout;
     task.developer = req.body.developer;
@@ -42,7 +44,10 @@ module.exports.editTask = (req, res, next) => {
             match: { _id: req.params.idTask }
         })
         .then((result) => {
-            result.tasks[0].idIssues = req.body.idIssues;
+            result.tasks[0].idIssues = [];
+            for(let issue of req.body.issues) {
+                result.tasks[0].idIssues.push(issue);
+            }
             result.tasks[0].description = req.body.description;
             result.tasks[0].cout = req.body.cout;
             result.tasks[0].developer = req.body.developer;

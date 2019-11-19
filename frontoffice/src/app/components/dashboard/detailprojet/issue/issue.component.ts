@@ -67,13 +67,13 @@ export class IssueComponent implements OnInit {
     this.modelIssueEdit.priorite = issue.priorite;
     this.modelIssueEdit.difficulte = issue.difficulte;
     this.modelIssueEdit.status = issue.status;
-    console.log(this.modelIssueEdit._id);
   }
 
   onSubmitEditIssue(form: NgForm) {
     this.issueService.editIssue(this.project_id, this.modelIssueEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
+        this.selectedItem=null;
         this.getIssues();
       },
       err => {
@@ -95,7 +95,7 @@ export class IssueComponent implements OnInit {
           break;
         }
         case "Difficulté": {
-          this.issues = this.issues.sort((a, b) => a.difficulte.localeCompare(b.difficulte))
+          this.issues = this.issues.sort((a, b) => parseInt(a.difficulte) - parseInt(b.difficulte))
           console.log(this.issues);
           break;
         }

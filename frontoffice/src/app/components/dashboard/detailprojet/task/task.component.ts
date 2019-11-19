@@ -15,18 +15,19 @@ export class TaskComponent implements OnInit {
   issues = [];
   users = [];
   modelTask = {
-    issue: '0',
+    issue: [],
     description: '',
     cout: '',
-    developer: '0'
+    developer: null
   }
   modelTaskEdit = {
     _id: '',
-    issue: '0',
+    issue: [],
     description: '',
     cout: '',
-    developer: '0'
+    developer: null
   }
+  tests = ["1","2"]
   constructor(private tasksService: TasksService, private issueService: IssuesService,
     private userService: UserService, private route: ActivatedRoute) { }
 
@@ -51,11 +52,12 @@ export class TaskComponent implements OnInit {
   }
 
   onSubmitTask(form: NgForm) {
+    console.log(form.value)
     this.tasksService.addTask(this.project_id, form.value).subscribe(
       res => {
         form.resetForm();
-        this.modelTask.developer = '0';
-        this.modelTask.issue = '0';
+        this.modelTask.developer = null;
+        this.modelTask.issue = null;
         this.getTasks()
       },
       err => {
@@ -72,7 +74,8 @@ export class TaskComponent implements OnInit {
     this.modelTaskEdit.cout = task.cout;
     this.modelTaskEdit.description = task.description;
     this.modelTaskEdit.developer = task.developer;
-    this.modelTaskEdit.issue = task.idIssues[0];
+    this.modelTaskEdit.issue = [];
+    task.idIssues.forEach(e => this.modelTaskEdit.issue.push(e));
   }
   onSubmitEditTask(form: NgForm) {
     this.tasksService.editTask(this.project_id, this.modelTaskEdit._id, form.value).subscribe(

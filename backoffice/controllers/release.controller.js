@@ -11,8 +11,7 @@ module.exports.getReleases = (req, res, next) => {
             if (err) res.json({ error: "error" })
             res.json({ releases: project.releases })
         });
-
-};  
+};
 
 module.exports.createRelease = (req, res, next) => {
     const release = new Release();

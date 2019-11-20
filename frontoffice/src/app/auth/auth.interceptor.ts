@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor  {
                     if (err.error.auth == false) {
                         this.router.navigateByUrl('/login')
                     }
-                } 
+                }
             )
             );
         }

@@ -49,4 +49,4 @@ userSchema.methods.generateJwt = function (password) {
         });
 };
 
-mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

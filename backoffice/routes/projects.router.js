@@ -16,7 +16,7 @@ router.put('/:id',projContr.editProject);
 
 router.get('/:id/issues',issueContr.getIssues);
 router.post('/:id/issues',issueContr.createIssue);
-router.delete('/:id/issues/:    ',issueContr.deleteIssue);
+router.delete('/:id/issues/:idIssue',issueContr.deleteIssue);
 router.put('/:id/issues/:idIssue',issueContr.editIssue);
 
 router.get('/:id/tasks',taskContr.getTasks);
@@ -45,4 +45,4 @@ router.delete('/:id/releases/:idRelease',releaseContr.deleteRelease);
 
 
 module.exports = router;
-        
+            

@@ -25,4 +25,4 @@ const releaseSchema = new mongoose.Schema({
 });
 
 
-mongoose.model('Release', releaseSchema);
+module.exports = mongoose.model('Release', releaseSchema);

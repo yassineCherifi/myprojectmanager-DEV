@@ -2,6 +2,8 @@ let mongoose = require("mongoose");
 let User = require('../models/user');
 let Project = require('../models/project');
 
+process.env.NODE_ENV = 'test';
+
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let app = require('../app');

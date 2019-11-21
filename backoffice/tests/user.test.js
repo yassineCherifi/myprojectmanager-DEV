@@ -9,18 +9,22 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
+let userName = 'TestName';
+let userEmail = 'testemail@test.fr';
+let userPassword = 'testtest';
+
 let register_details = {
-   'name': 'TestName',
-   'email': 'testemail@test.fr',
-   'password': 'testtest'
+    'name': userName,
+    'email': userEmail,
+    'password': userPassword
 };
 
 let login_details = {
-   'email': 'testemail@test.fr',
-   'password': 'testtest'
+    'email': userEmail,
+    'password': userPassword
 };
 let login_details_wrong = {
-   'email': 'testemail@test.fr',
+   'email': userEmail,
    'password': 'testtestwrong'
 };
 

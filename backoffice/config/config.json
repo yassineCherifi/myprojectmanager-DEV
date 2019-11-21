@@ -12,7 +12,7 @@
         "JWT_EXP": "1h"
     },
     "test": {
-        "PORT": 666,
+        "PORT": 3002,
         "MONGODB_URI": "mongodb://localhost:27017/cdp2019Test",
         "JWT_SECRET": "CODESECRET5225",
         "JWT_EXP": "1h"

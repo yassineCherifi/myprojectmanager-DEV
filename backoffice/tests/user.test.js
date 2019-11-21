@@ -1,3 +1,4 @@
+let params = require('./params')
 let mongoose = require("mongoose");
 let User = require('../models/user');
 
@@ -11,25 +12,6 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-let userName = 'TestName';
-let userEmail = 'testemail@test.fr';
-let userPassword = 'testtest';
-
-let register_details = {
-    'name': userName,
-    'email': userEmail,
-    'password': userPassword
-};
-
-let login_details = {
-    'email': userEmail,
-    'password': userPassword
-};
-let login_details_wrong = {
-   'email': userEmail,
-   'password': 'testtestwrong'
-};
-
 
 describe('Create account, login and check token', () => {
    beforeEach((done) => {
@@ -37,20 +19,25 @@ describe('Create account, login and check token', () => {
          done();
       });
    });
-
+   after((done) => {
+      User.remove({}, (err) => {
+         done();
+      });
+  });
 
    describe('/POST Register', () => {
 
       it('it should register,login and have a valid token', (done) => {
+         console.log(params.registerHTTP)
          chai.request(app)
-            .post('/api/register')
-            .send(register_details)
+            .post(params.registerHTTP)
+            .send(params.register_details)
             .end((err, res) => {
                res.should.have.status(200);
 
                chai.request(app)
-                  .post('/api/login')
-                  .send(login_details)
+                  .post(params.loginHTTP)
+                  .send(params.login_details)
                   .end((err, res) => {
                      res.should.have.status(200);
                      res.body.should.have.property('token');
@@ -58,7 +45,7 @@ describe('Create account, login and check token', () => {
                      let token = res.body.token;
 
                      chai.request(app)
-                        .get('/api/dashboard')
+                        .get(params.dashboardHTTP)
                         .set('cookie', "token=" + token)
                         .end((err, res) => {
                            res.should.have.status(200);
@@ -73,8 +60,8 @@ describe('Create account, login and check token', () => {
 
       it('it should refuse access with wrong login', (done) => {
          chai.request(app)
-            .post('/api/login')
-            .send(login_details_wrong)
+            .post(params.loginHTTP)
+            .send(params.login_details_wrong)
             .end((err, res) => {
                res.should.have.status(404);
                done();

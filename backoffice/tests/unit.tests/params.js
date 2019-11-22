@@ -25,13 +25,21 @@ var project_details = {
 }
 
 var issue_details = {
-    'issueID': '1',
+    'issueID': '47',
     'description': 'IssueDescription',
     'priorite': 'Moyenne',
     'difficulte': '2',
     'status': 'En cours'
 };
 
+var release_details = {
+    'title': 'release1',
+    'description': 'desc',
+    'version': '3.0',
+    'date': '21/05/2020',
+    'sprintNumber': '5',
+    'link' : 'Lien'
+};
 var loginHTTP = "/api/login";
 var registerHTTP = "/api/register";
 var dashboardHTTP = "/api/dashboard";
@@ -43,6 +51,7 @@ module.exports = {
     login_details_wrong: login_details_wrong,
     project_details: project_details,
     issue_details: issue_details,
+    release_details: release_details,
     loginHTTP: loginHTTP,
     registerHTTP: registerHTTP,
     dashboardHTTP: dashboardHTTP,

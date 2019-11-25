@@ -3,6 +3,6 @@ sudo: false
 node_js:
   - 9
 install:
-  - cd bacloffice && npm install && cd ..
+  - cd backoffice && npm install && cd ..
 script:
   - npm test

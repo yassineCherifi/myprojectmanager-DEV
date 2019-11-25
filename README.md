@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/yassineCherifi/myprojectmanager-DEV.svg?branch=master)](https://travis-ci.com/yassineCherifi/myprojectmanager-DEV)
 # myprojectmanager-DEV
 A system that facilitates the management of projects using the agile process framework SCRUM  
 

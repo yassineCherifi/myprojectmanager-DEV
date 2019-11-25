@@ -4,6 +4,7 @@ import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ReleasesService } from 'src/app/services/releases.service';
 import { SprintService } from 'src/app/services/sprint.service';
+import { IssuesService } from 'src/app/services/issues.service';
 
 @Component({
   selector: 'app-release',
@@ -13,6 +14,7 @@ export class ReleaseComponent implements OnInit {
   project_id;
   releases = [];
   sprints = [];
+  issues = [];
   modelRelease = {
     title: '',
     description: '',
@@ -34,7 +36,7 @@ export class ReleaseComponent implements OnInit {
 
   modelDate;
 
-  constructor(private releasesService: ReleasesService, private sprintService: SprintService,
+  constructor(private releasesService: ReleasesService, private sprintService: SprintService, private issueService: IssuesService,
               private route: ActivatedRoute,
               private calendar: NgbCalendar) { }
 
@@ -44,9 +46,13 @@ export class ReleaseComponent implements OnInit {
     })
     this.getReleases();
     this.getSprints();
+    this.getIssues();
+
     this.modelDate = this.calendar.getToday();
   }
-
+  getIssues() {
+    this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
+  }
   getReleases() {
     this.releasesService.getReleases(this.project_id).subscribe(data => this.releases = data['releases']);
   }

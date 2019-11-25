@@ -55,8 +55,18 @@ module.exports.modifyUser = (req, res, next) => {
     console.log(req.params)
     User.findOne({_id : req.params.idUser},(err, user) => {
         if (!user) res.status(404).json({status: false, message: "Utilisateur non trouvé"})
+        console.log("Avant" + user.name, req.body.Name);
+        console.log("Avant"+ user.email, req.body.email);
+        console.log( "Avant" + user.password, req.body.password);
+
         user.name = req.body.Name;
         user.email = req.body.email;
+        user.password = req.body.password;
+
+        console.log( user.name, req.body.Name);
+        console.log( user.email, req.body.email);
+        console.log( user.email, req.body.password);
+  
         user.save((err, doc) => {
             if (!err)
                 res.send(doc);

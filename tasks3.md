@@ -11,7 +11,7 @@ Taks list :
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US06 | Modify the Project schema to add the contributors[] list as a field | The projectSchema in the /backoffice/models/project.js contains a field "contributors". The database is starting without any issues. | 0.5 | | TODO |
+| US06 | Modify the Project schema to add the contributors[] list as a field | The projectSchema in the /backoffice/models/project.js contains a field "contributors". The database is starting without any issues. | 0.5 | MARTINEAU | TODO |
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |

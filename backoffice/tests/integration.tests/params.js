@@ -32,6 +32,13 @@ var issue_details = {
     'status': 'En cours'
 };
 
+var task_details = {
+    'issues':[""],
+    'description': 'desc',
+    'cout': '0.5',
+    'developer': 'DevTest'
+};
+
 var release_details = {
     'title': 'release1',
     'description': 'desc',
@@ -51,6 +58,7 @@ module.exports = {
     login_details_wrong: login_details_wrong,
     project_details: project_details,
     issue_details: issue_details,
+    task_details: task_details,
     release_details: release_details,
     loginHTTP: loginHTTP,
     registerHTTP: registerHTTP,

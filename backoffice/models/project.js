@@ -34,7 +34,10 @@ const projectSchema = new mongoose.Schema({
         ref: 'Test' }],
     releases: [{
         type: Schema.Types.ObjectId,
-        ref: 'Release' }]
+        ref: 'Release' }],
+    documentations: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Documentation' }]
 });
 
 

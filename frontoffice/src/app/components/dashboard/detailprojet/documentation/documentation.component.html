@@ -1,0 +1,111 @@
+<div class="card-body">
+    <h5 class="card-title">Liste de la documentation</h5>
+    <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false"
+        aria-controls="multiCollapseExample4">Ajouter <em class="fa fa-plus"></em></a>
+</div>
+<div class="collapse multi-collapse" id="multiCollapseExample4">
+    <div class="card card-body">
+        <div class="col-md-5">
+            <fieldset>
+                <legend>Nouvelle documentation</legend>
+                <form #newDocumentation="ngForm" (ngSubmit)="newDocumentation.valid">
+                    <div class="from row">
+
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Titre" name="title" id="title"
+                                rows="1" [(ngModel)]="modelDocumentation.title">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" placeholder="Décrire votre documentation"
+                                style="width: 100%;resize: none;" id="description" name="description"
+                                [(ngModel)]="modelDocumentation.description" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group col">    
+                            <input type="email" class="form-control" placeholder="Link" name="link" id="link" rows="3"
+                                [(ngModel)]="modelDocumentation.link">
+                        </div>
+                    </div>        
+                       
+
+                  
+                    <a class="btn btn-success" (click)="onSubmitDocumentation(newDocumentation)" data-toggle="collapse"
+                        href="#multiCollapseExample4" role="button" aria-expanded="false"
+                        aria-controls="multiCollapseExample4">Confirmer</a>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <caption>Liste de la documentation</caption>
+    <thead class="thead">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>    
+            <th scope="col">Lien</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let documentation of documentations">
+            <td> </td>
+            <td>{{documentation?.title}}</td>
+            <td style="width: 40%;">{{documentation?.description}}</td>
+            <td>{{documentation?.link}}</td>
+
+            <td>
+                <button type="button" (click)="updateModalEditDocumentation(documentation)" data-toggle="modal"
+                    data-target="#editDocumentationModal" class="btn btn-info"><em class="fa fa-edit"></em></button>&nbsp;
+                <button type="button" (click)="removeDocumentation(documentation._id)" class="btn btn-danger"><em
+                        class="fa fa-trash-o"></em></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="editDocumentationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editer documentation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #editDocumentation="ngForm" (ngSubmit)="editDocumentation.valid">
+                    <div class="from row">
+
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Titre" name="title" id="title"
+                                rows="1" [(ngModel)]="modelDocumentationEdit.title">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" placeholder="Décrire votre documentation"
+                                style="width: 100%;resize: none;" id="description" name="description"
+                                [(ngModel)]="modelDocumentationEdit.description" rows="4"></textarea>
+                        </div>
+                    </div>
+               
+                    <div class="from row">
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Link" name="link" id="link" rows="3"
+                                [(ngModel)]="modelDocumentationEdit.link">
+                        </div>
+                        
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" (click)="onSubmitEditDocumentation(editDocumentation)" data-dismiss="modal"
+                    class="btn btn-primary">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>

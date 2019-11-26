@@ -14,6 +14,7 @@ module.exports.getAllProjects = (req, res, next) => {
         .populate('tests')
         .populate('releases')
         .populate('documentations')
+        .populate('contributors')
         .exec(function (err, projects) {
             if (err) res.json({ error: "error" })
             res.json({ result: projects, idlogged: req._id })
@@ -23,6 +24,7 @@ module.exports.getAllProjects = (req, res, next) => {
 module.exports.getProjectDetails = (req, res, next) => {
     Project.findOne({ _id: req.params.id })
         .populate('creator')
+        .populate('contributors')
         .exec(function (err, project) {
             if (err) res.json({ error: "error" })
             res.json({ project: project })

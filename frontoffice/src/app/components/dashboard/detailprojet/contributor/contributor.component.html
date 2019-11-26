@@ -1,0 +1,32 @@
+<div class="card-body">
+    <h5 class="card-title">Liste des contributeurs</h5>
+    <div class="form-group">
+        <ng-select (add)="onAdd($event)" class="custom" placeholder="+ Inviter un contributeur" [(ngModel)]="selectedUser"
+            [multiple]="true">
+            <ng-option *ngFor="let user of users" [value]="user?.email">{{user?.email}} - {{user?.name}}
+            </ng-option>
+        </ng-select>
+    </div>
+</div>
+<table class="table table-striped">
+    <caption>Liste des issues</caption>
+    <thead class="thead">
+        <tr>
+            <th scope="col">Nom </th>
+            <th scope="col">Email </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let contributor of contributors">
+            <td>{{contributor?.name}}</td>
+            <td>{{contributor?.email}}</td>
+
+            <td>
+                <button type="button" (click)="removeContributor(contributor?._id)" class="btn btn-danger"><em
+                        class="fa fa-trash-o"></em></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

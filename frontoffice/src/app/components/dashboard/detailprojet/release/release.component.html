@@ -28,8 +28,8 @@
                         </div>
                         <div class="form-group col">
                             <div class="input-group">
-                                <input class="form-control" placeholder="Date" name="date" [(ngModel)]="modelRelease.date"
-                                    ngbDatepicker #d="ngbDatepicker">
+                                <input class="form-control" placeholder="Date" name="date"
+                                    [(ngModel)]="modelRelease.date" ngbDatepicker #d="ngbDatepicker">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary calendar fa fa-calendar"
                                         (click)="d.toggle()" type="button"></button>
@@ -39,18 +39,19 @@
 
                     </div>
                     <div class="from row">
-                       
-                            <div class="form-group col">
-                                    <select class="custom-select" id="sprintNumber" name="sprintNumber" [(ngModel)]="modelRelease.sprintNumber">
-                                        <option disabled value='0'>Choisir le sprint</option>
-                                        <option [value]='sprint?.title' *ngFor="let sprint of sprints">
-                                            {{sprint?.title}} 
-                                    </select>
-                                </div>
 
-                        <div class="form-group col">    
-                                <input type="email" class="form-control" placeholder="Link" name="link" id="link" rows="3"
-                                    [(ngModel)]="modelRelease.link">
+                        <div class="form-group col">
+                            <select class="custom-select" id="sprintNumber" name="sprintNumber"
+                                [(ngModel)]="modelRelease.sprintNumber">
+                                <option disabled value='0'>Choisir le sprint</option>
+                                <option [value]='sprint?.title' *ngFor="let sprint of sprints">
+                                    {{sprint?.title}}
+                            </select>
+                        </div>
+
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Link" name="link" id="link" rows="3"
+                                [(ngModel)]="modelRelease.link">
                         </div>
                     </div>
                     <a class="btn btn-success" (click)="onSubmitRelease(newRelease)" data-toggle="collapse"
@@ -66,7 +67,6 @@
     <caption>Liste des Releases</caption>
     <thead class="thead">
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Titre</th>
             <th scope="col">Description</th>
             <th scope="col">Version</th>
@@ -79,7 +79,6 @@
 
     <tbody>
         <tr *ngFor="let release of releases">
-            <td> </td>
             <td>{{release?.title}}</td>
             <td style="width: 40%;">{{release?.description}}</td>
             <td>{{release?.version}}</td>
@@ -122,10 +121,10 @@
                     </div>
                     <div class="from row">
 
-                            <div class="form-group col">
-                                    <input type="email" class="form-control" placeholder="Version" name="version" id="version"
-                                        rows="1" [(ngModel)]="modelReleaseEdit.version">
-                                </div>
+                        <div class="form-group col">
+                            <input type="email" class="form-control" placeholder="Version" name="version" id="version"
+                                rows="1" [(ngModel)]="modelReleaseEdit.version">
+                        </div>
                         <div class="form-group col">
                             <div class="input-group">
                                 <input class="form-control" placeholder="Date" name="date"
@@ -146,14 +145,15 @@
                             <input type="email" class="form-control" placeholder="Link" name="link" id="link" rows="3"
                                 [(ngModel)]="modelReleaseEdit.link">
                         </div>
-                            <div class="form-group col">
-                                    <select class="custom-select" id="sprintNumber" name="sprintNumber" [(ngModel)]="modelReleaseEdit.sprintNumber">
-                                        <option disabled value='0'>Choisir le sprint</option>
-                                        <option [value]='sprint?.title' *ngFor="let sprint of sprints">
-                                            {{sprint?.title}}
-                                        </option>
-                                    </select>
-                                </div>
+                        <div class="form-group col">
+                            <select class="custom-select" id="sprintNumber" name="sprintNumber"
+                                [(ngModel)]="modelReleaseEdit.sprintNumber">
+                                <option disabled value='0'>Choisir le sprint</option>
+                                <option [value]='sprint?.title' *ngFor="let sprint of sprints">
+                                    {{sprint?.title}}
+                                </option>
+                            </select>
+                        </div>
 
                     </div>
                 </form>

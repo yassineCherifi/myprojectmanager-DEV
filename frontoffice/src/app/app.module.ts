@@ -26,6 +26,8 @@ import { TestComponent } from './components/dashboard/detailprojet/test/test.com
 import { UserdetailComponent } from './components/dashboard/userdetail/userdetail.component';
 import { ReleaseComponent } from './components/dashboard/detailprojet/release/release.component';
 import { DocumentationComponent } from './components/dashboard/detailprojet/documentation/documentation.component';
+import { ContributorComponent } from './components/dashboard/detailprojet/contributor/contributor.component';
+import { ContributorService } from './services/contributor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { DocumentationComponent } from './components/dashboard/detailprojet/docu
     TestComponent,
     UserdetailComponent,
     ReleaseComponent,
-    DocumentationComponent
+    DocumentationComponent,
+    ContributorComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,7 @@ import { DocumentationComponent } from './components/dashboard/detailprojet/docu
     NgbModule,
     NgSelectModule
   ],
-  providers: [UserService,ProjetService,IssuesService,AuthGuard,
+  providers: [UserService,ProjetService,IssuesService,ContributorService,AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

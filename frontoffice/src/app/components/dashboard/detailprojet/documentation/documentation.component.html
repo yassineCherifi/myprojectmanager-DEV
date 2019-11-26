@@ -42,7 +42,6 @@
     <caption>Liste de la documentation</caption>
     <thead class="thead">
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Titre</th>
             <th scope="col">Description</th>    
             <th scope="col">Lien</th>
@@ -52,7 +51,6 @@
 
     <tbody>
         <tr *ngFor="let documentation of documentations">
-            <td> </td>
             <td>{{documentation?.title}}</td>
             <td style="width: 40%;">{{documentation?.description}}</td>
             <td>{{documentation?.link}}</td>

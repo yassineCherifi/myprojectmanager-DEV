@@ -15,6 +15,7 @@ import { TestComponent } from './components/dashboard/detailprojet/test/test.com
 import { UserdetailComponent } from './components/dashboard/userdetail/userdetail.component';
 import { ReleaseComponent } from './components/dashboard/detailprojet/release/release.component';
 import { DocumentationComponent} from './components/dashboard/detailprojet/documentation/documentation.component';
+import { ContributorComponent } from './components/dashboard/detailprojet/contributor/contributor.component';
 const routes: Routes = [
   {
     path: 'register', component: UserComponent,
@@ -36,7 +37,8 @@ const routes: Routes = [
 
       {
         path: 'projects/:id', component: DetailprojetComponent,children: [
-          {path: '', redirectTo: 'issues',pathMatch: 'full'},
+          {path: '', redirectTo: 'contributors',pathMatch: 'full'},
+          {path: 'contributors', component: ContributorComponent},
           {path: 'issues', component: IssueComponent},
           {path: 'tasks', component: TaskComponent},
           {path: 'tests', component: TestComponent},

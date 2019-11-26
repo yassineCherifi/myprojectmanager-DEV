@@ -7,6 +7,8 @@ const sprintContr = require('../controllers/sprint.controller');
 const testContr = require('../controllers/test.controller');
 const releaseContr = require('../controllers/release.controller');
 const documentationContr = require('../controllers/documentation.controller');
+const contributorContr = require('../controllers/contributors.controller');
+
 
 router.get('',projContr.getAllProjects);
 
@@ -49,6 +51,10 @@ router.post('/:id/documentations', documentationContr.createDocumentation);
 router.put('/:id/documentations/:idDocumentation',documentationContr.editDocumentation);
 router.delete('/:id/documentations/:idDocumentation',documentationContr.deleteDocumentation);
 
+router.post('/:id/contributors', contributorContr.addContributor);
+router.post('/:id/invite', contributorContr.inviteContributor);
+
+router.delete('/:id/contributors/:idContributor',contributorContr.deleteContributor);
 
 
 module.exports = router;

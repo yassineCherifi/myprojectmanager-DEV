@@ -69,7 +69,6 @@
     <caption>Liste des tests</caption>
     <thead class="thead">
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Titre</th>
             <th scope="col">Description</th>
             <th scope="col">Type</th>
@@ -82,7 +81,6 @@
 
     <tbody>
         <tr *ngFor="let test of tests">
-            <td> </td>
             <td>{{test?.title}}</td>
             <td style="width: 40%;">{{test?.description}}</td>
             <td>{{test?.type}}</td>

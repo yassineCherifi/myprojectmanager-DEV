@@ -22,8 +22,8 @@
                                 rows="4">{{project?.description}}</textarea>
                         </div>
                         <div class="form-group">
-                            <select style="width: 100%;" class="custom-select" id="status" name="status" [(ngModel)]="modelproject.status"
-                                [value]='0'>
+                            <select style="width: 100%;" class="custom-select" id="status" name="status"
+                                [(ngModel)]="modelproject.status" [value]='0'>
                                 <option disabled value='0'>Status</option>
                                 <option>En cours</option>
                                 <option>Terminé</option>
@@ -40,27 +40,32 @@
 </div><br>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link" id="home-tab" data-toggle="tab" routerLinkActive="active" routerLink='issues' role="tab" aria-controls="home"
-            aria-selected="true">Issues</a>
+        <a class="nav-link" id="contributor-tab" data-toggle="tab" routerLinkActive="active" routerLink='contributors' role="tab"
+            aria-controls="contributor" aria-selected="true">Contributeurs</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="taches-tab" data-toggle="tab" routerLinkActive="active" routerLink='tasks' role="tab" aria-controls="taches"
-            aria-selected="false">Tâches</a>
+        <a class="nav-link" id="home-tab" data-toggle="tab" routerLinkActive="active" routerLink='issues' role="tab"
+            aria-controls="home" aria-selected="true">Issues</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="sprints-tab" data-toggle="tab" routerLinkActive="active" routerLink='sprints' role="tab" aria-controls="sprints"
-            aria-selected="false">Sprints</a>
+        <a class="nav-link" id="taches-tab" data-toggle="tab" routerLinkActive="active" routerLink='tasks' role="tab"
+            aria-controls="taches" aria-selected="false">Tâches</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" routerLinkActive="active" routerLink='tests' role="tab" aria-controls="tests"
-            aria-selected="false">Tests</a>
+        <a class="nav-link" id="sprints-tab" data-toggle="tab" routerLinkActive="active" routerLink='sprints' role="tab"
+            aria-controls="sprints" aria-selected="false">Sprints</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="releases-tab" data-toggle="tab" routerLinkActive="active" routerLink='releases' role="tab" aria-controls="releases"
-            aria-selected="false">Releases</a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" routerLinkActive="active" routerLink='tests' role="tab"
+            aria-controls="tests" aria-selected="false">Tests</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="documentations-tab" data-toggle="tab" routerLinkActive="active" routerLink='documentations' role="tab" aria-controls="documentations"
+        <a class="nav-link" id="releases-tab" data-toggle="tab" routerLinkActive="active" routerLink='releases'
+            role="tab" aria-controls="releases" aria-selected="false">Releases</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="documentations-tab" data-toggle="tab" routerLinkActive="active"
+            routerLink='documentations' role="tab" aria-controls="documentations"
             aria-selected="false">Documentations</a>
     </li>
 </ul>

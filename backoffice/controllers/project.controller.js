@@ -11,6 +11,9 @@ module.exports.getAllProjects = (req, res, next) => {
         .populate('creator')
         .populate('tasks')
         .populate('sprints')
+        .populate('tests')
+        .populate('releases')
+        .populate('documentations')
         .exec(function (err, projects) {
             if (err) res.json({ error: "error" })
             res.json({ result: projects, idlogged: req._id })

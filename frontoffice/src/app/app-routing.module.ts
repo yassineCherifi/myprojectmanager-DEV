@@ -14,6 +14,7 @@ import { DetailsprintComponent } from './components/dashboard/detailprojet/detai
 import { TestComponent } from './components/dashboard/detailprojet/test/test.component';
 import { UserdetailComponent } from './components/dashboard/userdetail/userdetail.component';
 import { ReleaseComponent } from './components/dashboard/detailprojet/release/release.component';
+import { DocumentationComponent} from './components/dashboard/detailprojet/documentation/documentation.component';
 const routes: Routes = [
   {
     path: 'register', component: UserComponent,
@@ -41,8 +42,9 @@ const routes: Routes = [
           {path: 'tests', component: TestComponent},
           {path: 'sprints', component: SprintComponent},
           {path: 'sprints/:idSprint', component: DetailsprintComponent},
-          {path: 'tests', component: TestComponent},
-          {path: 'releases', component: ReleaseComponent}
+          {path: 'releases', component: ReleaseComponent},
+          {path: 'documentations', component: DocumentationComponent}
+
 
         ] 
         

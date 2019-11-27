@@ -23,4 +23,4 @@ const sprintSchema = new mongoose.Schema({
 });
 
 
-mongoose.model('Sprint', sprintSchema);
+module.exports = mongoose.model('Sprint', sprintSchema);

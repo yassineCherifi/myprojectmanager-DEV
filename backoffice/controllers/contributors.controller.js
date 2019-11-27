@@ -34,7 +34,7 @@ module.exports.inviteContributor = (req, res, next) => {
           pass: 'password123**'
         }
       });
-      
+
       var mailOptions = {
         from: 'myprojectmanager.service@gmail.com',
         // req.body.email
@@ -43,14 +43,14 @@ module.exports.inviteContributor = (req, res, next) => {
         html: '<h4>Vous êtes invité à participer dans le projet, cliquer sur le lien suivant pour accepter l\'invitation :<h4>'+
         '<a href="https://www.google.com">Accepter l\'invitation</a>'
       };
-      
+
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           res.json(error);
         } else {
           res.json({success: 'Email sent: ' + info.response});
         }
-      }); 
+      });
 
 };
 

@@ -1,7 +1,8 @@
 let params = require('./params')
-let Issue = require('../../models/issue');
-let Project = require('../../models/project');
+let mongoose = require("mongoose");
+let Test = require('../../models/test');
 let User = require('../../models/user');
+let Project = require('../../models/project');
 
 process.env.NODE_ENV = 'test';
 
@@ -13,11 +14,11 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Get issues test, add an issue', () => {
+describe('Get tests test, add an test', () => {
     before((done) => {
         User.remove({}, (err) => {});
         Project.remove({}, (err) => {});
-        Issue.remove({}, (err) => {});
+        Test.remove({}, (err) => {});
         chai.request(app)
             .post(params.registerHTTP)
             .send(params.register_details)
@@ -28,14 +29,13 @@ describe('Get issues test, add an issue', () => {
     });
 
 
-    describe('/GET /POST Issues', () => {
+    describe('/GET /POST tests', () => {
 
-        it('it should get issues and add one new issue', (done) => {
+        it('it should get tests and add one new test', (done) => {
             chai.request(app)
                 .post(params.loginHTTP)
                 .send(params.login_details)
                 .end((err, res) => {
-                    //console.log(res)
                     let token = res.body.token;
                     chai.request(app)
                         .post(params.projectsHTTP)
@@ -45,19 +45,18 @@ describe('Get issues test, add an issue', () => {
                             res.should.have.status(200);
                             let idProject = res.body._id;
                             chai.request(app)
-                                .post((params.projectsHTTP) + "/" + idProject + '/issues')
-                                .send(params.issue_details)
+                                .post((params.projectsHTTP) + "/" + idProject + '/tests')
+                                .send(params.test_details)
                                 .set('cookie', "token=" + token)
                                 .end((err, res) => {
-
                                     res.should.have.status(200);
                                     chai.request(app)
-                                        .get((params.projectsHTTP) + "/" + idProject + '/issues')
+                                        .get((params.projectsHTTP) + "/" + idProject + '/tests')
                                         .set('cookie', "token=" + token)
                                         .end((err, res) => {
                                             res.should.have.status(200);
-                                            res.body.should.have.property('issues')
-                                            Issue.remove({}, (err) => { done() });
+                                            res.body.should.have.property('tests')
+                                            Test.remove({}, (err) => { done() });
                                         });
                                 });
                         });

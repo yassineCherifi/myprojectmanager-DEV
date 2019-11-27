@@ -39,7 +39,7 @@ Taks list :
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US22 | Create a Routes.md file containing a list of the API routes, with details | Routes.md is created with all the API routes indicated | 0.5 | MARTINEAU | TODO |
+| US22 | Create a Routes.md file containing a list of the API routes, with details | Routes.md is created with all the API routes indicated | 0.5 | MARTINEAU | ON GOING |
 
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 

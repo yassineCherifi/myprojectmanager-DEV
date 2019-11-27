@@ -11,3 +11,5 @@ Issues list :
 | US17 | Project manager | to assign a task to a contributor in the tasks list inside the sprints tab | I can specify the developer| LOW | 1 | 3 | TODO |
 | US20 | Project contributor | to create a documentation list for my project (title(chars 10 max), description(chars 100 max), link) or to edit it or delete it by clicking on the corresponding buttons in the documentations tab then confirming or cancelling | I can answer users most FAQ by creating, editing or deleting a documentation | LOW | 1 | 3 | TODO |
 | US21 | Project contributor | to stop working on a project by clicking on the button "Quit project" in my projects lists then confirming or cancelling| I take it off of my dahsboard | LOW | 2 | 3 | TODO |
+| US22 | Developer | to understand how the API works | make queries on the site database | LOW | 1 | 3 | TODO |
+| US23 | User | to understand how the website works | use the website properly | LOW | 1 | 3 | TODO |

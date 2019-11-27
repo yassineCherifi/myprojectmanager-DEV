@@ -12,7 +12,7 @@ const documentationSchema = new mongoose.Schema({
     link: {
         type: String
     }
-   
+
 
 });
 

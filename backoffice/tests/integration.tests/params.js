@@ -39,6 +39,16 @@ var task_details = {
     'developer': 'DevTest'
 };
 
+var test_details = {
+    'title': 'Title Test',
+    'description': 'Test desc',
+    'type': 'Unitaire',
+    'date': '01/01/19',
+    'link': 'TestLink',
+    'status': 'Done'
+};
+
+
 var release_details = {
     'title': 'release1',
     'description': 'desc',
@@ -59,6 +69,7 @@ module.exports = {
     project_details: project_details,
     issue_details: issue_details,
     task_details: task_details,
+    test_details: test_details,
     release_details: release_details,
     loginHTTP: loginHTTP,
     registerHTTP: registerHTTP,

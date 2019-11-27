@@ -48,7 +48,7 @@ describe('Project tests', () => {
         const isPresent = await driver.findElements(By.xpath('/html/body/app-root/app-dashboard/div/div[2]/div/app-listprojets/table/tbody/tr')) === undefined;
         expect(isPresent).to.equal(false);
     });
-    
+
     after(async () => {
         User.remove({}, v => {
         });

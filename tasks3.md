@@ -30,7 +30,7 @@ Taks list :
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US17 | Modify the user selection for the task creation to select users which are contributors. | The users[] list in "task.component.ts" is replaced by the contributors[] list. The function "getUSers" is replaced by "getContributors" which returns the list of contributors of the project.| 0.5 | | TODO |
+| US17 | Modify the user selection for the task creation to select users which are contributors. | The users[] list in "task.component.ts" is replaced by the contributors[] list. The function "getUSers" is replaced by "getContributors" which returns the list of contributors of the project.| 0.5 | CHERIFI | DONE |
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -57,4 +57,4 @@ Taks list :
 
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US01, US02, US09, US10, US15, US18, US19, US20 | add selenium-driver to the project, add travis to the project, add eslint to the project | 0.5 | CHERIFI | DONE |
+| US01, US02, US09, US10, US15, US18, US19, US20 | add selenium-driver to the project, add travis to the project, add eslint to the project | selenium, travis & eslint are runned without problems| 0.5 | CHERIFI | DONE |

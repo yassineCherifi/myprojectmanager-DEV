@@ -1,32 +1,77 @@
-<div class="card-body">
-    <h5 class="card-title">Liste des contributeurs</h5>
-    <div class="form-group">
-        <ng-select (add)="onAdd($event)" class="custom" placeholder="+ Inviter un contributeur" [(ngModel)]="selectedUser"
-            [multiple]="true">
-            <ng-option *ngFor="let user of users" [value]="user?.email">{{user?.email}} - {{user?.name}}
-            </ng-option>
-        </ng-select>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card-body">
+            <h5 class="card-title">Liste des contributeurs</h5>
+            <button type="button" data-toggle="modal" data-target="#invitationModel"
+                class="btn btn-info">Invitations</button>
+        </div>
+        <table class="table table-striped">
+            <caption>Liste des issues</caption>
+            <thead class="thead">
+                <tr>
+                    <th scope="col">Nom </th>
+                    <th scope="col">Email </th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let contributor of contributors">
+                    <td>{{contributor?.name}}</td>
+                    <td>{{contributor?.email}}</td>
+
+                    <td>
+                        <button type="button" (click)="removeContributor(contributor?._id)" class="btn btn-danger"><em
+                                class="fa fa-trash-o"></em></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
-<table class="table table-striped">
-    <caption>Liste des issues</caption>
-    <thead class="thead">
-        <tr>
-            <th scope="col">Nom </th>
-            <th scope="col">Email </th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
 
-    <tbody>
-        <tr *ngFor="let contributor of contributors">
-            <td>{{contributor?.name}}</td>
-            <td>{{contributor?.email}}</td>
-
-            <td>
-                <button type="button" (click)="removeContributor(contributor?._id)" class="btn btn-danger"><em
-                        class="fa fa-trash-o"></em></button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="modal fade" id="invitationModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Liste des invitations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <h5 class="card-title">Invitation</h5>
+                    <div class="form-group">
+                        <ng-select (add)="onAdd($event)" class="custom" placeholder="+ Inviter un contributeur"
+                            [(ngModel)]="selectedUser" [multiple]="true">
+                            <ng-option *ngFor="let user of users" [value]="user?.email">{{user?.email}} - {{user?.name}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                    <div *ngIf="waiting" class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        Envoi de l'invitation en cours
+                    </div>
+                    <div *ngIf="success" class="alert alert-success" role="alert">
+                        L'invitation a été envoyé avec succès
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li *ngFor="let invitation of invitations"
+                        class="list-group-item d-flex justify-content-between align-items-center">
+                        {{invitation?.emailUser}}
+                        <span class="badge badge-secondary badge-pill"> {{invitation?.date}}</span>
+                        <span *ngIf="invitation?.status===0" class="badge badge-dark badge-pill">En attente</span>
+                        <span *ngIf="invitation?.status===1" class="badge badge-success badge-pill">Acceptée</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

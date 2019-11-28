@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { UserService } from './services/user.service';
-import { FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/user/login/login.component'
@@ -19,7 +19,7 @@ import { IssuesService } from './services/issues.service';
 import { IssueComponent } from './components/dashboard/detailprojet/issue/issue.component';
 import { TaskComponent } from './components/dashboard/detailprojet/task/task.component';
 import { SprintComponent } from './components/dashboard/detailprojet/sprint/sprint.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailsprintComponent } from './components/dashboard/detailprojet/detailsprint/detailsprint.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TestComponent } from './components/dashboard/detailprojet/test/test.component';
@@ -55,7 +55,7 @@ import { ContributorService } from './services/contributor.service';
     NgbModule,
     NgSelectModule
   ],
-  providers: [UserService,ProjetService,IssuesService,ContributorService,AuthGuard,
+  providers: [UserService, ProjetService, IssuesService, ContributorService, AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

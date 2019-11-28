@@ -25,7 +25,7 @@ export class UserService {
     return this.httpClient.post(environment.API_URL + '/login', infos);
   }
 
-  getUsers() : Observable<User[]>{
+  getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(environment.API_URL + '/users');
   }
 
@@ -34,7 +34,7 @@ export class UserService {
   }
 
   setToken(infos) {
-    localStorage.setItem("userinfos", JSON.stringify({ infos }));
+    localStorage.setItem('userinfos', JSON.stringify({ infos }));
   }
 
   removeToken() {
@@ -48,7 +48,7 @@ export class UserService {
   editUser(user: User) {
     console.log(user);
     return this.httpClient.put(environment.API_URL + '/users/' + this.getIDOflogged(), user);
-}
+  }
 
   getUserInfos() {
 

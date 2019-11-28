@@ -37,8 +37,8 @@ export class ReleaseComponent implements OnInit {
   modelDate;
 
   constructor(private releasesService: ReleasesService, private sprintService: SprintService, private issueService: IssuesService,
-              private route: ActivatedRoute,
-              private calendar: NgbCalendar) { }
+    private route: ActivatedRoute,
+    private calendar: NgbCalendar) { }
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
@@ -60,9 +60,9 @@ export class ReleaseComponent implements OnInit {
     this.sprintService.getSprints(this.project_id).subscribe(data => this.sprints = data['sprints']);
 
   }
-  onSubmitRelease(form: NgForm){
+  onSubmitRelease(form: NgForm) {
     let date = form.value.date;
-    form.value.date = date.day+ "/" +date.month + "/" + date.year;
+    form.value.date = date.day + "/" + date.month + "/" + date.year;
     this.releasesService.addRelease(this.project_id, form.value).subscribe(
       res => {
         form.resetForm();
@@ -90,7 +90,7 @@ export class ReleaseComponent implements OnInit {
 
   onSubmitEditRelease(form: NgForm) {
     let date = form.value.date;
-    form.value.date = date.day+ "/" +date.month + "/" + date.year;
+    form.value.date = date.day + "/" + date.month + "/" + date.year;
     this.releasesService.editRelease(this.project_id, this.modelReleaseEdit._id, form.value).subscribe(
       res => {
         form.resetForm();

@@ -12,6 +12,9 @@ export class ContributorComponent implements OnInit {
   project_id;
   project;
   contributors = [];
+  invitations = [];
+  waiting = false;
+  success = false;
   users = [];
   selectedUser;
   constructor(private route: ActivatedRoute, private projectService: ProjetService,
@@ -22,31 +25,38 @@ export class ContributorComponent implements OnInit {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id'];
       this.getContributors();
+      this.getInvitations();
     })
   }
   getContributors() {
     this.projectService.getProject(this.project_id).subscribe(data => {
       this.project = data['project'];
-      this.contributors = this.project['contributors']
+      this.contributors = this.project['contributors'];
       this.getUsers();
     });
 
   }
+
+  getInvitations() {
+    this.contributorService.getInvitations(this.project_id).subscribe(data => {
+      this.invitations = data;
+    });
+  }
   getUsers() {
     this.userService.getUsers().subscribe(data => {
-      //this.users = data['users'];
-      let res = data['users'].filter(item1 =>
-        !this.contributors.some(item2 => (item2._id === item1._id || item1._id === this.project['creator']._id )))
-      this.users = res;
-      
-    });
+      this.users = data['users'].filter(item => !this.contributors.some(d => d._id === item._id || item._id === this.project['creator']._id ))
+          });
 
   }
 
   onAdd($event) {
-    this.contributorService.addContributor(this.project_id,$event).subscribe(
+    this.waiting = true;
+    this.contributorService.inviteContributor(this.project_id, $event).subscribe(
       res => {
-        this.getContributors();
+        this.waiting = false;
+        this.success = true;
+        setTimeout(() => this.success = false, 2000);
+        this.getInvitations();
         this.selectedUser = null;
       },
       err => {
@@ -56,7 +66,11 @@ export class ContributorComponent implements OnInit {
   }
 
   removeContributor(id) {
-    this.contributorService.removeContributor(this.project_id, id).subscribe(data => this.getContributors());
+    this.contributorService.removeContributor(this.project_id, id).subscribe(data => {
+      this.getContributors()
+      this.getUsers();
+      this.getInvitations();
+    });
   }
 
 }

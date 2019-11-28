@@ -4,17 +4,17 @@ require('../models/test');
 const Project = mongoose.model('Project');
 const Test = mongoose.model('Test');
 
-module.exports.getTests = (req, res, next) => {
+module.exports.getTests = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('tests')
         .exec(function (err, project) {
-            if (err) res.json({ error: "error" })
-            res.json({ tests: project.tests })
+            if (err) res.json({ error: 'error' });
+            res.json({ tests: project.tests });
         });
 
 };
 
-module.exports.createTest = (req, res, next) => {
+module.exports.createTest = (req, res) => {
     const test = new Test();
     test.title = req.body.title;
     test.description = req.body.description;
@@ -23,7 +23,7 @@ module.exports.createTest = (req, res, next) => {
     test.link = req.body.Lien;
     test.status = req.body.status;
     test.save()
-        .then((result) => {
+        .then(() => {
             Project.findOne({ _id: req.params.id }, (err, project) => {
                 if (project) {
                     project.tests.push(test);
@@ -37,7 +37,7 @@ module.exports.createTest = (req, res, next) => {
         });
 };
 
-module.exports.editTest = (req, res, next) => {
+module.exports.editTest = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
             path: 'tests',
@@ -49,8 +49,8 @@ module.exports.editTest = (req, res, next) => {
             result.tests[0].cout = req.body.cout;
             result.tests[0].developer = req.body.developer;
             result.tests[0].save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "test edited" })
+                if (err) res.json({ error: 'error' });
+                res.json({ success: 'test edited' });
             });
         })
         .catch((error) => {
@@ -58,15 +58,15 @@ module.exports.editTest = (req, res, next) => {
         });
 };
 
-module.exports.deleteTest = (req, res, next) => {
+module.exports.deleteTest = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
-        if (err) res.json({ error: "no project found" })
-        Test.deleteOne({ _id: req.params.idTest }, function (err, removed) {
-            if (err) res.json({ error: "test not removed" });
+        if (err) res.json({ error: 'no project found' });
+        Test.deleteOne({ _id: req.params.idTest }, function (err) {
+            if (err) res.json({ error: 'test not removed' });
             project.tests.remove({ _id: req.params.idTest });
             project.save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "test removed" })
+                if (err) res.json({ error: 'error' });
+                res.json({ success: 'test removed' });
             });
         });
 

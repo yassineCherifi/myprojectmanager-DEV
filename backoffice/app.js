@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/*', (req, res) => res.sendFile(path.join(__dirname, 'public','index.html')));
 
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     if (err.name === 'ValidationError') {
         const valErrors = [];
         Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
@@ -39,4 +39,4 @@ app.listen(process.env.PORT, () => {
     console.log('Démarrage du serveur sur le port :' + process.env.PORT);
 });
 
-module.exports = app
+module.exports = app;

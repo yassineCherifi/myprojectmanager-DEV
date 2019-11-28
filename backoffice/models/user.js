@@ -39,13 +39,13 @@ userSchema.pre('save', function (next) {
 
 
 userSchema.methods.verifyPassword = function (password) {
-    return bcrypt.compareSync(password, this.password)
+    return bcrypt.compareSync(password, this.password);
 };
 
-userSchema.methods.generateJwt = function (password) {
+userSchema.methods.generateJwt = function () {
     return jwt.sign({ _id: this._id}
         ,process.env.JWT_SECRET,{
-           expiresIn: process.env.JWT_EXP
+            expiresIn: process.env.JWT_EXP
         });
 };
 

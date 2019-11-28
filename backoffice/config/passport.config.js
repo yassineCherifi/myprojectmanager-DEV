@@ -11,12 +11,12 @@ passport.use(
                 if (err)
                     return done(err);
                 else if (!user)
-                    return done(null, false, { message: "L\'adresse mail n'existe pas" });
+                    return done(null, false, { message: 'L\'adresse mail n\'existe pas' });
                 else
-                    if (!user.verifyPassword(password))
-                        return done(null, false, { message: "Le mot de passe est incorrect" });
-                    else
-                        return done(null, user);
+                if (!user.verifyPassword(password))
+                    return done(null, false, { message: 'Le mot de passe est incorrect' });
+                else
+                    return done(null, user);
             });
         })
 );

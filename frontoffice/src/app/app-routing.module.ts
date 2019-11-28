@@ -14,7 +14,7 @@ import { DetailsprintComponent } from './components/dashboard/detailprojet/detai
 import { TestComponent } from './components/dashboard/detailprojet/test/test.component';
 import { UserdetailComponent } from './components/dashboard/userdetail/userdetail.component';
 import { ReleaseComponent } from './components/dashboard/detailprojet/release/release.component';
-import { DocumentationComponent} from './components/dashboard/detailprojet/documentation/documentation.component';
+import { DocumentationComponent } from './components/dashboard/detailprojet/documentation/documentation.component';
 import { ContributorComponent } from './components/dashboard/detailprojet/contributor/contributor.component';
 const routes: Routes = [
   {
@@ -33,24 +33,24 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
       { path: 'projects', component: ListprojetsComponent, pathMatch: 'full' },
-      { path: 'userdetail', component: UserdetailComponent},
+      { path: 'userdetail', component: UserdetailComponent },
 
       {
-        path: 'projects/:id', component: DetailprojetComponent,children: [
-          {path: '', redirectTo: 'contributors',pathMatch: 'full'},
-          {path: 'contributors', component: ContributorComponent},
-          {path: 'issues', component: IssueComponent},
-          {path: 'tasks', component: TaskComponent},
-          {path: 'tests', component: TestComponent},
-          {path: 'sprints', component: SprintComponent},
-          {path: 'sprints/:idSprint', component: DetailsprintComponent},
-          {path: 'releases', component: ReleaseComponent},
-          {path: 'documentations', component: DocumentationComponent}
+        path: 'projects/:id', component: DetailprojetComponent, children: [
+          { path: '', redirectTo: 'contributors', pathMatch: 'full' },
+          { path: 'contributors', component: ContributorComponent },
+          { path: 'issues', component: IssueComponent },
+          { path: 'tasks', component: TaskComponent },
+          { path: 'tests', component: TestComponent },
+          { path: 'sprints', component: SprintComponent },
+          { path: 'sprints/:idSprint', component: DetailsprintComponent },
+          { path: 'releases', component: ReleaseComponent },
+          { path: 'documentations', component: DocumentationComponent }
 
 
-        ] 
-        
-      }   
+        ]
+
+      }
 
     ]
 

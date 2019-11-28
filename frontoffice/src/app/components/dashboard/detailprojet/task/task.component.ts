@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { TasksService } from 'src/app/services/tasks.service';
 import { ActivatedRoute } from '@angular/router';
 import { IssuesService } from 'src/app/services/issues.service';
-import { UserService } from 'src/app/services/user.service';
+import { ProjetService } from 'src/app/services/projet.service';
 
 @Component({
   selector: 'app-task',
@@ -13,7 +13,7 @@ export class TaskComponent implements OnInit {
   project_id;
   tasks = [];
   issues = [];
-  users = [];
+  contributors = [];
   modelTask = {
     issue: [],
     description: '',
@@ -29,7 +29,7 @@ export class TaskComponent implements OnInit {
   }
   tests = ["1","2"]
   constructor(private tasksService: TasksService, private issueService: IssuesService,
-    private userService: UserService, private route: ActivatedRoute) { }
+    private projectService: ProjetService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
@@ -37,7 +37,7 @@ export class TaskComponent implements OnInit {
     })
     this.getTasks();
     this.getIssues();
-    this.getUsers();
+    this.getContributors();
   }
 
   getTasks() {
@@ -46,8 +46,10 @@ export class TaskComponent implements OnInit {
   getIssues() {
     this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
   }
-  getUsers() {
-    this.userService.getUsers().subscribe(data => { this.users = data['users'] });
+  getContributors() {
+    this.projectService.getProject(this.project_id).subscribe(data => { 
+      this.contributors = data['project']['contributors'] 
+    });
 
   }
 

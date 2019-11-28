@@ -35,8 +35,9 @@
                         <div class="form-group col">
                             <ng-select class="custom" placeholder="Choisir le développeur"
                                 [(ngModel)]="modelTask.developer" name="developer">
-                                <ng-option *ngFor="let user of users" [value]="user?.name">{{user?.name}} /
-                                    {{user?.email}}</ng-option>
+                                <ng-option *ngFor="let contributor of contributors" [value]="contributor?.name">
+                                    {{contributor?.name}} /
+                                    {{contributor?.email}}</ng-option>
                             </ng-select>
                         </div>
                     </div>
@@ -103,7 +104,8 @@
                             </select>
                         -->
                             <ng-select name="issues" placeholder="+ Ajouter des issues"
-                                [(ngModel)]="modelTaskEdit.issue" bindLabel="idIssue" bindValue="idIssue"  [multiple]="true">
+                                [(ngModel)]="modelTaskEdit.issue" bindLabel="idIssue" bindValue="idIssue"
+                                [multiple]="true">
                                 <ng-option *ngFor="let issue of issues" [value]="issue?.issueID">{{issue?.issueID}} -
                                     {{issue?.description}}</ng-option>
                             </ng-select>
@@ -126,8 +128,9 @@
                         <div class="form-group col">
                             <ng-select class="custom" placeholder="Choisir le développeur"
                                 [(ngModel)]="modelTaskEdit.developer" name="developer">
-                                <ng-option *ngFor="let user of users" [value]="user?.name">{{user?.name}} /
-                                    {{user?.email}}</ng-option>
+                                <ng-option *ngFor="let contributor of contributors" [value]="contributor?.name">
+                                    {{contributor?.name}} /
+                                    {{contributor?.email}}</ng-option>
                             </ng-select>
                         </div>
                     </div>

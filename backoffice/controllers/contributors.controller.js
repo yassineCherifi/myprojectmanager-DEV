@@ -8,7 +8,7 @@ const Project = mongoose.model('Project');
 const User = mongoose.model('User');
 const Invitation = mongoose.model('Invitation');
 
-module.exports.getInvitations = (req, res, next) => {
+module.exports.getInvitations = (req, res) => {
     Invitation.find({ project: req.params.id })
         .exec(function (err, invitations) {
             if (err) { return res.json({ err: 'Aucun projet trouvé !' }); }
@@ -18,7 +18,7 @@ module.exports.getInvitations = (req, res, next) => {
 
 };
 
-module.exports.addContributor = (req, res, next) => {
+module.exports.addContributor = (req, res) => {
     const invitation = req.params.invitation;
     const email = req.params.email;
     Project.findOne({ _id: req.params.id }, (err, project) => {
@@ -48,7 +48,7 @@ module.exports.addContributor = (req, res, next) => {
 
 
 
-module.exports.inviteContributor = (req, res, next) => {
+module.exports.inviteContributor = (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -73,7 +73,7 @@ module.exports.inviteContributor = (req, res, next) => {
                         html: '<h4>Vous êtes invité à participer dans le projet [' + project.title + '], cliquer sur le lien suivant pour accepter l\'invitation :<h4>' +
               '<a href="http://localhost:3002/api/' + project._id + '/contributors/' + invitation._id + '/' + invitation.emailUser + '">Accepter l\'invitation</a>'
                     };
-                    transporter.sendMail(mailOptions, function (error, info) {
+                    transporter.sendMail(mailOptions, function (error) {
                         if (error) {
                             res.json(error);
                         } else {
@@ -86,7 +86,7 @@ module.exports.inviteContributor = (req, res, next) => {
     });
 };
 
-module.exports.deleteContributor = (req, res, next) => {
+module.exports.deleteContributor = (req, res) => {
     Project.findOne({ _id: req.params.id }, (err, project) => {
         if (project) {
             project.contributors.remove({ _id: req.params.idContributor });

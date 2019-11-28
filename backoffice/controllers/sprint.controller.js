@@ -9,7 +9,7 @@ const Sprint = mongoose.model('Sprint');
 const Issue = mongoose.model('Issue');
 
 
-module.exports.getSprints = (req, res, next) => {
+module.exports.getSprints = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('sprints')
         .exec(function (err, project) {
@@ -19,7 +19,7 @@ module.exports.getSprints = (req, res, next) => {
 
 };
 
-module.exports.getSprint = (req, res, next) => {
+module.exports.getSprint = (req, res) => {
     Sprint.findOne({ _id: req.params.idSprint })
         .populate('issues')
         .exec(function (err, sprint) {
@@ -30,14 +30,14 @@ module.exports.getSprint = (req, res, next) => {
 };
 
 
-module.exports.createSprint = (req, res, next) => {
+module.exports.createSprint = (req, res) => {
     const sprint = new Sprint();
     sprint.title = req.body.title;
     sprint.startDate = req.body.dp1;
     sprint.endDate = req.body.dp2;
     sprint.status = req.body.status;
     sprint.save()
-        .then((result) => {
+        .then(() => {
             Project.findOne({ _id: req.params.id }, (err, project) => {
                 if (project) {
                     project.sprints.push(sprint);
@@ -51,7 +51,7 @@ module.exports.createSprint = (req, res, next) => {
         });
 };
 
-module.exports.editSprint = (req, res, next) => {
+module.exports.editSprint = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
             path: 'sprints',
@@ -72,10 +72,10 @@ module.exports.editSprint = (req, res, next) => {
         });
 };
 
-module.exports.deleteSprint = (req, res, next) => {
+module.exports.deleteSprint = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });
-        Sprint.deleteOne({ _id: req.params.idSprint }, function (err, removed) {
+        Sprint.deleteOne({ _id: req.params.idSprint }, function (err) {
             if (err) res.json({ error: 'Sprint not removed' });
             project.sprints.remove({ _id: req.params.idSprint });
             project.save(function (err) {
@@ -87,7 +87,7 @@ module.exports.deleteSprint = (req, res, next) => {
     });
 };
 
-module.exports.addIssueToSprint = (req, res, next) => {
+module.exports.addIssueToSprint = (req, res) => {
     Sprint.findOne({ _id: req.params.idSprint }, (err, sprint) => {
         if (sprint) {
             Issue.findOne({ _id: req.body.idIssue }, (err, issue) => {
@@ -106,7 +106,7 @@ module.exports.addIssueToSprint = (req, res, next) => {
 };
 
 
-module.exports.deleteIssueSprint = (req, res, next) => {
+module.exports.deleteIssueSprint = (req, res) => {
     Sprint.findOne({ _id: req.params.idSprint }, (err, sprint) => {
         if (sprint) {
             sprint.issues.remove({ _id: req.params.idIssue });

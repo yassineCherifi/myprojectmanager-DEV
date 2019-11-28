@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const user = require('../models/user');
+require('../models/user');
 
 mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true , useUnifiedTopology: true}, (err) => {
     if(!err) {

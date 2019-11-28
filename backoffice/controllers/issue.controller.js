@@ -4,7 +4,7 @@ require('../models/issue');
 const Project = mongoose.model('Project');
 const Issue = mongoose.model('Issue');
 
-module.exports.getIssues = (req, res, next) => {
+module.exports.getIssues = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('issues')
         .exec(function (err, project) {
@@ -14,7 +14,7 @@ module.exports.getIssues = (req, res, next) => {
 
 };
 
-module.exports.createIssue = (req, res, next) => {
+module.exports.createIssue = (req, res) => {
     const issue = new Issue();
     issue.issueID = req.body.issueID;
     issue.description = req.body.description;
@@ -22,7 +22,7 @@ module.exports.createIssue = (req, res, next) => {
     issue.difficulte = req.body.difficulte;
     issue.status = req.body.status;
     issue.save()
-        .then((result) => {
+        .then(() => {
             Project.findOne({ _id: req.params.id }, (err, project) => {
                 if (project) {
                     project.issues.push(issue);
@@ -37,7 +37,7 @@ module.exports.createIssue = (req, res, next) => {
 
 };
 
-module.exports.editIssue = (req, res, next) => {
+module.exports.editIssue = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
             path: 'issues',
@@ -59,10 +59,10 @@ module.exports.editIssue = (req, res, next) => {
         });
 };
 
-module.exports.deleteIssue = (req, res, next) => {
+module.exports.deleteIssue = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });
-        Issue.deleteOne({ _id: req.params.idIssue }, function (err, removed) {
+        Issue.deleteOne({ _id: req.params.idIssue }, function (err) {
             if (err) res.json({ error: 'issue not removed' });
             project.issues.remove({ _id: req.params.idIssue });
             project.save(function (err) {

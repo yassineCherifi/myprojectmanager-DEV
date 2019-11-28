@@ -4,7 +4,7 @@ require('../models/task');
 const Project = mongoose.model('Project');
 const Task = mongoose.model('Task');
 
-module.exports.getTasks = (req, res, next) => {
+module.exports.getTasks = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('tasks')
         .exec(function (err, project) {
@@ -14,7 +14,7 @@ module.exports.getTasks = (req, res, next) => {
 
 };
 
-module.exports.createTask = (req, res, next) => {
+module.exports.createTask = (req, res) => {
     const task = new Task();
     for(let issue of req.body.issues) {
         task.idIssues.push(issue);
@@ -23,7 +23,7 @@ module.exports.createTask = (req, res, next) => {
     task.cout = req.body.cout;
     task.developer = req.body.developer;
     task.save()
-        .then((result) => {
+        .then(() => {
             Project.findOne({ _id: req.params.id }, (err, project) => {
                 if (project) {
                     project.tasks.push(task);
@@ -37,7 +37,7 @@ module.exports.createTask = (req, res, next) => {
         });
 };
 
-module.exports.editTask = (req, res, next) => {
+module.exports.editTask = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
             path: 'tasks',
@@ -61,10 +61,10 @@ module.exports.editTask = (req, res, next) => {
         });
 };
 
-module.exports.deleteTask = (req, res, next) => {
+module.exports.deleteTask = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });
-        Task.deleteOne({ _id: req.params.idTask }, function (err, removed) {
+        Task.deleteOne({ _id: req.params.idTask }, function (err) {
             if (err) res.json({ error: 'task not removed' });
             project.tasks.remove({ _id: req.params.idTask });
             project.save(function (err) {

@@ -4,7 +4,7 @@ require('../models/test');
 const Project = mongoose.model('Project');
 const Test = mongoose.model('Test');
 
-module.exports.getTests = (req, res, next) => {
+module.exports.getTests = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('tests')
         .exec(function (err, project) {
@@ -14,7 +14,7 @@ module.exports.getTests = (req, res, next) => {
 
 };
 
-module.exports.createTest = (req, res, next) => {
+module.exports.createTest = (req, res) => {
     const test = new Test();
     test.title = req.body.title;
     test.description = req.body.description;
@@ -23,7 +23,7 @@ module.exports.createTest = (req, res, next) => {
     test.link = req.body.Lien;
     test.status = req.body.status;
     test.save()
-        .then((result) => {
+        .then(() => {
             Project.findOne({ _id: req.params.id }, (err, project) => {
                 if (project) {
                     project.tests.push(test);
@@ -37,7 +37,7 @@ module.exports.createTest = (req, res, next) => {
         });
 };
 
-module.exports.editTest = (req, res, next) => {
+module.exports.editTest = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
             path: 'tests',
@@ -58,10 +58,10 @@ module.exports.editTest = (req, res, next) => {
         });
 };
 
-module.exports.deleteTest = (req, res, next) => {
+module.exports.deleteTest = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });
-        Test.deleteOne({ _id: req.params.idTest }, function (err, removed) {
+        Test.deleteOne({ _id: req.params.idTest }, function (err) {
             if (err) res.json({ error: 'test not removed' });
             project.tests.remove({ _id: req.params.idTest });
             project.save(function (err) {

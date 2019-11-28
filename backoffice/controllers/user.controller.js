@@ -19,7 +19,7 @@ module.exports.register = (req, res, next) => {
     });
 };
 
-module.exports.authenticate = (req, res, next) => {
+module.exports.authenticate = (req, res) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) res.status(400).json(err);
         else
@@ -32,19 +32,19 @@ module.exports.authenticate = (req, res, next) => {
     })(req, res);
 };
 
-module.exports.logout = (req, res, next) => {
+module.exports.logout = (req, res) => {
     res.clearCookie('token');
     res.status(200).json({success: 'Logout with success !' });
 };
 
-module.exports.userDashboard = (req, res, next) => {
+module.exports.userDashboard = (req, res) => {
     User.findOne({ _id: req._id }, (err, user) => {
         if (!user) res.status(404).json({status: false, message: 'Utilisateur non trouvé'});
         else res.status(200).json({status: true , user: _.pick(user,['_id','name','email'])});
     });
 };
 
-module.exports.getUsers = (req, res, next) => {
+module.exports.getUsers = (req, res) => {
     User.find({},'name email',(err, users) => {
         if (!users) res.status(404).json({status: false, message: 'Utilisateur non trouvé'});
         else res.status(200).json({users:users});

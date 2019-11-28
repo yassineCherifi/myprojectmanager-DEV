@@ -11,15 +11,22 @@ Taks list :
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US06 |  |  |  | |  |
+| US06 |  Modify the Project schema to add the contributors[] list that reference a list of users as a field | The projectSchema in the /backoffice/models/project.js contains a field "contributors". The database is starting without any issues.| 0.5 | CHERIFI | DONE |
+| US06 | add contributor.controller in "controllers" and create inside the function : getInvitations() that returns all the invitation for a project| The functions "getInvitations" have been created in documentation.controller.js | 0.5 | CHERIFI | DONE |
+| US06 | in "frontoffice/components" create contributor.component,in the view add table to display the contributors and add modal with select input to invite contributors and display invitations, in contributors.component.controller add the functions getInvitations() wchich calls the the function getInvitations in contributor.service, inviteContributor() wchich calls the the function inviteContributor in contributor.service and these function will fetch contributors routes in 'backoffice/routes/' | the component has been created. the functions have been been added in the controller and in the service.| 0.5 | CHERIFI | DONE |
+
+
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US07 |  | | | |
+| US07 | add the route '/:id/contributors/:idContributor' that calls the function deleteContributor in contributor.controller | the route and the function have been been added, the contributor has been deleted| 0.5 | CHERIFI | DONE |
+| US07 | in contributor component view, add button delete before each contributor, clicking on this button will call the function removeContribtor() with calls the method removeContributor() in contributor.service, in contributor service create the funtion removeContributor() which will fetch the delete route of the api| the functions have been added, the contributor has been deleted from the project | 0.5 | CHERIFI | DONE |
+
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US08 |  | | | |
+| US08 | add the route ''/:id/invite' that call the function inviteContributor in contributor.controller,add the function inviteContributor that insert the invitation and send an email to the contributor | the route has been added, the function has been added, the email is sent nd received without probleme | 0.5 | CHERIFI | DONE |
+| US08 | add the route '/:id/contributors/:invitation/:email' that call the function addContributor in contributor.controller,add the function addContributor that add the contributor to the project if he accept it in the received email | the route has been added, the function has been added, the contributor is added to the project | 0.5 | CHERIFI | DONE |
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -45,3 +52,9 @@ Taks list :
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
 | US01, US02, US09, US10, US15, US18, US19, US20 | Create integration tests, for testing API routes.| The backoffice/tests/integration.tests is composed of files testing each route. | 0.5 | MARTINEAU | TODO |
+
+----------------------------------------------------------------------------------------------------------------------
+
+| ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
+| :-: | :-: | :-: | :-: | :-: | :-: |
+| US01, US02, US09, US10, US15, US18, US19, US20 | add selenium-driver to the project, add travis to the project, add eslint to the project | 0.5 | CHERIFI | DONE |

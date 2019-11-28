@@ -16,8 +16,8 @@ module.exports.getAllProjects = (req, res, next) => {
         .populate('documentations')
         .populate('contributors')
         .exec(function (err, projects) {
-            if (err) res.json({ error: "error" })
-            res.json({ result: projects, idlogged: req._id })
+            if (err) res.json({ error: 'error' });
+            res.json({ result: projects, idlogged: req._id });
         });
 };
 
@@ -26,15 +26,15 @@ module.exports.getProjectDetails = (req, res, next) => {
         .populate('creator')
         .populate('contributors')
         .exec(function (err, project) {
-            if (err) res.json({ error: "error" })
-            res.json({ project: project })
+            if (err) res.json({ error: 'error' });
+            res.json({ project: project });
         });
 
 };
 
 module.exports.insertProject = (req, res, next) => {
     User.findOne({ _id: req._id }, (err, user) => {
-        if (!user) res.status(404).json({ status: false, message: "Utilisateur non trouvé" })
+        if (!user) res.status(404).json({ status: false, message: 'Utilisateur non trouvé' });
         else {
             const project = new Project();
             project.title = req.body.title;
@@ -50,14 +50,14 @@ module.exports.insertProject = (req, res, next) => {
 };
 module.exports.editProject = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, (err, project) => {
-        if (!project) res.status(404).json({ status: false, message: "Projet non trouvé" })
+        if (!project) res.status(404).json({ status: false, message: 'Projet non trouvé' });
         else {
             project.title = req.body.title;
             project.description = req.body.description;
             project.status = req.body.status;
             project.save(function (err) {
                 if (!err)
-                    res.send({ success: "Updated with success" });
+                    res.send({ success: 'Updated with success' });
             });
         }
     });
@@ -66,6 +66,6 @@ module.exports.editProject = (req, res, next) => {
 module.exports.deleteProject = (req, res, next) => {
     Project.deleteOne({ _id: req.params.id }, function (err) {
         if (err) handleError(err);
-        res.json({ success: "deleted with success" });
+        res.json({ success: 'deleted with success' });
     });
 };

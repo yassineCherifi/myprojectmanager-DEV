@@ -13,8 +13,8 @@ module.exports.getSprints = (req, res, next) => {
     Project.findOne({ _id: req.params.id })
         .populate('sprints')
         .exec(function (err, project) {
-            if (err) res.json({ error: "error" })
-            res.json({ sprints: project.sprints })
+            if (err) res.json({ error: 'error' });
+            res.json({ sprints: project.sprints });
         });
 
 };
@@ -23,8 +23,8 @@ module.exports.getSprint = (req, res, next) => {
     Sprint.findOne({ _id: req.params.idSprint })
         .populate('issues')
         .exec(function (err, sprint) {
-            if (err) res.json({ error: "error" })
-            res.json({ sprint: sprint })
+            if (err) res.json({ error: 'error' });
+            res.json({ sprint: sprint });
         });
 
 };
@@ -63,8 +63,8 @@ module.exports.editSprint = (req, res, next) => {
             result.sprints[0].endDate = req.body.dp2;
             result.sprints[0].status = req.body.status;
             result.sprints[0].save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "sprint edited" })
+                if (err) res.json({ error: 'error' });
+                res.json({ success: 'sprint edited' });
             });
         })
         .catch((error) => {
@@ -74,13 +74,13 @@ module.exports.editSprint = (req, res, next) => {
 
 module.exports.deleteSprint = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
-        if (err) res.json({ error: "no project found" })
+        if (err) res.json({ error: 'no project found' });
         Sprint.deleteOne({ _id: req.params.idSprint }, function (err, removed) {
-            if (err) res.json({ error: "Sprint not removed" });
+            if (err) res.json({ error: 'Sprint not removed' });
             project.sprints.remove({ _id: req.params.idSprint });
             project.save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "Sprint removed" })
+                if (err) res.json({ error: 'error' });
+                res.json({ success: 'Sprint removed' });
             });
         });
 

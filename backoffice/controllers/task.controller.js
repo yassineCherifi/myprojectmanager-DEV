@@ -8,8 +8,8 @@ module.exports.getTasks = (req, res, next) => {
     Project.findOne({ _id: req.params.id })
         .populate('tasks')
         .exec(function (err, project) {
-            if (err) res.json({ error: "error" })
-            res.json({ tasks: project.tasks })
+            if (err) res.json({ error: 'error' });
+            res.json({ tasks: project.tasks });
         });
 
 };
@@ -52,8 +52,8 @@ module.exports.editTask = (req, res, next) => {
             result.tasks[0].cout = req.body.cout;
             result.tasks[0].developer = req.body.developer;
             result.tasks[0].save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "task edited" })
+                if (err) res.json({ error: 'error' });
+                res.json({ success: 'task edited' });
             });
         })
         .catch((error) => {
@@ -63,13 +63,13 @@ module.exports.editTask = (req, res, next) => {
 
 module.exports.deleteTask = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
-        if (err) res.json({ error: "no project found" })
+        if (err) res.json({ error: 'no project found' });
         Task.deleteOne({ _id: req.params.idTask }, function (err, removed) {
-            if (err) res.json({ error: "task not removed" });
+            if (err) res.json({ error: 'task not removed' });
             project.tasks.remove({ _id: req.params.idTask });
             project.save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "task removed" })
+                if (err) res.json({ error: 'error' });
+                res.json({ success: 'task removed' });
             });
         });
 

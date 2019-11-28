@@ -39,4 +39,4 @@ app.listen(process.env.PORT, () => {
     console.log('Démarrage du serveur sur le port :' + process.env.PORT);
 });
 
-module.exports = app
+module.exports = app;

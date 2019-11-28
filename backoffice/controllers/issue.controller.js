@@ -8,8 +8,8 @@ module.exports.getIssues = (req, res, next) => {
     Project.findOne({ _id: req.params.id })
         .populate('issues')
         .exec(function (err, project) {
-            if (err) res.json({ error: "error" })
-            res.json({ issues: project.issues })
+            if (err) res.json({ error: 'error' });
+            res.json({ issues: project.issues });
         });
 
 };
@@ -50,8 +50,8 @@ module.exports.editIssue = (req, res, next) => {
             result.issues[0].difficulte = req.body.difficulte;
             result.issues[0].status = req.body.status;
             result.issues[0].save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "issue edited" })
+                if (err) res.json({ error: 'error' });
+                res.json({ success: 'issue edited' });
             });
         })
         .catch((error) => {
@@ -61,13 +61,13 @@ module.exports.editIssue = (req, res, next) => {
 
 module.exports.deleteIssue = (req, res, next) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
-        if (err) res.json({ error: "no project found" })
+        if (err) res.json({ error: 'no project found' });
         Issue.deleteOne({ _id: req.params.idIssue }, function (err, removed) {
-            if (err) res.json({ error: "issue not removed" });
+            if (err) res.json({ error: 'issue not removed' });
             project.issues.remove({ _id: req.params.idIssue });
             project.save(function (err) {
-                if (err) res.json({ error: "error" });
-                res.json({ success: "issue removed" })
+                if (err) res.json({ error: 'error' });
+                res.json({ success: 'issue removed' });
             });
         });
 

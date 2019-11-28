@@ -58,3 +58,8 @@ Taks list :
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
 | US01, US02, US09, US10, US15, US18, US19, US20 | add selenium-driver to the project, add travis to the project, add eslint to the project | selenium, travis & eslint are runned without problems| 0.5 | CHERIFI | DONE |
+
+| ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
+| :-: | :-: | :-: | :-: | :-: | :-: |
+| US23 | Create the user documentation | The file "User Documentation" has been created. It explains how to use the site to the user.| 0.5 | BOUYSSOU | ON GOING |
+----------------------------------------------------------------------------------------------------------------------

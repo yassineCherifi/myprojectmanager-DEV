@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { convertToParamMap, Params, ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 class MockActivatedRoute {
   snapshot = {
@@ -29,7 +30,7 @@ describe('TaskComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TaskComponent ],
-      imports: [HttpClientTestingModule, FormsModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, FormsModule, RouterTestingModule, NgSelectModule],
       providers: [{
         provide: ActivatedRoute,
         useClass: MockActivatedRoute

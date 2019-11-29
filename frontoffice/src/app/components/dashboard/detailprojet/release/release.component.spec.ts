@@ -1,6 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReleaseComponent } from './release.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Params, convertToParamMap, ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+
+
+class MockActivatedRoute {
+  snapshot = {
+    paramMap: convertToParamMap({
+      id: '1'
+    })
+  }
+  parent = {
+    routeConfig: { children: { filter: () => {} } },
+    params: { subscribe: jasmine.createSpy('subscribe')
+    .and
+    .returnValue(of(<Params>{id: 1}))}
+  };
+}
+
+
 
 describe('ReleaseComponent', () => {
   let component: ReleaseComponent;
@@ -8,7 +32,12 @@ describe('ReleaseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReleaseComponent ]
+      declarations: [ ReleaseComponent ],
+      imports: [ FormsModule, NgSelectModule, HttpClientTestingModule, RouterTestingModule, NgbModule],
+      providers: [{
+        provide: ActivatedRoute,
+        useClass: MockActivatedRoute
+      }]
     })
     .compileComponents();
   }));

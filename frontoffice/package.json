@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=production --outputPath=\"public\" && mkdir -p ../backoffice/public && cp -r public/* ../backoffice/public/",
+    "build": "ng build --configuration=heroku --outputPath=\"public\" && mkdir -p ../backoffice/public && cp -r public/* ../backoffice/public/",
     "build-dev": "ng build --outputPath=\"public\" && mkdir -p ../backoffice/public && cp -r public/* ../backoffice/public/",
     "test": "ng test",
     "lint": "ng lint",

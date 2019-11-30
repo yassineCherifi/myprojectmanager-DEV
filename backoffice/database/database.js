@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 require('../models/user');
-
-mongoose.connect(process.env.MONGOPROD || process.env.MONGODB_URI,{ useNewUrlParser: true , useUnifiedTopology: true}, (err) => {
-    console.log(process.env.MONGOPROD || process.env.MONGODB_URI);
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/cdp2019';
+mongoose.connect(MONGO_URL,{ useNewUrlParser: true , useUnifiedTopology: true}, (err) => {
     if(!err) {
         console.log('Base de données connectée');
     }

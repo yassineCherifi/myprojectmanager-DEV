@@ -5,27 +5,21 @@ const { expect } = require('chai');
 const mongoose = require('mongoose');
 const userModel = require('../../models/user')
 const projectModel = require('../../models/project')
-const issueModel = require('../../models/issue')
+const sprintModel = require('../../models/sprint')
 const User = mongoose.model('User');
-const Issue = mongoose.model('Issue');
 const Project = mongoose.model('Project');
+const Sprint = mongoose.model('Sprint');
 const URL_REGISTER = 'http://localhost:4200/register';
 const URL_LOGIN = 'http://localhost:4200/login';
 const PROJECTS_URL = 'http://localhost:4200/dashboard/projects';
 const user = new User({ name: "test", email: "test@email.com", password: "password" })
 const project = new Project({ title: "projectTest", description: "projectDescription" })
-const issue = new Issue({
-    issueID: 1,
-    description: 'ffffffffffffffff',
-    priorite: 'Basse',
-    difficulte: 1,
-    status: 'Terminé'
-})
+const sprint = new Sprint({ titre: "sprintTest", status: "Terminé" })
 
 
-describe('Issue tests', () => {
+describe('Contributor tests', () => {
     const driver = new Builder().forBrowser('firefox')
-        .withCapabilities({ 'browserName': 'firefox', 'name': 'Firefox Test', 'moz:webdriverClick': false, 'tz': 'America/Los_Angeles', 'build': 'Firefox Build', 'idleTimeout': '100' })
+        .withCapabilities({ 'browserName': 'firefox', 'name': 'Firefox Test', 'moz:webdriverClick': true, 'tz': 'America/Los_Angeles', 'build': 'Firefox Build', 'idleTimeout': '100' })
         .build();
     it('It should register', async () => {
         await driver.get(URL_REGISTER);
@@ -51,40 +45,27 @@ describe('Issue tests', () => {
         await driver.findElement(By.css('a.btn:nth-child(4)')).click()
         const added = await driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div/div[2]/div/app-listprojets/table/tbody/tr')).isDisplayed();
         expect(added).to.equal(true);
-    });
-
-    it('It should add issue', async () => {
         await driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div/div[2]/div/app-listprojets/table/tbody/tr/td[1]/a')).click()
         const a = await driver.getCurrentUrl();
-        await driver.get(a.replace("contributors", "issues"));
-        await driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div[2]/div[2]/div/app-detailprojet/div[2]/div/app-root/app-issue/div[1]/a')).click()
-        driver.findElement(By.xpath('//*[@id="issueID"]')).then(e => {
-            e.sendKeys(issue.issueID);
-        })
-        driver.findElement(By.xpath('//*[@id="priorite"]')).then(e => {
-            e.sendKeys(issue.priorite);
-        })
-        driver.findElement(By.xpath('//*[@id="difficulte"]')).then(e => {
-            e.sendKeys(issue.difficulte);
-        })
-        driver.findElement(By.xpath('//*[@id="status"]')).then(e => {
-            e.sendKeys(issue.status);
-        })
-        driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div[2]/div[2]/div/app-detailprojet/div[2]/div/app-root/app-issue/div[2]/div/div/fieldset/form/a')).then(e => {
-            e.click();
-        })
-        const isPresent = await driver.findElements(By.css('.table > tbody:nth-child(3) > tr:nth-child(1)')) === undefined;
+    });
+
+    it('It should view invitations', async () => {
+        await driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div[2]/div[2]/div/app-detailprojet/div[2]/div/app-root/app-contributor/div[1]/div/div/button')).click() 
+        let  isPresent = driver.findElements(By.xpath('/html/body/app-root/app-dashboard/div[2]/div[2]/div/app-detailprojet/div[2]/div/app-root/app-contributor/div[2]/div/div/div[2]/div/div/ng-select/div/div/div[2]/input')).isDisplayed
         expect(isPresent).to.equal(true);
     });
+
 
     after(async () => {
         User.remove({}, v => {
         });
         Project.remove({}, v => {
         });
-        Issue.remove({}, v => {
+        Sprint.remove({}, v => {
         });
         driver.quit()
     });
+
+
 
 });

@@ -1,30 +1,39 @@
-  <div id="viewport">
+<div id="navbar" class="navbar-header" *ngIf="userInfos">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">MyProjectManager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+      </ul>
+    </div>
+    <div class="mx-auto order-0">
+        <ul class="navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ userInfos.name}}<span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="javascript:void(0)" (click)="logout()" class="fa fa-sign-out">Déconnexion</a></li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+  </nav>
+</div>
+
+<div id="viewport" style="padding-top:50px">
   <!-- Sidebar -->
   <div *ngIf="userInfos" id="sidebar">
-    <header>
-        <p style="text-align: center"><span class="badge badge-secondary"> Bienvenue {{ userInfos.name}}</span></p>
-
-      </header>
 
     <ul class="nav">
       <li>
         <a routerLink="projects">
-          <em class="zmdi zmdi-view-dashboard"></em> Mes projets
+          <em class="zmdi zmdi-view-dashboard" class="fa fa-folder-open-o"></em> Mes projets
         </a>
       </li>
       <li>
-        <a routerLink="projects" >
-          <em class="zmdi zmdi-view-dashboard"></em> Mes collaborateurs
-        </a>
-      </li>
-      <li>
-        <a routerLink="userdetail" >
-          <em class="zmdi zmdi-view-dashboard"></em> Mon profil
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)" (click)="logout()">
-          <em class="zmdi zmdi-view-dashboard"></em> Déconnexion
+        <a routerLink="userdetail">
+          <em class="zmdi zmdi-view-dashboard" class="fa fa-user"></em> Mon profil
         </a>
       </li>
     </ul>

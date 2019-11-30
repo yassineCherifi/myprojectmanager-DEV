@@ -3,6 +3,6 @@ sudo: false
 node_js:
   - 9
 install:
-  - cd backoffice && npm install && npx eslint . && cd .. && docker-compose up -d mongodb && cd frontoffice && npm install && ng test
+  - cd backoffice && npm install && npx eslint . && cd .. && docker-compose up -d mongodb
 script:
   - npm test

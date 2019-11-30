@@ -11,7 +11,7 @@ const projectRoutes = require('./routes/projects.router');
 const jwtVerify = require('./config/jwt.verify') ;
 const cookieParser = require('cookie-parser');
 const path = require('path');
-
+const port = process.env.PORT || 3002;
 const app = express();
 
 app.use(bodyParse.json());
@@ -35,8 +35,8 @@ app.use((err, req, res) => {
     }
 });
 
-app.listen(process.env.PORT, () => {
-    console.log('Démarrage du serveur sur le port :' + process.env.PORT);
+app.listen(port, () => {
+    console.log('Démarrage du serveur sur le port :' +  port);
 });
 
 module.exports = app;

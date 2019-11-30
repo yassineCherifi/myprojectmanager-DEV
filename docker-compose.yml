@@ -3,8 +3,10 @@ services:
   back:
     build: "./backoffice"
     restart: always
+    environment:
+      MONGO_URL: "mongodb://mongodb:27017/cdp2019"
     ports:
-      - "3000:80"
+      - "3002:3002"
     links:
       - mongodb
   mongodb:

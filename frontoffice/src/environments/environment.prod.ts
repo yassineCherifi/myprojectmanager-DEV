@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  API_URL: 'http://localhost:3002/api'
+  production: false,
+  API_URL: 'https://cdpmyprojectanager.herokuapp.com/api'
 };

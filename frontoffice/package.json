@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --outputPath=\"public\" && rm -dr ../backoffice/public && cp -r public/ ../backoffice/public",
+    "build": "ng build --outputPath=\"public\" && mkdir -p ../backoffice/public && cp -r public/ ../backoffice/public",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

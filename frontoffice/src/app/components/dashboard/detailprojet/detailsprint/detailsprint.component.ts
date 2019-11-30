@@ -31,10 +31,17 @@ export class DetailsprintComponent implements OnInit {
     private issueService: IssuesService,
     private route: ActivatedRoute) { }
 
+
+  /**
+   * Initialization of detailSprint component.
+   */
   ngOnInit() {
     this.getSprint();
   }
 
+  /**
+   * Get selected sprint infos.
+   */
   getSprint() {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id']; // true
@@ -56,12 +63,15 @@ export class DetailsprintComponent implements OnInit {
           this.nbrDifficulteRes = this.nbrDifficulteRes + parseInt(e.difficulte);
         });
       });
-  
     })
 
 
   }
 
+  /**
+   * Add an issue to the sprint.
+   * @param $event Add event
+   */
   onAdd($event) {
     this.sprintService.addIssueSprint(this.project_id, this.sprintID, { idIssue: $event }).subscribe(
       res => {
@@ -74,6 +84,10 @@ export class DetailsprintComponent implements OnInit {
     );
   }
 
+  /**
+   * Update the edit issue template.
+   * @param issue issue reference
+   */
   updateModalEditIssue(issue) {
     this.modelIssueEdit._id = issue._id;
     this.modelIssueEdit.issueID = issue.issueID;
@@ -81,9 +95,14 @@ export class DetailsprintComponent implements OnInit {
     this.modelIssueEdit.priorite = issue.priorite;
     this.modelIssueEdit.difficulte = issue.difficulte;
     this.modelIssueEdit.status = issue.status;
-    console.log(this.modelIssueEdit._id);
   }
 
+
+
+  /**
+   * Edit an issue
+   * @param form form containing the issue infos.
+   */
   onSubmitEditIssue(form: NgForm) {
     this.issueService.editIssue(this.project_id, this.modelIssueEdit._id, form.value).subscribe(
       res => {
@@ -96,6 +115,10 @@ export class DetailsprintComponent implements OnInit {
     );
   }
 
+  /**
+   * Remove an issue from the sprint.
+   * @param issueId id of issue to remove
+   */
   removeIssueFromSprint(issueId) {
     this.sprintService.removeIssue(this.project_id, this.sprintID, issueId).subscribe(data => this.getSprint());
 

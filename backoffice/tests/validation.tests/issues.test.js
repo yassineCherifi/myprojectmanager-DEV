@@ -25,7 +25,9 @@ const issue = new Issue({
 
 describe('Issue tests', () => {
     const driver = new Builder().forBrowser('firefox')
-        .withCapabilities({ 'browserName': 'firefox', 'name': 'Firefox Test', 'moz:webdriverClick': false, 'tz': 'America/Los_Angeles', 'build': 'Firefox Build', 'idleTimeout': '100' })
+        .withCapabilities({ 'browserName': 'firefox', 'name': 'Firefox Test',
+                            'moz:webdriverClick': false, 'tz': 'America/Los_Angeles',
+                            'build': 'Firefox Build', 'idleTimeout': '100' })
         .build();
     it('It should register', async () => {
         await driver.get(URL_REGISTER);

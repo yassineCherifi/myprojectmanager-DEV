@@ -1,3 +1,6 @@
+/**
+ * Issue in the project.
+ */
 export class Issues {
     issueID: string;
     description: string;

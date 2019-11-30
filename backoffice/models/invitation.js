@@ -9,7 +9,6 @@ const invitationSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Project'
     },
-   
     date: {
         type: String,
     },

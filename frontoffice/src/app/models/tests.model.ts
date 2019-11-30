@@ -1,3 +1,6 @@
+/**
+ * A test for the project.
+ */
 export class Tests {
     title: string;
     description: string;

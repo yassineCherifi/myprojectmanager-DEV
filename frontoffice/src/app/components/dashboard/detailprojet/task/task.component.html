@@ -95,14 +95,6 @@
                 <form #editTask="ngForm" (ngSubmit)="editTask.valid">
                     <div class="from row">
                         <div class="form-group col">
-                            <!--<select class="custom-select" id="idIssues" name="idIssues"
-                                [(ngModel)]="modelTaskEdit.issue">
-                                <option disabled value='0'>Choisir l'issue</option>
-                                <option [value]='issue?.issueID' *ngFor="let issue of issues">
-                                    {{issue?.issueID}} / {{issue?.description}}
-                                </option>
-                            </select>
-                        -->
                             <ng-select name="issues" placeholder="+ Ajouter des issues"
                                 [(ngModel)]="modelTaskEdit.issue" bindLabel="idIssue" bindValue="idIssue"
                                 [multiple]="true">

@@ -29,6 +29,11 @@ export class DocumentationComponent implements OnInit {
   constructor(private documentationService: DocumentationsService, private issueService: IssuesService,
               private route: ActivatedRoute) { }
 
+
+
+  /**
+   * Initialization of documentation component.
+   */
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id'];
@@ -37,12 +42,26 @@ export class DocumentationComponent implements OnInit {
     this.getIssues();
 
   }
+
+  /**
+   * Get the current project issue list.
+   */
   getIssues() {
     this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
   }
+
+  /**
+   * Get the current project documentation list.
+   */
   getDocumentations() {
     this.documentationService.getDocumentations(this.project_id).subscribe(data => this.documentations = data['documentations']);
   }
+
+
+  /**
+   * Add documentation from form info
+   * @param form the form containing the documentation info
+   */
   onSubmitDocumentation(form: NgForm){
     this.documentationService.addDocumentation(this.project_id, form.value).subscribe(
       res => {
@@ -55,10 +74,19 @@ export class DocumentationComponent implements OnInit {
     );
   }
 
+  /**
+   * Remove a documentation reference
+   * @param id id of the documentation reference
+   */
   removeDocumentation(id) {
     this.documentationService.removeDocumentation(this.project_id, id).subscribe(data => this.getDocumentations());
   }
 
+
+  /**
+   * Update the edit documentation form with the documentation info
+   * @param documentation documentation info
+   */
   updateModalEditDocumentation(documentation) {
     this.modelDocumentationEdit._id = documentation._id;
     this.modelDocumentationEdit.title = documentation.title;
@@ -66,6 +94,11 @@ export class DocumentationComponent implements OnInit {
     this.modelDocumentationEdit.link = documentation.link;
   }
 
+
+  /**
+   * Edit documentation from form info
+   * @param form the form containing documentation info
+   */
   onSubmitEditDocumentation(form: NgForm) {
     this.documentationService.editDocumentation(this.project_id, this.modelDocumentationEdit._id, form.value).subscribe(
       res => {

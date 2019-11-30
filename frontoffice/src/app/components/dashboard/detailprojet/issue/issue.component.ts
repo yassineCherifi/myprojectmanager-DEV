@@ -31,6 +31,10 @@ export class IssueComponent implements OnInit {
   }
   constructor(private issueService: IssuesService, private route: ActivatedRoute) { }
 
+
+  /**
+   * Initialize issue component.
+   */
   ngOnInit() {
 
     this.route.parent.params.subscribe(params => {
@@ -39,11 +43,18 @@ export class IssueComponent implements OnInit {
     this.getIssues();
   }
 
+  /**
+   * Get the current project issue list
+   */
   getIssues() {
     this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
   }
 
 
+  /**
+   * Add an issue from form info
+   * @param form form containing the issue info
+   */
   onSubmitIssue(form: NgForm) {
     this.issueService.addIssue(this.project_id, form.value).subscribe(
       res => {
@@ -57,9 +68,19 @@ export class IssueComponent implements OnInit {
       }
     );
   }
+
+  /**
+   * Remove an issue
+   * @param id id of the issue to remove
+   */
   removeIssue(id) {
     this.issueService.removeIssue(this.project_id, id).subscribe(data => this.getIssues());
   }
+
+  /**
+   * Update issue edit form from issue info
+   * @param issue issue info
+   */
   updateModalEditIssue(issue) {
     this.modelIssueEdit._id = issue._id;
     this.modelIssueEdit.issueID = issue.issueID;
@@ -69,6 +90,10 @@ export class IssueComponent implements OnInit {
     this.modelIssueEdit.status = issue.status;
   }
 
+  /**
+   * Edit an issue from form info
+   * @param form form containing the issue info
+   */
   onSubmitEditIssue(form: NgForm) {
     this.issueService.editIssue(this.project_id, this.modelIssueEdit._id, form.value).subscribe(
       res => {
@@ -82,6 +107,11 @@ export class IssueComponent implements OnInit {
     );
   }
 
+
+  /**
+   * Sort issues by criteria : "ID", "Priorité" or "Difficulté".
+   * @param $event the criteria on which issues are sorted.
+   */
   sort($event) {
     if ($event !== undefined) {
       const clicked = $event.$ngOptionLabel;

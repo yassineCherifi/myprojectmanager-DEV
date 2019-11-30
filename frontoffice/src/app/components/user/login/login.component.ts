@@ -17,8 +17,16 @@ export class LoginComponent implements OnInit {
     password: ''
   }
   errormessage : string;
-  ngOnInit() {
-  }
+
+  /**
+   * Initialize the login component.
+   */
+  ngOnInit() {}
+
+  /**
+   * Login the user from form info.
+   * @param form form containing the login credentials.
+   */
   onSubmit(form: NgForm) {
     this.userService.login(form.value).subscribe(
       res => {

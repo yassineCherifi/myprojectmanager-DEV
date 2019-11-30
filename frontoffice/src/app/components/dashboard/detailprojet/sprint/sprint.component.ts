@@ -34,6 +34,9 @@ export class SprintComponent implements OnInit {
 
   constructor(private sprintService: SprintService, private route: ActivatedRoute, private calendar: NgbCalendar) { }
 
+  /**
+   * Initialize the sprint component.
+   */
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id'];
@@ -41,13 +44,19 @@ export class SprintComponent implements OnInit {
     this.getSprints();
     this.modelSprint.startDate = this.calendar.getToday();
     this.modelSprint.endDate = this.calendar.getToday();
-
   }
 
+  /**
+   * Get the current project sprint list.
+   */
   getSprints() {
     this.sprintService.getSprints(this.project_id).subscribe(data => this.sprints = data['sprints']);
   }
 
+   /**
+   * Add a sprint from form info.
+   * @param form form containing the sprint info.
+   */
   onSubmitSprint(form: NgForm) {
     let startDate = form.value.dp1;
     let endDate = form.value.dp2;
@@ -65,6 +74,11 @@ export class SprintComponent implements OnInit {
       }
     );
   }
+
+  /**
+   * Update sprint edit form from sprint info
+   * @param sprint sprint info
+   */
   updateModalEditSprint(sprint) {
     this.modelSprintEdit._id = sprint._id;
     this.modelSprintEdit.title = sprint.title;
@@ -73,8 +87,13 @@ export class SprintComponent implements OnInit {
     let tmpDateEnd = sprint.endDate.split("/");
     this.modelSprintEdit.endDate = { year: parseInt(tmpDateEnd[2]), month: parseInt(tmpDateEnd[1]), day: parseInt(tmpDateEnd[0]) };
     this.modelSprintEdit.status = sprint.status;
-    //this.modelSprintEdit.issues = sprint.issues[0];
   }
+
+
+  /**
+   * Edit a sprint from form info
+   * @param form form containing the sprint info
+   */
   onSubmitEditSprint(form: NgForm) {
     let startDate = form.value.dp1;
     let endDate = form.value.dp2;
@@ -92,6 +111,10 @@ export class SprintComponent implements OnInit {
     );
   }
 
+   /**
+   * Remove a sprint from project.
+   * @param id id of sprint to remove.
+   */
   removeSprint(id) {
     this.sprintService.removeSprint(this.project_id, id).subscribe(data => this.getSprints());
   }

@@ -12,9 +12,15 @@ export class RegisterComponent implements OnInit {
   errormessage: string;
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
-  }
+  /**
+   * Initialize the register component.
+   */
+  ngOnInit() {}
 
+  /**
+   * Register a new user from form info.
+   * @param form form containing the new user credentials.
+   */
   onSubmit(form: NgForm) {
     this.userService.postUser(form.value).subscribe(
       res => {
@@ -34,6 +40,10 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  /**
+   * Reset the register form.
+   * @param form form to reset.
+   */
   resetForm(form : NgForm){
     this.userService.user = {
       name: '',

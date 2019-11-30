@@ -40,6 +40,10 @@ export class ReleaseComponent implements OnInit {
     private route: ActivatedRoute,
     private calendar: NgbCalendar) { }
 
+
+  /**
+   * Initialize the release component.
+   */
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id'];
@@ -50,16 +54,32 @@ export class ReleaseComponent implements OnInit {
 
     this.modelDate = this.calendar.getToday();
   }
+
+  /**
+   * Get the current project issue list.
+   */
   getIssues() {
     this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
   }
+
+  /**
+   * Get the current project release list.
+   */
   getReleases() {
     this.releasesService.getReleases(this.project_id).subscribe(data => this.releases = data['releases']);
   }
+
+  /**
+   * Get the current project sprint list.
+   */
   getSprints() {
     this.sprintService.getSprints(this.project_id).subscribe(data => this.sprints = data['sprints']);
-
   }
+
+  /**
+   * Add a release from form info.
+   * @param form form containing the release info.
+   */
   onSubmitRelease(form: NgForm) {
     let date = form.value.date;
     form.value.date = date.day + "/" + date.month + "/" + date.year;
@@ -74,10 +94,18 @@ export class ReleaseComponent implements OnInit {
     );
   }
 
+  /**
+   * Remove a release from project.
+   * @param id id of release to remove.
+   */
   removeRelease(id) {
     this.releasesService.removeRelease(this.project_id, id).subscribe(data => this.getReleases());
   }
 
+  /**
+   * Update release edit form from release info
+   * @param release release info
+   */
   updateModalEditRelease(release) {
     this.modelReleaseEdit._id = release._id;
     this.modelReleaseEdit.title = release.title;
@@ -88,6 +116,10 @@ export class ReleaseComponent implements OnInit {
     this.modelReleaseEdit.link = release.link;
   }
 
+  /**
+   * Edit a release from form info
+   * @param form form containing the release info
+   */
   onSubmitEditRelease(form: NgForm) {
     let date = form.value.date;
     form.value.date = date.day + "/" + date.month + "/" + date.year;

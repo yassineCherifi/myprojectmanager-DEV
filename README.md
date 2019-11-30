@@ -2,19 +2,16 @@
 # myprojectmanager-DEV
 A system that facilitates the management of projects using the agile process framework SCRUM  
 
-The project is by default in developement: 
+The development version is deployed on : https://cdpmyprojectanager.herokuapp.com
 
-to use it in development mode :<br>
+To use it in development mode :<br>
   `docker-compose up -d mongodb` to run the database<br>
   `cd backoffice && npm install` && `node app.js` to run the server on the URI `http://localhost:3002`<br>
    `cd frontoffice && npm install` && `ng serve --open` to run the angular application on the URI       `http://localhost:4200`
    
-to use it in production mode :<br>
-  in `backoffice/config/config.json` change the mode to `production`<br>
-  in `frontoffice/src/environments/environment.ts` change the API URL to : `http://localhost:3000/api`<br>
-  in `frontoffice/` run `npm run build/` to build the angular application<br>
+To use it in production mode :<br>
   in `myprojectmanager-PROD/` run `docker-compose up --build`<br>
-  visit the URL `http://localhost:3000`
+  visit the URL `http://localhost:3002`
   
 Backlog
 

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
+const ACCEPT_URL = process.env.ACCEPT_URL || 'http://localhost:3002/api/';
+
 require('../models/project');
 require('../models/user');
 require('../models/invitation');
@@ -71,7 +73,7 @@ module.exports.inviteContributor = (req, res) => {
                         to: req.body.email,
                         subject: '[MyProjectManager] Invitation to join project !',
                         html: '<h4>Vous êtes invité à participer dans le projet [' + project.title + '], cliquer sur le lien suivant pour accepter l\'invitation :<h4>' +
-              '<a href="http://localhost:3002/api/' + project._id + '/contributors/' + invitation._id + '/' + invitation.emailUser + '">Accepter l\'invitation</a>'
+                            '<a href="' + ACCEPT_URL + project._id + '/contributors/' + invitation._id + '/' + invitation.emailUser + '">Accepter l\'invitation</a>'
                     };
                     transporter.sendMail(mailOptions, function (error) {
                         if (error) {

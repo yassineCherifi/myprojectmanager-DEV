@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "integration-test": "mocha tests/integration.tests/*.js --timeout 15000 --exit",
-    "validation-test": "mocha tests/validation.tests/*.js --timeout 15000 --exit"
+    "validation-test": "mocha tests/validation.tests/*.js --timeout 30000 --exit"
   },
   "author": "",
   "license": "ISC",

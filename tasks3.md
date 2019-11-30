@@ -4,9 +4,9 @@ Taks list :
 
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US04 | Create the function getUser which returns a user and its infos and modifyUser which modify the actual user's infos | Create the functions "getUser, modifyUser" in user.controller.js which receive a get/put request from the index routes ,validate the fields for (inserting,updating) then put/get a user in/from the database. | 0.5 | BOUYSSOU |ON GOING |
+| US04 | Create the function getUser which returns a user and its infos and modifyUser which modify the actual user's infos | Create the functions "getUser, modifyUser" in user.controller.js which receive a get/put request from the index routes ,validate the fields for (inserting,updating) then put/get a user in/from the database. | 0.5 | BOUYSSOU | DONE |
 | US04 | Create the component for the user's details : detailUser.component.html (which contains the fields of the user's infos to update : name, email, password), detailUser.component.ts and detailUser.componen.spec.ts | In angular, create the component "detailUser" in the dashboard. Create the functions "getuser,editUser" in detailuser.component.ts which calls the functions of user.service.ts | 0.5 | BOUYSSOU | DONE |
-| US04 | In angular, add the methods "getuser,editUser" to user.service.ts | getUser return a user from a list of User, editUser changes the attributes of the user : name, email and password | 0.5 | BOUYSSOU | ON GOING |
+| US04 | In angular, add the methods "getuser,editUser" to user.service.ts | getUser return a user from a list of User, editUser changes the attributes of the user : name, email and password | 0.5 | BOUYSSOU | DONE |
 
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
@@ -68,3 +68,11 @@ Taks list :
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
 | US23 | Add JSDoc for the angular project | Methods are explained is JSDoc comments. | 0.5 | MARTINEAU | ON GOING |
+
+
+| ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
+| :-: | :-: | :-: | :-: | :-: | :-: |
+| GENERAL | deploy the dev repository on Heroku | the application is available on https://cdpmyprojectanager.herokuapp.com  | 0.5 | CHERIFI | DONE |
+
+----------------------------------------------------------------------------------------------------------------------
+

@@ -1,5 +1,5 @@
 process.env.NODE_ENV = 'test';
-let app = require('../../app');
+const app = require('../../app');
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const { expect } = require('chai');
 const mongoose = require('mongoose');
@@ -55,7 +55,6 @@ describe('Project tests', () => {
         Project.remove({}, v => {
         });
         driver.quit()
-
     });
 
 

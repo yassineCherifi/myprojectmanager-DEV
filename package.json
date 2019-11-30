@@ -4,8 +4,10 @@
   "description": "A system that facilitates the management of projects using the agile process framework SCRUM",
   "main": "index.js",
   "scripts": {
-    "test": "cd backoffice/ && mocha tests/integration.tests/*.js --timeout 15000 --exit"
-
+    "test": "cd backoffice/ && mocha tests/integration.tests/*.js --timeout 15000 --exit",
+    "install": "npm install --prefix backoffice && npm install --prefix frontoffice",
+    "postinstall": "cd frontoffice && npm run build",
+    "start": "node backoffice/app.js"
   },
   "repository": {
     "type": "git",

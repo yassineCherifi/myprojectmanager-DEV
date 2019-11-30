@@ -10,6 +10,9 @@ export class DashboardComponent implements OnInit {
   userInfos;
   constructor(private userService: UserService, private router: Router) { }
 
+  /**
+   * Initialize the Dashboard component.
+   */
   ngOnInit() {
     this.userService.getDashboard().subscribe(
       res => {
@@ -20,6 +23,9 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  /**
+   * Logout the current user.
+   */
   logout() {
     this.userService.logout().subscribe(
       res => {
@@ -30,4 +36,3 @@ export class DashboardComponent implements OnInit {
     )
   }
 }
-

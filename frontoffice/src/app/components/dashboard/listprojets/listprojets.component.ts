@@ -13,27 +13,39 @@ export class ListprojetsComponent implements OnInit {
 
   constructor(private projectsService : ProjetService, private userService : UserService) { }
 
-
-  idLogged;
   model = {
     title: '',
     description: ''
   }
 
+  /**
+   * Initialize the listProjets component.
+   */
   ngOnInit() {
-    //this.idLogged = this.userService.getIDOflogged();
     this.getProjects();
   }
 
 
+  /**
+   * Get the projects list.
+   */
   getProjects(){
     this.projectsService.getProjects().subscribe(data => this.projects = data);
   }
+
+  /**
+   * Remove a project.
+   * @param id id of the project to remove.
+   */
   removeProject(id) {
     this.projectsService.deleteProject(id).subscribe(data => this.getProjects());
   }
 
 
+  /**
+   * Create a new project from form info
+   * @param form form containing the new project info.
+   */
   onSubmit(form: NgForm) {
     this.projectsService.addProject(form.value).subscribe(
       res => {

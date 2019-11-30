@@ -21,6 +21,10 @@ export class ContributorComponent implements OnInit {
     private contributorService: ContributorService, private userService: UserService
   ) { }
 
+
+  /**
+   * Initialization of contributor component.
+   */
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id'];
@@ -28,6 +32,11 @@ export class ContributorComponent implements OnInit {
       this.getInvitations();
     })
   }
+
+
+  /**
+   * Get the contributor list of the current project.
+   */
   getContributors() {
     this.projectService.getProject(this.project_id).subscribe(data => {
       this.project = data['project'];
@@ -37,11 +46,19 @@ export class ContributorComponent implements OnInit {
 
   }
 
+  /**
+   * Get pending invitations for the current user and project.
+   */
   getInvitations() {
     this.contributorService.getInvitations(this.project_id).subscribe(data => {
       this.invitations = data;
     });
   }
+
+
+  /**
+   * Get current project user list.
+   */
   getUsers() {
     this.userService.getUsers().subscribe(data => {
       this.users = data['users'].filter(item => !this.contributors.some(d => d._id === item._id || item._id === this.project['creator']._id ))
@@ -49,6 +66,11 @@ export class ContributorComponent implements OnInit {
 
   }
 
+
+  /**
+   * Invite a new contributor.
+   * @param $event invite event
+   */
   onAdd($event) {
     this.waiting = true;
     this.contributorService.inviteContributor(this.project_id, $event).subscribe(
@@ -65,6 +87,10 @@ export class ContributorComponent implements OnInit {
     );
   }
 
+  /**
+   * Remove a contributor from project
+   * @param id id of contributor
+   */
   removeContributor(id) {
     this.contributorService.removeContributor(this.project_id, id).subscribe(data => {
       this.getContributors()

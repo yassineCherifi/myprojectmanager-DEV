@@ -8,7 +8,9 @@ export class UserComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  /**
+   * Initialize the user component.
+   */
+  ngOnInit() {}
 
 }

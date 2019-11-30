@@ -15,10 +15,16 @@ export class UserdetailComponent implements OnInit {
   errormessage: string;
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
+  /**
+   * Initialize the UserDetail component.
+   */
+  ngOnInit() {}
 
-  }
 
+  /**
+   * Edit the current user from form info.
+   * @param form form containing the user info.
+   */
    onSubmit(form: NgForm) {
     this.userService.editUser(form.value).subscribe(
       res => {
@@ -33,8 +39,6 @@ export class UserdetailComponent implements OnInit {
           this.errormessage = 'Une erreur est survenue dans le serveur';
         }
       }
-
     );
   }
-
 }

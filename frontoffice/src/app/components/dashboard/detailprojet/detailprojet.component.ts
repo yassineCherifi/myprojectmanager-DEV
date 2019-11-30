@@ -30,12 +30,19 @@ export class DetailprojetComponent implements OnInit {
   }
   idLogged;
   isCreator: boolean = false;
+
+  /**
+   * Initialize the detaiProjet component.
+   */
   ngOnInit() {
     this.project_id = this.route.snapshot.paramMap.get('id');
     this.getProject();
 
   }
 
+  /**
+   * Get the selected project.
+   */
   getProject() {
     this.projetService.getProject(this.project_id).subscribe(data => {
       this.project = data['project']
@@ -53,6 +60,10 @@ export class DetailprojetComponent implements OnInit {
   }
 
 
+  /**
+   * Edit the selected project title and/or description form form info
+   * @param form the form containing the new title and description.
+   */
   editProject(form: NgForm) {
     if (form.value.title === "" || form.value.description === "") {
       this.getProject();
@@ -68,17 +79,4 @@ export class DetailprojetComponent implements OnInit {
       }
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

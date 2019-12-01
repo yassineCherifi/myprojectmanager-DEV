@@ -32,8 +32,10 @@ module.exports.addContributor = (req, res) => {
                     Invitation.findOne({ _id: invitation }, (err, invitation) => {
                         if (!err) {
                             invitation.status = 1;
-                            invitation.save();
-                            res.redirect('/');
+                            invitation.save().then(() => {
+                                res.redirect('/');
+                            });
+
                         }
                     });
                 }

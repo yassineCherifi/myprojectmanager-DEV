@@ -13,53 +13,78 @@ export class UserService {
     email: '',
     password: ''
   }
-  //noAuthorized = { headers: new HttpHeaders({ 'NoAuth': 'true' }) };
 
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * Register a new user.
+   * @param user user to be added.
+   */
   postUser(user: User) {
     return this.httpClient.post(environment.API_URL + '/register', user);
   }
 
+  /**
+   * Login a user.
+   * @param infos login credentials.
+   */
   login(infos) {
     return this.httpClient.post(environment.API_URL + '/login', infos);
   }
 
+  /**
+   * Get the user list.
+   */
   getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(environment.API_URL + '/users');
   }
 
+  /**
+   * Logout the current user.
+   */
   logout() {
     return this.httpClient.get(environment.API_URL + '/logout');
   }
 
+  /**
+   * Create a token for the current user.
+   * @param infos user parameters.
+   */
   setToken(infos) {
     localStorage.setItem('userinfos', JSON.stringify({ infos }));
   }
 
-  removeToken() {
+  removeToken() {}
 
-  }
-
+  /**
+   * Get a user.
+   * @param email email of the user.
+   */
   getUser(email: string): Observable<User> {
     return this.httpClient.get<User>(environment.API_URL + '/users' + email);
   }
 
+  /**
+   * Edit a user.
+   * @param user user to be edited.
+   */
   editUser(user: User) {
     console.log(user);
     return this.httpClient.put(environment.API_URL + '/users/' + this.getIDOflogged(), user);
   }
 
-  getUserInfos() {
+  getUserInfos() {}
 
-  }
-
+  /**
+   * Get the current user dashboard.
+   */
   getDashboard() {
     return this.httpClient.get(environment.API_URL + '/dashboard');
   }
 
-
-
+  /**
+   * Get the id of the current user.
+   */
   getIDOflogged() {
     const user = localStorage.getItem('userinfos');
     return JSON.parse(user).infos._id;

@@ -1,3 +1,6 @@
+/**
+ * Release in the project.
+ */
 export class Releases {
     title: string;
     description: string;

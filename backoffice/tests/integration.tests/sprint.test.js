@@ -6,11 +6,10 @@ let Project = require('../../models/project');
 
 process.env.NODE_ENV = 'test';
 
+let app = require('../../app');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let app = require('../../app');
-let expect = chai.expect;
-let should = chai.should();
+
 
 chai.use(chaiHttp);
 

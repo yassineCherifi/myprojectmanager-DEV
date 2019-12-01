@@ -50,7 +50,7 @@ describe('Get project test, add a project', () => {
                             res.body.should.have.property('idlogged');
                             let nb_projects = res.body.result.length;
                             let idUser = res.body.idlogged;
-                            project_details_test = params.project_details
+                            let project_details_test = params.project_details
 
                             project_details_test.creator = idUser;
 

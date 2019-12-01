@@ -6,7 +6,7 @@ const Project = mongoose.model('Project');
 const User = mongoose.model('User');
 
 module.exports.getAllProjects = (req, res) => {
-    Project.find({})
+    Project.find({ $or:[ {'creator':req._id}, {'contributors':req._id}]})
         .populate('issues')
         .populate('creator')
         .populate('tasks')

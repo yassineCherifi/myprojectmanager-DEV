@@ -21,7 +21,7 @@
                     <td>{{contributor?.email}}</td>
 
                     <td>
-                        <button type="button" (click)="removeContributor(contributor?._id)" class="btn btn-danger"><em
+                        <button *ngIf="isCreator" type="button" (click)="removeContributor(contributor?._id)" class="btn btn-danger"><em
                                 class="fa fa-trash-o"></em></button>
                     </td>
                 </tr>

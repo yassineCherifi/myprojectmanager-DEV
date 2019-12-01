@@ -17,39 +17,44 @@ router.post('', projContr.insertProject);
 router.delete('/:id', projContr.deleteProject);
 router.put('/:id', projContr.editProject);
 
-router.get('/:id/issues', issueContr.getIssues);
-router.post('/:id/issues', issueContr.createIssue);
-router.delete('/:id/issues/:idIssue', issueContr.deleteIssue);
-router.put('/:id/issues/:idIssue', issueContr.editIssue);
+const issueRoute = '/:id/issues';
+router.get(issueRoute, issueContr.getIssues);
+router.post(issueRoute, issueContr.createIssue);
+router.delete(issueRoute+'/:idIssue', issueContr.deleteIssue);
+router.put(issueRoute+'/:idIssue', issueContr.editIssue);
 
-router.get('/:id/tasks', taskContr.getTasks);
-router.post('/:id/tasks', taskContr.createTask);
-router.put('/:id/tasks/:idTask', taskContr.editTask);
-router.delete('/:id/tasks/:idTask', taskContr.deleteTask);
+const taskRoute = '/:id/tasks';
+router.get(taskRoute, taskContr.getTasks);
+router.post(taskRoute, taskContr.createTask);
+router.put(taskRoute+'/:idTask', taskContr.editTask);
+router.delete(taskRoute+'/:idTask', taskContr.deleteTask);
 
-router.get('/:id/sprints', sprintContr.getSprints);
-router.get('/:id/sprints/:idSprint', sprintContr.getSprint);
-router.post('/:id/sprints', sprintContr.createSprint);
-router.post('/:id/sprints/:idSprint/issues', sprintContr.addIssueToSprint);
-router.delete('/:id/sprints/:idSprint/issues/:idIssue', sprintContr.deleteIssueSprint);
-router.put('/:id/sprints/:idSprint', sprintContr.editSprint);
-router.delete('/:id/sprints/:idSprint', sprintContr.deleteSprint);
+const sprintRoute = '/:id/sprints';
+router.get(sprintRoute, sprintContr.getSprints);
+router.get(sprintRoute+'/:idSprint', sprintContr.getSprint);
+router.post(sprintRoute, sprintContr.createSprint);
+router.post(sprintRoute+'/:idSprint/issues', sprintContr.addIssueToSprint);
+router.delete(sprintRoute+'/:idSprint/issues/:idIssue', sprintContr.deleteIssueSprint);
+router.put(sprintRoute+'/:idSprint', sprintContr.editSprint);
+router.delete(sprintRoute+'/:idSprint', sprintContr.deleteSprint);
 
+const testRoute = '/:id/tests';
+router.get(testRoute, testContr.getTests);
+router.post(testRoute, testContr.createTest);
+router.put(testRoute+'/:idTest', testContr.editTest);
+router.delete(testRoute+'/:idTest', testContr.deleteTest);
 
-router.get('/:id/tests', testContr.getTests);
-router.post('/:id/tests', testContr.createTest);
-router.put('/:id/tests/:idTest', testContr.editTest);
-router.delete('/:id/tests/:idTest', testContr.deleteTest);
+const releaseRoute = '/:id/releases';
+router.get(releaseRoute, releaseContr.getReleases);
+router.post(releaseRoute, releaseContr.createRelease);
+router.put(releaseRoute+'/:idRelease', releaseContr.editRelease);
+router.delete(releaseRoute+'/:idRelease', releaseContr.deleteRelease);
 
-router.get('/:id/releases', releaseContr.getReleases);
-router.post('/:id/releases', releaseContr.createRelease);
-router.put('/:id/releases/:idRelease', releaseContr.editRelease);
-router.delete('/:id/releases/:idRelease', releaseContr.deleteRelease);
-
-router.get('/:id/documentations', documentationContr.getDocumentations);
-router.post('/:id/documentations', documentationContr.createDocumentation);
-router.put('/:id/documentations/:idDocumentation', documentationContr.editDocumentation);
-router.delete('/:id/documentations/:idDocumentation', documentationContr.deleteDocumentation);
+const docRoute = '/:id/documentations';
+router.get(docRoute, documentationContr.getDocumentations);
+router.post(docRoute, documentationContr.createDocumentation);
+router.put(docRoute+'/:idDocumentation', documentationContr.editDocumentation);
+router.delete(docRoute+'/:idDocumentation', documentationContr.deleteDocumentation);
 
 router.delete('/:id/contributors/:idContributor', contributorContr.deleteContributor);
 router.post('/:id/invite', contributorContr.inviteContributor);

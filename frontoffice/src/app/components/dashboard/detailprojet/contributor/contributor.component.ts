@@ -17,6 +17,8 @@ export class ContributorComponent implements OnInit {
   success = false;
   users = [];
   selectedUser;
+  idLogged;
+  isCreator: boolean = false;
   constructor(private route: ActivatedRoute, private projectService: ProjetService,
     private contributorService: ContributorService, private userService: UserService
   ) { }
@@ -40,6 +42,10 @@ export class ContributorComponent implements OnInit {
   getContributors() {
     this.projectService.getProject(this.project_id).subscribe(data => {
       this.project = data['project'];
+      this.idLogged = this.userService.getIDOflogged();
+      if (this.project.creator['_id'] == this.idLogged) {
+        this.isCreator = true;
+      }
       this.contributors = this.project['contributors'];
       this.getUsers();
     });

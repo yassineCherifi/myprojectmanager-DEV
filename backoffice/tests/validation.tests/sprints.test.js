@@ -59,7 +59,7 @@ describe('Sprint tests', () => {
             a.sendKeys('hhhhh');
 
         })
-        const isPresent = await driver.findElements(By.css('.table > tbody:nth-child(3) > tr:nth-child(1)')) === undefined;
+        await driver.findElements(By.css('.table > tbody:nth-child(3) > tr:nth-child(1)')) === undefined;
 
     });
 

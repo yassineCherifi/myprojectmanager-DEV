@@ -13,8 +13,8 @@ const Invitation = mongoose.model('Invitation');
 module.exports.getInvitations = (req, res) => {
     Invitation.find({ project: req.params.id })
         .exec(function (err, invitations) {
-            if (err) { return res.json({ err: 'Aucun projet trouvé !' }); }
-            if (!invitations) { return res.json({ error: 'Aucune invitations dans ce projet!' }); }
+            if (err) { res.json({ err: 'Aucun projet trouvé !' }); }
+            if (!invitations) { res.json({ error: 'Aucune invitations dans ce projet!' }); }
             res.status(200).json(invitations);
         });
 
@@ -95,13 +95,10 @@ module.exports.deleteContributor = (req, res) => {
             project.save();
             User.findOne({ _id: req.params.idContributor }, (err, user) => {
                 Invitation.remove({ emailUser: user.email, project: req.params.id }, function (err) {
-                    if (!err) return res.json({ message: 'User deleted from the project!' });
+                    if (!err) res.json({ message: 'User deleted from the project!' });
 
                 });
-
-
             });
         }
-
     });
 };

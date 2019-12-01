@@ -48,7 +48,7 @@ describe('Contributor tests', () => {
         const added = await driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div/div[2]/div/app-listprojets/table/tbody/tr')).isDisplayed();
         expect(added).to.equal(true);
         await driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div/div[2]/div/app-listprojets/table/tbody/tr/td[1]/a')).click()
-        const a = await driver.getCurrentUrl();
+        await driver.getCurrentUrl();
     });
 
     it('It should view invitations', async () => {

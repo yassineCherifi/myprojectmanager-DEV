@@ -4,6 +4,9 @@ require('../models/issue');
 const Project = mongoose.model('Project');
 const Issue = mongoose.model('Issue');
 
+/**
+ * Get the issues list of the project.
+ */
 module.exports.getIssues = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('issues')
@@ -14,6 +17,9 @@ module.exports.getIssues = (req, res) => {
 
 };
 
+/**
+ * Add an issue to the project.
+ */
 module.exports.createIssue = (req, res) => {
     const issue = new Issue();
     issue.issueID = req.body.issueID;
@@ -34,9 +40,11 @@ module.exports.createIssue = (req, res) => {
         .catch((error) => {
             res.status(500).json({ error });
         });
-
 };
 
+/**
+ * Edit an issue from the project.
+ */
 module.exports.editIssue = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
@@ -59,6 +67,9 @@ module.exports.editIssue = (req, res) => {
         });
 };
 
+/**
+ * Delete an issue from the project.
+ */
 module.exports.deleteIssue = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });
@@ -70,6 +81,5 @@ module.exports.deleteIssue = (req, res) => {
                 res.json({ success: 'issue removed' });
             });
         });
-
     });
 };

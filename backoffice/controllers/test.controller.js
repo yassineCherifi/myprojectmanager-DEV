@@ -4,6 +4,9 @@ require('../models/test');
 const Project = mongoose.model('Project');
 const Test = mongoose.model('Test');
 
+/**
+ * Get the test list of the project.
+ */
 module.exports.getTests = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('tests')
@@ -11,9 +14,11 @@ module.exports.getTests = (req, res) => {
             if (err) res.json({ error: 'error' });
             res.json({ tests: project.tests });
         });
-
 };
 
+/**
+ * Add a new test in the project.
+ */
 module.exports.createTest = (req, res) => {
     const test = new Test();
     test.title = req.body.title;
@@ -37,6 +42,9 @@ module.exports.createTest = (req, res) => {
         });
 };
 
+/**
+ * Edit a test of the project.
+ */
 module.exports.editTest = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
@@ -58,6 +66,9 @@ module.exports.editTest = (req, res) => {
         });
 };
 
+/**
+ * Delete a test from the project.
+ */
 module.exports.deleteTest = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });

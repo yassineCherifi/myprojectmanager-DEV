@@ -10,6 +10,9 @@ const Project = mongoose.model('Project');
 const User = mongoose.model('User');
 const Invitation = mongoose.model('Invitation');
 
+/**
+ * Get the invitation list from the project.
+ */
 module.exports.getInvitations = (req, res) => {
     Invitation.find({ project: req.params.id })
         .exec(function (err, invitations) {
@@ -20,6 +23,9 @@ module.exports.getInvitations = (req, res) => {
 
 };
 
+/**
+ * Add a contributor to the project.
+ */
 module.exports.addContributor = (req, res) => {
     const invitationID = req.params.invitation;
     const email = req.params.email;
@@ -45,13 +51,11 @@ module.exports.addContributor = (req, res) => {
         .catch((error) => {
             res.status(500).json({ error });
         });
-
 };
 
-
-
-
-
+/**
+ * Invite a contributor to the project.
+ */
 module.exports.inviteContributor = (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -90,6 +94,9 @@ module.exports.inviteContributor = (req, res) => {
     });
 };
 
+/**
+ * Delete a contributor of the project.
+ */
 module.exports.deleteContributor = (req, res) => {
     Project.findOne({ _id: req.params.id }, (err, project) => {
         if (project) {
@@ -98,7 +105,6 @@ module.exports.deleteContributor = (req, res) => {
             User.findOne({ _id: req.params.idContributor }, (err, user) => {
                 Invitation.remove({ emailUser: user.email, project: req.params.id }, function (err) {
                     if (!err) res.json({ message: 'User deleted from the project!' });
-
                 });
             });
         }

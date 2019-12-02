@@ -4,6 +4,9 @@ require('../models/release');
 const Project = mongoose.model('Project');
 const Release = mongoose.model('Release');
 
+/**
+ * Get the release list of the project.
+ */
 module.exports.getReleases = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('releases')
@@ -13,6 +16,9 @@ module.exports.getReleases = (req, res) => {
         });
 };
 
+/**
+ * Add a new release to the project.
+ */
 module.exports.createRelease = (req, res) => {
     const release = new Release();
     release.title = req.body.title;
@@ -36,6 +42,9 @@ module.exports.createRelease = (req, res) => {
         });
 };
 
+/**
+ * Edit a release of the project.
+ */
 module.exports.editRelease = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
@@ -60,6 +69,9 @@ module.exports.editRelease = (req, res) => {
         });
 };
 
+/**
+ * Delete a release from the project.
+ */
 module.exports.deleteRelease = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });

@@ -21,7 +21,7 @@ module.exports.getInvitations = (req, res) => {
 };
 
 module.exports.addContributor = (req, res) => {
-    const invitation = req.params.invitation;
+    const invitationID = req.params.invitation;
     const email = req.params.email;
     Project.findOne({ _id: req.params.id }, (err, project) => {
         if (project) {
@@ -29,7 +29,7 @@ module.exports.addContributor = (req, res) => {
                 if (user) {
                     project.contributors.push(user);
                     project.save();
-                    Invitation.findOne({ _id: invitation }, (err, invitation) => {
+                    Invitation.findOne({ _id: invitationID }, (err, invitation) => {
                         if (!err) {
                             invitation.status = 1;
                             invitation.save().then(() => {

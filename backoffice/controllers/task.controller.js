@@ -4,6 +4,10 @@ require('../models/task');
 const Project = mongoose.model('Project');
 const Task = mongoose.model('Task');
 
+
+/**
+ * Get the task list of the project.
+ */
 module.exports.getTasks = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('tasks')
@@ -11,9 +15,11 @@ module.exports.getTasks = (req, res) => {
             if (err) res.json({ error: 'error' });
             res.json({ tasks: project.tasks });
         });
-
 };
 
+/**
+ * Add a new task to the project.
+ */
 module.exports.createTask = (req, res) => {
     const task = new Task();
     for(let issue of req.body.issues) {
@@ -37,6 +43,9 @@ module.exports.createTask = (req, res) => {
         });
 };
 
+/**
+ * Edit a task of the project.
+ */
 module.exports.editTask = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
@@ -61,6 +70,9 @@ module.exports.editTask = (req, res) => {
         });
 };
 
+/**
+ * Delete a task from the project.
+ */
 module.exports.deleteTask = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });
@@ -72,6 +84,5 @@ module.exports.deleteTask = (req, res) => {
                 res.json({ success: 'task removed' });
             });
         });
-
     });
 };

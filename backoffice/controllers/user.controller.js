@@ -5,6 +5,9 @@ const _ = require('lodash');
 
 const userNotFoundMsg = 'Utilisateur non trouvé';
 
+/**
+ * Register a new user.
+ */
 module.exports.register = (req, res, next) => {
     const user = new User();
     user.name = req.body.name;
@@ -22,6 +25,9 @@ module.exports.register = (req, res, next) => {
     });
 };
 
+/**
+ * Login a user.
+ */
 module.exports.authenticate = (req, res) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) res.status(400).json(err);
@@ -35,11 +41,17 @@ module.exports.authenticate = (req, res) => {
     })(req, res);
 };
 
+/**
+ * Logout the current user.
+ */
 module.exports.logout = (req, res) => {
     res.clearCookie('token');
     res.status(200).json({success: 'Logout with success !' });
 };
 
+/**
+ * Grant access to the dashboard.
+ */
 module.exports.userDashboard = (req, res) => {
     User.findOne({ _id: req._id }, (err, user) => {
         if (!user) res.status(404).json({status: false, message: userNotFoundMsg});
@@ -47,6 +59,9 @@ module.exports.userDashboard = (req, res) => {
     });
 };
 
+/**
+ * Get the user list.
+ */
 module.exports.getUsers = (req, res) => {
     User.find({},'name email',(err, users) => {
         if (!users) res.status(404).json({status: false, message: userNotFoundMsg});
@@ -54,13 +69,13 @@ module.exports.getUsers = (req, res) => {
     });
 };
 
+/**
+ * Modify a user.
+ */
 module.exports.modifyUser = (req, res, next) => {
     console.log(req.params);
     User.findOne({_id : req.params.idUser},(err, user) => {
         if (!user) res.status(404).json({status: false, message: userNotFoundMsg});
-        console.log('Avant' + user.name, req.body.Name);
-        console.log('Avant'+ user.email, req.body.email);
-        console.log( 'Avant' + user.password, req.body.password);
 
         user.name = req.body.Name;
         user.email = req.body.email;

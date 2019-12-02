@@ -5,6 +5,9 @@ require('../models/user');
 const Project = mongoose.model('Project');
 const User = mongoose.model('User');
 
+/**
+ * Get the project list.
+ */
 module.exports.getAllProjects = (req, res) => {
     Project.find({})
         .populate('issues')
@@ -21,6 +24,9 @@ module.exports.getAllProjects = (req, res) => {
         });
 };
 
+/**
+ * Get the project details.
+ */
 module.exports.getProjectDetails = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('creator')
@@ -32,6 +38,10 @@ module.exports.getProjectDetails = (req, res) => {
 
 };
 
+
+/**
+ * Create a new project.
+ */
 module.exports.insertProject = (req, res) => {
     User.findOne({ _id: req._id }, (err, user) => {
         if (!user) res.status(404).json({ status: false, message: 'Utilisateur non trouvé' });
@@ -48,6 +58,10 @@ module.exports.insertProject = (req, res) => {
         }
     });
 };
+
+/**
+ * Edit a project.
+ */
 module.exports.editProject = (req, res) => {
     Project.findOne({ _id: req.params.id }, (err, project) => {
         if (!project) res.status(404).json({ status: false, message: 'Projet non trouvé' });
@@ -63,6 +77,9 @@ module.exports.editProject = (req, res) => {
     });
 };
 
+/**
+ * Delete a project.
+ */
 module.exports.deleteProject = (req, res,) => {
     Project.deleteOne({ _id: req.params.id }, function (err) {
         if (err) res.json(err);

@@ -8,7 +8,9 @@ const Project = mongoose.model('Project');
 const Sprint = mongoose.model('Sprint');
 const Issue = mongoose.model('Issue');
 
-
+/**
+ * Get the sprint list of the project.
+ */
 module.exports.getSprints = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('sprints')
@@ -19,6 +21,9 @@ module.exports.getSprints = (req, res) => {
 
 };
 
+/**
+ * Get a sprint from the project.
+ */
 module.exports.getSprint = (req, res) => {
     Sprint.findOne({ _id: req.params.idSprint })
         .populate('issues')
@@ -29,7 +34,9 @@ module.exports.getSprint = (req, res) => {
 
 };
 
-
+/**
+ * Add a new sprint to the project.
+ */
 module.exports.createSprint = (req, res) => {
     const sprint = new Sprint();
     sprint.title = req.body.title;
@@ -51,6 +58,9 @@ module.exports.createSprint = (req, res) => {
         });
 };
 
+/**
+ * Edit a sprint of the project.
+ */
 module.exports.editSprint = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
@@ -72,6 +82,9 @@ module.exports.editSprint = (req, res) => {
         });
 };
 
+/**
+ * Delete a sprint from the project.
+ */
 module.exports.deleteSprint = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });
@@ -87,6 +100,9 @@ module.exports.deleteSprint = (req, res) => {
     });
 };
 
+/**
+ * Add an issue to the sprint.
+ */
 module.exports.addIssueToSprint = (req, res) => {
     Sprint.findOne({ _id: req.params.idSprint }, (err, sprint) => {
         if (sprint) {
@@ -102,10 +118,11 @@ module.exports.addIssueToSprint = (req, res) => {
         .catch((error) => {
             res.status(500).json({ error });
         });
-
 };
 
-
+/**
+ * Remove an issue from the sprint.
+ */
 module.exports.deleteIssueSprint = (req, res) => {
     Sprint.findOne({ _id: req.params.idSprint }, (err, sprint) => {
         if (sprint) {

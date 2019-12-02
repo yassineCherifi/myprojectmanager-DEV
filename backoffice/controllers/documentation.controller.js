@@ -4,6 +4,9 @@ require('../models/documentation');
 const Project = mongoose.model('Project');
 const Documentation = mongoose.model('Documentation');
 
+/**
+ * Get the documentation list from the project.
+ */
 module.exports.getDocumentations = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate('documentations')
@@ -13,6 +16,9 @@ module.exports.getDocumentations = (req, res) => {
         });
 };
 
+/**
+ * Create a documentation reference for the project.
+ */
 module.exports.createDocumentation = (req, res) => {
     const documentation = new Documentation();
     documentation.title = req.body.title;
@@ -33,6 +39,9 @@ module.exports.createDocumentation = (req, res) => {
         });
 };
 
+/**
+ * Edit a documentation reference of the project.
+ */
 module.exports.editDocumentation = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .populate({
@@ -54,6 +63,9 @@ module.exports.editDocumentation = (req, res) => {
         });
 };
 
+/**
+ * Delete a documentation reference of the project.
+ */
 module.exports.deleteDocumentation = (req, res) => {
     Project.findOne({ _id: req.params.id }, function (err, project) {
         if (err) res.json({ error: 'no project found' });
@@ -65,6 +77,5 @@ module.exports.deleteDocumentation = (req, res) => {
                 res.json({ success: 'documentation removed' });
             });
         });
-
     });
 };

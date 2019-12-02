@@ -9,55 +9,62 @@ const releaseContr = require('../controllers/release.controller');
 const documentationContr = require('../controllers/documentation.controller');
 const contributorContr = require('../controllers/contributors.controller');
 
+const idProject = '/:id';
+const idIssue = '/:idIssue';
+const idTask = '/:idTask';
+const idSprint = '/:idSprint';
+const idTest = '/:idTest';
+const idRelease = '/:idRelease';
+const idDocumentation = '/:idDocumentation';
 
 router.get('', projContr.getAllProjects);
 
-router.get('/:id', projContr.getProjectDetails);
+router.get(idProject, projContr.getProjectDetails);
 router.post('', projContr.insertProject);
-router.delete('/:id', projContr.deleteProject);
-router.put('/:id', projContr.editProject);
+router.delete(idProject, projContr.deleteProject);
+router.put(idProject, projContr.editProject);
 
-const issueRoute = '/:id/issues';
+const issueRoute = idProject+'/issues';
 router.get(issueRoute, issueContr.getIssues);
 router.post(issueRoute, issueContr.createIssue);
-router.delete(issueRoute+'/:idIssue', issueContr.deleteIssue);
-router.put(issueRoute+'/:idIssue', issueContr.editIssue);
+router.delete(issueRoute+idIssue, issueContr.deleteIssue);
+router.put(issueRoute+idIssue, issueContr.editIssue);
 
-const taskRoute = '/:id/tasks';
+const taskRoute = idProject+'/tasks';
 router.get(taskRoute, taskContr.getTasks);
 router.post(taskRoute, taskContr.createTask);
-router.put(taskRoute+'/:idTask', taskContr.editTask);
-router.delete(taskRoute+'/:idTask', taskContr.deleteTask);
+router.put(taskRoute+idTask, taskContr.editTask);
+router.delete(taskRoute+idTask, taskContr.deleteTask);
 
-const sprintRoute = '/:id/sprints';
+const sprintRoute = idProject+'/sprints';
 router.get(sprintRoute, sprintContr.getSprints);
-router.get(sprintRoute+'/:idSprint', sprintContr.getSprint);
+router.get(sprintRoute+idSprint, sprintContr.getSprint);
 router.post(sprintRoute, sprintContr.createSprint);
-router.post(sprintRoute+'/:idSprint/issues', sprintContr.addIssueToSprint);
-router.delete(sprintRoute+'/:idSprint/issues/:idIssue', sprintContr.deleteIssueSprint);
-router.put(sprintRoute+'/:idSprint', sprintContr.editSprint);
-router.delete(sprintRoute+'/:idSprint', sprintContr.deleteSprint);
+router.post(sprintRoute+idSprint+'/issues', sprintContr.addIssueToSprint);
+router.delete(sprintRoute+idSprint+'/issues'+idIssue, sprintContr.deleteIssueSprint);
+router.put(sprintRoute+idSprint, sprintContr.editSprint);
+router.delete(sprintRoute+idSprint, sprintContr.deleteSprint);
 
-const testRoute = '/:id/tests';
+const testRoute = idProject+'/tests';
 router.get(testRoute, testContr.getTests);
 router.post(testRoute, testContr.createTest);
-router.put(testRoute+'/:idTest', testContr.editTest);
-router.delete(testRoute+'/:idTest', testContr.deleteTest);
+router.put(testRoute+idTest, testContr.editTest);
+router.delete(testRoute+idTest, testContr.deleteTest);
 
-const releaseRoute = '/:id/releases';
+const releaseRoute = idProject+'/releases';
 router.get(releaseRoute, releaseContr.getReleases);
 router.post(releaseRoute, releaseContr.createRelease);
-router.put(releaseRoute+'/:idRelease', releaseContr.editRelease);
-router.delete(releaseRoute+'/:idRelease', releaseContr.deleteRelease);
+router.put(releaseRoute+idRelease, releaseContr.editRelease);
+router.delete(releaseRoute+idRelease, releaseContr.deleteRelease);
 
-const docRoute = '/:id/documentations';
+const docRoute = idProject+'/documentations';
 router.get(docRoute, documentationContr.getDocumentations);
 router.post(docRoute, documentationContr.createDocumentation);
-router.put(docRoute+'/:idDocumentation', documentationContr.editDocumentation);
-router.delete(docRoute+'/:idDocumentation', documentationContr.deleteDocumentation);
+router.put(docRoute+idDocumentation, documentationContr.editDocumentation);
+router.delete(docRoute+idDocumentation, documentationContr.deleteDocumentation);
 
-router.delete('/:id/contributors/:idContributor', contributorContr.deleteContributor);
-router.post('/:id/invite', contributorContr.inviteContributor);
-router.get('/:id/invitations/', contributorContr.getInvitations);
+router.delete(idProject+'/contributors/:idContributor', contributorContr.deleteContributor);
+router.post(idProject+'/invite', contributorContr.inviteContributor);
+router.get(idProject+'/invitations/', contributorContr.getInvitations);
 
 module.exports = router;

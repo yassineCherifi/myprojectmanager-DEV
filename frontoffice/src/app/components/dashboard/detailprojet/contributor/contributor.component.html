@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card-body">
             <h5 class="card-title">Liste des contributeurs</h5>
-            <button type="button" data-toggle="modal" data-target="#invitationModel"
+            <button *ngIf="isCreator" type="button" data-toggle="modal" data-target="#invitationModel"
                 class="btn btn-info">Invitations</button>
         </div>
         <table class="table table-striped">
@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="invitationModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div *ngIf="isCreator" class="modal fade" id="invitationModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

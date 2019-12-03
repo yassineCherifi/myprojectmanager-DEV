@@ -2,19 +2,19 @@
   <h2 class="text-center">Edit User</h2>
   <form #editForm="ngForm" (ngSubmit)="editForm.valid">
     <div class="form-group">
-      <label for="email">Email address:</label>
+      <label for="email">Email:</label>
       <input type="email" placeholder="Email" name="email" class="form-control" id="email"
       [(ngModel)]="this.userService.user.email">
     </div>
     <div class="form-group">
-      <label for="name">Name:</label>
-      <input placeholder="Name" name="Name" class="form-control" id="Name"
+      <label for="name">Nom:</label>
+      <input placeholder="Nom" name="Name" class="form-control" id="Name"
       [(ngModel)]="this.userService.user.name">
     </div>
 
     <div class="form-group">
-      <label for="password">Password:</label>
-      <input placeholder="password" name="password" class="form-control" id="password"
+      <label for="password">Mot de passe:</label>
+      <input type="password" placeholder="Mot de passe" name="password" class="form-control" id="password"
       [(ngModel)]="this.userService.user.password">
     </div>
     

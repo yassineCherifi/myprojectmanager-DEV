@@ -1,0 +1,1237 @@
+swagger: "2.0"
+info:
+  description: "myprojectmanager"
+  version: "1.2"
+  title: "myprojectmanager"
+
+tags:
+- name: "Users"
+  description: "Operations about users"
+- name: "Projects"
+  description: "Operations about projects"
+- name: "Issues"
+  description: "Operations about issues"
+- name: "Tasks"
+  description: "Operations about tasks"
+- name: "Sprints"
+  description: "Operations about sprints"
+- name: "Tests"
+  description: "Operations about tests"
+- name: "Releases"
+  description: "Operations about releases"
+- name: "Documentation"
+  description: "Operations about documentation"
+- name: "Contributors"
+  description: "Operations about contributors"
+
+
+schemes:
+- "https"
+- "http"
+
+paths:
+  /register:
+    post:
+      tags:
+      - "Users"
+      summary: "Register a new user"
+      operationId: "register"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        442:
+          description: "L'email existe dÃ©ja !"
+
+  /login:
+    post:
+      tags:
+      - "Users"
+      summary: "Log in a user"
+      operationId: "authenticate"
+      parameters:
+      - name: "email"
+        in: "query"
+        description: "The user email for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+
+        400:
+          description: "Invalid username/password supplied"
+  /logout:
+    get:
+      tags:
+      - "Users"
+      summary: "Logout the current user"
+      operationId: "logout"
+      parameters: []
+      responses:
+        200:
+          description: "Logout with success !"
+
+  /users:
+    get:
+      tags:
+      - "Users"
+      summary: "Get the users list"
+      operationId: "getUsers"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        404:
+          description: "Utilisateur non trouvÃ©"
+
+
+  /users/{idUser}:
+    put:
+      tags:
+      - "Users"
+      summary: "Modify a user from its id"
+      operationId: "modifyUser"
+      parameters:
+      - name: "idUser"
+        in: "path"
+        description: "id of the user"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        400:
+          description: "Invalid user supplied"
+        404:
+          description: "User not found"
+        442:
+          description: "L'email existe dÃ©jÃ  !"
+
+
+  /dashboard:
+    get:
+      tags:
+      - "Users"
+      summary: "Checks if user is logged and returns its info"
+      operationId: "userDashboard"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "id of the user"
+        required: true
+        type: "string"
+      responses:
+        404:
+          description: "User not found"
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+
+
+  /projects:
+    get:
+      tags:
+      - "Projects"
+      summary: "Get all projects"
+      operationId: "getAllProjects"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Project"
+    post:
+      tags:
+      - "Projects"
+      summary: "Create a new project"
+      operationId: "insertProject"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created project reference"
+        required: true
+        schema:
+          $ref: "#/definitions/Project"
+      responses:
+        default:
+          description: "successful operation"
+
+
+  /projects/{id}:
+    get:
+      tags:
+      - "Projects"
+      summary: "Get project detail by id"
+      operationId: "getProjectDetails"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of project to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Project"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Project not found"
+
+    delete:
+      tags:
+      - "Projects"
+      summary: "Delete a project from id"
+      operationId: "deleteProject"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Project id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Project not found"
+
+    put:
+      tags:
+      - "Projects"
+      summary: "Edit a project by id"
+      operationId: "editProject"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+
+
+  /projects/{idProject}/issues:
+    get:
+      tags:
+      - "Issues"
+      summary: "Get all issues from project by project id"
+      operationId: "getIssues"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the issues are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Issue"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Issues not found"
+    post:
+      tags:
+      - "Issues"
+      summary: "Create a new issue in project of project id"
+      operationId: "createIssue"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the issues are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Created issue"
+        required: true
+        schema:
+          $ref: "#/definitions/Issue"
+      responses:
+        default:
+          description: "successful operation"
+
+  /projects/{idProject}/issues/{idIssue}:
+    delete:
+      tags:
+      - "Issues"
+      summary: "Delete an issue by id"
+      operationId: "deleteIssue"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the issues are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idIssue"
+        in: "path"
+        description: "id of the issue to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Issue not found"
+
+    put:
+      tags:
+      - "Issues"
+      summary: "Edit an issue by id"
+      operationId : "editIssue"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the issues are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idIssue"
+        in: "path"
+        description: "id of the issue to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated Issue"
+        required: true
+        schema:
+          $ref: "#/definitions/Issue"
+      responses:
+        default:
+          description: "successful operation"
+
+
+  /projects/{idProject}/tasks:
+    get:
+      tags:
+      - "Tasks"
+      summary: "Get all tasks from project by project id"
+      operationId: "getTasks"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the tasks are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Task"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Tasks not found"
+    post:
+      tags:
+      - "Tasks"
+      summary: "Create a new task in project of project id"
+      operationId: "createTask"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the tasks are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Created task"
+        required: true
+        schema:
+          $ref: "#/definitions/Task"
+      responses:
+        default:
+          description: "successful operation"
+
+
+  /projects/{idProject}/tasks/{idTask}:
+    delete:
+      tags:
+      - "Tasks"
+      summary: "Delete a task by id"
+      operationId: "deleteTask"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the tasks are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idTask"
+        in: "path"
+        description: "id of the task to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Task not found"
+
+    put:
+      tags:
+      - "Tasks"
+      summary: "Edit a task by id"
+      operationId : "editTask"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the tasks are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idTask"
+        in: "path"
+        description: "id of the task to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated task"
+        required: true
+        schema:
+          $ref: "#/definitions/Task"
+      responses:
+        default:
+          description: "successful operation"
+
+  /projects/{idProject}/sprints:
+    get:
+      tags:
+      - "Sprints"
+      summary: "Get all sprints from project by project id"
+      operationId: "getSprints"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the sprints are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Sprint"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Sprints not found"
+    post:
+      tags:
+      - "Sprints"
+      summary: "Create a new sprint in project of project id"
+      operationId: "createSprint"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the sprints are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Created sprint"
+        required: true
+        schema:
+          $ref: "#/definitions/Sprint"
+      responses:
+        default:
+          description: "successful operation"
+
+  /projects/{idProject}/sprints/{idSprint}:
+    get:
+      tags:
+      - "Sprints"
+      summary: "Get a sprint by id"
+      operationId: "getSprint"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the sprint is part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idSprint"
+        in: "path"
+        description: "id of the sprint"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+              $ref: "#/definitions/Sprint"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Sprint not found"
+
+    delete:
+      tags:
+      - "Sprints"
+      summary: "Delete a sprint by id"
+      operationId: "deleteSprint"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the sprints are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idSprint"
+        in: "path"
+        description: "id of the sprint to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Sprint not found"
+
+    put:
+      tags:
+      - "Sprints"
+      summary: "Edit a sprint by id"
+      operationId : "editSprint"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the sprints are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idSprint"
+        in: "path"
+        description: "id of the sprint to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated sprint"
+        required: true
+        schema:
+          $ref: "#/definitions/Sprint"
+      responses:
+        default:
+          description: "successful operation"
+
+  /projects/{idProject}/sprints/{idSprint}/issues:
+    post:
+      tags:
+      - "Sprints"
+      summary: "Add an issue to the sprint of idSprint"
+      operationId: "addIssueToSprint"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the sprint is part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idSprint"
+        in: "path"
+        description: "id of the sprint"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Created issue"
+        required: true
+        schema:
+          $ref: "#/definitions/Issue"
+      responses:
+        default:
+          description: "successful operation"
+
+  /projects/{idProject}/sprints/{idSprint}/issues/{idIssue}:
+    delete:
+      tags:
+      - "Sprints"
+      summary: "Remove an issue from sprint of idSprint"
+      operationId: "deleteIssueSprint"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the sprint is part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idSprint"
+        in: "path"
+        description: "id of the sprint"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idIssue"
+        in: "path"
+        description: "id of the issue to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Issue not found"
+
+
+  /projects/{idProject}/tests:
+    get:
+      tags:
+      - "Tests"
+      summary: "Get all tests from project by project id"
+      operationId: "getTests"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the tests are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Test"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Tests not found"
+    post:
+      tags:
+      - "Tests"
+      summary: "Create a new test in project of project id"
+      operationId: "createTest"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the tests are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Created test"
+        required: true
+        schema:
+          $ref: "#/definitions/Test"
+      responses:
+        default:
+          description: "successful operation"
+
+
+  /projects/{idProject}/tests/{idTest}:
+    delete:
+      tags:
+      - "Tests"
+      summary: "Delete a test by id"
+      operationId: "deleteTest"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the tests are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idTest"
+        in: "path"
+        description: "id of the test to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Test not found"
+
+    put:
+      tags:
+      - "Tests"
+      summary: "Edit a test by id"
+      operationId : "editTest"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the tests are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idTest"
+        in: "path"
+        description: "id of the test to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated test"
+        required: true
+        schema:
+          $ref: "#/definitions/Test"
+      responses:
+        default:
+          description: "successful operation"
+
+  /projects/{idProject}/releases:
+    get:
+      tags:
+      - "Releases"
+      summary: "Get all releases from project by project id"
+      operationId: "getReleases"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the releases are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Release"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Releases not found"
+    post:
+      tags:
+      - "Releases"
+      summary: "Create a new release in project of project id"
+      operationId: "createRelease"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the releases are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Created release"
+        required: true
+        schema:
+          $ref: "#/definitions/Release"
+      responses:
+        default:
+          description: "successful operation"
+
+
+  /projects/{idProject}/releases/{idRelease}:
+    delete:
+      tags:
+      - "Releases"
+      summary: "Delete a release by id"
+      operationId: "deleteRelease"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the releases are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idRelease"
+        in: "path"
+        description: "id of the release to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Release not found"
+
+    put:
+      tags:
+      - "Releases"
+      summary: "Edit a release by id"
+      operationId : "editRelease"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the releases are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idRelease"
+        in: "path"
+        description: "id of the release to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated release"
+        required: true
+        schema:
+          $ref: "#/definitions/Release"
+      responses:
+        default:
+          description: "successful operation"
+
+
+  /projects/{idProject}/documentations:
+    get:
+      tags:
+      - "Documentation"
+      summary: "Get all documentations from project by project id"
+      operationId: "getDocumentations"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the documentations are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Documentation"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Documentations not found"
+    post:
+      tags:
+      - "Documentation"
+      summary: "Create a new documentation in project of project id"
+      operationId: "createDocumentation"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the documentations are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Created documentation"
+        required: true
+        schema:
+          $ref: "#/definitions/Documentation"
+      responses:
+        default:
+          description: "successful operation"
+
+
+  /projects/{idProject}/documentations/{idDocumentation}:
+    delete:
+      tags:
+      - "Documentation"
+      summary: "Delete a documentation by id"
+      operationId: "deleteDocumentation"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the documentations are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idDocumentation"
+        in: "path"
+        description: "id of the documentation to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Documentation not found"
+
+    put:
+      tags:
+      - "Documentation"
+      summary: "Edit a documentation by id"
+      operationId : "editDocumentation"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of project the documentations are part of."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idDocumentation"
+        in: "path"
+        description: "id of the documentation to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Updated documentation"
+        required: true
+        schema:
+          $ref: "#/definitions/Documentation"
+      responses:
+        default:
+          description: "successful operation"
+
+  /projects/{idProject}/invite:
+    post:
+      tags:
+      - "Contributors"
+      summary: "Invite a contributor to project of idProject"
+      operationId: "inviteContributor"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of the project."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "L'invitation a été envoyée avec succès"
+
+
+  /projects/{idProject}/invitations:
+    get:
+      tags:
+      - "Contributors"
+      summary: "Get all invitations of project of idProject"
+      operationId: "getInvitations"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of the project."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Invitation"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Invitations not found"
+
+  /projects/{idProject}/contributors/{idContributor}:
+    delete:
+      tags:
+      - "Contributors"
+      summary: "Remove a contributor of idContributor from project of idProject"
+      operationId: "deleteContributor"
+      parameters:
+      - name: "idProject"
+        in: "path"
+        description: "ID of the project."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "idContributor"
+        in: "path"
+        description: "ID of the project."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid id supplied"
+        404:
+          description: "Contributor not found"
+
+
+  /{id}/contributors/{invitation}/{email}:
+    get:
+      tags:
+      - "Contributors"
+      summary: "Add a contributor to the project"
+      operationId: "addContributor"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the project."
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "invitation"
+        in: "path"
+        description: "id of the invitation received by the user"
+        required: true
+        type: "string"
+      - name: "email"
+        in: "path"
+        description: "Email of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid ID supplied"
+
+
+definitions:
+
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      saltSecret:
+        type: "string"
+
+    xml:
+      name: "User"
+
+  Project:
+    type: "object"
+    required:
+    - "title"
+    - "description"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      description:
+        type: "string"
+      creator:
+        $ref: '#/definitions/User'
+      contributors:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+      status:
+        type: "string"
+      issues:
+        type: array
+        items:
+          $ref: '#/definitions/Issue'
+      tasks:
+        type: array
+        items:
+          $ref: '#/definitions/Task'
+      sprints:
+        type: array
+        items:
+          $ref: '#/definitions/Sprint'
+      tests:
+        type: array
+        items:
+          $ref: '#/definitions/Test'
+      releases:
+        type: array
+        items:
+          $ref: '#/definitions/Release'
+      documentations:
+        type: array
+        items:
+          $ref: '#/definitions/Documentation'
+    xml:
+      name: "Project"
+
+
+  Issue:
+    type: "object"
+    required:
+    - "issueID"
+    - "description"
+    properties:
+      issueID:
+        type: "string"
+      description:
+        type: "string"
+      priorite:
+        type: "string"
+      difficulte:
+        type: "string"
+      status:
+        type : "string"
+    xml:
+      name: "Issue"
+
+  Task:
+    type: "object"
+    required:
+    - "description"
+    properties:
+      idIssues:
+        type: array
+        items:
+          type: "string"
+      description:
+        type: "string"
+      cout:
+        type: "string"
+      developer:
+        type: "string"
+    xml:
+      name: "Task"
+
+  Sprint:
+    type: "object"
+    required:
+    - "title"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      startDate:
+        type: "string"
+      endDate:
+        type: "string"
+      status:
+        type: "string"
+      issues:
+        type: array
+        items:
+          $ref: '#/definitions/Issue'
+    xml:
+      name: "Sprint"
+
+  Test:
+    type: "object"
+    required:
+    - "title"
+    - "description"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      description:
+        type: "string"
+      type:
+        type: "string"
+      date:
+        type: "string"
+      link:
+        type: "string"
+      status:
+        type: "string"
+    xml:
+      name: "Test"
+
+  Release:
+    type: "object"
+    required:
+    - "title"
+    - "description"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      description:
+        type: "string"
+      version:
+        type: "string"
+      date:
+        type: "string"
+      sprintNumber:
+        type: "string"
+      link:
+        type: "string"
+    xml:
+      name: "Release"
+
+  Documentation:
+    type: "object"
+    required:
+    - "title"
+    - "description"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      description:
+        type: "string"
+      link:
+        type: "string"
+    xml:
+      name: "Documentation"
+
+
+  Invitation:
+    type: "object"
+    required:
+    - "emailUser"
+    - "description"
+    properties:
+      emailUser:
+        type: "string"
+      project:
+        $ref: '#/definitions/Project'
+      date:
+        type: "string"
+      status:
+        type: "number"
+    xml:
+      name: "Invitation"

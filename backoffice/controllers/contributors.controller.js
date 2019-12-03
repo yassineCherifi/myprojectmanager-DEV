@@ -78,8 +78,10 @@ module.exports.inviteContributor = (req, res) => {
                         from: 'myprojectmanager.service@gmail.com',
                         to: req.body.email,
                         subject: '[MyProjectManager] Invitation to join project !',
+
                         html: '<h4>Vous êtes invité à participer dans le projet [' + project.title + '], cliquer sur le lien suivant pour accepter l\'invitation et connectez-vous :<h4>' +
                             '<a href="' + ACCEPT_URL + project._id + '/contributors/' + invitation._id + '/' + invitation.emailUser + '">Accepter l\'invitation</a>'
+
                     };
                     transporter.sendMail(mailOptions, function (error) {
                         if (error) {

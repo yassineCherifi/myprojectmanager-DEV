@@ -72,7 +72,8 @@ describe('Issue tests', () => {
         driver.findElement(By.xpath('//*[@id="status"]')).then(e => {
             e.sendKeys(issue.status);
         })
-        driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div[2]/div[2]/div/app-detailprojet/div[2]/div/app-root/app-issue/div[2]/div/div/fieldset/form/a')).then(e => {
+        driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div[2]/div[2]/div/'+
+                                    'app-detailprojet/div[2]/div/app-root/app-issue/div[2]/div/div/fieldset/form/a')).then(e => {
             e.click();
         })
         const isPresent = await driver.findElements(By.css('.table > tbody:nth-child(3) > tr:nth-child(1)')) === undefined;

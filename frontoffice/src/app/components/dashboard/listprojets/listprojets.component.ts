@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ProjetService } from 'src/app/services/projet.service';
 import { UserService } from 'src/app/services/user.service';
 import { NgForm } from '@angular/forms';
+import { ContributorService } from 'src/app/services/contributor.service';
 
 @Component({
   selector: 'app-listprojets',
@@ -11,7 +12,7 @@ export class ListprojetsComponent implements OnInit {
 
   public projects = [];
 
-  constructor(private projectsService : ProjetService, private userService : UserService) { }
+  constructor(private projectsService : ProjetService, private userService : UserService,private contributorService : ContributorService) { }
 
   model = {
     title: '',
@@ -57,5 +58,10 @@ export class ListprojetsComponent implements OnInit {
       }
 
     );
+  }
+  removeContributor(idproject,idlogged) {
+    this.contributorService.removeContributor(idproject,idlogged).subscribe(data => {
+      this.getProjects();
+    });
   }
 }

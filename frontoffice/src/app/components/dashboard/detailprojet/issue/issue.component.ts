@@ -117,8 +117,7 @@ export class IssueComponent implements OnInit {
       const clicked = $event.$ngOptionLabel;
       switch (clicked) {
         case "ID": {
-          this.issues = this.issues.sort((a, b) => a.issueID.localeCompare(b.issueID))
-          break;
+          this.issues = this.issues.sort((a, b) => parseInt(a.issueID) - parseInt(b.issueID))
         }
         case "Priorité": {
           this.issues = this.issues.sort((a, b) => a.priorite.localeCompare(b.priorite))
@@ -126,7 +125,6 @@ export class IssueComponent implements OnInit {
         }
         case "Difficulté": {
           this.issues = this.issues.sort((a, b) => parseInt(a.difficulte) - parseInt(b.difficulte))
-          console.log(this.issues);
           break;
         }
       }

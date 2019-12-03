@@ -27,7 +27,7 @@ module.exports.getInvitations = (req, res) => {
  * Add a contributor to the project.
  */
 module.exports.addContributor = (req, res) => {
-    const invitation = req.params.invitation;
+    const invitationID = req.params.invitation;
     const email = req.params.email;
     Project.findOne({ _id: req.params.id }, (err, project) => {
         if (project) {
@@ -35,11 +35,13 @@ module.exports.addContributor = (req, res) => {
                 if (user) {
                     project.contributors.push(user);
                     project.save();
-                    Invitation.findOne({ _id: invitation }, (err, invitation) => {
+                    Invitation.findOne({ _id: invitationID }, (err, invitation) => {
                         if (!err) {
                             invitation.status = 1;
-                            invitation.save();
-                            res.send('<h3>Félicitations! Vous êtes contributeur dans le projet [' + project.title + ']!<h3>');
+                            invitation.save().then(() => {
+                                res.redirect('/');
+                            });
+
                         }
                     });
                 }
@@ -76,10 +78,10 @@ module.exports.inviteContributor = (req, res) => {
                         from: 'myprojectmanager.service@gmail.com',
                         to: req.body.email,
                         subject: '[MyProjectManager] Invitation to join project !',
-                        html: '<h4>Vous êtes invité à participer dans le projet [' +
-                               project.title + '], cliquez sur le lien suivant pour accepter l\'invitation :<h4>' +
-                              '<a href="' + ACCEPT_URL + project._id + '/contributors/' + invitation._id + '/' +
-                              invitation.emailUser + '">Accepter l\'invitation</a>'
+
+                        html: '<h4>Vous êtes invité à participer dans le projet [' + project.title + '], cliquer sur le lien suivant pour accepter l\'invitation et connectez-vous :<h4>' +
+                            '<a href="' + ACCEPT_URL + project._id + '/contributors/' + invitation._id + '/' + invitation.emailUser + '">Accepter l\'invitation</a>'
+
                     };
                     transporter.sendMail(mailOptions, function (error) {
                         if (error) {

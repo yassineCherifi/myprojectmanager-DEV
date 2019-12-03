@@ -42,7 +42,7 @@ Taks list :
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US21 |  | | | |
+| US21 | in project list component view, add quit project button in the line of contributor projects that call the function remove contributor in the controller, add the function removeContributor() in the controller which call the method removeContributor in the contributor.service which fetch remove contributor route in the API. | the button is added, the function is added, the project is deleted from the list of projects | 0.5 | CHERIFI | DONE |
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -51,7 +51,7 @@ Taks list :
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US01, US02, US09, US10, US15, US18, US19, US20 | Create integration tests, for testing API routes.| The backoffice/tests/integration.tests is composed of files testing each route. | 0.5 | MARTINEAU | TODO |
+| US01, US02, US09, US10, US15, US18, US19, US20 | Create integration tests, for testing API routes.| The backoffice/tests/integration.tests is composed of files testing each route. | 0.5 | MARTINEAU | DONE |
 
 ----------------------------------------------------------------------------------------------------------------------
 

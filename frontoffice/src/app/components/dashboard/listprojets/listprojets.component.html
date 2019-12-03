@@ -47,6 +47,9 @@
             <td *ngIf="project?.creator?._id === projects?.idlogged">
                 <button type="button" (click)="removeProject(project._id)" class="btn btn-danger"><em class="fa fa-trash"></em></button>
             </td>
+            <td *ngIf="project?.creator?._id !== projects?.idlogged">
+                <button type="button" (click)="removeContributor(project._id,projects?.idlogged)" class="btn btn-danger">Quitter <em class="fa fa-user-times"></em></button>
+            </td>
         </tr>
     </tbody>
 </table>

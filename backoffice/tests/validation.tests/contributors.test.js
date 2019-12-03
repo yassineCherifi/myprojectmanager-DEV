@@ -53,7 +53,9 @@ describe('Contributor tests', () => {
 
     it('It should view invitations', async () => {
         await driver.findElement(By.xpath('/html/body/app-root/app-dashboard/div[2]/div[2]/div/app-detailprojet/div[2]/div/app-root/app-contributor/div[1]/div/div/button')).click()
-        let  isPresent = driver.findElements(By.xpath('/html/body/app-root/app-dashboard/div[2]/div[2]/div/app-detailprojet/div[2]/div/app-root/app-contributor/div[2]/div/div/div[2]/div/div/ng-select/div/div/div[2]/input')).isDisplayed
+        let  isPresent = driver.findElements(By.xpath('/html/body/app-root/app-dashboard/div[2]/div[2]/'+
+                                                      'div/app-detailprojet/div[2]/div/app-root/app-contributor'+
+                                                      '/div[2]/div/div/div[2]/div/div/ng-select/div/div/div[2]/input')).isDisplayed
         expect(isPresent).to.equal(true);
     });
 
@@ -67,7 +69,5 @@ describe('Contributor tests', () => {
         });
         driver.quit()
     });
-
-
 
 });

@@ -8,7 +8,7 @@
       <ul class="navbar-nav">
       </ul>
     </div>
-    <div class="mx-auto order-0">
+    <div id="navbar-username">
         <ul class="navbar-nav">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ userInfos.name}}<span class="caret"></span></a>
@@ -25,15 +25,15 @@
   <!-- Sidebar -->
   <div *ngIf="userInfos" id="sidebar">
 
-    <ul class="nav">
+    <ul class="nav" style="padding-top:20px">
       <li>
         <a routerLink="projects">
-          <em class="zmdi zmdi-view-dashboard" class="fa fa-folder-open-o"></em> Mes projets
+          <em class="zmdi zmdi-view-dashboard fa fa-folder-open-o"></em> Mes projets
         </a>
       </li>
       <li>
         <a routerLink="userdetail">
-          <em class="zmdi zmdi-view-dashboard" class="fa fa-user"></em> Mon profil
+          <em class="zmdi zmdi-view-dashboard fa fa-user"></em> Mon profil
         </a>
       </li>
     </ul>

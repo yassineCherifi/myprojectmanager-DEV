@@ -54,8 +54,6 @@ export class UserService {
     localStorage.setItem('userinfos', JSON.stringify({ infos }));
   }
 
-  removeToken() {}
-
   /**
    * Get a user.
    * @param email email of the user.
@@ -72,8 +70,6 @@ export class UserService {
     console.log(user);
     return this.httpClient.put(environment.API_URL + '/users/' + this.getIDOflogged(), user);
   }
-
-  getUserInfos() {}
 
   /**
    * Get the current user dashboard.

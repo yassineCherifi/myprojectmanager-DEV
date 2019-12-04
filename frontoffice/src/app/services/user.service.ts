@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { environment } from '../../environments/environment'
+import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ export class UserService {
     name: '',
     email: '',
     password: ''
-  }
+  };
 
   constructor(private httpClient: HttpClient) { }
 

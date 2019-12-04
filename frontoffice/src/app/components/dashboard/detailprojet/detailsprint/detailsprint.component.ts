@@ -25,7 +25,7 @@ export class DetailsprintComponent implements OnInit {
     priorite: '',
     difficulte: '0',
     status: '0'
-  }
+  };
   events: Event[] = [];
   constructor(private sprintService: SprintService,
     private issueService: IssuesService,
@@ -45,22 +45,23 @@ export class DetailsprintComponent implements OnInit {
   getSprint() {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id']; // true
-    })
+    });
     this.sprintID = this.route.snapshot.paramMap.get('idSprint');
 
     this.sprintService.getSprint(this.project_id, this.sprintID).subscribe(data => {
       this.sprint = data['sprint'];
       this.issueService.getIssues(this.project_id).subscribe(data => {
 
-        let res = data['issues'].filter(item1 =>
-          !this.sprint['issues'].some(item2 => (item2._id === item1._id)))
+        const res = data['issues'].filter(item1 =>
+          !this.sprint['issues'].some(item2 => (item2._id === item1._id)));
         this.issues = res;
         this.nbrDifficulte = 0;
         this.nbrDifficulteRes = 0;
         this.sprint['issues'].forEach(e => {
-          this.nbrDifficulte = this.nbrDifficulte + parseInt(e.difficulte)
-          if(e.status === "Terminé")
-          this.nbrDifficulteRes = this.nbrDifficulteRes + parseInt(e.difficulte);
+          this.nbrDifficulte = this.nbrDifficulte + parseInt(e.difficulte);
+          if(e.status === "Terminé"){
+            this.nbrDifficulteRes = this.nbrDifficulteRes + parseInt(e.difficulte);
+          }
         });
       });
     })

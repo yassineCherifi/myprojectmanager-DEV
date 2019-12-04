@@ -22,7 +22,7 @@ export class ReleaseComponent implements OnInit {
     date: '',
     sprintNumber: '',
     link: ''
-  }
+  };
 
   modelReleaseEdit = {
     _id: '',
@@ -32,7 +32,7 @@ export class ReleaseComponent implements OnInit {
     date: '',
     sprintNumber: '',
     link: ''
-  }
+  };
 
   modelDate;
 
@@ -47,7 +47,7 @@ export class ReleaseComponent implements OnInit {
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id'];
-    })
+    });
     this.getReleases();
     this.getSprints();
     this.getIssues();
@@ -81,12 +81,12 @@ export class ReleaseComponent implements OnInit {
    * @param form form containing the release info.
    */
   onSubmitRelease(form: NgForm) {
-    let date = form.value.date;
-    form.value.date = date.day + "/" + date.month + "/" + date.year;
+    const date = form.value.date;
+    form.value.date = date.day + '/' + date.month + '/' + date.year;
     this.releasesService.addRelease(this.project_id, form.value).subscribe(
       res => {
         form.resetForm();
-        this.getReleases()
+        this.getReleases();
       },
       err => {
         console.log(err);
@@ -121,12 +121,12 @@ export class ReleaseComponent implements OnInit {
    * @param form form containing the release info
    */
   onSubmitEditRelease(form: NgForm) {
-    let date = form.value.date;
-    form.value.date = date.day + "/" + date.month + "/" + date.year;
+    const date = form.value.date;
+    form.value.date = date.day + '/' + date.month + '/' + date.year;
     this.releasesService.editRelease(this.project_id, this.modelReleaseEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
-        this.getReleases()
+        this.getReleases();
       },
       err => {
         console.log(err);

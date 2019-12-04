@@ -19,7 +19,7 @@ export class IssueComponent implements OnInit {
     priorite: '',
     difficulte: '',
     status: '0'
-  }
+  };
 
   modelIssueEdit = {
     _id: '',
@@ -28,7 +28,7 @@ export class IssueComponent implements OnInit {
     priorite: '',
     difficulte: '0',
     status: '0'
-  }
+  };
   constructor(private issueService: IssuesService, private route: ActivatedRoute) { }
 
 
@@ -39,7 +39,7 @@ export class IssueComponent implements OnInit {
 
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id']; // true
-    })
+    });
     this.getIssues();
   }
 
@@ -98,7 +98,7 @@ export class IssueComponent implements OnInit {
     this.issueService.editIssue(this.project_id, this.modelIssueEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
-        this.selectedItem=null;
+        this.selectedItem = null;
         this.getIssues();
       },
       err => {
@@ -116,15 +116,15 @@ export class IssueComponent implements OnInit {
     if ($event !== undefined) {
       const clicked = $event.$ngOptionLabel;
       switch (clicked) {
-        case "ID": {
-          this.issues = this.issues.sort((a, b) => parseInt(a.issueID) - parseInt(b.issueID))
+        case 'ID': {
+          this.issues = this.issues.sort((a, b) => parseInt(a.issueID) - parseInt(b.issueID));
         }
-        case "Priorité": {
-          this.issues = this.issues.sort((a, b) => a.priorite.localeCompare(b.priorite))
+        case 'Priorité': {
+          this.issues = this.issues.sort((a, b) => a.priorite.localeCompare(b.priorite));
           break;
         }
-        case "Difficulté": {
-          this.issues = this.issues.sort((a, b) => parseInt(a.difficulte) - parseInt(b.difficulte))
+        case 'Difficulté': {
+          this.issues = this.issues.sort((a, b) => parseInt(a.difficulte) - parseInt(b.difficulte));
           break;
         }
       }

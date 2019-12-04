@@ -17,7 +17,7 @@ export class TestsService {
      * Get the test list of the project.
      * @param idProject id of the project.
      */
-    getTests(idProject): Observable<Tests[]>{
+    getTests(idProject): Observable<Tests[]> {
       return this.httpClient.get<Tests[]>(environment.API_URL + '/projects/' + idProject + '/tests');
     }
 
@@ -26,7 +26,7 @@ export class TestsService {
      * @param idProject id of the project.
      * @param test test to be added.
      */
-    addTest(idProject, test){
+    addTest(idProject, test) {
         return this.httpClient.post(environment.API_URL +  '/projects/' + idProject + '/tests', test);
     }
 
@@ -36,8 +36,8 @@ export class TestsService {
      * @param testId id of the test.
      * @param test edited test.
      */
-    editTest(idProject, testId,test){
-      return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/tests/' + testId,test);
+    editTest(idProject, testId, test) {
+      return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/tests/' + testId, test);
     }
 
     /**
@@ -45,7 +45,7 @@ export class TestsService {
      * @param idProject id of the project.
      * @param id id of the test to remove.
      */
-    removeTest(idProject, id){
+    removeTest(idProject, id) {
       return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/tests/' + id);
     }
 }

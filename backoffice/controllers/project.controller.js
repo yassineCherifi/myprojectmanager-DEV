@@ -10,13 +10,7 @@ const User = mongoose.model('User');
  */
 module.exports.getAllProjects = (req, res) => {
     Project.find({ $or:[ {'creator':req._id}, {'contributors':req._id}]})
-        .populate('issues')
         .populate('creator')
-        .populate('tasks')
-        .populate('sprints')
-        .populate('tests')
-        .populate('releases')
-        .populate('documentations')
         .populate('contributors')
         .exec(function (err, projects) {
             if (err) res.json({ error: 'error' });

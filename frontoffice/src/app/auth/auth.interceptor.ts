@@ -16,12 +16,12 @@ export class AuthInterceptor implements HttpInterceptor  {
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         req = req.clone({
             withCredentials: true
-          });
+        });
         return  next.handle(req).pipe(tap(
                 event => { },
                 err => {
-                    if (err.error.auth == false) {
-                        this.router.navigateByUrl('/login')
+                    if (err.error.auth === false) {
+                        this.router.navigateByUrl('/login');
                     }
                 }
             )

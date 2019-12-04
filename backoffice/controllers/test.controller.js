@@ -52,10 +52,12 @@ module.exports.editTest = (req, res) => {
             match: { _id: req.params.idTest }
         })
         .then((result) => {
-            result.tests[0].idIssues = req.body.idIssues;
+            result.tests[0].title = req.body.title;
             result.tests[0].description = req.body.description;
-            result.tests[0].cout = req.body.cout;
-            result.tests[0].developer = req.body.developer;
+            result.tests[0].type = req.body.type;
+            result.tests[0].date = req.body.dp;
+            result.tests[0].link = req.body.Lien;
+            result.tests[0].status = req.body.status;
             result.tests[0].save(function (err) {
                 if (err) res.json({ error: 'error' });
                 res.json({ success: 'test edited' });

@@ -38,7 +38,7 @@ const routes: Routes = [
 
       {
         path: 'projects/:id', component: DetailprojetComponent, children: [
-          { path: '', redirectTo: 'contributors', pathMatch: 'full' },
+          { path: '', redirectTo: 'issues', pathMatch: 'full' },
           { path: 'contributors', component: ContributorComponent },
           { path: 'issues', component: IssueComponent },
           { path: 'tasks', component: TaskComponent },

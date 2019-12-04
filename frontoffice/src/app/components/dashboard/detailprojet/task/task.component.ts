@@ -19,14 +19,14 @@ export class TaskComponent implements OnInit {
     description: '',
     cout: '',
     developer: null
-  }
+  };
   modelTaskEdit = {
     _id: '',
     issue: [],
     description: '',
     cout: '',
     developer: null
-  }
+  };
 
   constructor(private tasksService: TasksService, private issueService: IssuesService,
     private projectService: ProjetService, private route: ActivatedRoute) { }
@@ -38,7 +38,7 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id'];
-    })
+    });
     this.getTasks();
     this.getIssues();
     this.getContributors();
@@ -63,7 +63,7 @@ export class TaskComponent implements OnInit {
    */
   getContributors() {
     this.projectService.getProject(this.project_id).subscribe(data => {
-      this.contributors = data['project']['contributors']
+      this.contributors = data['project']['contributors'];
     });
   }
 
@@ -72,13 +72,12 @@ export class TaskComponent implements OnInit {
    * @param form form containing the task info.
    */
   onSubmitTask(form: NgForm) {
-    console.log(form.value)
     this.tasksService.addTask(this.project_id, form.value).subscribe(
       res => {
         form.resetForm();
         this.modelTask.developer = null;
         this.modelTask.issue = null;
-        this.getTasks()
+        this.getTasks();
       },
       err => {
         console.log(err);
@@ -86,7 +85,7 @@ export class TaskComponent implements OnInit {
     );
   }
 
-   /**
+  /**
    * Remove a task from project.
    * @param id id of task to remove.
    */
@@ -115,7 +114,7 @@ export class TaskComponent implements OnInit {
     this.tasksService.editTask(this.project_id, this.modelTaskEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
-        this.getTasks()
+        this.getTasks();
       },
       err => {
         console.log(err);

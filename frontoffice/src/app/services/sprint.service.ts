@@ -65,7 +65,7 @@ export class SprintService {
    * @param idIssue id of the issue.
    */
   addIssueSprint(idProject, idSprint, idIssue) {
-    return this.httpClient.post(environment.API_URL + '/projects/' + idProject + '/sprints/' + idSprint + '/issues',idIssue);
+    return this.httpClient.post(environment.API_URL + '/projects/' + idProject + '/sprints/' + idSprint + '/issues', idIssue);
   }
 
   /**

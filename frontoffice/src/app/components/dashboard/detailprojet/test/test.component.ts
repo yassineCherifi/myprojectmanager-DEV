@@ -18,7 +18,7 @@ export class TestComponent implements OnInit {
     date: {},
     link: '',
     status: '0'
-  }
+  };
 
   modelTestEdit = {
     _id: '',
@@ -28,7 +28,7 @@ export class TestComponent implements OnInit {
     date: {},
     link: '',
     status: '0'
-  }
+  };
 
   modelDate;
   nbrPass = 0;
@@ -76,7 +76,7 @@ export class TestComponent implements OnInit {
    */
   onSubmitTest(form: NgForm) {
     let date = form.value.dp;
-    form.value.dp = date.day + "/" + date.month + "/" + date.year;
+    form.value.dp = date.day + '/' + date.month + '/' + date.year;
     this.testsService.addTest(this.project_id, form.value).subscribe(
       res => {
         form.resetForm();
@@ -119,11 +119,11 @@ export class TestComponent implements OnInit {
    */
   onSubmitEditTest(form: NgForm) {
     let date = form.value.dp;
-    form.value.dp = date.day + "/" + date.month + "/" + date.year;
+    form.value.dp = date.day+ '/' + date.month + '/' + date.year;
     this.testsService.editTest(this.project_id, this.modelTestEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
-        this.getTests()
+        this.getTests();
       },
       err => {
         console.log(err);

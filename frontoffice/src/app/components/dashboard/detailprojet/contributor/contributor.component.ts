@@ -32,7 +32,7 @@ export class ContributorComponent implements OnInit {
       this.project_id = params['id'];
       this.getContributors();
       this.getInvitations();
-    })
+    });
   }
 
 
@@ -67,8 +67,8 @@ export class ContributorComponent implements OnInit {
    */
   getUsers() {
     this.userService.getUsers().subscribe(data => {
-      this.users = data['users'].filter(item => !this.contributors.some(d => d._id === item._id || item._id === this.project['creator']._id ))
-          });
+      this.users = data['users'].filter(item => !this.contributors.some(d => d._id === item._id || item._id === this.project['creator']._id ));
+    });
 
   }
 
@@ -99,7 +99,7 @@ export class ContributorComponent implements OnInit {
    */
   removeContributor(id) {
     this.contributorService.removeContributor(this.project_id, id).subscribe(data => {
-      this.getContributors()
+      this.getContributors();
       this.getUsers();
       this.getInvitations();
     });

@@ -8,5 +8,4 @@ export class Releases {
     date: string;
     sprintNumber: string;
     link: string;
-
 }

@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
         this.userInfos = res['user'];
       },
       err => { }
-    )
+    );
   }
 
   /**
@@ -33,6 +33,6 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['login']);
       },
       err => { }
-    )
+    );
   }
 }

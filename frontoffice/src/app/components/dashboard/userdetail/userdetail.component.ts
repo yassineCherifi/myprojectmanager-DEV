@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user.model';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {UserService} from "../../../services/user.service";
-import { NgForm } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-userdetail',
@@ -25,7 +24,7 @@ export class UserdetailComponent implements OnInit {
    * Edit the current user from form info.
    * @param form form containing the user info.
    */
-   onSubmit(form: NgForm) {
+  onSubmit(form: NgForm) {
     this.userService.editUser(form.value).subscribe(
       res => {
         this.successmessage = true;

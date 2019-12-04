@@ -84,8 +84,9 @@
             <td>{{release?.version}}</td>
             <td>{{release?.date}}</td>
             <td>{{release?.sprintNumber}}</td>
-            <td>{{release?.link}}</td>
-
+            <td>
+                <a href={{release?.link}}>{{release?.link}}</a>
+            </td>
             <td>
                 <button type="button" (click)="updateModalEditRelease(release)" data-toggle="modal"
                     data-target="#editReleaseModal" class="btn btn-info"><em class="fa fa-edit"></em></button>&nbsp;

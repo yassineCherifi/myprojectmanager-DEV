@@ -18,7 +18,7 @@ module.exports.register = (req, res, next) => {
             res.send(doc);
         else {
             if (err.code === 11000)
-                res.status(442).send(['L\'émail existe déja !']);
+                res.status(442).send(['L\'email existe déja !']);
             else
                 next(err);
         }
@@ -80,11 +80,6 @@ module.exports.modifyUser = (req, res, next) => {
         user.name = req.body.Name;
         user.email = req.body.email;
         user.password = req.body.password;
-
-        console.log( user.name, req.body.Name);
-        console.log( user.email, req.body.email);
-        console.log( user.email, req.body.password);
-
         user.save((err, doc) => {
             if (!err)
                 res.send(doc);

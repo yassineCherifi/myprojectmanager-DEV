@@ -8,5 +8,4 @@ export class Tasks {
     cout: string;
     developer: string;
     issues: Issues[];
-
 }

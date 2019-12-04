@@ -17,7 +17,7 @@ export class DocumentationsService {
      * Get the documentation of the project.
      * @param idProject id of the project.
      */
-    getDocumentations(idProject): Observable<Documentations[]>{
+    getDocumentations(idProject): Observable<Documentations[]> {
       return this.httpClient.get<Documentations[]>(environment.API_URL + '/projects/' + idProject + '/documentations');
     }
 
@@ -26,7 +26,7 @@ export class DocumentationsService {
      * @param idProject id of the project.
      * @param documentation documentation to add.
      */
-    addDocumentation(idProject, documentation){
+    addDocumentation(idProject, documentation) {
         return this.httpClient.post(environment.API_URL +  '/projects/' + idProject + '/documentations', documentation);
     }
 
@@ -36,8 +36,8 @@ export class DocumentationsService {
      * @param documentationId id of the documentation.
      * @param documentation edited documentation.
      */
-    editDocumentation(idProject, documentationId,documentation){
-      return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/documentations/' + documentationId,documentation);
+    editDocumentation(idProject, documentationId, documentation) {
+      return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/documentations/' + documentationId, documentation);
     }
 
 
@@ -46,7 +46,7 @@ export class DocumentationsService {
      * @param idProject id of the project.
      * @param id id of the documentation to remove.
      */
-    removeDocumentation(idProject, id){
+    removeDocumentation(idProject, id) {
       return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/documentations/' + id);
     }
 }

@@ -17,7 +17,7 @@ export class ListprojetsComponent implements OnInit {
   model = {
     title: '',
     description: ''
-  }
+  };
 
   /**
    * Initialize the listProjets component.
@@ -30,7 +30,7 @@ export class ListprojetsComponent implements OnInit {
   /**
    * Get the projects list.
    */
-  getProjects(){
+  getProjects() {
     this.projectsService.getProjects().subscribe(data => this.projects = data);
   }
 

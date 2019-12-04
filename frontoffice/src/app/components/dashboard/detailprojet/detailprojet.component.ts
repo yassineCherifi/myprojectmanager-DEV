@@ -27,7 +27,7 @@ export class DetailprojetComponent implements OnInit {
     title: '',
     description: '',
     status: ''
-  }
+  };
   idLogged;
   isCreator: boolean = false;
 
@@ -45,9 +45,9 @@ export class DetailprojetComponent implements OnInit {
    */
   getProject() {
     this.projetService.getProject(this.project_id).subscribe(data => {
-      this.project = data['project']
+      this.project = data['project'];
       this.idLogged = this.userService.getIDOflogged();
-      if (this.project.creator['_id'] == this.idLogged) {
+      if (this.project.creator['_id'] === this.idLogged) {
         this.isCreator = true;
       }
       else {
@@ -65,13 +65,13 @@ export class DetailprojetComponent implements OnInit {
    * @param form the form containing the new title and description.
    */
   editProject(form: NgForm) {
-    if (form.value.title === "" || form.value.description === "") {
+    if (form.value.title === '' || form.value.description === '') {
       this.getProject();
       return;
     }
     this.projetService.editProject(this.project['_id'], form.value).subscribe(
       res => {
-        this.getProject()
+        this.getProject();
 
       },
       err => {

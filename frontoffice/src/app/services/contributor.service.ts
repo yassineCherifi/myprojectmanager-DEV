@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment'
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
@@ -13,7 +13,7 @@ export class ContributorService {
    * Get the invitation list for the project.
    * @param idProject id of the project.
    */
-  getInvitations(idProject):Observable<any[]> {
+  getInvitations(idProject): Observable<any[]> {
     return this.httpClient.get<any[]>(environment.API_URL + '/projects/' + idProject + '/invitations');
   }
 

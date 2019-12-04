@@ -15,7 +15,7 @@ class MockActivatedRoute {
     paramMap: convertToParamMap({
       id: '1'
     })
-  }
+  };
   parent = {
     routeConfig: { children: { filter: () => {} } },
     params: { subscribe: jasmine.createSpy('subscribe')

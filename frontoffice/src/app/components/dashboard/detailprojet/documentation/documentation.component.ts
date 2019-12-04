@@ -16,14 +16,14 @@ export class DocumentationComponent implements OnInit {
     title: '',
     description: '',
     link: ''
-  }
+  };
 
   modelDocumentationEdit = {
     _id: '',
     title: '',
     description: '',
     link: ''
-  }
+  };
 
 
   constructor(private documentationService: DocumentationsService, private issueService: IssuesService,
@@ -37,7 +37,7 @@ export class DocumentationComponent implements OnInit {
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       this.project_id = params['id'];
-    })
+    });
     this.getDocumentations();
     this.getIssues();
 
@@ -66,7 +66,7 @@ export class DocumentationComponent implements OnInit {
     this.documentationService.addDocumentation(this.project_id, form.value).subscribe(
       res => {
         form.resetForm();
-        this.getDocumentations()
+        this.getDocumentations();
       },
       err => {
         console.log(err);
@@ -103,7 +103,7 @@ export class DocumentationComponent implements OnInit {
     this.documentationService.editDocumentation(this.project_id, this.modelDocumentationEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
-        this.getDocumentations()
+        this.getDocumentations();
       },
       err => {
         console.log(err);

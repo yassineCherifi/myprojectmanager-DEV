@@ -9,5 +9,4 @@ export class Sprints {
     endDate: string;
     status: string;
     issues: Issues[];
-
 }

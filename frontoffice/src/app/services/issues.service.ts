@@ -17,7 +17,7 @@ export class IssuesService {
      * Get the issues list of the project.
      * @param idProject id of the project.
      */
-    getIssues(idProject): Observable<Issues[]>{
+    getIssues(idProject): Observable<Issues[]> {
       return this.httpClient.get<Issues[]>(environment.API_URL + '/projects/' + idProject + '/issues');
     }
 
@@ -26,7 +26,7 @@ export class IssuesService {
      * @param idProject id of the project.
      * @param issue issue to be added.
      */
-    addIssue(idProject, issue){
+    addIssue(idProject, issue) {
         return this.httpClient.post(environment.API_URL +  '/projects/' + idProject + '/issues', issue);
     }
 
@@ -36,8 +36,8 @@ export class IssuesService {
      * @param issueId id of the issue.
      * @param issue edited issue.
      */
-    editIssue(idProject, issueId,issue){
-      return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/issues/' + issueId,issue);
+    editIssue(idProject, issueId, issue) {
+      return this.httpClient.put(environment.API_URL + '/projects/' + idProject + '/issues/' + issueId, issue);
     }
 
     /**
@@ -45,7 +45,7 @@ export class IssuesService {
      * @param idProject id of the project.
      * @param id id of the issue to be removed.
      */
-    removeIssue(idProject, id){
+    removeIssue(idProject, id) {
       return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/issues/' + id);
     }
 }

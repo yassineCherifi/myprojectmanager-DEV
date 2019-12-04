@@ -1,5 +1,7 @@
 <div class="card-body">
-    <h5 class="card-title">Liste des tests</h5>
+    <h5 class="card-title">Liste des tests <span class="badge badge-pill badge-dark">Waiting {{notYet}}</span>
+        <span class="badge badge-pill badge-success">Passed {{nbrPass}}</span>
+        <span class="badge badge-pill badge-danger">Failed {{nbrFailed}}</span></h5>
     <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false"
         aria-controls="multiCollapseExample4">Ajouter <em class="fa fa-plus"></em></a>
 </div>
@@ -27,6 +29,7 @@
                                 [value]='0'>
                                 <option disabled value='0'>Type</option>
                                 <option>Test unitaire</option>
+                                <option>Test d'intégration</option>
                                 <option>Test de validation</option>
                             </select>
                         </div>
@@ -52,7 +55,8 @@
                                 [value]='0'>
                                 <option disabled value='0'>Statut</option>
                                 <option>En cours</option>
-                                <option>Terminé</option>
+                                <option>Echoué</option>
+                                <option>Passé</option>
                             </select>
                         </div>
                     </div>
@@ -80,14 +84,16 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let test of tests">
+        <tr *ngFor="let test of tests"
+            [ngStyle]="{'color':test?.status === 'En cours' ? 'black' : test?.status === 'Echoué' ? 'red' : 'green' }">
             <td>{{test?.title}}</td>
             <td style="width: 40%;">{{test?.description}}</td>
             <td>{{test?.type}}</td>
             <td>{{test?.date}}</td>
-            <td>{{test?.link}}</td>
-            <td>{{test?.status}}</td>
-
+            <td><a style="text-decoration: none;color: inherit;" href="{{test?.link}}">Fichier test</a></td>
+            <td *ngIf="test?.status === 'Echoué'"><span class="badge badge-pill badge-danger">Failed</span></td>
+            <td *ngIf="test?.status === 'Passé'"><span class="badge badge-pill badge-success">Passed</span></td>
+            <td *ngIf="test?.status === 'En cours'"><span class="badge badge-pill badge-dark">Not yet</span></td>
             <td>
                 <button type="button" (click)="updateModalEditTest(test)" data-toggle="modal"
                     data-target="#editTestModal" class="btn btn-info"><em class="fa fa-edit"></em></button>&nbsp;
@@ -128,6 +134,7 @@
                                 [value]='0'>
                                 <option disabled value='0'>Type</option>
                                 <option>Test unitaire</option>
+                                <option>Test d'intégration</option>
                                 <option>Test de validation</option>
                             </select>
                         </div>
@@ -156,7 +163,8 @@
                                 [value]='0'>
                                 <option disabled value='0'>Statut</option>
                                 <option>En cours</option>
-                                <option>Terminé</option>
+                                <option>Echoué</option>
+                                <option>Passé</option>
                             </select>
                         </div>
                     </div>

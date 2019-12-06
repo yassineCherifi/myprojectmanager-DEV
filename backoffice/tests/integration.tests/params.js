@@ -1,30 +1,30 @@
-var userName = 'TestName';
-var userEmail = 'testemail@test.fr';
-var userPassword = 'testtest';
+const userName = 'TestName';
+const userEmail = 'testemail@test.fr';
+const userPassword = 'testtest';
 
-var register_details = {
+const register_details = {
     'name': userName,
     'email': userEmail,
     'password': userPassword
 };
 
-var login_details = {
+const login_details = {
     'email': userEmail,
     'password': userPassword
 };
 
-var login_details_wrong = {
+const login_details_wrong = {
     'email': userEmail,
     'password': 'testtestwrong'
 };
 
-var project_details = {
+const project_details = {
     'title': 'ProjectTest',
     'description': 'ProjectDescription',
     'creator': ''
 }
 
-var issue_details = {
+const issue_details = {
     'issueID': '47',
     'description': 'IssueDescription',
     'priorite': 'Moyenne',
@@ -32,14 +32,14 @@ var issue_details = {
     'status': 'En cours'
 };
 
-var task_details = {
+const task_details = {
     'issues':[""],
     'description': 'desc',
     'cout': '0.5',
     'developer': 'DevTest'
 };
 
-var test_details = {
+const test_details = {
     'title': 'Title Test',
     'description': 'Test desc',
     'type': 'Unitaire',
@@ -49,7 +49,7 @@ var test_details = {
 };
 
 
-var release_details = {
+const release_details = {
     'title': 'release1',
     'description': 'desc',
     'version': '3.0',
@@ -58,24 +58,24 @@ var release_details = {
     'link' : 'Lien'
 };
 
-var sprint_details = {
+const sprint_details = {
     'title': 'SprintTest',
     'startDate': '01/01/19',
     'endDate': '15/01/19',
     'status': 'En cours'
 };
 
-var documentation_details = {
+const documentation_details = {
     'title': 'DocumentationTest',
     'description': 'DocDesc',
     'link' : 'LienDoc',
 };
 
 
-var loginHTTP = "/api/login";
-var registerHTTP = "/api/register";
-var dashboardHTTP = "/api/dashboard";
-var projectsHTTP = "/api/projects";
+const loginHTTP = "/api/login";
+const registerHTTP = "/api/register";
+const dashboardHTTP = "/api/dashboard";
+const projectsHTTP = "/api/projects";
 
 module.exports = {
     register_details: register_details,

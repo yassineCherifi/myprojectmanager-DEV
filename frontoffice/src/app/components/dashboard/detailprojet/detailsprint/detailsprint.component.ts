@@ -59,12 +59,12 @@ export class DetailsprintComponent implements OnInit {
         this.nbrDifficulteRes = 0;
         this.sprint['issues'].forEach(e => {
           this.nbrDifficulte = this.nbrDifficulte + parseInt(e.difficulte);
-          if(e.status === "Terminé"){
+          if(e.status === 'Terminé') {
             this.nbrDifficulteRes = this.nbrDifficulteRes + parseInt(e.difficulte);
           }
         });
       });
-    })
+    });
 
 
   }

@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
    * Reset the register form.
    * @param form form to reset.
    */
-  resetForm(form : NgForm){
+  resetForm(form: NgForm) {
     this.userService.user = {
       name: '',
       email: '',

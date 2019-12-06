@@ -1,5 +1,4 @@
-let params = require('./params')
-let mongoose = require("mongoose");
+let params = require('./params');
 let User = require('../../models/user');
 
 process.env.NODE_ENV = 'test';
@@ -7,8 +6,6 @@ process.env.NODE_ENV = 'test';
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let app = require('../../app');
-let expect = chai.expect;
-let should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -23,7 +20,7 @@ describe('Create account, login and check token', () => {
       User.remove({}, (err) => {
          done();
       });
-  });
+   });
 
    describe('/POST Register', () => {
 

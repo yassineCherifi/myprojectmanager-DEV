@@ -1,8 +1,8 @@
 <div class="col-md-6">
-  <h2 class="text-center">Edit User</h2>
+  <h3 class="card-title">Modifier mes informations</h3>
   <form #editForm="ngForm" (ngSubmit)="editForm.valid">
     <div class="form-group">
-      <label for="email">Email:</label>
+      <label for="email">Adresse email:</label>
       <input type="email" placeholder="Email" name="email" class="form-control" id="email"
       [(ngModel)]="this.userService.user.email">
     </div>
@@ -11,13 +11,11 @@
       <input placeholder="Nom" name="Name" class="form-control" id="Name"
       [(ngModel)]="this.userService.user.name">
     </div>
-
     <div class="form-group">
       <label for="password">Mot de passe:</label>
       <input type="password" placeholder="Mot de passe" name="password" class="form-control" id="password"
       [(ngModel)]="this.userService.user.password">
     </div>
-    
-    <button class="btn btn-success" (click)="onSubmit(editForm)">Update</button>
+    <button class="btn btn-success" (click)="onSubmit(editForm)">Appliquer</button>
   </form>
 </div>

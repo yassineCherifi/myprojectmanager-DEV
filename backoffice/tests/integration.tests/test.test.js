@@ -1,5 +1,4 @@
-let params = require('./params')
-let mongoose = require("mongoose");
+let params = require('./params');
 let Test = require('../../models/test');
 let User = require('../../models/user');
 let Project = require('../../models/project');

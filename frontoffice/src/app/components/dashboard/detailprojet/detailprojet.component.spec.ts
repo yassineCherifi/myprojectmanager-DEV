@@ -14,7 +14,7 @@ describe('DetailprojetComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DetailprojetComponent, AppComponent ],
-      imports: [ FormsModule, NgSelectModule ,RouterTestingModule, HttpClientTestingModule ],
+      imports: [ FormsModule, NgSelectModule, RouterTestingModule, HttpClientTestingModule ],
     })
     .compileComponents();
   }));

@@ -58,8 +58,8 @@ export class SprintComponent implements OnInit {
    * @param form form containing the sprint info.
    */
   onSubmitSprint(form: NgForm) {
-    let startDate = form.value.dp1;
-    let endDate = form.value.dp2;
+    const startDate = form.value.dp1;
+    const endDate = form.value.dp2;
     form.value.dp1 = startDate.day + '/' + startDate.month + '/' + startDate.year;
     form.value.dp2 = endDate.day + '/' + endDate.month + '/' + endDate.year;
     console.log(form.value);
@@ -95,8 +95,8 @@ export class SprintComponent implements OnInit {
    * @param form form containing the sprint info
    */
   onSubmitEditSprint(form: NgForm) {
-    let startDate = form.value.dp1;
-    let endDate = form.value.dp2;
+    const startDate = form.value.dp1;
+    const endDate = form.value.dp2;
     form.value.dp1 = startDate.day + '/' + startDate.month + '/' + startDate.year;
     form.value.dp2 = endDate.day + '/' + endDate.month + '/' + endDate.year;
     this.sprintService.editSprint(this.project_id, this.modelSprintEdit._id, form.value).subscribe(

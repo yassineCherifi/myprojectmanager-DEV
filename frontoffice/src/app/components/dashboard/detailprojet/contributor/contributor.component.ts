@@ -43,7 +43,7 @@ export class ContributorComponent implements OnInit {
     this.projectService.getProject(this.project_id).subscribe(data => {
       this.project = data['project'];
       this.idLogged = this.userService.getIDOflogged();
-      if (this.project.creator['_id'] == this.idLogged) {
+      if (this.project.creator['_id'] === this.idLogged) {
         this.isCreator = true;
       }
       this.contributors = this.project['contributors'];

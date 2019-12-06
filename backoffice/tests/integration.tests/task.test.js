@@ -1,5 +1,4 @@
-let params = require('./params')
-let mongoose = require("mongoose");
+let params = require('./params');
 let Task = require('../../models/task');
 let User = require('../../models/user');
 let Project = require('../../models/project');
@@ -9,8 +8,6 @@ process.env.NODE_ENV = 'test';
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let app = require('../../app');
-let expect = chai.expect;
-let should = chai.should();
 
 chai.use(chaiHttp);
 

@@ -12,7 +12,8 @@ export class ListprojetsComponent implements OnInit {
 
   public projects = [];
 
-  constructor(private projectsService : ProjetService, private userService : UserService,private contributorService : ContributorService) { }
+  constructor(private projectsService: ProjetService,
+              private contributorService : ContributorService) { }
 
   model = {
     title: '',
@@ -59,8 +60,8 @@ export class ListprojetsComponent implements OnInit {
 
     );
   }
-  removeContributor(idproject,idlogged) {
-    this.contributorService.removeContributor(idproject,idlogged).subscribe(data => {
+  removeContributor(idproject, idlogged) {
+    this.contributorService.removeContributor(idproject, idlogged).subscribe(data => {
       this.getProjects();
     });
   }

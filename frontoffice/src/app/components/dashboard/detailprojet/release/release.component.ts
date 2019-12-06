@@ -111,7 +111,7 @@ export class ReleaseComponent implements OnInit {
     this.modelReleaseEdit.title = release.title;
     this.modelReleaseEdit.description = release.description;
     this.modelReleaseEdit.version = release.version;
-    let tmpDate = release.date.split("/");
+    const tmpDate = release.date.split('/');
     this.modelReleaseEdit.date = { year: parseInt(tmpDate[2]), month: parseInt(tmpDate[1]), day: parseInt(tmpDate[0]) };
     this.modelReleaseEdit.sprintNumber = release.sprintNumber;
     this.modelReleaseEdit.link = release.link;

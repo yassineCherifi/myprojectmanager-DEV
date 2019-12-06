@@ -9,7 +9,7 @@ import { TestsService } from 'src/app/services/tests.service';
   templateUrl: './test.component.html'
 })
 export class TestComponent implements OnInit {
-  project_id;
+  projectId;
   tests = [];
   modelTest = {
     title: '',
@@ -36,16 +36,16 @@ export class TestComponent implements OnInit {
   notYet = 0;
 
   constructor(private testsService: TestsService,
-    private route: ActivatedRoute,
-    private calendar: NgbCalendar) { }
+              private route: ActivatedRoute,
+              private calendar: NgbCalendar) { }
 
   /**
    * Initialize the test component.
    */
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
-      this.project_id = params['id'];
-    })
+      this.projectId = params['id'];
+    });
     this.getTests();
     this.modelTest.date = this.calendar.getToday();
   }
@@ -54,18 +54,21 @@ export class TestComponent implements OnInit {
    * Get the current project test list.
    */
   getTests() {
-    this.testsService.getTests(this.project_id).subscribe(data => {
+    this.testsService.getTests(this.projectId).subscribe(data => {
       this.tests = data['tests'];
       this.nbrPass = 0;
       this.nbrFailed = 0;
       this.notYet = 0;
       this.tests.forEach(e => {
-        if (e.status === 'Passé')
+        if (e.status === 'Passé') {
           this.nbrPass = this.nbrPass + 1;
-        else if (e.status === 'En cours')
+        }
+        else if (e.status === 'En cours') {
           this.notYet = this.notYet + 1;
-        else if (e.status === 'Echoué')
+        }
+        else if (e.status === 'Echoué') {
           this.nbrFailed = this.nbrFailed + 1;
+        }
       });
     });
   }
@@ -77,7 +80,7 @@ export class TestComponent implements OnInit {
   onSubmitTest(form: NgForm) {
     const date = form.value.dp;
     form.value.dp = date.day + '/' + date.month + '/' + date.year;
-    this.testsService.addTest(this.project_id, form.value).subscribe(
+    this.testsService.addTest(this.projectId, form.value).subscribe(
       res => {
         form.resetForm();
         this.modelTest.status = '0';
@@ -95,7 +98,7 @@ export class TestComponent implements OnInit {
    * @param id id of test to remove.
    */
   removeTest(id) {
-    this.testsService.removeTest(this.project_id, id).subscribe(data => this.getTests());
+    this.testsService.removeTest(this.projectId, id).subscribe(data => this.getTests());
   }
 
   /**
@@ -120,7 +123,7 @@ export class TestComponent implements OnInit {
   onSubmitEditTest(form: NgForm) {
     const date = form.value.dp;
     form.value.dp = date.day + '/' + date.month + '/' + date.year;
-    this.testsService.editTest(this.project_id, this.modelTestEdit._id, form.value).subscribe(
+    this.testsService.editTest(this.projectId, this.modelTestEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
         this.getTests();

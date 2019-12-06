@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './issue.component.html'
 })
 export class IssueComponent implements OnInit {
-  project_id;
+  projectId;
   issues = [];
   selectedItem;
   modelIssue: Issues = {
@@ -38,7 +38,7 @@ export class IssueComponent implements OnInit {
   ngOnInit() {
 
     this.route.parent.params.subscribe(params => {
-      this.project_id = params['id']; // true
+      this.projectId = params['id']; // true
     });
     this.getIssues();
   }
@@ -47,7 +47,7 @@ export class IssueComponent implements OnInit {
    * Get the current project issue list
    */
   getIssues() {
-    this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
+    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data['issues']);
   }
 
 
@@ -56,7 +56,7 @@ export class IssueComponent implements OnInit {
    * @param form form containing the issue info
    */
   onSubmitIssue(form: NgForm) {
-    this.issueService.addIssue(this.project_id, form.value).subscribe(
+    this.issueService.addIssue(this.projectId, form.value).subscribe(
       res => {
         form.resetForm();
         this.modelIssue.status = '0';
@@ -74,7 +74,7 @@ export class IssueComponent implements OnInit {
    * @param id id of the issue to remove
    */
   removeIssue(id) {
-    this.issueService.removeIssue(this.project_id, id).subscribe(data => this.getIssues());
+    this.issueService.removeIssue(this.projectId, id).subscribe(data => this.getIssues());
   }
 
   /**
@@ -95,7 +95,7 @@ export class IssueComponent implements OnInit {
    * @param form form containing the issue info
    */
   onSubmitEditIssue(form: NgForm) {
-    this.issueService.editIssue(this.project_id, this.modelIssueEdit._id, form.value).subscribe(
+    this.issueService.editIssue(this.projectId, this.modelIssueEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
         this.selectedItem = null;
@@ -107,7 +107,6 @@ export class IssueComponent implements OnInit {
     );
   }
 
-
   /**
    * Sort issues by criteria : "ID", "Priorité" or "Difficulté".
    * @param $event the criteria on which issues are sorted.
@@ -118,6 +117,7 @@ export class IssueComponent implements OnInit {
       switch (clicked) {
         case 'ID': {
           this.issues = this.issues.sort((a, b) => parseInt(a.issueID) - parseInt(b.issueID));
+          break;
         }
         case 'Priorité': {
           this.issues = this.issues.sort((a, b) => a.priorite.localeCompare(b.priorite));

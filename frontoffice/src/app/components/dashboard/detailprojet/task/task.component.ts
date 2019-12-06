@@ -10,7 +10,7 @@ import { ProjetService } from 'src/app/services/projet.service';
   templateUrl: './task.component.html'
 })
 export class TaskComponent implements OnInit {
-  project_id;
+  projectId;
   tasks = [];
   issues = [];
   contributors = [];
@@ -29,7 +29,7 @@ export class TaskComponent implements OnInit {
   };
 
   constructor(private tasksService: TasksService, private issueService: IssuesService,
-    private projectService: ProjetService, private route: ActivatedRoute) { }
+              private projectService: ProjetService, private route: ActivatedRoute) { }
 
 
   /**
@@ -37,7 +37,7 @@ export class TaskComponent implements OnInit {
    */
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
-      this.project_id = params['id'];
+      this.projectId = params['id'];
     });
     this.getTasks();
     this.getIssues();
@@ -48,21 +48,21 @@ export class TaskComponent implements OnInit {
    * Get the current project task list.
    */
   getTasks() {
-    this.tasksService.getTasks(this.project_id).subscribe(data => this.tasks = data['tasks']);
+    this.tasksService.getTasks(this.projectId).subscribe(data => this.tasks = data['tasks']);
   }
 
   /**
    * Get the current project issue list.
    */
   getIssues() {
-    this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
+    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data['issues']);
   }
 
   /**
    * Get the current project contributors list.
    */
   getContributors() {
-    this.projectService.getProject(this.project_id).subscribe(data => {
+    this.projectService.getProject(this.projectId).subscribe(data => {
       this.contributors = data['project']['contributors'];
     });
   }
@@ -72,7 +72,7 @@ export class TaskComponent implements OnInit {
    * @param form form containing the task info.
    */
   onSubmitTask(form: NgForm) {
-    this.tasksService.addTask(this.project_id, form.value).subscribe(
+    this.tasksService.addTask(this.projectId, form.value).subscribe(
       res => {
         form.resetForm();
         this.modelTask.developer = null;
@@ -90,7 +90,7 @@ export class TaskComponent implements OnInit {
    * @param id id of task to remove.
    */
   removeTask(id) {
-    this.tasksService.removeTask(this.project_id, id).subscribe(data => this.getTasks());
+    this.tasksService.removeTask(this.projectId, id).subscribe(data => this.getTasks());
   }
 
   /**
@@ -111,7 +111,7 @@ export class TaskComponent implements OnInit {
    * @param form form containing the task info
    */
   onSubmitEditTask(form: NgForm) {
-    this.tasksService.editTask(this.project_id, this.modelTaskEdit._id, form.value).subscribe(
+    this.tasksService.editTask(this.projectId, this.modelTaskEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
         this.getTasks();

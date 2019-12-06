@@ -40,7 +40,7 @@ export class ContributorService {
    * @param idProject id of the project.
    * @param id_user id of the contributor.
    */
-  removeContributor(idProject, id_user) {
-    return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/contributors/' + id_user);
+  removeContributor(idProject, idUser) {
+    return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/contributors/' + idUser);
   }
 }

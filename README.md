@@ -10,7 +10,7 @@ To use it in development mode :<br>
    `cd frontoffice && npm install` && `ng serve --open` to run the angular application on the URI       `http://localhost:4200`
 
 To use it in production mode :<br>
-  in `myprojectmanager-PROD/` run `docker-compose up --build`<br>
+  in `myprojectmanager-DEV/` run `docker-compose up --build`<br>
   visit the URL `http://localhost:3002`
 
 Backlog

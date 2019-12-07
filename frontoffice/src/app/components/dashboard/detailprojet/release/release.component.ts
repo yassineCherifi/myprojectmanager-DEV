@@ -11,7 +11,7 @@ import { IssuesService } from 'src/app/services/issues.service';
   templateUrl: './release.component.html'
 })
 export class ReleaseComponent implements OnInit {
-  project_id;
+  projectId;
   releases = [];
   sprints = [];
   issues = [];
@@ -37,16 +37,17 @@ export class ReleaseComponent implements OnInit {
   modelDate;
 
   constructor(private releasesService: ReleasesService, private sprintService: SprintService, private issueService: IssuesService,
-    private route: ActivatedRoute,
-    private calendar: NgbCalendar) { }
+              private route: ActivatedRoute,
+              private calendar: NgbCalendar) { }
 
 
   /**
    * Initialize the release component.
    */
   ngOnInit() {
+    const id = 'id';
     this.route.parent.params.subscribe(params => {
-      this.project_id = params['id'];
+      this.projectId = params[id];
     });
     this.getReleases();
     this.getSprints();
@@ -59,21 +60,24 @@ export class ReleaseComponent implements OnInit {
    * Get the current project issue list.
    */
   getIssues() {
-    this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
+    const issues = 'issues';
+    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data[issues]);
   }
 
   /**
    * Get the current project release list.
    */
   getReleases() {
-    this.releasesService.getReleases(this.project_id).subscribe(data => this.releases = data['releases']);
+    const releases = 'releases';
+    this.releasesService.getReleases(this.projectId).subscribe(data => this.releases = data[releases]);
   }
 
   /**
    * Get the current project sprint list.
    */
   getSprints() {
-    this.sprintService.getSprints(this.project_id).subscribe(data => this.sprints = data['sprints']);
+    const sprints = 'sprints';
+    this.sprintService.getSprints(this.projectId).subscribe(data => this.sprints = data[sprints]);
   }
 
   /**
@@ -83,7 +87,7 @@ export class ReleaseComponent implements OnInit {
   onSubmitRelease(form: NgForm) {
     const date = form.value.date;
     form.value.date = date.day + '/' + date.month + '/' + date.year;
-    this.releasesService.addRelease(this.project_id, form.value).subscribe(
+    this.releasesService.addRelease(this.projectId, form.value).subscribe(
       res => {
         form.resetForm();
         this.getReleases();
@@ -99,7 +103,7 @@ export class ReleaseComponent implements OnInit {
    * @param id id of release to remove.
    */
   removeRelease(id) {
-    this.releasesService.removeRelease(this.project_id, id).subscribe(data => this.getReleases());
+    this.releasesService.removeRelease(this.projectId, id).subscribe(data => this.getReleases());
   }
 
   /**
@@ -112,7 +116,7 @@ export class ReleaseComponent implements OnInit {
     this.modelReleaseEdit.description = release.description;
     this.modelReleaseEdit.version = release.version;
     const tmpDate = release.date.split('/');
-    this.modelReleaseEdit.date = { year: parseInt(tmpDate[2]), month: parseInt(tmpDate[1]), day: parseInt(tmpDate[0]) };
+    this.modelReleaseEdit.date = { year: parseInt(tmpDate[2], 10), month: parseInt(tmpDate[1], 10), day: parseInt(tmpDate[0], 10) };
     this.modelReleaseEdit.sprintNumber = release.sprintNumber;
     this.modelReleaseEdit.link = release.link;
   }
@@ -124,7 +128,7 @@ export class ReleaseComponent implements OnInit {
   onSubmitEditRelease(form: NgForm) {
     const date = form.value.date;
     form.value.date = date.day + '/' + date.month + '/' + date.year;
-    this.releasesService.editRelease(this.project_id, this.modelReleaseEdit._id, form.value).subscribe(
+    this.releasesService.editRelease(this.projectId, this.modelReleaseEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
         this.getReleases();

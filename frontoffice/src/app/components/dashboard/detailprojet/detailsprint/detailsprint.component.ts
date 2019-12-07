@@ -11,10 +11,10 @@ import { NgForm } from '@angular/forms';
 
 
 export class DetailsprintComponent implements OnInit {
-  project_id;
+  projectId;
   sprintID;
-  nbrDifficulte : number = 0;
-  nbrDifficulteRes : number = 0;
+  nbrDifficulte = 0;
+  nbrDifficulteRe = 0;
   sprint = {};
   issues = [];
   selectedItems;
@@ -28,8 +28,8 @@ export class DetailsprintComponent implements OnInit {
   };
   events: Event[] = [];
   constructor(private sprintService: SprintService,
-    private issueService: IssuesService,
-    private route: ActivatedRoute) { }
+              private issueService: IssuesService,
+              private route: ActivatedRoute) { }
 
 
   /**
@@ -44,23 +44,28 @@ export class DetailsprintComponent implements OnInit {
    */
   getSprint() {
     this.route.parent.params.subscribe(params => {
-      this.project_id = params['id']; // true
+      const id = 'id';
+      this.projectId = params[id];
     });
     this.sprintID = this.route.snapshot.paramMap.get('idSprint');
 
-    this.sprintService.getSprint(this.project_id, this.sprintID).subscribe(data => {
-      this.sprint = data['sprint'];
-      this.issueService.getIssues(this.project_id).subscribe(data => {
+    this.sprintService.getSprint(this.projectId, this.sprintID).subscribe(data => {
+      const sprint = 'sprint';
+      const issues = 'issues';
+      this.sprint = data[sprint];
 
-        const res = data['issues'].filter(item1 =>
-          !this.sprint['issues'].some(item2 => (item2._id === item1._id)));
+
+      this.issueService.getIssues(this.projectId).subscribe(dataIssues => {
+
+        const res = dataIssues[issues].filter(item1 =>
+          !this.sprint[issues].some(item2 => (item2._id === item1._id)));
         this.issues = res;
         this.nbrDifficulte = 0;
-        this.nbrDifficulteRes = 0;
-        this.sprint['issues'].forEach(e => {
-          this.nbrDifficulte = this.nbrDifficulte + parseInt(e.difficulte);
-          if(e.status === 'Terminé') {
-            this.nbrDifficulteRes = this.nbrDifficulteRes + parseInt(e.difficulte);
+        this.nbrDifficulteRe = 0;
+        this.sprint[issues].forEach(e => {
+          this.nbrDifficulte = this.nbrDifficulte + parseInt(e.difficulte, 10);
+          if (e.status === 'Terminé') {
+            this.nbrDifficulteRe = this.nbrDifficulteRe + parseInt(e.difficulte, 10);
           }
         });
       });
@@ -74,7 +79,7 @@ export class DetailsprintComponent implements OnInit {
    * @param $event Add event
    */
   onAdd($event) {
-    this.sprintService.addIssueSprint(this.project_id, this.sprintID, { idIssue: $event }).subscribe(
+    this.sprintService.addIssueSprint(this.projectId, this.sprintID, { idIssue: $event }).subscribe(
       res => {
         this.getSprint();
         this.selectedItems = null;
@@ -98,14 +103,12 @@ export class DetailsprintComponent implements OnInit {
     this.modelIssueEdit.status = issue.status;
   }
 
-
-
   /**
    * Edit an issue
    * @param form form containing the issue infos.
    */
   onSubmitEditIssue(form: NgForm) {
-    this.issueService.editIssue(this.project_id, this.modelIssueEdit._id, form.value).subscribe(
+    this.issueService.editIssue(this.projectId, this.modelIssueEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
         this.getSprint();
@@ -121,9 +124,7 @@ export class DetailsprintComponent implements OnInit {
    * @param issueId id of issue to remove
    */
   removeIssueFromSprint(issueId) {
-    this.sprintService.removeIssue(this.project_id, this.sprintID, issueId).subscribe(data => this.getSprint());
+    this.sprintService.removeIssue(this.projectId, this.sprintID, issueId).subscribe(data => this.getSprint());
 
   }
-
-
 }

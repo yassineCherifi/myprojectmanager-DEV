@@ -9,7 +9,7 @@ import { DocumentationsService } from 'src/app/services/documentations.service';
   templateUrl: './documentation.component.html'
 })
 export class DocumentationComponent implements OnInit {
-  project_id;
+  projectId;
   issues = [];
   documentations = [];
   modelDocumentation = {
@@ -36,25 +36,27 @@ export class DocumentationComponent implements OnInit {
    */
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
-      this.project_id = params['id'];
+      const id = 'id';
+      this.projectId = params[id];
     });
     this.getDocumentations();
     this.getIssues();
-
   }
 
   /**
    * Get the current project issue list.
    */
   getIssues() {
-    this.issueService.getIssues(this.project_id).subscribe(data => this.issues = data['issues']);
+    const issues = 'issues';
+    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data[issues]);
   }
 
   /**
    * Get the current project documentation list.
    */
   getDocumentations() {
-    this.documentationService.getDocumentations(this.project_id).subscribe(data => this.documentations = data['documentations']);
+    const documentations = 'documentations';
+    this.documentationService.getDocumentations(this.projectId).subscribe(data => this.documentations = data[documentations]);
   }
 
 
@@ -62,8 +64,8 @@ export class DocumentationComponent implements OnInit {
    * Add documentation from form info
    * @param form the form containing the documentation info
    */
-  onSubmitDocumentation(form: NgForm){
-    this.documentationService.addDocumentation(this.project_id, form.value).subscribe(
+  onSubmitDocumentation(form: NgForm) {
+    this.documentationService.addDocumentation(this.projectId, form.value).subscribe(
       res => {
         form.resetForm();
         this.getDocumentations();
@@ -79,9 +81,8 @@ export class DocumentationComponent implements OnInit {
    * @param id id of the documentation reference
    */
   removeDocumentation(id) {
-    this.documentationService.removeDocumentation(this.project_id, id).subscribe(data => this.getDocumentations());
+    this.documentationService.removeDocumentation(this.projectId, id).subscribe(data => this.getDocumentations());
   }
-
 
   /**
    * Update the edit documentation form with the documentation info
@@ -100,7 +101,7 @@ export class DocumentationComponent implements OnInit {
    * @param form the form containing documentation info
    */
   onSubmitEditDocumentation(form: NgForm) {
-    this.documentationService.editDocumentation(this.project_id, this.modelDocumentationEdit._id, form.value).subscribe(
+    this.documentationService.editDocumentation(this.projectId, this.modelDocumentationEdit._id, form.value).subscribe(
       res => {
         form.resetForm();
         this.getDocumentations();

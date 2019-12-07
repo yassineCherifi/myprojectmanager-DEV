@@ -13,7 +13,7 @@ export class ListprojetsComponent implements OnInit {
   public projects = [];
 
   constructor(private projectsService: ProjetService,
-              private contributorService : ContributorService) { }
+              private contributorService: ContributorService) { }
 
   model = {
     title: '',

@@ -31,8 +31,7 @@ export class RegisterComponent implements OnInit {
       err => {
         if (err.status === 442) {
           this.errormessage = err.error.join('<br/>');
-        }
-        else {
+        } else {
           this.errormessage = 'Une erreur est survenue dans le serveur';
         }
       }

@@ -18,7 +18,7 @@ class MockActivatedRoute {
     routeConfig: { children: { filter: () => {} } },
     params: { subscribe: jasmine.createSpy('subscribe')
     .and
-    .returnValue(of(<Params> {id: 1}))}
+    .returnValue(of({id: 1} as Params))}
   };
 }
 

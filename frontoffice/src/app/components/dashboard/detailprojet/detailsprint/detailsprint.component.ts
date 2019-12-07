@@ -53,17 +53,19 @@ export class DetailsprintComponent implements OnInit {
       const sprint = 'sprint';
       const issues = 'issues';
       this.sprint = data[sprint];
-      this.issueService.getIssues(this.projectId).subscribe(data => {
 
-        const res = data[issues].filter(item1 =>
+
+      this.issueService.getIssues(this.projectId).subscribe(dataIssues => {
+
+        const res = dataIssues[issues].filter(item1 =>
           !this.sprint[issues].some(item2 => (item2._id === item1._id)));
         this.issues = res;
         this.nbrDifficulte = 0;
         this.nbrDifficulteRe = 0;
         this.sprint[issues].forEach(e => {
-          this.nbrDifficulte = this.nbrDifficulte + parseInt(e.difficulte);
+          this.nbrDifficulte = this.nbrDifficulte + parseInt(e.difficulte, 10);
           if (e.status === 'Terminé') {
-            this.nbrDifficulteRe = this.nbrDifficulteRe + parseInt(e.difficulte);
+            this.nbrDifficulteRe = this.nbrDifficulteRe + parseInt(e.difficulte, 10);
           }
         });
       });

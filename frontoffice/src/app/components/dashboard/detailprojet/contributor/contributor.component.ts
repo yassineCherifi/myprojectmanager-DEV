@@ -70,9 +70,11 @@ export class ContributorComponent implements OnInit {
    * Get current project user list.
    */
   getUsers() {
+    const users = 'users';
+    const creator = 'creator';
     this.userService.getUsers().subscribe(data => {
-      this.users = data['users'].filter(item => !this.contributors.some(
-                   d => d._id === item._id || item._id === this.project['creator']._id ));
+      this.users = data[users].filter(item => !this.contributors.some(
+                   d => d._id === item._id || item._id === this.project[creator]._id ));
     });
 
   }

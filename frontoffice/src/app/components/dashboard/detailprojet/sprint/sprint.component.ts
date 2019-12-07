@@ -38,8 +38,9 @@ export class SprintComponent implements OnInit {
    * Initialize the sprint component.
    */
   ngOnInit() {
+    const id = 'id';
     this.route.parent.params.subscribe(params => {
-      this.projectId = params['id'];
+      this.projectId = params[id];
     });
     this.getSprints();
     this.modelSprint.startDate = this.calendar.getToday();
@@ -50,7 +51,8 @@ export class SprintComponent implements OnInit {
    * Get the current project sprint list.
    */
   getSprints() {
-    this.sprintService.getSprints(this.projectId).subscribe(data => this.sprints = data['sprints']);
+    const sprints = 'sprints';
+    this.sprintService.getSprints(this.projectId).subscribe(data => this.sprints = data[sprints]);
   }
 
   /**
@@ -83,9 +85,13 @@ export class SprintComponent implements OnInit {
     this.modelSprintEdit._id = sprint._id;
     this.modelSprintEdit.title = sprint.title;
     const tmpDateStart = sprint.startDate.split('/');
-    this.modelSprintEdit.startDate = { year: parseInt(tmpDateStart[2]), month: parseInt(tmpDateStart[1]), day: parseInt(tmpDateStart[0]) };
+    this.modelSprintEdit.startDate = { year: parseInt(tmpDateStart[2], 10),
+                                      month: parseInt(tmpDateStart[1], 10),
+                                      day: parseInt(tmpDateStart[0], 10) };
     const tmpDateEnd = sprint.endDate.split('/');
-    this.modelSprintEdit.endDate = { year: parseInt(tmpDateEnd[2]), month: parseInt(tmpDateEnd[1]), day: parseInt(tmpDateEnd[0]) };
+    this.modelSprintEdit.endDate = { year: parseInt(tmpDateEnd[2], 10),
+                                    month: parseInt(tmpDateEnd[1], 10),
+                                    day: parseInt(tmpDateEnd[0], 10) };
     this.modelSprintEdit.status = sprint.status;
   }
 

@@ -36,9 +36,9 @@ export class IssueComponent implements OnInit {
    * Initialize issue component.
    */
   ngOnInit() {
-
+    const id = 'id';
     this.route.parent.params.subscribe(params => {
-      this.projectId = params['id']; // true
+      this.projectId = params[id];
     });
     this.getIssues();
   }
@@ -47,7 +47,8 @@ export class IssueComponent implements OnInit {
    * Get the current project issue list
    */
   getIssues() {
-    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data['issues']);
+    const issues = 'issues';
+    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data[issues]);
   }
 
 
@@ -116,7 +117,7 @@ export class IssueComponent implements OnInit {
       const clicked = $event.$ngOptionLabel;
       switch (clicked) {
         case 'ID': {
-          this.issues = this.issues.sort((a, b) => parseInt(a.issueID) - parseInt(b.issueID));
+          this.issues = this.issues.sort((a, b) => parseInt(a.issueID, 10) - parseInt(b.issueID, 10));
           break;
         }
         case 'Priorité': {
@@ -124,7 +125,7 @@ export class IssueComponent implements OnInit {
           break;
         }
         case 'Difficulté': {
-          this.issues = this.issues.sort((a, b) => parseInt(a.difficulte) - parseInt(b.difficulte));
+          this.issues = this.issues.sort((a, b) => parseInt(a.difficulte, 10) - parseInt(b.difficulte, 10));
           break;
         }
       }

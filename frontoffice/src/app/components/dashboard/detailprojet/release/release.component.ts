@@ -45,8 +45,9 @@ export class ReleaseComponent implements OnInit {
    * Initialize the release component.
    */
   ngOnInit() {
+    const id = 'id';
     this.route.parent.params.subscribe(params => {
-      this.projectId = params['id'];
+      this.projectId = params[id];
     });
     this.getReleases();
     this.getSprints();
@@ -59,21 +60,24 @@ export class ReleaseComponent implements OnInit {
    * Get the current project issue list.
    */
   getIssues() {
-    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data['issues']);
+    const issues = 'issues';
+    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data[issues]);
   }
 
   /**
    * Get the current project release list.
    */
   getReleases() {
-    this.releasesService.getReleases(this.projectId).subscribe(data => this.releases = data['releases']);
+    const releases = 'releases';
+    this.releasesService.getReleases(this.projectId).subscribe(data => this.releases = data[releases]);
   }
 
   /**
    * Get the current project sprint list.
    */
   getSprints() {
-    this.sprintService.getSprints(this.projectId).subscribe(data => this.sprints = data['sprints']);
+    const sprints = 'sprints';
+    this.sprintService.getSprints(this.projectId).subscribe(data => this.sprints = data[sprints]);
   }
 
   /**
@@ -112,7 +116,7 @@ export class ReleaseComponent implements OnInit {
     this.modelReleaseEdit.description = release.description;
     this.modelReleaseEdit.version = release.version;
     const tmpDate = release.date.split('/');
-    this.modelReleaseEdit.date = { year: parseInt(tmpDate[2]), month: parseInt(tmpDate[1]), day: parseInt(tmpDate[0]) };
+    this.modelReleaseEdit.date = { year: parseInt(tmpDate[2], 10), month: parseInt(tmpDate[1], 10), day: parseInt(tmpDate[0], 10) };
     this.modelReleaseEdit.sprintNumber = release.sprintNumber;
     this.modelReleaseEdit.link = release.link;
   }

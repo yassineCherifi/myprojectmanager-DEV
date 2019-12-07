@@ -51,8 +51,7 @@ export class DetailprojetComponent implements OnInit {
       this.idLogged = this.userService.getIDOflogged();
       if (this.project.creator[id] === this.idLogged) {
         this.isCreator = true;
-      }
-      else {
+      } else {
         this.isCreator = false;
       }
       this.modelproject.title = this.project.title;

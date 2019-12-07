@@ -43,8 +43,9 @@ export class TestComponent implements OnInit {
    * Initialize the test component.
    */
   ngOnInit() {
+    const id = 'id';
     this.route.parent.params.subscribe(params => {
-      this.projectId = params['id'];
+      this.projectId = params[id];
     });
     this.getTests();
     this.modelTest.date = this.calendar.getToday();
@@ -54,19 +55,18 @@ export class TestComponent implements OnInit {
    * Get the current project test list.
    */
   getTests() {
+    const tests = 'tests';
     this.testsService.getTests(this.projectId).subscribe(data => {
-      this.tests = data['tests'];
+      this.tests = data[tests];
       this.nbrPass = 0;
       this.nbrFailed = 0;
       this.notYet = 0;
       this.tests.forEach(e => {
         if (e.status === 'Passé') {
           this.nbrPass = this.nbrPass + 1;
-        }
-        else if (e.status === 'En cours') {
+        } else if (e.status === 'En cours') {
           this.notYet = this.notYet + 1;
-        }
-        else if (e.status === 'Echoué') {
+        } else if (e.status === 'Echoué') {
           this.nbrFailed = this.nbrFailed + 1;
         }
       });
@@ -111,7 +111,7 @@ export class TestComponent implements OnInit {
     this.modelTestEdit.description = test.description;
     this.modelTestEdit.type = test.type;
     const tmpDate = test.date.split('/');
-    this.modelTestEdit.date = { year: parseInt(tmpDate[2]), month: parseInt(tmpDate[1]), day: parseInt(tmpDate[0]) };
+    this.modelTestEdit.date = { year: parseInt(tmpDate[2], 10), month: parseInt(tmpDate[1], 10), day: parseInt(tmpDate[0], 10) };
     this.modelTestEdit.link = test.link;
     this.modelTestEdit.status = test.status;
   }

@@ -47,14 +47,16 @@ export class DocumentationComponent implements OnInit {
    * Get the current project issue list.
    */
   getIssues() {
-    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data['issues']);
+    const issues = 'issues';
+    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data[issues]);
   }
 
   /**
    * Get the current project documentation list.
    */
   getDocumentations() {
-    this.documentationService.getDocumentations(this.projectId).subscribe(data => this.documentations = data['documentations']);
+    const documentations = 'documentations';
+    this.documentationService.getDocumentations(this.projectId).subscribe(data => this.documentations = data[documentations]);
   }
 
 

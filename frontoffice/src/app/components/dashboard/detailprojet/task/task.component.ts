@@ -36,8 +36,9 @@ export class TaskComponent implements OnInit {
    * Initialize the task component.
    */
   ngOnInit() {
+    const id = 'id';
     this.route.parent.params.subscribe(params => {
-      this.projectId = params['id'];
+      this.projectId = params[id];
     });
     this.getTasks();
     this.getIssues();
@@ -48,22 +49,26 @@ export class TaskComponent implements OnInit {
    * Get the current project task list.
    */
   getTasks() {
-    this.tasksService.getTasks(this.projectId).subscribe(data => this.tasks = data['tasks']);
+    const tasks = 'tasks';
+    this.tasksService.getTasks(this.projectId).subscribe(data => this.tasks = data[tasks]);
   }
 
   /**
    * Get the current project issue list.
    */
   getIssues() {
-    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data['issues']);
+    const issues = 'issues';
+    this.issueService.getIssues(this.projectId).subscribe(data => this.issues = data[issues]);
   }
 
   /**
    * Get the current project contributors list.
    */
   getContributors() {
+    const project = 'project';
+    const contributors = 'contributors';
     this.projectService.getProject(this.projectId).subscribe(data => {
-      this.contributors = data['project']['contributors'];
+      this.contributors = data[project][contributors];
     });
   }
 

@@ -16,7 +16,11 @@ import { UserdetailComponent } from './components/dashboard/userdetail/userdetai
 import { ReleaseComponent } from './components/dashboard/detailprojet/release/release.component';
 import { DocumentationComponent } from './components/dashboard/detailprojet/documentation/documentation.component';
 import { ContributorComponent } from './components/dashboard/detailprojet/contributor/contributor.component';
+import { AcceptComponent } from './components/accept/accept.component';
 const routes: Routes = [
+  {
+    path: 'accept', component: AcceptComponent
+  },
   {
     path: 'register', component: UserComponent,
     children: [{
@@ -26,7 +30,7 @@ const routes: Routes = [
   {
     path: 'login', component: UserComponent,
     children: [{
-      path: '', component: LoginComponent
+      path: '', component: LoginComponent,canActivate: [AuthGuard]
     }]
   },
   {
@@ -57,7 +61,7 @@ const routes: Routes = [
 
   },
   {
-    path: '', redirectTo: '/login', pathMatch: 'full'
+    path: '', redirectTo: 'dashboard', pathMatch: 'full'
   }
 ];
 

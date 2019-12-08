@@ -11,6 +11,8 @@ import { TestsService } from 'src/app/services/tests.service';
 export class TestComponent implements OnInit {
   projectId;
   tests = [];
+  selectedItem: any;
+  selectedItemType: any;
   modelTest = {
     title: '',
     description: '',
@@ -36,8 +38,8 @@ export class TestComponent implements OnInit {
   notYet = 0;
 
   constructor(private testsService: TestsService,
-              private route: ActivatedRoute,
-              private calendar: NgbCalendar) { }
+    private route: ActivatedRoute,
+    private calendar: NgbCalendar) { }
 
   /**
    * Initialize the test component.
@@ -132,5 +134,36 @@ export class TestComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  /**
+   * Filter the list of tests by status
+   * @param $event is the selected status
+   */
+  filter($event) {
+    const tests = 'tests';
+    if ($event !== undefined) {
+      const clicked = $event.$ngOptionLabel;
+      switch (clicked) {
+        case 'En cours': {
+          this.testsService.getTests(this.projectId).subscribe(data => {
+            this.tests = data[tests].filter(test => test.status === 'En cours');
+          });
+          break;
+        }
+        case 'Passé': {
+          this.testsService.getTests(this.projectId).subscribe(data => {
+            this.tests = data[tests].filter(test => test.status === 'Passé');
+          });
+          break;
+        }
+        case 'Echoué': {
+          this.testsService.getTests(this.projectId).subscribe(data => {
+            this.tests = data[tests].filter(test => test.status === 'Echoué');
+          });
+          break;
+        }
+      }
+    }
   }
 }

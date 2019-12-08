@@ -20,7 +20,7 @@ export class ContributorComponent implements OnInit {
   idLogged;
   isCreator = false;
   constructor(private route: ActivatedRoute, private projectService: ProjetService,
-              private contributorService: ContributorService, private userService: UserService
+    private contributorService: ContributorService, private userService: UserService
   ) { }
 
 
@@ -65,6 +65,12 @@ export class ContributorComponent implements OnInit {
     });
   }
 
+  /**
+    * Get pending invitations for the current user and project.
+    */
+  deleteInvitation(id) {
+    this.contributorService.deleteInvitation(this.projectId, id).subscribe(data => this.getInvitations());
+  }
 
   /**
    * Get current project user list.
@@ -74,7 +80,7 @@ export class ContributorComponent implements OnInit {
     const creator = 'creator';
     this.userService.getUsers().subscribe(data => {
       this.users = data[users].filter(item => !this.contributors.some(
-                   d => d._id === item._id || item._id === this.project[creator]._id ));
+        d => d._id === item._id || item._id === this.project[creator]._id));
     });
 
   }

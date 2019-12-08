@@ -68,7 +68,16 @@
         </div>
     </div>
 </div>
-
+<div class="row justify-content-center">
+    <div class="form-group col-md-3">
+        <ng-select (change)="filter($event)" (clear)="getTests()" [searchable]="false" class="custom"
+            [(ngModel)]="selectedItem" placeholder="Filtrer par status">
+            <ng-option>En cours</ng-option>
+            <ng-option>Passé</ng-option>
+            <ng-option>Echoué</ng-option>
+        </ng-select>
+    </div>
+</div>
 <table class="table table-striped">
     <caption>Liste des tests</caption>
     <thead class="thead">

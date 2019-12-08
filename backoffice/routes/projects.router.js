@@ -66,5 +66,7 @@ router.delete(docRoute+idDocumentation, documentationContr.deleteDocumentation);
 router.delete(idProject+'/contributors/:idContributor', contributorContr.deleteContributor);
 router.post(idProject+'/invite', contributorContr.inviteContributor);
 router.get(idProject+'/invitations/', contributorContr.getInvitations);
+router.delete(idProject+'/invitations/:invitationId', contributorContr.deleteInvitation);
+
 
 module.exports = router;

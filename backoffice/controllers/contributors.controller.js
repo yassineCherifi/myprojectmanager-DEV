@@ -39,7 +39,7 @@ module.exports.addContributor = (req, res) => {
                         if (!err) {
                             invitation.status = 1;
                             invitation.save().then(() => {
-                                res.redirect('/');
+                                res.redirect('/accept');
                             });
 
                         }
@@ -111,5 +111,15 @@ module.exports.deleteContributor = (req, res) => {
                 });
             });
         }
+    });
+};
+
+/**
+ * cancel an invitation.
+ */
+module.exports.deleteInvitation = (req, res, ) => {
+    Invitation.deleteOne({ _id: req.params.invitationId }, function (err) {
+        if (err) res.json(err);
+        res.json({ success: 'deleted with success' });
     });
 };

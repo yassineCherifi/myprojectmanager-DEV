@@ -28,6 +28,7 @@ import { ReleaseComponent } from './components/dashboard/detailprojet/release/re
 import { DocumentationComponent } from './components/dashboard/detailprojet/documentation/documentation.component';
 import { ContributorComponent } from './components/dashboard/detailprojet/contributor/contributor.component';
 import { ContributorService } from './services/contributor.service';
+import { AcceptComponent } from './components/accept/accept.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { ContributorService } from './services/contributor.service';
     UserdetailComponent,
     ReleaseComponent,
     DocumentationComponent,
-    ContributorComponent
+    ContributorComponent,
+    AcceptComponent
   ],
   imports: [
     BrowserModule,

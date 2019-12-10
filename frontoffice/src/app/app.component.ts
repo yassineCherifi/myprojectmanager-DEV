@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 export class AppComponent {
   title = 'front-cdp2019-grp2-eq3';
   url;
-  constructor(userService: UserService, activated: ActivatedRoute,router: Router) {
+  constructor(userService: UserService, activated: ActivatedRoute, router: Router) {
     if (window.location.href.includes('login') && userService.getIDOflogged() !== undefined) {
       router.navigate(['dashboard']);
     }

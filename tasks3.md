@@ -62,12 +62,13 @@ Taks list :
 ----------------------------------------------------------------------------------------------------------------------
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US23 | Create the user documentation | The file "User Documentation" has been created. It explains how to use the site to the user.| 0.5 | BOUYSSOU | ON GOING |
+| US23 | Create the user documentation | The file "User Documentation" has been created. It explains how to use the site to the user.| 0.5 | BOUYSSOU | DONE |
+
 ----------------------------------------------------------------------------------------------------------------------
 
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 
 | :-: | :-: | :-: | :-: | :-: | :-: |
-| US23 | Add JSDoc for the angular project | Methods are explained is JSDoc comments. | 0.5 | MARTINEAU | ON GOING |
+| US23 | Add JSDoc for the angular project | Methods are explained is JSDoc comments. | 0.5 | MARTINEAU | DONE |
 
 
 | ID_issue | task_description | Definition of Done | cost (day) | Developer | Status | 

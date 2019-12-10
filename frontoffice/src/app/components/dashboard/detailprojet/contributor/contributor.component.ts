@@ -20,8 +20,7 @@ export class ContributorComponent implements OnInit {
   idLogged;
   isCreator = false;
   constructor(private route: ActivatedRoute, private projectService: ProjetService,
-    private contributorService: ContributorService, private userService: UserService
-  ) { }
+              private contributorService: ContributorService, private userService: UserService) { }
 
 
   /**
@@ -66,8 +65,8 @@ export class ContributorComponent implements OnInit {
   }
 
   /**
-    * Get pending invitations for the current user and project.
-    */
+   * Get pending invitations for the current user and project.
+   */
   deleteInvitation(id) {
     this.contributorService.deleteInvitation(this.projectId, id).subscribe(data => this.getInvitations());
   }

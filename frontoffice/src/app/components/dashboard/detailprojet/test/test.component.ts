@@ -38,8 +38,8 @@ export class TestComponent implements OnInit {
   notYet = 0;
 
   constructor(private testsService: TestsService,
-    private route: ActivatedRoute,
-    private calendar: NgbCalendar) { }
+              private route: ActivatedRoute,
+              private calendar: NgbCalendar) { }
 
   /**
    * Initialize the test component.

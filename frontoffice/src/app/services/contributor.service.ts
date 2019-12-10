@@ -45,10 +45,10 @@ export class ContributorService {
   }
 
   /**
-    * Remove a contributor from the project.
-    * @param idProject id of the project.
-    * @param idInvitation id of the invitation.
-    */
+   * Remove a contributor from the project.
+   * @param idProject id of the project.
+   * @param idInvitation id of the invitation.
+   */
   deleteInvitation(idProject, idInvitation) {
     return this.httpClient.delete(environment.API_URL + '/projects/' + idProject + '/invitations/' + idInvitation);
   }

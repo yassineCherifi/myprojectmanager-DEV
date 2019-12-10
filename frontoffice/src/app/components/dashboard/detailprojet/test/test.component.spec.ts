@@ -8,6 +8,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, convertToParamMap, Params } from '@angular/router';
 import { of } from 'rxjs';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 class MockActivatedRoute {
@@ -33,7 +34,8 @@ describe('TestComponent', () => {
       imports: [FormsModule,
                 NgbModule,
                 RouterTestingModule,
-                HttpClientTestingModule],
+                HttpClientTestingModule,
+                NgSelectModule],
       providers: [{
                 provide: ActivatedRoute,
                 useClass: MockActivatedRoute

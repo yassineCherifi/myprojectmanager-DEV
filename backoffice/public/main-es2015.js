@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div id=\"row\">\n    <div class=\"container-fluid\" style=\"margin-top: 1%\">\n        <div class=\"jumbotron\">\n            <h1 class=\"display-4\">Félicitations !</h1>\n            <p class=\"lead\">Vous êtes maintenant contributeur dans le projet !</p>\n            <hr class=\"my-4\">\n            <p>Connectez-vous pour continuer </p>\n            <a class=\"btn btn-primary btn-lg\" routerLink=\"/login\" role=\"button\">Se connecter</a>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div id=\"row\">\n    <div class=\"container-fluid\" style=\"margin-top: 1%\">\n        <div class=\"jumbotron\">\n            <h1 class=\"display-4\">Félicitations !</h1>\n            <p class=\"lead\">Vous êtes maintenant contributeur dans le projet !</p>\n            <hr class=\"my-4\">\n            <p>Connectez-vous pour continuer </p>\n            <a class=\"btn btn-primary btn-lg\" href=\"/login\" role=\"button\">Se connecter</a>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -3126,7 +3126,8 @@ let UserService = class UserService {
      */
     getIDOflogged() {
         const user = localStorage.getItem('userinfos');
-        return JSON.parse(user).infos._id;
+        if (user !== null)
+            return JSON.parse(user).infos._id;
     }
 };
 UserService.ctorParameters = () => [

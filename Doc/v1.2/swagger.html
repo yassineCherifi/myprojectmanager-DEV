@@ -1,0 +1,2801 @@
+<!doctype html>
+<html>
+  <head>
+    <title>myprojectmanager</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>myprojectmanager</h1>
+    <div class="app-desc">myprojectmanager</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: 1.2</div>
+    <div class="app-desc">BasePath:</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Contributors">Contributors</a></h4>
+  <ul>
+  <li><a href="#addContributor"><code><span class="http-method">get</span> /{id}/contributors/{invitation}/{email}</code></a></li>
+  <li><a href="#deleteContributor"><code><span class="http-method">delete</span> /projects/{idProject}/contributors/{idContributor}</code></a></li>
+  <li><a href="#getInvitations"><code><span class="http-method">get</span> /projects/{idProject}/invitations</code></a></li>
+  <li><a href="#inviteContributor"><code><span class="http-method">post</span> /projects/{idProject}/invite</code></a></li>
+  </ul>
+  <h4><a href="#Documentation">Documentation</a></h4>
+  <ul>
+  <li><a href="#createDocumentation"><code><span class="http-method">post</span> /projects/{idProject}/documentations</code></a></li>
+  <li><a href="#deleteDocumentation"><code><span class="http-method">delete</span> /projects/{idProject}/documentations/{idDocumentation}</code></a></li>
+  <li><a href="#editDocumentation"><code><span class="http-method">put</span> /projects/{idProject}/documentations/{idDocumentation}</code></a></li>
+  <li><a href="#getDocumentations"><code><span class="http-method">get</span> /projects/{idProject}/documentations</code></a></li>
+  </ul>
+  <h4><a href="#Issues">Issues</a></h4>
+  <ul>
+  <li><a href="#createIssue"><code><span class="http-method">post</span> /projects/{idProject}/issues</code></a></li>
+  <li><a href="#deleteIssue"><code><span class="http-method">delete</span> /projects/{idProject}/issues/{idIssue}</code></a></li>
+  <li><a href="#editIssue"><code><span class="http-method">put</span> /projects/{idProject}/issues/{idIssue}</code></a></li>
+  <li><a href="#getIssues"><code><span class="http-method">get</span> /projects/{idProject}/issues</code></a></li>
+  </ul>
+  <h4><a href="#Projects">Projects</a></h4>
+  <ul>
+  <li><a href="#deleteProject"><code><span class="http-method">delete</span> /projects/{id}</code></a></li>
+  <li><a href="#editProject"><code><span class="http-method">put</span> /projects/{id}</code></a></li>
+  <li><a href="#getAllProjects"><code><span class="http-method">get</span> /projects</code></a></li>
+  <li><a href="#getProjectDetails"><code><span class="http-method">get</span> /projects/{id}</code></a></li>
+  <li><a href="#insertProject"><code><span class="http-method">post</span> /projects</code></a></li>
+  </ul>
+  <h4><a href="#Releases">Releases</a></h4>
+  <ul>
+  <li><a href="#createRelease"><code><span class="http-method">post</span> /projects/{idProject}/releases</code></a></li>
+  <li><a href="#deleteRelease"><code><span class="http-method">delete</span> /projects/{idProject}/releases/{idRelease}</code></a></li>
+  <li><a href="#editRelease"><code><span class="http-method">put</span> /projects/{idProject}/releases/{idRelease}</code></a></li>
+  <li><a href="#getReleases"><code><span class="http-method">get</span> /projects/{idProject}/releases</code></a></li>
+  </ul>
+  <h4><a href="#Sprints">Sprints</a></h4>
+  <ul>
+  <li><a href="#addIssueToSprint"><code><span class="http-method">post</span> /projects/{idProject}/sprints/{idSprint}/issues</code></a></li>
+  <li><a href="#createSprint"><code><span class="http-method">post</span> /projects/{idProject}/sprints</code></a></li>
+  <li><a href="#deleteIssueSprint"><code><span class="http-method">delete</span> /projects/{idProject}/sprints/{idSprint}/issues/{idIssue}</code></a></li>
+  <li><a href="#deleteSprint"><code><span class="http-method">delete</span> /projects/{idProject}/sprints/{idSprint}</code></a></li>
+  <li><a href="#editSprint"><code><span class="http-method">put</span> /projects/{idProject}/sprints/{idSprint}</code></a></li>
+  <li><a href="#getSprint"><code><span class="http-method">get</span> /projects/{idProject}/sprints/{idSprint}</code></a></li>
+  <li><a href="#getSprints"><code><span class="http-method">get</span> /projects/{idProject}/sprints</code></a></li>
+  </ul>
+  <h4><a href="#Tasks">Tasks</a></h4>
+  <ul>
+  <li><a href="#createTask"><code><span class="http-method">post</span> /projects/{idProject}/tasks</code></a></li>
+  <li><a href="#deleteTask"><code><span class="http-method">delete</span> /projects/{idProject}/tasks/{idTask}</code></a></li>
+  <li><a href="#editTask"><code><span class="http-method">put</span> /projects/{idProject}/tasks/{idTask}</code></a></li>
+  <li><a href="#getTasks"><code><span class="http-method">get</span> /projects/{idProject}/tasks</code></a></li>
+  </ul>
+  <h4><a href="#Tests">Tests</a></h4>
+  <ul>
+  <li><a href="#createTest"><code><span class="http-method">post</span> /projects/{idProject}/tests</code></a></li>
+  <li><a href="#deleteTest"><code><span class="http-method">delete</span> /projects/{idProject}/tests/{idTest}</code></a></li>
+  <li><a href="#editTest"><code><span class="http-method">put</span> /projects/{idProject}/tests/{idTest}</code></a></li>
+  <li><a href="#getTests"><code><span class="http-method">get</span> /projects/{idProject}/tests</code></a></li>
+  </ul>
+  <h4><a href="#Users">Users</a></h4>
+  <ul>
+  <li><a href="#authenticate"><code><span class="http-method">post</span> /login</code></a></li>
+  <li><a href="#getUsers"><code><span class="http-method">get</span> /users</code></a></li>
+  <li><a href="#logout"><code><span class="http-method">get</span> /logout</code></a></li>
+  <li><a href="#modifyUser"><code><span class="http-method">put</span> /users/{idUser}</code></a></li>
+  <li><a href="#register"><code><span class="http-method">post</span> /register</code></a></li>
+  <li><a href="#userDashboard"><code><span class="http-method">get</span> /dashboard</code></a></li>
+  </ul>
+
+  <h1><a name="Contributors">Contributors</a></h1>
+  <div class="method"><a name="addContributor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /{id}/contributors/{invitation}/{email}</code></pre></div>
+    <div class="method-summary">Add a contributor to the project (<span class="nickname">addContributor</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the project. format: int64</div><div class="param">invitation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the invitation received by the user </div><div class="param">email (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Email of the user </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteContributor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /projects/{idProject}/contributors/{idContributor}</code></pre></div>
+    <div class="method-summary">Remove a contributor of idContributor from project of idProject (<span class="nickname">deleteContributor</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the project. format: int64</div><div class="param">idContributor (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the project. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid id supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Contributor not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getInvitations"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects/{idProject}/invitations</code></pre></div>
+    <div class="method-summary">Get all invitations of project of idProject (<span class="nickname">getInvitations</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the project. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Invitation">Invitation</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "date" : "date",
+  "emailUser" : "emailUser",
+  "project" : {
+    "creator" : {
+      "password" : "password",
+      "name" : "name",
+      "id" : 0,
+      "saltSecret" : "saltSecret",
+      "email" : "email"
+    },
+    "tests" : [ {
+      "date" : "date",
+      "link" : "link",
+      "description" : "description",
+      "id" : 1,
+      "title" : "title",
+      "type" : "type",
+      "status" : "status"
+    }, {
+      "date" : "date",
+      "link" : "link",
+      "description" : "description",
+      "id" : 1,
+      "title" : "title",
+      "type" : "type",
+      "status" : "status"
+    } ],
+    "documentations" : [ {
+      "link" : "link",
+      "description" : "description",
+      "id" : 5,
+      "title" : "title"
+    }, {
+      "link" : "link",
+      "description" : "description",
+      "id" : 5,
+      "title" : "title"
+    } ],
+    "description" : "description",
+    "sprints" : [ {
+      "endDate" : "endDate",
+      "id" : 6,
+      "title" : "title",
+      "issues" : [ {
+        "issueID" : "issueID",
+        "priorite" : "priorite",
+        "description" : "description",
+        "difficulte" : "difficulte",
+        "status" : "status"
+      }, {
+        "issueID" : "issueID",
+        "priorite" : "priorite",
+        "description" : "description",
+        "difficulte" : "difficulte",
+        "status" : "status"
+      } ],
+      "startDate" : "startDate",
+      "status" : "status"
+    }, {
+      "endDate" : "endDate",
+      "id" : 6,
+      "title" : "title",
+      "issues" : [ {
+        "issueID" : "issueID",
+        "priorite" : "priorite",
+        "description" : "description",
+        "difficulte" : "difficulte",
+        "status" : "status"
+      }, {
+        "issueID" : "issueID",
+        "priorite" : "priorite",
+        "description" : "description",
+        "difficulte" : "difficulte",
+        "status" : "status"
+      } ],
+      "startDate" : "startDate",
+      "status" : "status"
+    } ],
+    "id" : 0,
+    "contributors" : [ {
+      "password" : "password",
+      "name" : "name",
+      "id" : 0,
+      "saltSecret" : "saltSecret",
+      "email" : "email"
+    }, {
+      "password" : "password",
+      "name" : "name",
+      "id" : 0,
+      "saltSecret" : "saltSecret",
+      "email" : "email"
+    } ],
+    "title" : "title",
+    "issues" : [ {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    }, {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    } ],
+    "tasks" : [ {
+      "idIssues" : [ "idIssues", "idIssues" ],
+      "cout" : "cout",
+      "description" : "description",
+      "developer" : "developer"
+    }, {
+      "idIssues" : [ "idIssues", "idIssues" ],
+      "cout" : "cout",
+      "description" : "description",
+      "developer" : "developer"
+    } ],
+    "status" : "status",
+    "releases" : [ {
+      "date" : "date",
+      "sprintNumber" : "sprintNumber",
+      "link" : "link",
+      "description" : "description",
+      "id" : 5,
+      "title" : "title",
+      "version" : "version"
+    }, {
+      "date" : "date",
+      "sprintNumber" : "sprintNumber",
+      "link" : "link",
+      "description" : "description",
+      "id" : 5,
+      "title" : "title",
+      "version" : "version"
+    } ]
+  },
+  "status" : 0.80082819046101150206595775671303272247314453125
+}, {
+  "date" : "date",
+  "emailUser" : "emailUser",
+  "project" : {
+    "creator" : {
+      "password" : "password",
+      "name" : "name",
+      "id" : 0,
+      "saltSecret" : "saltSecret",
+      "email" : "email"
+    },
+    "tests" : [ {
+      "date" : "date",
+      "link" : "link",
+      "description" : "description",
+      "id" : 1,
+      "title" : "title",
+      "type" : "type",
+      "status" : "status"
+    }, {
+      "date" : "date",
+      "link" : "link",
+      "description" : "description",
+      "id" : 1,
+      "title" : "title",
+      "type" : "type",
+      "status" : "status"
+    } ],
+    "documentations" : [ {
+      "link" : "link",
+      "description" : "description",
+      "id" : 5,
+      "title" : "title"
+    }, {
+      "link" : "link",
+      "description" : "description",
+      "id" : 5,
+      "title" : "title"
+    } ],
+    "description" : "description",
+    "sprints" : [ {
+      "endDate" : "endDate",
+      "id" : 6,
+      "title" : "title",
+      "issues" : [ {
+        "issueID" : "issueID",
+        "priorite" : "priorite",
+        "description" : "description",
+        "difficulte" : "difficulte",
+        "status" : "status"
+      }, {
+        "issueID" : "issueID",
+        "priorite" : "priorite",
+        "description" : "description",
+        "difficulte" : "difficulte",
+        "status" : "status"
+      } ],
+      "startDate" : "startDate",
+      "status" : "status"
+    }, {
+      "endDate" : "endDate",
+      "id" : 6,
+      "title" : "title",
+      "issues" : [ {
+        "issueID" : "issueID",
+        "priorite" : "priorite",
+        "description" : "description",
+        "difficulte" : "difficulte",
+        "status" : "status"
+      }, {
+        "issueID" : "issueID",
+        "priorite" : "priorite",
+        "description" : "description",
+        "difficulte" : "difficulte",
+        "status" : "status"
+      } ],
+      "startDate" : "startDate",
+      "status" : "status"
+    } ],
+    "id" : 0,
+    "contributors" : [ {
+      "password" : "password",
+      "name" : "name",
+      "id" : 0,
+      "saltSecret" : "saltSecret",
+      "email" : "email"
+    }, {
+      "password" : "password",
+      "name" : "name",
+      "id" : 0,
+      "saltSecret" : "saltSecret",
+      "email" : "email"
+    } ],
+    "title" : "title",
+    "issues" : [ {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    }, {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    } ],
+    "tasks" : [ {
+      "idIssues" : [ "idIssues", "idIssues" ],
+      "cout" : "cout",
+      "description" : "description",
+      "developer" : "developer"
+    }, {
+      "idIssues" : [ "idIssues", "idIssues" ],
+      "cout" : "cout",
+      "description" : "description",
+      "developer" : "developer"
+    } ],
+    "status" : "status",
+    "releases" : [ {
+      "date" : "date",
+      "sprintNumber" : "sprintNumber",
+      "link" : "link",
+      "description" : "description",
+      "id" : 5,
+      "title" : "title",
+      "version" : "version"
+    }, {
+      "date" : "date",
+      "sprintNumber" : "sprintNumber",
+      "link" : "link",
+      "description" : "description",
+      "id" : 5,
+      "title" : "title",
+      "version" : "version"
+    } ]
+  },
+  "status" : 0.80082819046101150206595775671303272247314453125
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Invitations not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="inviteContributor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /projects/{idProject}/invite</code></pre></div>
+    <div class="method-summary">Invite a contributor to project of idProject (<span class="nickname">inviteContributor</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the project. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    L'invitation a été envoyée avec succès
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Documentation">Documentation</a></h1>
+  <div class="method"><a name="createDocumentation"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /projects/{idProject}/documentations</code></pre></div>
+    <div class="method-summary">Create a new documentation in project of project id (<span class="nickname">createDocumentation</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the documentations are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Documentation">Documentation</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created documentation </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteDocumentation"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /projects/{idProject}/documentations/{idDocumentation}</code></pre></div>
+    <div class="method-summary">Delete a documentation by id (<span class="nickname">deleteDocumentation</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the documentations are part of. format: int64</div><div class="param">idDocumentation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the documentation to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid id supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Documentation not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="editDocumentation"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /projects/{idProject}/documentations/{idDocumentation}</code></pre></div>
+    <div class="method-summary">Edit a documentation by id (<span class="nickname">editDocumentation</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the documentations are part of. format: int64</div><div class="param">idDocumentation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the documentation to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Documentation">Documentation</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Updated documentation </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getDocumentations"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects/{idProject}/documentations</code></pre></div>
+    <div class="method-summary">Get all documentations from project by project id (<span class="nickname">getDocumentations</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the documentations are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Documentation">Documentation</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "link" : "link",
+  "description" : "description",
+  "id" : 5,
+  "title" : "title"
+}, {
+  "link" : "link",
+  "description" : "description",
+  "id" : 5,
+  "title" : "title"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Documentations not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Issues">Issues</a></h1>
+  <div class="method"><a name="createIssue"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /projects/{idProject}/issues</code></pre></div>
+    <div class="method-summary">Create a new issue in project of project id (<span class="nickname">createIssue</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the issues are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Issue">Issue</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created issue </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteIssue"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /projects/{idProject}/issues/{idIssue}</code></pre></div>
+    <div class="method-summary">Delete an issue by id (<span class="nickname">deleteIssue</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the issues are part of. format: int64</div><div class="param">idIssue (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the issue to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid id supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Issue not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="editIssue"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /projects/{idProject}/issues/{idIssue}</code></pre></div>
+    <div class="method-summary">Edit an issue by id (<span class="nickname">editIssue</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the issues are part of. format: int64</div><div class="param">idIssue (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the issue to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Issue">Issue</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Updated Issue </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getIssues"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects/{idProject}/issues</code></pre></div>
+    <div class="method-summary">Get all issues from project by project id (<span class="nickname">getIssues</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the issues are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Issue">Issue</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "issueID" : "issueID",
+  "priorite" : "priorite",
+  "description" : "description",
+  "difficulte" : "difficulte",
+  "status" : "status"
+}, {
+  "issueID" : "issueID",
+  "priorite" : "priorite",
+  "description" : "description",
+  "difficulte" : "difficulte",
+  "status" : "status"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Issues not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Projects">Projects</a></h1>
+  <div class="method"><a name="deleteProject"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /projects/{id}</code></pre></div>
+    <div class="method-summary">Delete a project from id (<span class="nickname">deleteProject</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Project id to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Project not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="editProject"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /projects/{id}</code></pre></div>
+    <div class="method-summary">Edit a project by id (<span class="nickname">editProject</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAllProjects"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects</code></pre></div>
+    <div class="method-summary">Get all projects (<span class="nickname">getAllProjects</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Project">Project</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "creator" : {
+    "password" : "password",
+    "name" : "name",
+    "id" : 0,
+    "saltSecret" : "saltSecret",
+    "email" : "email"
+  },
+  "tests" : [ {
+    "date" : "date",
+    "link" : "link",
+    "description" : "description",
+    "id" : 1,
+    "title" : "title",
+    "type" : "type",
+    "status" : "status"
+  }, {
+    "date" : "date",
+    "link" : "link",
+    "description" : "description",
+    "id" : 1,
+    "title" : "title",
+    "type" : "type",
+    "status" : "status"
+  } ],
+  "documentations" : [ {
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title"
+  }, {
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title"
+  } ],
+  "description" : "description",
+  "sprints" : [ {
+    "endDate" : "endDate",
+    "id" : 6,
+    "title" : "title",
+    "issues" : [ {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    }, {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    } ],
+    "startDate" : "startDate",
+    "status" : "status"
+  }, {
+    "endDate" : "endDate",
+    "id" : 6,
+    "title" : "title",
+    "issues" : [ {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    }, {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    } ],
+    "startDate" : "startDate",
+    "status" : "status"
+  } ],
+  "id" : 0,
+  "contributors" : [ {
+    "password" : "password",
+    "name" : "name",
+    "id" : 0,
+    "saltSecret" : "saltSecret",
+    "email" : "email"
+  }, {
+    "password" : "password",
+    "name" : "name",
+    "id" : 0,
+    "saltSecret" : "saltSecret",
+    "email" : "email"
+  } ],
+  "title" : "title",
+  "issues" : [ {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  }, {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  } ],
+  "tasks" : [ {
+    "idIssues" : [ "idIssues", "idIssues" ],
+    "cout" : "cout",
+    "description" : "description",
+    "developer" : "developer"
+  }, {
+    "idIssues" : [ "idIssues", "idIssues" ],
+    "cout" : "cout",
+    "description" : "description",
+    "developer" : "developer"
+  } ],
+  "status" : "status",
+  "releases" : [ {
+    "date" : "date",
+    "sprintNumber" : "sprintNumber",
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title",
+    "version" : "version"
+  }, {
+    "date" : "date",
+    "sprintNumber" : "sprintNumber",
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title",
+    "version" : "version"
+  } ]
+}, {
+  "creator" : {
+    "password" : "password",
+    "name" : "name",
+    "id" : 0,
+    "saltSecret" : "saltSecret",
+    "email" : "email"
+  },
+  "tests" : [ {
+    "date" : "date",
+    "link" : "link",
+    "description" : "description",
+    "id" : 1,
+    "title" : "title",
+    "type" : "type",
+    "status" : "status"
+  }, {
+    "date" : "date",
+    "link" : "link",
+    "description" : "description",
+    "id" : 1,
+    "title" : "title",
+    "type" : "type",
+    "status" : "status"
+  } ],
+  "documentations" : [ {
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title"
+  }, {
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title"
+  } ],
+  "description" : "description",
+  "sprints" : [ {
+    "endDate" : "endDate",
+    "id" : 6,
+    "title" : "title",
+    "issues" : [ {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    }, {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    } ],
+    "startDate" : "startDate",
+    "status" : "status"
+  }, {
+    "endDate" : "endDate",
+    "id" : 6,
+    "title" : "title",
+    "issues" : [ {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    }, {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    } ],
+    "startDate" : "startDate",
+    "status" : "status"
+  } ],
+  "id" : 0,
+  "contributors" : [ {
+    "password" : "password",
+    "name" : "name",
+    "id" : 0,
+    "saltSecret" : "saltSecret",
+    "email" : "email"
+  }, {
+    "password" : "password",
+    "name" : "name",
+    "id" : 0,
+    "saltSecret" : "saltSecret",
+    "email" : "email"
+  } ],
+  "title" : "title",
+  "issues" : [ {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  }, {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  } ],
+  "tasks" : [ {
+    "idIssues" : [ "idIssues", "idIssues" ],
+    "cout" : "cout",
+    "description" : "description",
+    "developer" : "developer"
+  }, {
+    "idIssues" : [ "idIssues", "idIssues" ],
+    "cout" : "cout",
+    "description" : "description",
+    "developer" : "developer"
+  } ],
+  "status" : "status",
+  "releases" : [ {
+    "date" : "date",
+    "sprintNumber" : "sprintNumber",
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title",
+    "version" : "version"
+  }, {
+    "date" : "date",
+    "sprintNumber" : "sprintNumber",
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title",
+    "version" : "version"
+  } ]
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getProjectDetails"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects/{id}</code></pre></div>
+    <div class="method-summary">Get project detail by id (<span class="nickname">getProjectDetails</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project to return format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Project">Project</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "creator" : {
+    "password" : "password",
+    "name" : "name",
+    "id" : 0,
+    "saltSecret" : "saltSecret",
+    "email" : "email"
+  },
+  "tests" : [ {
+    "date" : "date",
+    "link" : "link",
+    "description" : "description",
+    "id" : 1,
+    "title" : "title",
+    "type" : "type",
+    "status" : "status"
+  }, {
+    "date" : "date",
+    "link" : "link",
+    "description" : "description",
+    "id" : 1,
+    "title" : "title",
+    "type" : "type",
+    "status" : "status"
+  } ],
+  "documentations" : [ {
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title"
+  }, {
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title"
+  } ],
+  "description" : "description",
+  "sprints" : [ {
+    "endDate" : "endDate",
+    "id" : 6,
+    "title" : "title",
+    "issues" : [ {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    }, {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    } ],
+    "startDate" : "startDate",
+    "status" : "status"
+  }, {
+    "endDate" : "endDate",
+    "id" : 6,
+    "title" : "title",
+    "issues" : [ {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    }, {
+      "issueID" : "issueID",
+      "priorite" : "priorite",
+      "description" : "description",
+      "difficulte" : "difficulte",
+      "status" : "status"
+    } ],
+    "startDate" : "startDate",
+    "status" : "status"
+  } ],
+  "id" : 0,
+  "contributors" : [ {
+    "password" : "password",
+    "name" : "name",
+    "id" : 0,
+    "saltSecret" : "saltSecret",
+    "email" : "email"
+  }, {
+    "password" : "password",
+    "name" : "name",
+    "id" : 0,
+    "saltSecret" : "saltSecret",
+    "email" : "email"
+  } ],
+  "title" : "title",
+  "issues" : [ {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  }, {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  } ],
+  "tasks" : [ {
+    "idIssues" : [ "idIssues", "idIssues" ],
+    "cout" : "cout",
+    "description" : "description",
+    "developer" : "developer"
+  }, {
+    "idIssues" : [ "idIssues", "idIssues" ],
+    "cout" : "cout",
+    "description" : "description",
+    "developer" : "developer"
+  } ],
+  "status" : "status",
+  "releases" : [ {
+    "date" : "date",
+    "sprintNumber" : "sprintNumber",
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title",
+    "version" : "version"
+  }, {
+    "date" : "date",
+    "sprintNumber" : "sprintNumber",
+    "link" : "link",
+    "description" : "description",
+    "id" : 5,
+    "title" : "title",
+    "version" : "version"
+  } ]
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#Project">Project</a>
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Project not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="insertProject"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /projects</code></pre></div>
+    <div class="method-summary">Create a new project (<span class="nickname">insertProject</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Project">Project</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created project reference </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Releases">Releases</a></h1>
+  <div class="method"><a name="createRelease"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /projects/{idProject}/releases</code></pre></div>
+    <div class="method-summary">Create a new release in project of project id (<span class="nickname">createRelease</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the releases are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Release">Release</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created release </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteRelease"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /projects/{idProject}/releases/{idRelease}</code></pre></div>
+    <div class="method-summary">Delete a release by id (<span class="nickname">deleteRelease</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the releases are part of. format: int64</div><div class="param">idRelease (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the release to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid id supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Release not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="editRelease"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /projects/{idProject}/releases/{idRelease}</code></pre></div>
+    <div class="method-summary">Edit a release by id (<span class="nickname">editRelease</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the releases are part of. format: int64</div><div class="param">idRelease (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the release to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Release">Release</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Updated release </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getReleases"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects/{idProject}/releases</code></pre></div>
+    <div class="method-summary">Get all releases from project by project id (<span class="nickname">getReleases</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the releases are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Release">Release</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "date" : "date",
+  "sprintNumber" : "sprintNumber",
+  "link" : "link",
+  "description" : "description",
+  "id" : 5,
+  "title" : "title",
+  "version" : "version"
+}, {
+  "date" : "date",
+  "sprintNumber" : "sprintNumber",
+  "link" : "link",
+  "description" : "description",
+  "id" : 5,
+  "title" : "title",
+  "version" : "version"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Releases not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Sprints">Sprints</a></h1>
+  <div class="method"><a name="addIssueToSprint"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /projects/{idProject}/sprints/{idSprint}/issues</code></pre></div>
+    <div class="method-summary">Add an issue to the sprint of idSprint (<span class="nickname">addIssueToSprint</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the sprint is part of. format: int64</div><div class="param">idSprint (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the sprint format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Issue">Issue</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created issue </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createSprint"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /projects/{idProject}/sprints</code></pre></div>
+    <div class="method-summary">Create a new sprint in project of project id (<span class="nickname">createSprint</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the sprints are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Sprint">Sprint</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created sprint </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteIssueSprint"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /projects/{idProject}/sprints/{idSprint}/issues/{idIssue}</code></pre></div>
+    <div class="method-summary">Remove an issue from sprint of idSprint (<span class="nickname">deleteIssueSprint</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the sprint is part of. format: int64</div><div class="param">idSprint (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the sprint format: int64</div><div class="param">idIssue (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the issue to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid id supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Issue not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteSprint"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /projects/{idProject}/sprints/{idSprint}</code></pre></div>
+    <div class="method-summary">Delete a sprint by id (<span class="nickname">deleteSprint</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the sprints are part of. format: int64</div><div class="param">idSprint (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the sprint to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid id supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Sprint not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="editSprint"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /projects/{idProject}/sprints/{idSprint}</code></pre></div>
+    <div class="method-summary">Edit a sprint by id (<span class="nickname">editSprint</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the sprints are part of. format: int64</div><div class="param">idSprint (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the sprint to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Sprint">Sprint</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Updated sprint </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getSprint"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects/{idProject}/sprints/{idSprint}</code></pre></div>
+    <div class="method-summary">Get a sprint by id (<span class="nickname">getSprint</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the sprint is part of. format: int64</div><div class="param">idSprint (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the sprint format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Sprint">Sprint</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "endDate" : "endDate",
+  "id" : 6,
+  "title" : "title",
+  "issues" : [ {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  }, {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  } ],
+  "startDate" : "startDate",
+  "status" : "status"
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#Sprint">Sprint</a>
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Sprint not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getSprints"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects/{idProject}/sprints</code></pre></div>
+    <div class="method-summary">Get all sprints from project by project id (<span class="nickname">getSprints</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the sprints are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Sprint">Sprint</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "endDate" : "endDate",
+  "id" : 6,
+  "title" : "title",
+  "issues" : [ {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  }, {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  } ],
+  "startDate" : "startDate",
+  "status" : "status"
+}, {
+  "endDate" : "endDate",
+  "id" : 6,
+  "title" : "title",
+  "issues" : [ {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  }, {
+    "issueID" : "issueID",
+    "priorite" : "priorite",
+    "description" : "description",
+    "difficulte" : "difficulte",
+    "status" : "status"
+  } ],
+  "startDate" : "startDate",
+  "status" : "status"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Sprints not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Tasks">Tasks</a></h1>
+  <div class="method"><a name="createTask"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /projects/{idProject}/tasks</code></pre></div>
+    <div class="method-summary">Create a new task in project of project id (<span class="nickname">createTask</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the tasks are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Task">Task</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created task </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteTask"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /projects/{idProject}/tasks/{idTask}</code></pre></div>
+    <div class="method-summary">Delete a task by id (<span class="nickname">deleteTask</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the tasks are part of. format: int64</div><div class="param">idTask (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the task to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid id supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Task not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="editTask"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /projects/{idProject}/tasks/{idTask}</code></pre></div>
+    <div class="method-summary">Edit a task by id (<span class="nickname">editTask</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the tasks are part of. format: int64</div><div class="param">idTask (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the task to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Task">Task</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Updated task </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getTasks"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects/{idProject}/tasks</code></pre></div>
+    <div class="method-summary">Get all tasks from project by project id (<span class="nickname">getTasks</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the tasks are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Task">Task</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "idIssues" : [ "idIssues", "idIssues" ],
+  "cout" : "cout",
+  "description" : "description",
+  "developer" : "developer"
+}, {
+  "idIssues" : [ "idIssues", "idIssues" ],
+  "cout" : "cout",
+  "description" : "description",
+  "developer" : "developer"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Tasks not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Tests">Tests</a></h1>
+  <div class="method"><a name="createTest"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /projects/{idProject}/tests</code></pre></div>
+    <div class="method-summary">Create a new test in project of project id (<span class="nickname">createTest</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the tests are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Test">Test</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created test </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteTest"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /projects/{idProject}/tests/{idTest}</code></pre></div>
+    <div class="method-summary">Delete a test by id (<span class="nickname">deleteTest</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the tests are part of. format: int64</div><div class="param">idTest (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the test to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid id supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Test not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="editTest"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /projects/{idProject}/tests/{idTest}</code></pre></div>
+    <div class="method-summary">Edit a test by id (<span class="nickname">editTest</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the tests are part of. format: int64</div><div class="param">idTest (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the test to delete format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Test">Test</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Updated test </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">default</h4>
+    successful operation
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getTests"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /projects/{idProject}/tests</code></pre></div>
+    <div class="method-summary">Get all tests from project by project id (<span class="nickname">getTests</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idProject (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of project the tests are part of. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Test">Test</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "date" : "date",
+  "link" : "link",
+  "description" : "description",
+  "id" : 1,
+  "title" : "title",
+  "type" : "type",
+  "status" : "status"
+}, {
+  "date" : "date",
+  "link" : "link",
+  "description" : "description",
+  "id" : 1,
+  "title" : "title",
+  "type" : "type",
+  "status" : "status"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+    <h4 class="field-label">400</h4>
+    Invalid ID supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Tests not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Users">Users</a></h1>
+  <div class="method"><a name="authenticate"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /login</code></pre></div>
+    <div class="method-summary">Log in a user (<span class="nickname">authenticate</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">email (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The user email for login </div><div class="param">password (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The password for login in clear text </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#String">String</a>
+    <h4 class="field-label">400</h4>
+    Invalid username/password supplied
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getUsers"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /users</code></pre></div>
+    <div class="method-summary">Get the users list (<span class="nickname">getUsers</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#User">User</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "password" : "password",
+  "name" : "name",
+  "id" : 0,
+  "saltSecret" : "saltSecret",
+  "email" : "email"
+}, {
+  "password" : "password",
+  "name" : "name",
+  "id" : 0,
+  "saltSecret" : "saltSecret",
+  "email" : "email"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+    <h4 class="field-label">404</h4>
+    Utilisateur non trouvÃ©
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="logout"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /logout</code></pre></div>
+    <div class="method-summary">Logout the current user (<span class="nickname">logout</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Logout with success !
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="modifyUser"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /users/{idUser}</code></pre></div>
+    <div class="method-summary">Modify a user from its id (<span class="nickname">modifyUser</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idUser (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; id of the user </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#User">User</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Updated user object </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Invalid user supplied
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+    <h4 class="field-label">442</h4>
+    L'email existe dÃ©jÃ  !
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="register"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /register</code></pre></div>
+    <div class="method-summary">Register a new user (<span class="nickname">register</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#User">User</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; User to be added </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">442</h4>
+    L'email existe dÃ©ja !
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="userDashboard"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /dashboard</code></pre></div>
+    <div class="method-summary">Checks if user is logged and returns its info (<span class="nickname">userDashboard</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; id of the user </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#User">User</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "password" : "password",
+  "name" : "name",
+  "id" : 0,
+  "saltSecret" : "saltSecret",
+  "email" : "email"
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#User">User</a>
+    <h4 class="field-label">404</h4>
+    User not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Documentation"><code>Documentation</code> - </a></li>
+    <li><a href="#Invitation"><code>Invitation</code> - </a></li>
+    <li><a href="#Issue"><code>Issue</code> - </a></li>
+    <li><a href="#Project"><code>Project</code> - </a></li>
+    <li><a href="#Release"><code>Release</code> - </a></li>
+    <li><a href="#Sprint"><code>Sprint</code> - </a></li>
+    <li><a href="#Task"><code>Task</code> - </a></li>
+    <li><a href="#Test"><code>Test</code> - </a></li>
+    <li><a href="#User"><code>User</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Documentation"><code>Documentation</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Invitation"><code>Invitation</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">emailUser </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">project (optional)</div><div class="param-desc"><span class="param-type"><a href="#Project">Project</a></span>  </div>
+<div class="param">date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Issue"><code>Issue</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">issueID </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">priorite (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">difficulte (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Project"><code>Project</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">creator (optional)</div><div class="param-desc"><span class="param-type"><a href="#User">User</a></span>  </div>
+<div class="param">contributors (optional)</div><div class="param-desc"><span class="param-type"><a href="#User">array[User]</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">issues (optional)</div><div class="param-desc"><span class="param-type"><a href="#Issue">array[Issue]</a></span>  </div>
+<div class="param">tasks (optional)</div><div class="param-desc"><span class="param-type"><a href="#Task">array[Task]</a></span>  </div>
+<div class="param">sprints (optional)</div><div class="param-desc"><span class="param-type"><a href="#Sprint">array[Sprint]</a></span>  </div>
+<div class="param">tests (optional)</div><div class="param-desc"><span class="param-type"><a href="#Test">array[Test]</a></span>  </div>
+<div class="param">releases (optional)</div><div class="param-desc"><span class="param-type"><a href="#Release">array[Release]</a></span>  </div>
+<div class="param">documentations (optional)</div><div class="param-desc"><span class="param-type"><a href="#Documentation">array[Documentation]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Release"><code>Release</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">version (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sprintNumber (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Sprint"><code>Sprint</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">startDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">endDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">issues (optional)</div><div class="param-desc"><span class="param-type"><a href="#Issue">array[Issue]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Task"><code>Task</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">idIssues (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">cout (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">developer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Test"><code>Test</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="User"><code>User</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">saltSecret (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

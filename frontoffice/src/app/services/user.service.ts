@@ -83,6 +83,7 @@ export class UserService {
    */
   getIDOflogged() {
     const user = localStorage.getItem('userinfos');
-    return JSON.parse(user).infos._id;
+    if (user !== null)
+      return JSON.parse(user).infos._id;
   }
 }

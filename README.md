@@ -20,7 +20,7 @@ Backlog
 | US01 | User | to sign-up by providing my name (20 chars max), email and password (min length 8) and clicking on the button "sign-up" | I will have my own dashboard | LOW | 1 | 1 | DONE |
 | US02 | User | to sign-in by providing my email and password and clicking on the button "sign-in" | I can access to my dashboard | LOW | 3 | 1 | DONE |
 | US03 | User | to logout by clicking on the button "logout" in the dashboard|  can get out of my dashboard | LOW | 1 | 1 | DONE |
-| US04 | User | to edit my profile (name, email, password) by clicking on the button "edit profile" in the dashboard and modifying the fields (name(20 chars max), email, password (min length 8) and confirm or cancel the changes by clicking on the corresponding buttons | I can update my informations | LOW | 1 | 2 | ON GOING |
+| US04 | User | to edit my profile (name, email, password) by clicking on the button "edit profile" in the dashboard and modifying the fields (name(20 chars max), email, password (min length 8) and confirm or cancel the changes by clicking on the corresponding buttons | I can update my informations | LOW | 1 | 2 | DONE |
 | US05 | Project manager | to create a new project (name(20 chars max) , description(100 chars max), status(En cours,  terminé)) and edit it or delete it by clicking on the corresponding buttons in the dashboard, then confirming or cancelling | I can update the projects list | HIGH | 1 | 1 | DONE |
 | US06 | Project manager | to add new contributors to my project by clicking on the button "Add contributor" and giving their emails then confirming or cancelling | They can start working with me | LOW | 3 | 3 | DONE |
 | US07 | Project manager | to remove contributors to my project by selecting the contributor to delete and clicking on the button "Remove contributor" then confirming or cancelling | I can update the list of contributors | LOW | 2 | 3 | DONE |
@@ -38,6 +38,6 @@ Backlog
 | US19 | Project contributor | to create a release (title(20 chars max), description(100 chars max), version(10chars max), date(dd/mm/yyyy), sprint number, link) or to edit it or delete it by clicking on the corresponding buttons then confirming or cancelling  | I can update the releases list | LOW | 1 | 2 | DONE |
 | US20 | Project contributor | to create a documentation list for my project (title(chars 10 max), description(chars 100 max), link) or to edit it or delete it by clicking on the corresponding buttons in the documentations tab then confirming or cancelling | I can answer users most FAQ by creating, editing or deleting a documentation | LOW | 1 | 3 | DONE |
 | US21 | Project contributor | to stop working on a project by clicking on the button "Quit project" in my projects lists then confirming or cancelling| I take it off of my dahsboard | LOW | 2 | 3 | DONE |
-| US22 | Developer | to understand how the API works | make queries on the site database | LOW | 1 | 3 | TODO |
-| US23 | User | to understand how the website works | use the website properly | LOW | 1 | 3 | TODO |
+| US22 | Developer | to understand how the API works | make queries on the site database | LOW | 1 | 3 | DONE |
+| US23 | User | to understand how the website works | use the website properly | LOW | 1 | 3 | DONE |
 

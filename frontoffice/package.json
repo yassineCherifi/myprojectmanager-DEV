@@ -8,7 +8,9 @@
     "build-dev": "ng build --outputPath=\"public\" && mkdir -p ../backoffice/public && cp -r public/* ../backoffice/public/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -32,7 +34,8 @@
     "save": "^2.4.0",
     "tail.select": "^0.5.15",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "snyk": "^1.258.2"
   },
   "devDependencies": {
     "@types/node": "~8.9.4",
@@ -50,5 +53,6 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
-  }
+  },
+  "snyk": true
 }
